@@ -31,11 +31,11 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp-firstpass
     - Boxophobic.PolyverseSkies.Runtime
+    - Cinemachine
     - Assembly-CSharp
     - Boxophobic.Utils.Scripts
     - Sirenix.OdinInspector.CompatibilityLayer
     - Boxophobic.PolyverseSkies.Scripts
-    - Cinemachine
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - Boxophobic.Utils.Editor
     - Boxophobic.PolyverseSkies.Editor
