@@ -19,7 +19,6 @@ namespace Extentions
                         _instance = newGo.AddComponent<T>();
                     }
                 }
-
                 return _instance;
             }
         }
