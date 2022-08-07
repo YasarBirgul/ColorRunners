@@ -1718,6 +1718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3204264644976277025, guid: c82789fd64ceecb46ab557a3a670b86c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 610ad0a28e4c29b40aabfd386decd662, type: 2}
     - target: {fileID: 3247202303938786183, guid: c82789fd64ceecb46ab557a3a670b86c, type: 3}
       propertyPath: m_RootOrder
       value: 4
