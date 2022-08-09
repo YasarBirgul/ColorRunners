@@ -78,9 +78,8 @@ namespace Managers
 
         private void Update()
         {
-            
-           
-           if (joystickRunner.Horizontal > 0.1f || joystickRunner.Horizontal < -0.1f)
+
+            if (joystickRunner.Horizontal > 0.1f || joystickRunner.Horizontal < -0.1f)
            {
                InputSignals.Instance.onRunnerInputDragged?.Invoke(new RunnerGameInputParams()
                {

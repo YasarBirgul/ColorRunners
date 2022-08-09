@@ -12,16 +12,10 @@ namespace Managers
         #region public vars
         #endregion
         #region serializefield vars
-
-        [SerializeField] private TextMeshProUGUI levelText;
-        [SerializeField] private TextMeshProUGUI _stickyManText;
-
         #endregion
         #region private vars
        
-        private UIPanelController _uiPanelController;
-        private int _levelID;
-        private int _StickyMan;
+        [SerializeField] private UIPanelController _uiPanelController;
 
         #endregion
         #endregion

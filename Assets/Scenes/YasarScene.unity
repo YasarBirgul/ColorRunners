@@ -1441,21 +1441,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnDeactivateStartPanel
+      - m_Target: {fileID: 245209779227172977}
+        m_TargetAssemblyTypeName: Managers.UIManager, Assembly-CSharp
+        m_MethodName: PlayBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1527,6 +1515,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 245209779227172973}
+  - component: {fileID: 245209779227172977}
+  - component: {fileID: 245209779227172976}
   m_Layer: 0
   m_Name: UIRoot
   m_TagString: Untagged
@@ -1534,6 +1524,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &245209779227172976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245209779227172975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77bb96165d45463e9e6665bad6813bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIPanelList:
+  - {fileID: 4246293774258718047}
+  - {fileID: 1798563350}
+  - {fileID: 4246293775170727899}
+  - {fileID: 4246293775099234229}
+--- !u!114 &245209779227172977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245209779227172975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c277eb8cdb2f1a4ea2b3a569601a96e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiPanelController: {fileID: 245209779227172976}
 --- !u!1 &4246293774114740309
 GameObject:
   m_ObjectHideFlags: 0
