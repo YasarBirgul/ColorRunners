@@ -19,11 +19,11 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
-            CoreGameSingals.Instance.onChangeGameState += OnChangeGameState;
+            CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
         } 
         private void UnsubscribeEvents()
         {
-            CoreGameSingals.Instance.onChangeGameState -= OnChangeGameState;
+            CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
         }
         private void OnDisable()
         {
@@ -34,24 +34,24 @@ namespace Managers
         private void OnGameOpen()
         {
             CurrentState = GameStates.Runner;
-            CoreGameSingals.Instance.onGameOpen?.Invoke();
+            CoreGameSignals.Instance.onGameOpen?.Invoke();
         }
         private void OnGameClose()
         {
-            CoreGameSingals.Instance.onGameClose?.Invoke();
+            CoreGameSignals.Instance.onGameClose?.Invoke();
         }
         private void OnApplicationFocus(bool hasFocus)
         {
             if (!hasFocus)
             {
-                CoreGameSingals.Instance.onGamePause?.Invoke(true);
+                CoreGameSignals.Instance.onGamePause?.Invoke(true);
             }
         }
         private void OnApplicationPause(bool paused)
         { 
             if (paused)
             { 
-                CoreGameSingals.Instance.onGamePause?.Invoke(true);
+                CoreGameSignals.Instance.onGamePause?.Invoke(true);
             }
         } 
         private void OnChangeGameState(GameStates NextState)

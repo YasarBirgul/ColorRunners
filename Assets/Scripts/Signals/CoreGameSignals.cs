@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace Signals
 {
-    public class CoreGameSingals : MonoSingleton<CoreGameSingals>
+    public class CoreGameSignals : MonoSingleton<CoreGameSignals>
     {
         public UnityAction onGameOpen = delegate {  };
         public UnityAction onGameClose = delegate {  };
