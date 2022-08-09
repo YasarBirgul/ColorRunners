@@ -61,7 +61,7 @@ namespace Managers
         {
             InputSignals.Instance.onInputTaken -= OnActivateMovement;
             InputSignals.Instance.onInputReleased -= OnDeactiveMovement;
-            InputSignals.Instance.onRunnerInputDragged-= OnGetRunnerInputValues;
+            InputSignals.Instance.onRunnerInputDragged -= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onReset -= OnReset;
@@ -80,6 +80,7 @@ namespace Managers
         private void OnDeactiveMovement()
         {
             movementController.DeactiveMovement();
+            movementController.SetRunnerMovementValues(0,0);
         } 
         private void OnGetRunnerInputValues(RunnerGameInputParams runnerGameInputParams)
         {

@@ -15,4 +15,4 @@ MonoBehaviour:
   PlayerData:
     PlayerMovementData:
       forwardSpeed: 10
-      SidewaysSpeed: 2
+      SidewaysSpeed: 10

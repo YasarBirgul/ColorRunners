@@ -23,7 +23,7 @@ namespace Controllers
         
         [Header("Data")][ShowInInspector] private PlayerMovementData _movementData;
         
-        [ShowInInspector] private bool _isReadyToMove, _isReadyToPlay;
+        [ShowInInspector] private bool _isReadyToMove, _isReadyToPlay ;
         
         [ShowInInspector] private float _inputValueX;
        
@@ -48,6 +48,7 @@ namespace Controllers
         public void DeactiveMovement()
         {
             _isReadyToMove = false;
+            
         }
         public void UpdateRunnerInputValue(RunnerGameInputParams inputParam)
         {
@@ -67,10 +68,10 @@ namespace Controllers
 
         private void FixedUpdate()
         {
-            if (_isReadyToPlay)
-            {
-                if (_isReadyToMove)
-                {
+         //  if (_isReadyToPlay)
+         //  {
+         //      if (_isReadyToMove)
+         //      {
                     if (CurrentState == GameStates.Runner)
                     {
                         RunnerMove();
@@ -79,14 +80,14 @@ namespace Controllers
                     {
                         IdleMove();
                     }
-                }
-                else
-                {
-                    StopSideways();
-                }
-            }
-            else
-                Stop();
+            //    }
+          ////      else
+          ////      {
+          ////          StopSideways();
+          //      }
+         //  }
+         //  else
+         //      Stop();
         }
         private void RunnerMove()
         {
@@ -121,6 +122,13 @@ namespace Controllers
             _isReadyToPlay = false;
             _isReadyToMove = false;
         }
+
+        public void SetRunnerMovementValues(float X,float Z)
+        {
+            _inputValueX = X;
+            _inputValueZ = Z;
+        }
+        
     }
 }
 

@@ -21,7 +21,7 @@ namespace Managers
 
         #region Serialized Variables,
         
-        [SerializeField] private Joystick joystickRunner;
+        [SerializeField] private FloatingJoystick joystickRunner;
 
         [SerializeField] private bool isReadyForTouch, isFirstTimeTouchTaken;
 
@@ -78,20 +78,18 @@ namespace Managers
 
         private void Update()
         {
-
-            if (joystickRunner.Horizontal > 0.1f || joystickRunner.Horizontal < -0.1f)
-           {
+            if (joystickRunner.Horizontal > 0.1f || joystickRunner.Horizontal < -0.1f) 
+            {
                InputSignals.Instance.onRunnerInputDragged?.Invoke(new RunnerGameInputParams()
                {
                    XValue = joystickRunner.Horizontal,
-                   ClampValues = new Vector2(-3.5f,+3.5f)
+                   ClampValues = new Vector2(-3,3)
                });
-           }
-           if (joystickRunner.Horizontal == 0f)
-           {
-               InputSignals.Instance.onInputReleased?.Invoke();
-           }
-            
+            } 
+            if (joystickRunner.Horizontal == 0f) 
+            {
+               InputSignals.Instance.onInputReleased?.Invoke(); 
+            }
         } 
         private void OnEnableInput()
         {
