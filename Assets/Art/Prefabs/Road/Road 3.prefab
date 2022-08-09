@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4142130190646496328}
   - component: {fileID: 7963774321129562233}
   m_Layer: 0
-  m_Name: Road 1
+  m_Name: Road 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4171245473738376579}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.7, z: 98.3}
   m_LocalScale: {x: 1, y: 1, z: 30}
   m_Children: []
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7597fb6872b67344ab5de6aedc04f87, type: 2}
+  - {fileID: 2100000, guid: 8bbce8c9737a6634c904978bfda64b2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

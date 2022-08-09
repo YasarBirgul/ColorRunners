@@ -1,4 +1,3 @@
-using System;
 using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
@@ -19,8 +18,7 @@ namespace Managers
         #endregion
 
         #region Serialized Variables
-
-        [SerializeField] private GameObject miniGamePlayer;
+        
         [Space][SerializeField] private PlayerMovementController movementController;
         [SerializeField] private PlayerAnimationController playerAnimationController;
 

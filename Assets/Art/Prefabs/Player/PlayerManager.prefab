@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8206093447873234527}
   - component: {fileID: 8206093447873234512}
+  - component: {fileID: 8886984498351355126}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -75,6 +76,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81763c6e0acdee4399450bd4dbcf6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data:
+    PlayerMovementData:
+      forwardSpeed: 10
+      SidewaysSpeed: 2
+  movementController: {fileID: 0}
+  playerAnimationController: {fileID: 0}
+--- !u!114 &8886984498351355126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8206093447873234526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd7a59130acdde408cf87ce819a3533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody: {fileID: 0}
 --- !u!1 &8206093447934698614
 GameObject:
   m_ObjectHideFlags: 0
