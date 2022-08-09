@@ -20,7 +20,7 @@ namespace Managers
         #region Serialized Variables
         
         [Space][SerializeField] private PlayerMovementController movementController;
-        [SerializeField] private PlayerAnimationController playerAnimationController;
+      //  [SerializeField] private PlayerAnimationController playerAnimationController;
 
         #region Private Variables
 

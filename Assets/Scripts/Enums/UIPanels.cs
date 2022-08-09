@@ -3,9 +3,8 @@
     public enum UIPanels
     {
         StartPanel,
-        WinPanel,
         LevelPanel,
-        RoullettePanel,
+        FailPanel,
         IdlePanel
     }
 }

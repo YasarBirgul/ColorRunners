@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class UIPanelController
+    public class UIPanelController : MonoBehaviour
     {
         [SerializeField] private List<GameObject> UIPanelList = new List<GameObject>();
         public void OpenPanel(UIPanels panelParam)
