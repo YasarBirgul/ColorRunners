@@ -479,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8206093447873234527, guid: 556c35323ddc03141baf02a879d66559, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.651
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8206093447873234527, guid: 556c35323ddc03141baf02a879d66559, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1063,7 +1063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 14389577721920772, guid: 0003e4168bfd3c04589f0ab39ebd5662, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 14389577721920772, guid: 0003e4168bfd3c04589f0ab39ebd5662, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1099,7 +1099,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4171245473738376579, guid: 0003e4168bfd3c04589f0ab39ebd5662, type: 3}
       propertyPath: m_Name
-      value: Road 3
+      value: Road
+      objectReference: {fileID: 0}
+    - target: {fileID: 7963774321129562233, guid: 0003e4168bfd3c04589f0ab39ebd5662, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0003e4168bfd3c04589f0ab39ebd5662, type: 3}

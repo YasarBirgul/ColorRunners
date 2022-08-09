@@ -30,6 +30,8 @@ namespace Controllers
         [ShowInInspector] private float _inputValueZ;
         
         [ShowInInspector] private Vector2 _clampValues;
+
+        private GameStates CurrentState = GameStates.Runner;
         
         #endregion
         
@@ -69,8 +71,14 @@ namespace Controllers
             {
                 if (_isReadyToMove)
                 {
-                    RunnerMove();
-                    
+                    if (CurrentState == GameStates.Runner)
+                    {
+                        RunnerMove();
+                    }
+                    else if(CurrentState == GameStates.Idle)
+                    {
+                        IdleMove();
+                    }
                 }
                 else
                 {
@@ -91,6 +99,10 @@ namespace Controllers
             rigidbody.position = position;
         }
 
+        private void IdleMove()
+        {
+            
+        }
         private void StopSideways()
         {
             rigidbody.velocity = new Vector3(0, rigidbody.velocity.y, _movementData.forwardSpeed);
