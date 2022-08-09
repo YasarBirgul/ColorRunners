@@ -6,14 +6,15 @@ namespace Controllers
 {
     public class UIPanelController
     {
-        public void OpenPanel(UIPanels panelParam,List<GameObject> panels)
+        [SerializeField] private List<GameObject> UIPanelList = new List<GameObject>();
+        public void OpenPanel(UIPanels panelParam)
         {
-            panels[(int) panelParam].SetActive(true);
+            UIPanelList[(int) panelParam].SetActive(true);
         }
 
-        public void ClosePanel(UIPanels panelParam,List<GameObject> panels)
+        public void ClosePanel(UIPanels panelParam)
         {
-            panels[(int) panelParam].SetActive(false);
+            UIPanelList[(int) panelParam].SetActive(false);
         }
     }
 }
