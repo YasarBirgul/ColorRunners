@@ -4,6 +4,7 @@ using Datas.UnityObject;
 using Datas.ValueObject;
 using Keys;
 using Signals;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,7 +24,7 @@ namespace Managers
         
         [SerializeField] private FloatingJoystick joystickRunner;
 
-        [SerializeField] private bool isReadyForTouch, isFirstTimeTouchTaken;
+        [ShowInInspector] private bool isReadyForTouch, isFirstTimeTouchTaken;
 
         #endregion
 

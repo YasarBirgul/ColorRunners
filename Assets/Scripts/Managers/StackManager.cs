@@ -59,7 +59,7 @@ namespace Managers
         private void OnMansCollection(GameObject other)
         {
             AddOnStack(other);
-          //  StartCoroutine(CollectableScaleUp());
+            
         }
         #endregion
         #region LerpMove
@@ -74,7 +74,7 @@ namespace Managers
                                 SectBall.transform.position = new Vector3(
                                 Mathf.Lerp(SectBall.transform.position.x, FirstBall.transform.position.x,5f*Time.fixedDeltaTime),
                                 Mathf.Lerp(SectBall.transform.position.y,FirstBall.transform.position.y, 4f*Time.fixedDeltaTime),
-                                Mathf.Lerp(SectBall.transform.position.z, FirstBall.transform.position.z - 1f, 15f*Time.fixedDeltaTime));
+                                Mathf.Lerp(SectBall.transform.position.z, FirstBall.transform.position.z  -2f, 15f*Time.fixedDeltaTime));
                         }
                     }
                 }
@@ -94,6 +94,7 @@ namespace Managers
         { 
             other.transform.parent = transform;
             Collected.Add(other.gameObject);
+            StartCoroutine(CollectableScaleUp());
         }
     }
 }    

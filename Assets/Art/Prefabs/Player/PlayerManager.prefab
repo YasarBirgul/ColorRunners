@@ -41,8 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8206093447771127967}
   - component: {fileID: 722640705}
-  - component: {fileID: 722640706}
-  - component: {fileID: 4285060064032360567}
   - component: {fileID: 5870254985234770841}
   m_Layer: 0
   m_Name: PlayerPhysicsController
@@ -66,31 +64,6 @@ Transform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &722640705
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8206093447771127966}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.9454083, z: 1}
-  m_Center: {x: 0, y: 1.1642373, z: 0}
---- !u!114 &722640706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8206093447771127966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 967da9bddb284b94b9b2954d50b1fc59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &4285060064032360567
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

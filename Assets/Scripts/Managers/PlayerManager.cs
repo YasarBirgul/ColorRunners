@@ -19,19 +19,16 @@ namespace Managers
 
         #region Serialized Variables
         
-        [Space][SerializeField] private PlayerMovementController movementController;
-      //  [SerializeField] private PlayerAnimationController playerAnimationController;
+        [Space][SerializeField] private PlayerMovementController movementController; 
+        // [SerializeField] private PlayerAnimationController playerAnimationController;
 
         #region Private Variables
 
         #endregion
 
         #endregion
-
         
         #endregion
-
-
         private void Awake()
         {
             Data = GetPlayerData();
@@ -42,8 +39,8 @@ namespace Managers
         {
             movementController.SetMovementData(Data.PlayerMovementData);
         }
-       
-        #region EventSubscription,
+        
+        #region Event Subscription
         private void OnEnable()
         {
             SubscribeEvents();
@@ -65,8 +62,7 @@ namespace Managers
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onReset -= OnReset;
-        }
-
+        } 
         private void OnDisable()
         {
             UnsubscribeEvents();
@@ -86,14 +82,14 @@ namespace Managers
         {
             movementController.UpdateRunnerInputValue(runnerGameInputParams);
         }
-        private void OnGetIdleInputValues(IdleGameInputParams IdleGameInputParams)
+        private void OnGetIdleInputValues(IdleGameInputParams idleGameInputParams)
         {
-            movementController.UpdateIdleInputValue(IdleGameInputParams);
+            movementController.UpdateIdleInputValue(idleGameInputParams);
         }
         private void OnPlay()
         {
             movementController.IsReadyToPlay(true);
-        }
+        } 
         private void OnReset()
         {
             movementController.OnReset();
