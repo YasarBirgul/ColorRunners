@@ -61,18 +61,16 @@ namespace Controllers
             _inputValueZ = inputParam.ZValue;
             
         }
-        
         public void IsReadyToPlay(bool state)
         {
             _isReadyToPlay = state;
         }
-
         private void FixedUpdate()
         {
-         //  if (_isReadyToPlay)
-         //  {
-         //      if (_isReadyToMove)
-         //      {
+           if (_isReadyToPlay)
+           {
+               if (_isReadyToMove)
+               {
                     if (CurrentState == GameStates.Runner)
                     {
                         RunnerMove();
@@ -80,15 +78,17 @@ namespace Controllers
                     else if(CurrentState == GameStates.Idle)
                     {
                         IdleMove();
-                    }
-            //    }
-          ////      else
-          ////      {
-          ////          StopSideways();
-          //      }
-         //  }
-         //  else
-         //      Stop();
+                    } 
+               }
+               else
+               {
+                   StopSideways(); 
+               } 
+           }
+           else
+           {
+               Stop();   
+           }
         }
         private void RunnerMove()
         {
@@ -100,7 +100,6 @@ namespace Controllers
             position = new Vector3( Mathf.Clamp(rigidbody.position.x, _clampValues.x,_clampValues.y),(position = rigidbody.position).y,position.z);
             rigidbody.position = position;
         }
-
         private void IdleMove()
         {
             
@@ -110,26 +109,22 @@ namespace Controllers
             rigidbody.velocity = new Vector3(0, rigidbody.velocity.y, _movementData.forwardSpeed);
             rigidbody.angularVelocity = Vector3.zero;
         }
-
         private void Stop()
         {
             rigidbody.velocity = Vector3.zero;
             rigidbody.angularVelocity = Vector3.zero;
         }
-
         public void OnReset()
         {
             Stop();
             _isReadyToPlay = false;
             _isReadyToMove = false;
         }
-
         public void SetRunnerMovementValues(float X,float Z)
         {
             _inputValueX = X;
             _inputValueZ = Z;
         }
-        
     }
 }
 

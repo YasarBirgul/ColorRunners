@@ -86,6 +86,7 @@ namespace Managers
                    ClampValues = new Vector2(-3,3),
                    
                });
+               InputSignals.Instance.onInputTaken?.Invoke();
                Debug.Log("+");
             } 
             if (joystickRunner.Horizontal == 0f) 
