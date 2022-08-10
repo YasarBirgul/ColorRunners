@@ -6,7 +6,9 @@ namespace Datas.ValueObject
     public class StackData
     {
         public int StackMemberAmount = 5;
-        public float LerpSpeed;
-        public float LerpDuration;
+        public float LerpSpeedX = 8;
+        public float LerpSpeedY = 4;
+        public float LerpSpeedZ = 15;
+        public float ScaleFactor = 1.5f;
     }
 }

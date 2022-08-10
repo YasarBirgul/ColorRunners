@@ -73,7 +73,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2883364604688062159}
-  - component: {fileID: 968741022400778593}
   m_Layer: 0
   m_Name: CollectableMesh
   m_TagString: Untagged
@@ -96,18 +95,6 @@ Transform:
   m_Father: {fileID: 8776525383073991974}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &968741022400778593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043113953498957571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caaadb66acb015946ad8e4aeb3bd87f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1199477968021039351
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +136,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8776525383073991974}
   - component: {fileID: 1637165074728434145}
+  - component: {fileID: 6019336169026749056}
+  - component: {fileID: 7358158103830073155}
   m_Layer: 0
   m_Name: Collectable
   m_TagString: Collectable
@@ -181,10 +170,35 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.2209454
+  m_Radius: 1.2713461
+  m_Height: 2.5426922
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1207027, z: 0}
+  m_Center: {x: 0, y: 1.2606049, z: -0.03549671}
+--- !u!114 &6019336169026749056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250981008132392687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1be8fb1b7644672b9b0d63ae8bba79c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollectableManager: {fileID: 7358158103830073155}
+--- !u!114 &7358158103830073155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250981008132392687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caaadb66acb015946ad8e4aeb3bd87f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2506527552421322520
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +548,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4757236507352202135}
   - component: {fileID: 1505668691197600237}
-  - component: {fileID: 5012400948872957346}
   m_Layer: 0
   m_Name: Character (1)
   m_TagString: Collectable
@@ -577,19 +590,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5012400948872957346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5282381285049704749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1be8fb1b7644672b9b0d63ae8bba79c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollectableManager: {fileID: 968741022400778593}
 --- !u!1 &5371282010560971382
 GameObject:
   m_ObjectHideFlags: 0

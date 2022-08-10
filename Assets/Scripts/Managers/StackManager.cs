@@ -2,17 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Controllers;
+using Datas.UnityObject;
+using Datas.ValueObject;
 using DG.Tweening;
-using Enums;
-using Extentions;
 using Signals;
-using Sirenix.Utilities;
-using TMPro;
-using UnityEditor;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 
 namespace Managers
 {
@@ -20,31 +15,50 @@ namespace Managers
     {
         
         #region Self Variables
+        
         #region Public Variables
-        Tween _tween;
-        int DecreaseScoreValue = 1;
-        int IncreaseScoreValue = 1;
-        [SerializeField] private List<GameObject> Collected = new List<GameObject>();
+        
         public GameObject TempHolder;
-        private TweenCallback tweenCallback;
+        
         #endregion
+        
         #region Serialized Variables
+          
+        [SerializeField] private List<GameObject> Collected = new List<GameObject>();
+        
         [SerializeField] private GameObject collectorMeshRenderer;
-        [SerializeField] Transform playerManager;
+        
+        [SerializeField] private Transform playerManager;
+
+        #region Private Variables
+
+        [ShowInInspector] private StackData Data;
+        
         #endregion
+        
         #endregion
-        #region Event Subscription 
+        
+        #endregion
+        
+        #region Event Subscription
+
+        private void Awake()
+        {
+            Data = GetStackData();
+        }
+        private StackData GetStackData() => Resources.Load<CD_Stack>("Data/CD_Stack").StackData;
+        
         private void OnEnable()
         {
             SubscribeEvents();
         }
         private void SubscribeEvents()
         {
-            CollectableSignals.Instance.onMansCollection += OnMansCollection;
+            StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
         }
         private void UnsubscribeEvents()
         {
-            CollectableSignals.Instance.onMansCollection -= OnMansCollection;
+            StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
         }
         private void OnDisable()
         {
@@ -56,25 +70,24 @@ namespace Managers
         {
            StackLerpMove();
         }
-        private void OnMansCollection(GameObject other)
+        private void OnIncreaseStack(GameObject other)
         {
             AddOnStack(other);
-            
         }
         #endregion
         #region LerpMove
         private void StackLerpMove()
                 {
-                    if (Collected.Count > 1)
+                    if (Collected.Count > 0 )
                     {
+                        Collected.ElementAt(0).transform.position = playerManager.position;
+                        
                         for (int i = 1; i < Collected.Count; i++)
                         {
-                            var FirstBall = Collected.ElementAt(i - 1);
-                            var SectBall = Collected.ElementAt(i);
-                                SectBall.transform.position = new Vector3(
-                                Mathf.Lerp(SectBall.transform.position.x, FirstBall.transform.position.x,5f*Time.fixedDeltaTime),
-                                Mathf.Lerp(SectBall.transform.position.y,FirstBall.transform.position.y, 4f*Time.fixedDeltaTime),
-                                Mathf.Lerp(SectBall.transform.position.z, FirstBall.transform.position.z  -2f, 15f*Time.fixedDeltaTime));
+                            Collected.ElementAt(i).transform.position = new Vector3(
+                                Mathf.Lerp(Collected.ElementAt(i).transform.position.x, Collected.ElementAt(i - 1).transform.position.x,Data.LerpSpeedX*Time.fixedDeltaTime),
+                                Mathf.Lerp(Collected.ElementAt(i).transform.position.y,Collected.ElementAt(i - 1).transform.position.y, Data.LerpSpeedY*Time.fixedDeltaTime),
+                                Mathf.Lerp(Collected.ElementAt(i).transform.position.z, Collected.ElementAt(i - 1).transform.position.z  -2f, Data.LerpSpeedZ*Time.fixedDeltaTime));
                         }
                     }
                 }
@@ -83,7 +96,7 @@ namespace Managers
             for (int i = Collected.Count -1; i >= 0; i--)
             {
                 int index = i;
-                Vector3 scale = Vector3.one * 1.5f;
+                Vector3 scale = Vector3.one * Data.ScaleFactor;
                 Collected[index].transform.DOScale(scale, 0.2f).SetEase(Ease.Flash);
                 Collected[index].transform.DOScale(Vector3.one, 0.2f).SetDelay(0.2f).SetEase(Ease.Flash);
                 yield return new WaitForSeconds(0.05f);

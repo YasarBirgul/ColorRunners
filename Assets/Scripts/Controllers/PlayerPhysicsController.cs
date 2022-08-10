@@ -1,6 +1,4 @@
-﻿using System;
-using Managers;
-using Signals;
+﻿using Signals;
 using UnityEngine;
 
 namespace Controllers
@@ -23,7 +21,7 @@ namespace Controllers
         {
             if(other.CompareTag("Collectable"))
             {
-                CollectableSignals.Instance.onMansCollection?.Invoke(other.gameObject);
+                StackSignals.Instance.onIncreaseStack?.Invoke(other.gameObject);
             }
         }
 

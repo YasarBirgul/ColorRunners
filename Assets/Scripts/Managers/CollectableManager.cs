@@ -1,6 +1,3 @@
-using Controllers;
-using Datas.UnityObject;
-using Enums;
 using Signals;
 using UnityEngine;
 
@@ -25,18 +22,18 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
-            CollectableSignals.Instance.onMansCollection += OnMansCollection;
+            StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
         }
         private void UnsubscribeEvents()
         { 
-            CollectableSignals.Instance.onMansCollection -= OnMansCollection;
+            StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
         }
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
         #endregion
-        private void OnMansCollection(GameObject other)
+        private void OnIncreaseStack(GameObject other)
         {
             AddOnStack(other);
         } 
@@ -45,9 +42,7 @@ namespace Managers
             if (other.CompareTag("Collectable"))
             {
                 other.tag = "Collected";
-                
             }
         }
-
     }
 }
