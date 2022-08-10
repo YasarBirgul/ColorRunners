@@ -24,13 +24,13 @@ namespace Managers
         Tween _tween;
         int DecreaseScoreValue = 1;
         int IncreaseScoreValue = 1;
-        [SerializeField] private List<GameObject> Collected = new List<GameObject>(); //HAREKET ETTİRİLİYORLAR, private olarak değiştirilebilir.
+        [SerializeField] private List<GameObject> Collected = new List<GameObject>();
         public GameObject TempHolder;
         private TweenCallback tweenCallback;
-     //   [SerializeField] ScoreManager _scoreManager;
         #endregion
         #region Serialized Variables
         [SerializeField] private GameObject collectorMeshRenderer;
+        [SerializeField] Transform playerManager;
         #endregion
         #endregion
         #region Event Subscription 
@@ -52,14 +52,14 @@ namespace Managers
         }
         #endregion
         #region OnFunctionCheck
-        private void Update() 
+        private void FixedUpdate() 
         {
-            StackLerpMove();
+           StackLerpMove();
         }
         private void OnMansCollection(GameObject other)
         {
             AddOnStack(other);
-            StartCoroutine(CollectableScaleUp());
+          //  StartCoroutine(CollectableScaleUp());
         }
         #endregion
         #region LerpMove
@@ -72,9 +72,9 @@ namespace Managers
                             var FirstBall = Collected.ElementAt(i - 1);
                             var SectBall = Collected.ElementAt(i);
                                 SectBall.transform.position = new Vector3(
-                                Mathf.Lerp(SectBall.transform.position.x, FirstBall.transform.position.x,10 * Time.deltaTime),
-                                Mathf.Lerp(SectBall.transform.position.y,FirstBall.transform.position.y, 5 * Time.deltaTime),
-                                Mathf.Lerp(SectBall.transform.position.z, FirstBall.transform.position.z - 1f, 15*Time.deltaTime));
+                                Mathf.Lerp(SectBall.transform.position.x, FirstBall.transform.position.x,5f*Time.fixedDeltaTime),
+                                Mathf.Lerp(SectBall.transform.position.y,FirstBall.transform.position.y, 4f*Time.fixedDeltaTime),
+                                Mathf.Lerp(SectBall.transform.position.z, FirstBall.transform.position.z - 1f, 15f*Time.fixedDeltaTime));
                         }
                     }
                 }
