@@ -59,6 +59,7 @@ namespace Controllers
         {
             _inputValueX = inputParam.XValue;
             _inputValueZ = inputParam.ZValue;
+            
         }
         
         public void IsReadyToPlay(bool state)

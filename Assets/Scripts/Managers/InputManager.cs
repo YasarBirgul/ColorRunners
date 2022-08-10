@@ -83,8 +83,10 @@ namespace Managers
                InputSignals.Instance.onRunnerInputDragged?.Invoke(new RunnerGameInputParams()
                {
                    XValue = joystickRunner.Horizontal,
-                   ClampValues = new Vector2(-3,3)
+                   ClampValues = new Vector2(-3,3),
+                   
                });
+               Debug.Log("+");
             } 
             if (joystickRunner.Horizontal == 0f) 
             {
