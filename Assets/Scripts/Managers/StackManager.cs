@@ -11,6 +11,7 @@ using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
@@ -27,7 +28,7 @@ namespace Managers
         
         #region Serialized Variables
           
-        [SerializeField] private List<GameObject> Collected = new List<GameObject>();
+        [SerializeField] private List<GameObject> collected = new List<GameObject>();
         
         [SerializeField] private GameObject collectorMeshRenderer;
         
@@ -87,12 +88,18 @@ namespace Managers
         }
         private void StackLerpMovement()
         { 
-            _stackLerpMovementCommand.StackLerpMove(ref Collected, playerManager, Data.LerpSpeed, ref Data.StackDistanceZ);
+            _stackLerpMovementCommand.StackLerpMove(ref collected, playerManager, Data.LerpSpeed, ref Data.StackDistanceZ);
         }
         private void OnIncreaseStack(GameObject other)
         {
-            AddOnStack(other);
-            CollectableScaleUp();
+           // Debug.Log(collected[0].GetComponent<CollectableManager>()._collectableMaterial);
+            Debug.Log(other.GetComponent<CollectableManager>()._collectableMaterial);
+            if (collected[0].GetComponent<CollectableManager>()._collectableMaterial == other.GetComponent<CollectableManager>()._collectableMaterial)
+            {
+                Debug.Log("+++");
+                AddOnStack(other);
+                CollectableScaleUp();
+            }
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
@@ -101,21 +108,21 @@ namespace Managers
         private void DecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
             int CollidedObjectIndex = obstacleCollisionGOParams.Collected.transform.GetSiblingIndex();
-            Collected[CollidedObjectIndex].SetActive(false);
-            Collected[CollidedObjectIndex].transform.SetParent(TempHolder.transform);
-            Collected.RemoveAt(CollidedObjectIndex);
+            collected[CollidedObjectIndex].SetActive(false);
+            collected[CollidedObjectIndex].transform.SetParent(TempHolder.transform);
+            collected.RemoveAt(CollidedObjectIndex);
             Destroy(obstacleCollisionGOParams.Collected);
             Destroy(obstacleCollisionGOParams.Obstacle);
-            Collected.TrimExcess();
+            collected.TrimExcess();
         }
         private void AddOnStack(GameObject other)
         { 
             other.transform.parent = transform;
-            Collected.Add(other.gameObject);
+            collected.Add(other.gameObject);
         }
         private void CollectableScaleUp()
         {
-            StartCoroutine(_collectableScaleUpCommand.CollectableScaleUp(Collected, Data.ScaleFactor, Data.StackScaleUpDelay));
+            StartCoroutine(_collectableScaleUpCommand.CollectableScaleUp(collected, Data.ScaleFactor, Data.StackScaleUpDelay));
         }
     }
 }    

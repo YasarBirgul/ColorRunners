@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Signals;
 using UnityEngine;
 
@@ -9,7 +10,8 @@ namespace Managers
         #region Public Variables
         #endregion
         #region Serialized Variables
-        //   [SerializeField] private CollectablePhysicsController collectablePhysicsController;
+        //   [SerializeField] private CollectablePhysicsController collectablePhysicsController;,
+        public Color _collectableMaterial;
         #endregion
         #region Private Variables
         #endregion
