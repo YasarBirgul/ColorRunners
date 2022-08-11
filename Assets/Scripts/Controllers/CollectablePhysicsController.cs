@@ -27,7 +27,6 @@ namespace Controllers
         {
             if (other.CompareTag("Collectable"))
             {
-                Debug.Log("Girdi");
                 StackSignals.Instance.onIncreaseStack?.Invoke(other.gameObject);
             }
         }

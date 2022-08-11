@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StackData:
     StackMemberAmount: 5
-    LerpSpeed: 0
-    LerpDuration: 0
+    LerpSpeedX: 0.18
+    LerpSpeedY: 0.18
+    LerpSpeedZ: 1
+    ScaleFactor: 1.5
+    StackDistanceZ: 1

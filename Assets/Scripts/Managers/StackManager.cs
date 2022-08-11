@@ -66,7 +66,7 @@ namespace Managers
         }
         #endregion
         #region OnFunctionCheck
-        private void FixedUpdate() 
+        private void Update() 
         {
            StackLerpMove();
         }
@@ -80,14 +80,17 @@ namespace Managers
                 {
                     if (Collected.Count > 0 )
                     {
-                        Collected.ElementAt(0).transform.position = playerManager.position;
+                        Collected[0].transform.localPosition= new Vector3(
+                            Mathf.Lerp(Collected[0].transform.localPosition.x, playerManager.position.x,Data.LerpSpeedX),
+                            Mathf.Lerp(Collected[0].transform.localPosition.y, playerManager.position.y, Data.LerpSpeedY),
+                            Mathf.Lerp(Collected[0].transform.localPosition.z, playerManager.position.z -2f, Data.LerpSpeedZ));
                         
                         for (int i = 1; i < Collected.Count; i++)
                         {
-                            Collected.ElementAt(i).transform.position = new Vector3(
-                                Mathf.Lerp(Collected.ElementAt(i).transform.position.x, Collected.ElementAt(i - 1).transform.position.x,Data.LerpSpeedX*Time.fixedDeltaTime),
-                                Mathf.Lerp(Collected.ElementAt(i).transform.position.y,Collected.ElementAt(i - 1).transform.position.y, Data.LerpSpeedY*Time.fixedDeltaTime),
-                                Mathf.Lerp(Collected.ElementAt(i).transform.position.z, Collected.ElementAt(i - 1).transform.position.z  -2f, Data.LerpSpeedZ*Time.fixedDeltaTime));
+                            Collected[i].transform.position = new Vector3(
+                                Mathf.Lerp(Collected[i].transform.localPosition.x, Collected[i-1].transform.localPosition.x,Data.LerpSpeedX),
+                                Mathf.Lerp(Collected[i].transform.localPosition.y,Collected[i-1].transform.localPosition.y, Data.LerpSpeedY),
+                                Mathf.Lerp(Collected[i].transform.localPosition.z, Collected[i-1].transform.localPosition.z -Data.StackDistanceZ, Data.LerpSpeedZ));
                         }
                     }
                 }
