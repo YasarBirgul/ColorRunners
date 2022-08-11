@@ -14,8 +14,8 @@ namespace Commands.UI
             }
             else
             {
-                JoystickInnerCircle.GetComponent<Image>().enabled = true;
-                JoystickOuterCircle.GetComponent<Image>().enabled = true;
+                JoystickInnerCircle.GetComponent<Image>().enabled = false;
+                JoystickOuterCircle.GetComponent<Image>().enabled = false;
             }
         }
     }

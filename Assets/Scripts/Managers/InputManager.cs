@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Commands.Input;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using Keys;
@@ -6,6 +7,7 @@ using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace Managers
 { 
@@ -21,17 +23,21 @@ namespace Managers
 
         #region Serialized Variables,
         
-        [SerializeField] private FloatingJoystick joystickRunner;
+        [FormerlySerializedAs("joystickRunner")] [SerializeField] private FloatingJoystick joystickInput;
 
         [ShowInInspector] private bool isReadyForTouch, isFirstTimeTouchTaken;
 
-        private GameStates _currentState = GameStates.Runner;
+        
         #endregion
 
         #region Private Variables
-
         
-            
+        private GameStates _currentState = GameStates.Runner;
+
+        private IdleGameInputUpdateCommand _idleGameInputUpdateCommand;
+
+        private RunnerGameInputUpdateCommand _runnerGameInputUpdateCommand;
+
         private bool _isTouching;
 
         private float _currentVelocity;
@@ -43,13 +49,18 @@ namespace Managers
         #endregion
 
         #endregion
-        
         private void Awake()
         {
             Data = GetInputData();
+            Init();
         }
-
         private InputData GetInputData() => Resources.Load<CD_Input>("Data/CD_Input").InputData;
+
+        private void Init()
+        {
+            _idleGameInputUpdateCommand = new IdleGameInputUpdateCommand();
+            _runnerGameInputUpdateCommand = new RunnerGameInputUpdateCommand();
+        }
         
         #region Event Subscriptions
         private void OnEnable()
@@ -79,65 +90,34 @@ namespace Managers
             UnsubscribeEvents();
         }
         #endregion
-
-
         private void Update()
         {
             if (_currentState == GameStates.Runner)
             {
-                RunnerInput();
+                _runnerGameInputUpdateCommand.RunnerInputUpdate(joystickInput,Data);
             }
             else
             {
-                IdleInput();
+                _idleGameInputUpdateCommand.IdleInputUpdate(joystickInput);
             }
         }
-        private void IdleInput()
-        {
-            if (joystickRunner.Horizontal != 0 || joystickRunner.Vertical != 0)
-            {
-                InputSignals.Instance.onIdleInputDragged?.Invoke(new IdleGameInputParams()
-                {
-                    XValue = joystickRunner.Horizontal,
-                    ZValue = joystickRunner.Vertical,
-                });
-                InputSignals.Instance.onInputTaken?.Invoke();
-            }
-
-            if (joystickRunner.Horizontal == 0f)
-            {
-                InputSignals.Instance.onInputReleased?.Invoke();
-            }
-        }
-
-        private void RunnerInput()
-        {
-            if (joystickRunner.Horizontal > 0.1f || joystickRunner.Horizontal < -0.1f)
-            {
-                InputSignals.Instance.onRunnerInputDragged?.Invoke(new RunnerGameInputParams()
-                {
-                    XValue = joystickRunner.Horizontal,
-                    ClampValues = new Vector2(Data.ClampSides.x, Data.ClampSides.y),
-                });
-                InputSignals.Instance.onInputTaken?.Invoke();
-            }
-
-            if (joystickRunner.Horizontal == 0f)
-            {
-                InputSignals.Instance.onInputReleased?.Invoke();
-            }
-        }
-
         private void OnEnableInput()
         {
             isReadyForTouch = true;
         }
-        
         private void OnDisableInput()
         {
             isReadyForTouch = false;
         }
-
+        
+        private bool IsPointerOverUIElement()
+        {
+            var eventData = new PointerEventData(EventSystem.current);
+            eventData.position = Input.mousePosition;
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, results);
+            return results.Count > 0;
+        }
         private void OnPlay()
         {
             isReadyForTouch = true;
@@ -146,14 +126,6 @@ namespace Managers
         {
             _currentState = CurrentState;
         }
-        private bool IsPointerOverUIElement()
-        {
-            var eventData = new PointerEventData(EventSystem.current);
-            eventData.position = Input.mousePosition;
-            var results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, results);
-            return results.Count > 0;
-        } 
         private void OnReset()
         {
             _isTouching = false;

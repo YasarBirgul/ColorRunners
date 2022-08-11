@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Commands.Stack;
+using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using DG.Tweening;
+using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -66,10 +68,12 @@ namespace Managers
         private void SubscribeEvents()
         {
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
+            StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
         }
         private void UnsubscribeEvents()
         {
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
+            StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
         }
         private void OnDisable()
         {
@@ -89,6 +93,18 @@ namespace Managers
         {
             AddOnStack(other);
             CollectableScaleUp();
+        }
+        private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
+        {
+            DecreaseStack(obstacleCollisionGOParams);
+        }
+        private void DecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
+        {
+            int CollidedObjectIndex = obstacleCollisionGOParams.Collected.transform.GetSiblingIndex();
+            Collected[CollidedObjectIndex].SetActive(false);
+            Collected[CollidedObjectIndex].transform.SetParent(TempHolder.transform);
+            Collected.RemoveAt(CollidedObjectIndex);
+            Collected.TrimExcess();
         }
         private void AddOnStack(GameObject other)
         { 

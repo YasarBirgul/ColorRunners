@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Keys;
+using Managers;
 using Signals;
 using UnityEngine;
 
@@ -28,6 +29,15 @@ namespace Controllers
             if (other.CompareTag("Collectable"))
             {
                 StackSignals.Instance.onIncreaseStack?.Invoke(other.gameObject);
+            }
+
+            if (other.CompareTag("Obstacle"))
+            {
+                StackSignals.Instance.onDecreaseStack?.Invoke(new ObstacleCollisionGOParams()
+                {
+                    Collected = gameObject,
+                    Obstacle = other.gameObject
+                });
             }
         }
     }
