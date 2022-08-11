@@ -1,9 +1,8 @@
+using Commands.UI;
 using Controllers;
 using Enums;
 using Signals;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Managers
 {
@@ -13,17 +12,30 @@ namespace Managers
         #region Public Vars
         #endregion
         #region Serializefield Variables
-        #endregion
-        #region Private Vars
-       
+        
         [SerializeField] private UIPanelController _uiPanelController;
-        [SerializeField] private Image _joyStickUIPanel;
-        [SerializeField] private Image _joyStickUIPanel2;
+
+        [SerializeField] private GameObject JoystickInner, JoystickOuter;
+
+        #endregion
+        
+        #region Private Vars
+
+        private JoyStickStateCommand _joyStickStateCommand;
 
         #endregion
         #endregion
-        
-       private void OnEnable()
+
+        private void Awake()
+        {
+            Init();
+        }
+
+        void Init()
+        {
+            _joyStickStateCommand = new JoyStickStateCommand();
+        }
+        private void OnEnable()
        {
            SubscribeEvents();
        }
@@ -68,7 +80,7 @@ namespace Managers
 
       void OnChangeGameState(GameStates Current)
       {
-          
+          _joyStickStateCommand.JoystickUIStateChanger(Current,JoystickOuter,JoystickInner);
       }
     }
 }

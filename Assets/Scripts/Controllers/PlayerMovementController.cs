@@ -74,7 +74,7 @@ namespace Controllers
                     if (_currentState == GameStates.Runner)
                     {
                         RunnerMove();
-                        RunnerRotate();
+                       // RunnerRotate();
                     }
                     else if(_currentState == GameStates.Idle)
                     {
