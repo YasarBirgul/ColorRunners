@@ -7,6 +7,7 @@ using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using DG.Tweening;
+using Enums;
 using Keys;
 using Signals;
 using Sirenix.OdinInspector;
@@ -42,6 +43,7 @@ namespace Managers
 
         private CollectableScaleUpCommand _collectableScaleUpCommand;
         
+        
         #endregion
         
         #endregion
@@ -70,11 +72,13 @@ namespace Managers
         {
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
+            StackSignals.Instance.onColorChange += OnColorChange;
         }
         private void UnsubscribeEvents()
         {
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
+            StackSignals.Instance.onColorChange -= OnColorChange;
         }
         private void OnDisable()
         {
@@ -92,11 +96,8 @@ namespace Managers
         }
         private void OnIncreaseStack(GameObject other)
         {
-           // Debug.Log(collected[0].GetComponent<CollectableManager>()._collectableMaterial);
-            Debug.Log(other.GetComponent<CollectableManager>()._collectableMaterial);
-            if (collected[0].GetComponent<CollectableManager>()._collectableMaterial == other.GetComponent<CollectableManager>()._collectableMaterial)
+            if (collected[0].GetComponent<Renderer>().material.color == other.gameObject.GetComponent<Renderer>().material.color)
             {
-                Debug.Log("+++");
                 AddOnStack(other);
                 CollectableScaleUp();
             }
@@ -115,6 +116,11 @@ namespace Managers
             Destroy(obstacleCollisionGOParams.Obstacle);
             collected.TrimExcess();
         }
+        private void OnColorChange(GameObject Changer)
+        {
+            //TODO: MAKE COLOR CHANGE.
+        }
+        
         private void AddOnStack(GameObject other)
         { 
             other.transform.parent = transform;

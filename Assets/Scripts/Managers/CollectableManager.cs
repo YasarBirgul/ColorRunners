@@ -1,4 +1,6 @@
+using Enums;
 using JetBrains.Annotations;
+using MK.TextureChannelPacker;
 using Signals;
 using UnityEngine;
 
@@ -11,9 +13,10 @@ namespace Managers
         #endregion
         #region Serialized Variables
         //   [SerializeField] private CollectablePhysicsController collectablePhysicsController;,
-        public Color _collectableMaterial;
         #endregion
         #region Private Variables
+        
+        
         #endregion
         #endregion
         #region Event Subscription
