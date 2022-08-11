@@ -83,8 +83,7 @@ namespace Managers
         }
         private void StackLerpMovement()
         { 
-            _stackLerpMovementCommand.StackLerpMove(ref Collected, playerManager, ref Data.LerpSpeedX, 
-                ref Data.LerpSpeedY, ref Data.LerpSpeedZ, ref Data.StackDistanceZ);
+            _stackLerpMovementCommand.StackLerpMove(ref Collected, playerManager, Data.LerpSpeed, ref Data.StackDistanceZ);
         }
         private void OnIncreaseStack(GameObject other)
         {

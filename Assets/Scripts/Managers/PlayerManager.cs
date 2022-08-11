@@ -53,6 +53,7 @@ namespace Managers
             InputSignals.Instance.onIdleInputDragged+= OnGetIdleInputValues;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onReset += OnReset;
+            CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
         } 
         private void UnsubscribeEvents()
         {
@@ -62,6 +63,7 @@ namespace Managers
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onReset -= OnReset;
+            CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
         } 
         private void OnDisable()
         {
@@ -93,6 +95,10 @@ namespace Managers
         private void OnReset()
         {
             movementController.OnReset();
+        }
+        private void OnChangeGameState(GameStates CurrentState)
+        {
+            movementController.CurrentState(CurrentState);
         }
     }
 }

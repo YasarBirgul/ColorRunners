@@ -3,19 +3,22 @@ using Enums;
 using Signals;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Managers
 {
     public class UIManager : MonoBehaviour
     {
         #region Self Variables
-        #region public vars
+        #region Public Vars
         #endregion
-        #region serializefield vars
+        #region Serializefield Variables
         #endregion
-        #region private vars
+        #region Private Vars
        
         [SerializeField] private UIPanelController _uiPanelController;
+        [SerializeField] private Image _joyStickUIPanel;
+        [SerializeField] private Image _joyStickUIPanel2;
 
         #endregion
         #endregion
@@ -30,6 +33,7 @@ namespace Managers
           UISignals.Instance.onOpenPanel += OnOpenPanel;
           UISignals.Instance.onClosePanel += OnClosePanel;
           CoreGameSignals.Instance.onPlay += OnPlay;
+          CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
       }
 
       private void UnsubscribeEvents()
@@ -37,6 +41,7 @@ namespace Managers
           UISignals.Instance.onOpenPanel -= OnOpenPanel;
           UISignals.Instance.onClosePanel -= OnClosePanel;
           CoreGameSignals.Instance.onPlay -= OnPlay;
+          CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
       }
 
       private void OnDisable()
@@ -56,9 +61,14 @@ namespace Managers
       {
           UISignals.Instance.onClosePanel?.Invoke(UIPanels.StartPanel);
       }
-      public void PlayBtn()
+      public void PlayButton()
       {
           CoreGameSignals.Instance.onPlay?.Invoke();
+      }
+
+      void OnChangeGameState(GameStates Current)
+      {
+          
       }
     }
 }

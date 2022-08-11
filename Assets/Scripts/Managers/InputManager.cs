@@ -25,10 +25,13 @@ namespace Managers
 
         [ShowInInspector] private bool isReadyForTouch, isFirstTimeTouchTaken;
 
+        private GameStates _currentState = GameStates.Runner;
         #endregion
 
         #region Private Variables
 
+        
+            
         private bool _isTouching;
 
         private float _currentVelocity;
@@ -59,6 +62,7 @@ namespace Managers
             InputSignals.Instance.onDisableInput += OnDisableInput;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onReset += OnReset;
+            CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
         }
 
         private void UnsubscribeEvents()
@@ -67,6 +71,7 @@ namespace Managers
             InputSignals.Instance.onDisableInput -= OnDisableInput;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onReset -= OnReset;
+            CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
         }
 
         private void OnDisable()
@@ -78,21 +83,51 @@ namespace Managers
 
         private void Update()
         {
-            if (joystickRunner.Horizontal > 0.1f || joystickRunner.Horizontal < -0.1f) 
+            if (_currentState == GameStates.Runner)
             {
-               InputSignals.Instance.onRunnerInputDragged?.Invoke(new RunnerGameInputParams()
-               {
-                   XValue = joystickRunner.Horizontal,
-                   ClampValues = new Vector2(Data.ClampSides.x,Data.ClampSides.y),
-               });
-               InputSignals.Instance.onInputTaken?.Invoke();
-               Debug.Log("+");
-            } 
-            if (joystickRunner.Horizontal == 0f) 
-            {
-               InputSignals.Instance.onInputReleased?.Invoke(); 
+                RunnerInput();
             }
-        } 
+            else
+            {
+                IdleInput();
+            }
+        }
+        private void IdleInput()
+        {
+            if (joystickRunner.Horizontal != 0 || joystickRunner.Vertical != 0)
+            {
+                InputSignals.Instance.onIdleInputDragged?.Invoke(new IdleGameInputParams()
+                {
+                    XValue = joystickRunner.Horizontal,
+                    ZValue = joystickRunner.Vertical,
+                });
+                InputSignals.Instance.onInputTaken?.Invoke();
+            }
+
+            if (joystickRunner.Horizontal == 0f)
+            {
+                InputSignals.Instance.onInputReleased?.Invoke();
+            }
+        }
+
+        private void RunnerInput()
+        {
+            if (joystickRunner.Horizontal > 0.1f || joystickRunner.Horizontal < -0.1f)
+            {
+                InputSignals.Instance.onRunnerInputDragged?.Invoke(new RunnerGameInputParams()
+                {
+                    XValue = joystickRunner.Horizontal,
+                    ClampValues = new Vector2(Data.ClampSides.x, Data.ClampSides.y),
+                });
+                InputSignals.Instance.onInputTaken?.Invoke();
+            }
+
+            if (joystickRunner.Horizontal == 0f)
+            {
+                InputSignals.Instance.onInputReleased?.Invoke();
+            }
+        }
+
         private void OnEnableInput()
         {
             isReadyForTouch = true;
@@ -107,7 +142,10 @@ namespace Managers
         {
             isReadyForTouch = true;
         }
-
+        void OnChangeGameState(GameStates CurrentState)
+        {
+            _currentState = CurrentState;
+        }
         private bool IsPointerOverUIElement()
         {
             var eventData = new PointerEventData(EventSystem.current);

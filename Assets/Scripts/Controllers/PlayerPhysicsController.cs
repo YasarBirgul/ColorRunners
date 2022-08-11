@@ -23,7 +23,11 @@ namespace Controllers
             {
                 StackSignals.Instance.onIncreaseStack?.Invoke(other.gameObject);
             }
+            
+            if (other.CompareTag("IdleGameInvoker"))
+            {
+                CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
+            }
         }
-
     }
 }

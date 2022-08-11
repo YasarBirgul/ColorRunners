@@ -31,7 +31,7 @@ namespace Controllers
         
         [ShowInInspector] private Vector2 _clampValues;
 
-        private GameStates CurrentState = GameStates.Runner;
+        private GameStates _currentState = GameStates.Runner;
         
         #endregion
         
@@ -71,23 +71,27 @@ namespace Controllers
            {
                if (_isReadyToMove)
                {
-                    if (CurrentState == GameStates.Runner)
+                    if (_currentState == GameStates.Runner)
                     {
                         RunnerMove();
+                        RunnerRotate();
                     }
-                    else if(CurrentState == GameStates.Idle)
+                    else if(_currentState == GameStates.Idle)
                     {
                         IdleMove();
                     } 
                }
                else
                {
-                   StopSideways(); 
+                   if (_currentState == GameStates.Runner)
+                   {
+                       StopSideways(); 
+                   }
+                   else if(_currentState == GameStates.Idle)
+                   {
+                       Stop();  
+                   }
                } 
-           }
-           else
-           {
-               Stop();   
            }
         }
         private void RunnerMove()
@@ -108,10 +112,12 @@ namespace Controllers
             transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction), 4f);
 
         }
-        
         private void IdleMove()
         {
-            
+            var velocity = rigidbody.velocity;
+            velocity = new Vector3(_inputValueX * _movementData.forwardSpeed, velocity.y,
+                _inputValueZ * _movementData.forwardSpeed);
+            rigidbody.velocity = velocity;
         }
         private void StopSideways()
         {
@@ -133,6 +139,11 @@ namespace Controllers
         {
             _inputValueX = X;
             _inputValueZ = Z;
+        }
+
+        public void CurrentState(GameStates CurrentState)
+        {
+            _currentState = CurrentState;
         }
     }
 }
