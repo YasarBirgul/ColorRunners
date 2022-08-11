@@ -16,7 +16,7 @@ MonoBehaviour:
     StackMemberAmount: 5
     InitializedStack:
     - {fileID: 0}
-    LerpSpeed: {x: 0.2, y: 0.2, z: 1}
+    LerpSpeed: {x: 10, y: 15, z: 10}
     ScaleFactor: 1.5
     StackDistanceZ: 2
     StackScaleUpDelay: 0.2

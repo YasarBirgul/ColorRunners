@@ -104,6 +104,8 @@ namespace Managers
             Collected[CollidedObjectIndex].SetActive(false);
             Collected[CollidedObjectIndex].transform.SetParent(TempHolder.transform);
             Collected.RemoveAt(CollidedObjectIndex);
+            Destroy(obstacleCollisionGOParams.Collected);
+            Destroy(obstacleCollisionGOParams.Obstacle);
             Collected.TrimExcess();
         }
         private void AddOnStack(GameObject other)
