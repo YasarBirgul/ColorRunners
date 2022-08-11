@@ -11,5 +11,6 @@ namespace Datas.ValueObject
         public float LerpSpeedZ = 15;
         public float ScaleFactor = 1.5f;
         public float StackDistanceZ = 1f;
+        public float StackScaleUpDelay = 0.2f;
     }
 }

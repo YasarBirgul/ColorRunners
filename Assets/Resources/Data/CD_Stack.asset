@@ -18,4 +18,5 @@ MonoBehaviour:
     LerpSpeedY: 0.18
     LerpSpeedZ: 1
     ScaleFactor: 1.5
-    StackDistanceZ: 1
+    StackDistanceZ: 2
+    StackScaleUpDelay: 0.2
