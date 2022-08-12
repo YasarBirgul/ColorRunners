@@ -118,7 +118,18 @@ namespace Managers
         }
         private void OnColorChange(GameObject Changer)
         {
-            //TODO: MAKE COLOR CHANGE.
+            Color32 ObjectColor;
+            ObjectColor = Changer.GetComponent<Renderer>().material.color;
+            ObjectColor.a = 255;
+            foreach (var item in collected)
+            {
+                item.GetComponent<Renderer>().material.color = ObjectColor;
+            }
+            
+            if(Changer.GetComponent<Collider>().enabled==true)
+            {
+                Changer.GetComponent<Collider>().enabled = false;
+            }
         }
         
         private void AddOnStack(GameObject other)

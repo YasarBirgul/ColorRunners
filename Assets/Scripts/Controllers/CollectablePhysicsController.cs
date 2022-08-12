@@ -39,6 +39,11 @@ namespace Controllers
                     Obstacle = other.gameObject
                 });
             }
+
+            if (other.CompareTag("Changer"))
+            {
+                StackSignals.Instance.onColorChange?.Invoke(other.gameObject);
+            }
         }
     }
 }
