@@ -28,6 +28,11 @@ namespace Controllers
             {
                 CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
             }
+            if (other.CompareTag("GroundColorCheck"))
+            {
+                StackSignals.Instance.onGroundColorChange?.Invoke(other.gameObject); //ground
+
+            }//collectablefizikkontrollerde olsa sürekli çalısacagı ıcın playere aldım. her player yenı groundcolorchecke gırdıgınde calısacak.
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Managers
         #region Self Variables
         
         #region Public Variables
-        
+        Tween _tween;
         public GameObject TempHolder;
         
         #endregion
@@ -44,6 +44,8 @@ namespace Managers
         private CollectableScaleUpCommand _collectableScaleUpCommand;
         
         
+        
+        
         #endregion
         
         #endregion
@@ -61,6 +63,7 @@ namespace Managers
         {
             _stackLerpMovementCommand = new StackLerpMovementCommand();
             _collectableScaleUpCommand = new CollectableScaleUpCommand();
+            
         }
         
         #region Event Subscription
@@ -73,12 +76,14 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
+            StackSignals.Instance.onGroundColorChange += OnGroundColorChange;
         }
         private void UnsubscribeEvents()
         {
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
+            StackSignals.Instance.onGroundColorChange -= OnGroundColorChange;
         }
         private void OnDisable()
         {
@@ -94,6 +99,8 @@ namespace Managers
         { 
             _stackLerpMovementCommand.StackLerpMove(ref collected, playerManager, Data.LerpSpeed, ref Data.StackDistanceZ);
         }
+
+        #region OnCalls
         private void OnIncreaseStack(GameObject other)
         {
             if (collected[0].GetComponent<Renderer>().material.color == other.gameObject.GetComponent<Renderer>().material.color)
@@ -106,6 +113,16 @@ namespace Managers
         {
             DecreaseStack(obstacleCollisionGOParams);
         }
+        private void OnColorChange(GameObject Changer)
+        {
+            ColorChange(Changer);
+        }
+
+        private void OnGroundColorChange(GameObject Ground)
+        {
+            GroundColorChange(Ground);
+        }
+        #endregion
         private void DecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
             int CollidedObjectIndex = obstacleCollisionGOParams.Collected.transform.GetSiblingIndex();
@@ -116,11 +133,19 @@ namespace Managers
             Destroy(obstacleCollisionGOParams.Obstacle);
             collected.TrimExcess();
         }
-        private void OnColorChange(GameObject Changer)
+        private void AddOnStack(GameObject other)
+        { 
+            other.transform.parent = transform;
+            collected.Add(other.gameObject);
+        }
+        private void CollectableScaleUp()
         {
-            Color32 ObjectColor;
+            StartCoroutine(_collectableScaleUpCommand.CollectableScaleUp(collected, Data.ScaleFactor, Data.StackScaleUpDelay));
+        }
+        private void ColorChange(GameObject Changer)
+        {
+            Color ObjectColor;
             ObjectColor = Changer.GetComponent<Renderer>().material.color;
-            ObjectColor.a = 255;
             foreach (var item in collected)
             {
                 item.GetComponent<Renderer>().material.color = ObjectColor;
@@ -131,15 +156,30 @@ namespace Managers
                 Changer.GetComponent<Collider>().enabled = false;
             }
         }
-        
-        private void AddOnStack(GameObject other)
-        { 
-            other.transform.parent = transform;
-            collected.Add(other.gameObject);
-        }
-        private void CollectableScaleUp()
+
+        private void GroundColorChange(GameObject Ground )
         {
-            StartCoroutine(_collectableScaleUpCommand.CollectableScaleUp(collected, Data.ScaleFactor, Data.StackScaleUpDelay));
+            if (collected[0].GetComponent<Renderer>().material.color ==
+                Ground.GetComponent<Renderer>().material.color)
+            {
+                 _tween.Kill();
+                Debug.Log("AYNI");
+            }
+            if (collected[0].GetComponent<Renderer>().material.color !=
+                Ground.GetComponent<Renderer>().material.color)
+            {
+                   _tween = DOVirtual.DelayedCall(0.5f, DeleteOneItem ).SetLoops(-1);
+                Debug.Log("FARKLI");
+            }
+        }
+        
+        private void DeleteOneItem() // farklı renkte bir yere girince adam öldüren fonk.
+        {
+            int RandomIndex = UnityEngine.Random.Range(0, collected.Count);
+            Debug.Log("RandomIndex"+RandomIndex);
+            collected[RandomIndex].SetActive(false);
+            collected[RandomIndex].transform.SetParent(TempHolder.transform);
+            collected.RemoveAt(RandomIndex);
         }
     }
 }    

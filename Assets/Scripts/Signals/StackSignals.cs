@@ -11,5 +11,6 @@ namespace Signals
         public UnityAction<GameObject> onIncreaseStack = delegate {  };
         public UnityAction<ObstacleCollisionGOParams> onDecreaseStack = delegate {  };
         public UnityAction<GameObject> onColorChange = delegate {  };
+        public UnityAction<GameObject> onGroundColorChange = delegate {  };
     }
 }
