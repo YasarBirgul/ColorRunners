@@ -1,25 +1,42 @@
 ﻿using System.Collections.Generic;
+using Datas.ValueObject;
 using UnityEngine;
 
 namespace Commands.Stack
 {
     public class StackLerpMovementCommand 
     {
-        public void StackLerpMove(ref List<GameObject> _collectedList,Transform _playerManager,Vector3 _lerpSpeed,ref float _offSet)
+        #region Self Variables
+
+        #region Private Variables
+
+        private List<GameObject> _stackList;
+        private StackData _stackData;
+       
+        #endregion
+        
+        #endregion
+        public StackLerpMovementCommand(ref List<GameObject> stackList, ref StackData stackData)
         {
-            if (_collectedList.Count > 0 )
+            _stackList = stackList;
+            _stackData = stackData;
+        }
+        
+        public void Execute(Transform _playerManager)
+        {
+            if (_stackList.Count > 0 )
             {
-                _collectedList[0].transform.localPosition= new Vector3(
-                    Mathf.Lerp(_collectedList[0].transform.localPosition.x, _playerManager.position.x,_lerpSpeed.x*Time.deltaTime),
-                    Mathf.Lerp(_collectedList[0].transform.localPosition.y, _playerManager.position.y, _lerpSpeed.y*Time.deltaTime),
-                    Mathf.Lerp(_collectedList[0].transform.localPosition.z, _playerManager.position.z -_offSet, _lerpSpeed.z*Time.deltaTime));
+                _stackList[0].transform.localPosition= new Vector3(
+                    Mathf.Lerp(_stackList[0].transform.localPosition.x, _playerManager.position.x,_stackData.LerpSpeed.x*Time.deltaTime),
+                    Mathf.Lerp(_stackList[0].transform.localPosition.y, _playerManager.position.y, _stackData.LerpSpeed.y*Time.deltaTime),
+                    Mathf.Lerp(_stackList[0].transform.localPosition.z, _playerManager.position.z -_stackData.StackDistanceZ, _stackData.LerpSpeed.z*Time.deltaTime));
                         
-                for (int i = 1; i < _collectedList.Count; i++)
+                for (int i = 1; i < _stackList.Count; i++)
                 {
-                    _collectedList[i].transform.position = new Vector3(
-                        Mathf.Lerp(_collectedList[i].transform.localPosition.x, _collectedList[i-1].transform.localPosition.x,_lerpSpeed.x*Time.deltaTime),
-                        Mathf.Lerp(_collectedList[i].transform.localPosition.y,_collectedList[i-1].transform.localPosition.y, _lerpSpeed.y*Time.deltaTime),
-                        Mathf.Lerp(_collectedList[i].transform.localPosition.z, _collectedList[i-1].transform.localPosition.z -_offSet, _lerpSpeed.z*Time.deltaTime));
+                    _stackList[i].transform.position = new Vector3(
+                        Mathf.Lerp(_stackList[i].transform.localPosition.x, _stackList[i-1].transform.localPosition.x,_stackData.LerpSpeed.x*Time.deltaTime),
+                        Mathf.Lerp(_stackList[i].transform.localPosition.y,_stackList[i-1].transform.localPosition.y, _stackData.LerpSpeed.y*Time.deltaTime),
+                        Mathf.Lerp(_stackList[i].transform.localPosition.z, _stackList[i-1].transform.localPosition.z -_stackData.StackDistanceZ, _stackData.LerpSpeed.z*Time.deltaTime));
                 }
             }
         }

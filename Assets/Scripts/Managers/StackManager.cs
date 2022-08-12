@@ -22,55 +22,48 @@ namespace Managers
         #region Self Variables
         
         #region Public Variables
+        
         Tween _tween;
         public GameObject TempHolder;
-        
+        public GameObject RemovedCollectableHolder;
         #endregion
-        
         #region Serialized Variables
-          
+        
         [SerializeField] private List<GameObject> collected = new List<GameObject>();
-        
         [SerializeField] private GameObject collectorMeshRenderer;
-        
         [SerializeField] private Transform playerManager;
-
         #region Private Variables
 
-        [ShowInInspector] private StackData Data;
-
+        [ShowInInspector] private StackData _data;
+        private StackManager _stackManager;
         private StackLerpMovementCommand _stackLerpMovementCommand;
-
         private CollectableScaleUpCommand _collectableScaleUpCommand;
-        
-        
-        
-        
-        #endregion
+        private CollectableAddOnStackCommand _collectableAddOnStackCommand;
+        private CollectableRemoveOnStackCommand _collectableRemoveOnStackCommand;
         
         #endregion
-        
         #endregion
-        
+        #endregion
         private void Awake()
         { 
-            Data = GetStackData();
+            _data = GetStackData();
             Init();
         } 
-        private StackData GetStackData() => Resources.Load<CD_Stack>("Data/CD_Stack").StackData;
-
+        private StackData GetStackData() => Resources.Load<CD_Stack>("Data/CD_Stack").StackData; 
         private void Init()
         {
-            _stackLerpMovementCommand = new StackLerpMovementCommand();
+            _stackManager = GetComponent<StackManager>();
+            _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data);
             _collectableScaleUpCommand = new CollectableScaleUpCommand();
-            
+            _collectableAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackManager,ref collected);
+            _collectableRemoveOnStackCommand =
+                new CollectableRemoveOnStackCommand(ref collected,ref _stackManager,ref RemovedCollectableHolder);
         }
-        
         #region Event Subscription
         private void OnEnable()
         {
             SubscribeEvents();
-        }
+        } 
         private void SubscribeEvents()
         {
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
@@ -78,7 +71,7 @@ namespace Managers
             StackSignals.Instance.onColorChange += OnColorChange;
             StackSignals.Instance.onTurrentGroundControll += OnTurrentGroundControll;
             CollectableSignals.Instance.onExitGroundCheck += OnExitGroundCheck;
-        }
+        } 
         private void UnsubscribeEvents()
         {
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
@@ -92,28 +85,26 @@ namespace Managers
             UnsubscribeEvents();
         }
         #endregion
-        
         private void Update()
         {
-            StackLerpMovement();
+            _stackLerpMovementCommand.Execute(playerManager);
         }
-        private void StackLerpMovement()
-        { 
-            _stackLerpMovementCommand.StackLerpMove(ref collected, playerManager, Data.LerpSpeed, ref Data.StackDistanceZ);
-        }
-
-        #region OnCalls
         private void OnIncreaseStack(GameObject other)
         {
-            if (collected[0].GetComponent<Renderer>().material.color == other.gameObject.GetComponent<Renderer>().material.color)
-            {
-                AddOnStack(other);
-                CollectableScaleUp();
+            var StackLeaderObjectColor = collected[0].GetComponent<Renderer>().material.color;
+            var CollectableObjectColor = other.gameObject.GetComponent<Renderer>().material.color;
+            
+            if (StackLeaderObjectColor == CollectableObjectColor)
+            { 
+                _collectableAddOnStackCommand.Execute(other);
+                StartCoroutine(_collectableScaleUpCommand.ScaleUp(collected, _data.ScaleFactor,_data.ScaleUpDelay));
             }
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
-            DecreaseStack(obstacleCollisionGOParams);
+            _collectableRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
+            Destroy(obstacleCollisionGOParams.Collected);
+            Destroy(obstacleCollisionGOParams.Obstacle);
         }
         private void OnColorChange(GameObject Changer)
         {
@@ -127,26 +118,6 @@ namespace Managers
         private void OnExitGroundCheck(GameObject other)
         {
             _tween.Kill();
-        }
-        #endregion
-        private void DecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
-        {
-            int CollidedObjectIndex = obstacleCollisionGOParams.Collected.transform.GetSiblingIndex();
-            collected[CollidedObjectIndex].SetActive(false);
-            collected[CollidedObjectIndex].transform.SetParent(TempHolder.transform);
-            collected.RemoveAt(CollidedObjectIndex);
-            Destroy(obstacleCollisionGOParams.Collected);
-            Destroy(obstacleCollisionGOParams.Obstacle);
-            collected.TrimExcess();
-        }
-        private void AddOnStack(GameObject other)
-        { 
-            other.transform.parent = transform;
-            collected.Add(other.gameObject);
-        }
-        private void CollectableScaleUp()
-        {
-            StartCoroutine(_collectableScaleUpCommand.CollectableScaleUp(collected, Data.ScaleFactor, Data.StackScaleUpDelay));
         }
         private void ColorChange(GameObject Changer)
         {

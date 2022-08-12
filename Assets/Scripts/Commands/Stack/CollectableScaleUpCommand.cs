@@ -7,7 +7,7 @@ namespace Commands.Stack
 {
     public class CollectableScaleUpCommand
     {
-        public IEnumerator CollectableScaleUp(List<GameObject> _collectedList,float _scaleFactor,float _scaleDelay)
+        public IEnumerator ScaleUp(List<GameObject> _collectedList,float _scaleFactor,float _scaleDelay)
         {
             for (int i = _collectedList.Count -1; i >= 0; i--)
             {
