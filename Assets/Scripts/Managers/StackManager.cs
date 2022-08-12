@@ -77,6 +77,7 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
             StackSignals.Instance.onGroundColorChange += OnGroundColorChange;
+            CollectableSignals.Instance.onExitGroundCheck += OnExitGroundCheck;
         }
         private void UnsubscribeEvents()
         {
@@ -84,6 +85,7 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
             StackSignals.Instance.onGroundColorChange -= OnGroundColorChange;
+            CollectableSignals.Instance.onExitGroundCheck -= OnExitGroundCheck;
         }
         private void OnDisable()
         {
@@ -122,6 +124,10 @@ namespace Managers
         {
             GroundColorChange(Ground);
         }
+        private void OnExitGroundCheck(GameObject other)
+        {
+            _tween.Kill();
+        }
         #endregion
         private void DecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
@@ -156,7 +162,6 @@ namespace Managers
                 Changer.GetComponent<Collider>().enabled = false;
             }
         }
-
         private void GroundColorChange(GameObject Ground )
         {
             if (collected[0].GetComponent<Renderer>().material.color ==
