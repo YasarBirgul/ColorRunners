@@ -15,8 +15,13 @@ MonoBehaviour:
   StackData:
     StackMemberAmount: 5
     InitializedStack:
-    - {fileID: 0}
+    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
+    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
+    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
+    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
+    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
+    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
     LerpSpeed: {x: 10, y: 15, z: 10}
     ScaleFactor: 1.5
     StackDistanceZ: 2
-    StackScaleUpDelay: 0.2
+    ScaleUpDelay: 0.2

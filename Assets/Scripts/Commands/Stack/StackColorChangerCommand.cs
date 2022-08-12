@@ -27,7 +27,7 @@ namespace Commands.Stack
             {
                 item.GetComponent<Renderer>().material.color = collectableColor;
             }
-            if(ColorChangerWall.GetComponent<Collider>().enabled==true)
+            if(ColorChangerWall.GetComponent<Collider>().enabled)
             {
                 ColorChangerWall.GetComponent<Collider>().enabled = false;
             }

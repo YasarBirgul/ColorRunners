@@ -11,6 +11,7 @@ using Enums;
 using Keys;
 using Signals;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -60,6 +61,18 @@ namespace Managers
             _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,ref _stackMan,ref ReColHolder);
             _stackColorChangerCommand = new StackColorChangerCommand(ref collected);
         }
+
+        private void Start()
+        {
+            var stack = _data.InitializedStack;
+            for (int i = 0; i < stack.Count; i++)
+            {
+                var GO = Instantiate(stack[i], Vector3.back*(-6), quaternion.identity);
+                GO.transform.parent = transform;
+                collected.Add(GO);
+            }
+        }
+
         #region Event Subscription
         private void OnEnable()
         {
@@ -125,8 +138,7 @@ namespace Managers
                    _tween = DOVirtual.DelayedCall(0.5f, TurretDestroyOneItem ).SetLoops(-1);
                 Debug.Log("FARKLI");
             }
-        }
-        
+        } 
         private void TurretDestroyOneItem() // farklı renkte bir yere girince adam öldüren fonk.
         {
             int RandomIndex = UnityEngine.Random.Range(0, collected.Count);
