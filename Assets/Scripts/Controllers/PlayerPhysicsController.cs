@@ -31,7 +31,7 @@ namespace Controllers
             }
             if (other.CompareTag("GroundColorCheck"))
             {
-                StackSignals.Instance.onGroundColorChange?.Invoke(other.gameObject); //ground
+                StackSignals.Instance.onTurrentGroundControll?.Invoke(other.gameObject); //ground
 
             }//collectablefizikkontrollerde olsa sürekli çalısacagı ıcın playere aldım. her player yenı groundcolorchecke gırdıgınde calısacak.
 

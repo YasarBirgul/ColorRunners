@@ -76,7 +76,7 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
-            StackSignals.Instance.onGroundColorChange += OnGroundColorChange;
+            StackSignals.Instance.onTurrentGroundControll += OnTurrentGroundControll;
             CollectableSignals.Instance.onExitGroundCheck += OnExitGroundCheck;
         }
         private void UnsubscribeEvents()
@@ -84,7 +84,7 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
-            StackSignals.Instance.onGroundColorChange -= OnGroundColorChange;
+            StackSignals.Instance.onTurrentGroundControll -= OnTurrentGroundControll;
             CollectableSignals.Instance.onExitGroundCheck -= OnExitGroundCheck;
         }
         private void OnDisable()
@@ -120,9 +120,9 @@ namespace Managers
             ColorChange(Changer);
         }
 
-        private void OnGroundColorChange(GameObject Ground)
+        private void OnTurrentGroundControll(GameObject Ground)
         {
-            GroundColorChange(Ground);
+            TurrentGroundControll(Ground);
         }
         private void OnExitGroundCheck(GameObject other)
         {
@@ -162,7 +162,7 @@ namespace Managers
                 Changer.GetComponent<Collider>().enabled = false;
             }
         }
-        private void GroundColorChange(GameObject Ground )
+        private void TurrentGroundControll(GameObject Ground )
         {
             if (collected[0].GetComponent<Renderer>().material.color ==
                 Ground.GetComponent<Renderer>().material.color)
@@ -173,12 +173,12 @@ namespace Managers
             if (collected[0].GetComponent<Renderer>().material.color !=
                 Ground.GetComponent<Renderer>().material.color)
             {
-                   _tween = DOVirtual.DelayedCall(0.5f, DeleteOneItem ).SetLoops(-1);
+                   _tween = DOVirtual.DelayedCall(0.5f, TurretDestroyOneItem ).SetLoops(-1);
                 Debug.Log("FARKLI");
             }
         }
         
-        private void DeleteOneItem() // farklı renkte bir yere girince adam öldüren fonk.
+        private void TurretDestroyOneItem() // farklı renkte bir yere girince adam öldüren fonk.
         {
             int RandomIndex = UnityEngine.Random.Range(0, collected.Count);
             Debug.Log("RandomIndex"+RandomIndex);
