@@ -14,6 +14,8 @@ namespace Managers
         #endregion
         #region Serialized Variables
         //   [SerializeField] private CollectablePhysicsController collectablePhysicsController;,
+        [SerializeField] private CollectableAnimationStates collectableAnimationStates;
+        [SerializeField] private CollectableAnimationController collectableAnimationController;
         #endregion
         #region Private Variables
         
@@ -51,5 +53,21 @@ namespace Managers
                 Tag.tag = "Collected";
             }
         }
+
+        public void EnterTurretArea()
+        {
+            collectableAnimationController.WhenEnterTurretArea();
+            
+        }
+
+        public void ExitTurretArea()
+        {
+            collectableAnimationController.WhenExitTurretArea();
+        }
+        
+         public void EnterDroneArea()
+        {
+           collectableAnimationController.Invoke("WhenEnterDroneArea",.5f);
+       }
     }
 }

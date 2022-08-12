@@ -86,6 +86,7 @@ namespace Controllers
                    if (_currentState == GameStates.Runner)
                    {
                        StopSideways(); 
+                       
                    }
                    else if(_currentState == GameStates.Idle)
                    {

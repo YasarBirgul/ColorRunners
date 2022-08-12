@@ -3,6 +3,7 @@ using Managers;
 using Signals;
 using UnityEngine;
 
+
 namespace Controllers
 {
     public class PlayerPhysicsController : MonoBehaviour
@@ -15,7 +16,8 @@ namespace Controllers
         #endregion
 
         #region Serialized Variables
-        
+
+        [SerializeField] private PlayerManager playerManager;
         #endregion
 
         #endregion
@@ -30,7 +32,7 @@ namespace Controllers
             {
                 CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
             }
-            if (other.CompareTag("GroundColorCheck"))
+            if (other.CompareTag("ColorArea"))
             {
                 StackSignals.Instance.onTurrentGroundControll?.Invoke(other.gameObject); //ground
 
@@ -39,6 +41,11 @@ namespace Controllers
             if (other.CompareTag("Ground"))
             {
                 CollectableSignals.Instance.onEnterGroundCheck?.Invoke(gameObject);
+            }
+
+            if (other.CompareTag("DroneArea"))
+            {
+                playerManager.Invoke("EnteredDroneArea",.5f);
             }
         }
 

@@ -57,6 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caaadb66acb015946ad8e4aeb3bd87f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectableAnimationStates: 0
+  collectableAnimationController: {fileID: 436563156}
 --- !u!1 &1524763121025658817
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1be8fb1b7644672b9b0d63ae8bba79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectableManager: {fileID: 1524763119778764990}
+  collectableManager: {fileID: 1524763119778764990}
 --- !u!114 &436563156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b6ee92d4ec57140833c6edfb6a5f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4918949298326068271}
 --- !u!1001 &1524763120451543486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cef9f3efdf9618d448bd986f47553257, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
 --- !u!1 &1866849982991850735 stripped
@@ -210,6 +217,11 @@ GameObject:
 --- !u!4 &1343113409991542357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+  m_PrefabInstance: {fileID: 1524763120451543486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4918949298326068271 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
   m_PrefabInstance: {fileID: 1524763120451543486}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &506983791083839544 stripped

@@ -11,6 +11,9 @@ TagManager:
   - Changer
   - GroundColorCheck
   - Ground
+  - ColorArea
+  - DroneGround
+  - DroneArea
   layers:
   - Default
   - TransparentFX

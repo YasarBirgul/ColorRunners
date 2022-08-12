@@ -100,5 +100,10 @@ namespace Managers
         {
             movementController.CurrentState(CurrentState);
         }
+
+        public void EnteredDroneArea()
+        {
+            movementController.DeactiveMovement();
+        }
     }
 }
