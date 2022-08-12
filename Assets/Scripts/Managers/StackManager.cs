@@ -25,7 +25,7 @@ namespace Managers
         
         Tween _tween;
         public GameObject TempHolder;
-        public GameObject RemovedCollectableHolder;
+        [FormerlySerializedAs("RemovedCollectableHolder")] public GameObject ReColHolder;
         #endregion
         #region Serialized Variables
         
@@ -35,11 +35,12 @@ namespace Managers
         #region Private Variables
 
         [ShowInInspector] private StackData _data;
-        private StackManager _stackManager;
+        private StackManager _stackMan;
         private StackLerpMovementCommand _stackLerpMovementCommand;
-        private CollectableScaleUpCommand _collectableScaleUpCommand;
-        private CollectableAddOnStackCommand _collectableAddOnStackCommand;
-        private CollectableRemoveOnStackCommand _collectableRemoveOnStackCommand;
+        private CollectableScaleUpCommand _colScaleUpCommand;
+        private CollectableAddOnStackCommand _colAddOnStackCommand;
+        private CollectableRemoveOnStackCommand _colRemoveOnStackCommand;
+        private StackColorChangerCommand _stackColorChangerCommand;
         
         #endregion
         #endregion
@@ -52,12 +53,12 @@ namespace Managers
         private StackData GetStackData() => Resources.Load<CD_Stack>("Data/CD_Stack").StackData; 
         private void Init()
         {
-            _stackManager = GetComponent<StackManager>();
+            _stackMan = GetComponent<StackManager>();
             _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data);
-            _collectableScaleUpCommand = new CollectableScaleUpCommand();
-            _collectableAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackManager,ref collected);
-            _collectableRemoveOnStackCommand =
-                new CollectableRemoveOnStackCommand(ref collected,ref _stackManager,ref RemovedCollectableHolder);
+            _colScaleUpCommand = new CollectableScaleUpCommand(ref collected,ref _data);
+            _colAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackMan,ref collected);
+            _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,ref _stackMan,ref ReColHolder);
+            _stackColorChangerCommand = new StackColorChangerCommand(ref collected);
         }
         #region Event Subscription
         private void OnEnable()
@@ -91,26 +92,17 @@ namespace Managers
         }
         private void OnIncreaseStack(GameObject other)
         {
-            var StackLeaderObjectColor = collected[0].GetComponent<Renderer>().material.color;
-            var CollectableObjectColor = other.gameObject.GetComponent<Renderer>().material.color;
-            
-            if (StackLeaderObjectColor == CollectableObjectColor)
-            { 
-                _collectableAddOnStackCommand.Execute(other);
-                StartCoroutine(_collectableScaleUpCommand.ScaleUp(collected, _data.ScaleFactor,_data.ScaleUpDelay));
-            }
+            _colAddOnStackCommand.Execute(other);
+            StartCoroutine(_colScaleUpCommand.Execute(other));
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
-            _collectableRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
-            Destroy(obstacleCollisionGOParams.Collected);
-            Destroy(obstacleCollisionGOParams.Obstacle);
+            _colRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
         }
-        private void OnColorChange(GameObject Changer)
+        private void OnColorChange(GameObject colorChangerWall)
         {
-            ColorChange(Changer);
+            _stackColorChangerCommand.Execute(colorChangerWall);
         }
-
         private void OnTurrentGroundControll(GameObject Ground)
         {
             TurrentGroundControll(Ground);
@@ -118,20 +110,6 @@ namespace Managers
         private void OnExitGroundCheck(GameObject other)
         {
             _tween.Kill();
-        }
-        private void ColorChange(GameObject Changer)
-        {
-            Color ObjectColor;
-            ObjectColor = Changer.GetComponent<Renderer>().material.color;
-            foreach (var item in collected)
-            {
-                item.GetComponent<Renderer>().material.color = ObjectColor;
-            }
-            
-            if(Changer.GetComponent<Collider>().enabled==true)
-            {
-                Changer.GetComponent<Collider>().enabled = false;
-            }
         }
         private void TurrentGroundControll(GameObject Ground )
         {
