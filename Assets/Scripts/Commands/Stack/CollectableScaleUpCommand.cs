@@ -29,11 +29,11 @@ namespace Commands.Stack
         }
             
         public IEnumerator Execute(GameObject _collectable)
-        {
-            var StackLeaderObjectColor = _stacklist[0].GetComponent<Renderer>().material.color;
-            var CollectableObjectColor = _collectable.GetComponent<Renderer>().material.color;
-
-            if (CollectableObjectColor == StackLeaderObjectColor)
+        {//
+           // var StackLeaderObjectColor = _stacklist[0].GetComponent<Renderer>().material.color;
+           // var CollectableObjectColor = _collectable.GetComponent<Renderer>().material.color;
+//
+           // if (CollectableObjectColor == StackLeaderObjectColor)
             {
                 for (int i = _stacklist.Count -1; i >= 0; i--)
                 {

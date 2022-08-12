@@ -31,7 +31,7 @@ namespace Managers
         #region Serialized Variables
         
         [SerializeField] private List<GameObject> collected = new List<GameObject>();
-        [SerializeField] private GameObject collectorMeshRenderer;
+      //  [SerializeField] private GameObject collectorMeshRenderer;
         [SerializeField] private Transform playerManager;
         #region Private Variables
 
@@ -114,11 +114,11 @@ namespace Managers
         }
         private void OnColorChange(GameObject colorChangerWall)
         {
-            _stackColorChangerCommand.Execute(colorChangerWall);
+           // _stackColorChangerCommand.Execute(colorChangerWall);
         }
         private void OnTurrentGroundControll(GameObject Ground)
         {
-            TurrentGroundControll(Ground);
+           // TurrentGroundControll(Ground);
         }
         private void OnExitGroundCheck(GameObject other)
         {

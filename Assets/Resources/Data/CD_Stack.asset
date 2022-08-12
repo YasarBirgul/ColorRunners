@@ -15,12 +15,12 @@ MonoBehaviour:
   StackData:
     StackMemberAmount: 5
     InitializedStack:
-    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
-    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
-    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
-    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
-    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
-    - {fileID: 5447098704056756978, guid: de4c5a3ac7913b84a8e4a275b07eacd9, type: 3}
+    - {fileID: 5229086847666861209, guid: 2632b636ba7d2e349a4df5b8e72fda82, type: 3}
+    - {fileID: 5229086847666861209, guid: 2632b636ba7d2e349a4df5b8e72fda82, type: 3}
+    - {fileID: 5229086847666861209, guid: 2632b636ba7d2e349a4df5b8e72fda82, type: 3}
+    - {fileID: 5229086847666861209, guid: 2632b636ba7d2e349a4df5b8e72fda82, type: 3}
+    - {fileID: 5229086847666861209, guid: 2632b636ba7d2e349a4df5b8e72fda82, type: 3}
+    - {fileID: 5229086847666861209, guid: 2632b636ba7d2e349a4df5b8e72fda82, type: 3}
     LerpSpeed: {x: 10, y: 15, z: 10}
     ScaleFactor: 1.5
     StackDistanceZ: 2

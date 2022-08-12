@@ -21,7 +21,6 @@ namespace Commands.Stack
             _stackList = stackList;
             _stackData = stackData;
         }
-        
         public void Execute(Transform _playerManager)
         {
             if (_stackList.Count > 0 )

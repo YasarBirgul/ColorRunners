@@ -28,7 +28,7 @@ namespace Controllers
         {
             if (other.CompareTag("Collectable"))
             {
-                StackSignals.Instance.onIncreaseStack?.Invoke(other.gameObject);
+                StackSignals.Instance.onIncreaseStack?.Invoke(other.GetComponentInParent<CollectableManager>().gameObject);
             }
 
             if (other.CompareTag("Obstacle"))

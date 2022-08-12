@@ -1,3 +1,4 @@
+using Controllers;
 using Enums;
 using JetBrains.Annotations;
 using MK.TextureChannelPacker;
@@ -44,9 +45,10 @@ namespace Managers
         } 
         private static void AddOnStack(GameObject other)
         {
-            if (other.CompareTag("Collectable"))
+            var Tag = other.GetComponentInChildren<CollectablePhysicsController>().gameObject;
+            if (Tag.CompareTag("Collectable"))
             {
-                other.tag = "Collected";
+                Tag.tag = "Collected";
             }
         }
     }
