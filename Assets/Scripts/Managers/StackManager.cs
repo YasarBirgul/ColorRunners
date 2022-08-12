@@ -3,12 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Commands.Stack;
+using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using DG.Tweening;
+using Enums;
+using Keys;
 using Signals;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
@@ -19,85 +24,128 @@ namespace Managers
         
         #region Public Variables
         
+        Tween _tween;
         public GameObject TempHolder;
-        
+        [FormerlySerializedAs("RemovedCollectableHolder")] public GameObject ReColHolder;
         #endregion
-        
         #region Serialized Variables
-          
-        [SerializeField] private List<GameObject> Collected = new List<GameObject>();
         
+        [SerializeField] private List<GameObject> collected = new List<GameObject>();
         [SerializeField] private GameObject collectorMeshRenderer;
-        
         [SerializeField] private Transform playerManager;
-
         #region Private Variables
 
-        [ShowInInspector] private StackData Data;
-
+        [ShowInInspector] private StackData _data;
+        private StackManager _stackMan;
         private StackLerpMovementCommand _stackLerpMovementCommand;
-
-        private CollectableScaleUpCommand _collectableScaleUpCommand;
+        private CollectableScaleUpCommand _colScaleUpCommand;
+        private CollectableAddOnStackCommand _colAddOnStackCommand;
+        private CollectableRemoveOnStackCommand _colRemoveOnStackCommand;
+        private StackColorChangerCommand _stackColorChangerCommand;
         
         #endregion
-        
         #endregion
-        
         #endregion
-        
         private void Awake()
         { 
-            Data = GetStackData();
+            _data = GetStackData();
             Init();
         } 
-        private StackData GetStackData() => Resources.Load<CD_Stack>("Data/CD_Stack").StackData;
-
+        private StackData GetStackData() => Resources.Load<CD_Stack>("Data/CD_Stack").StackData; 
         private void Init()
         {
-            _stackLerpMovementCommand = new StackLerpMovementCommand();
-            _collectableScaleUpCommand = new CollectableScaleUpCommand();
+            _stackMan = GetComponent<StackManager>();
+            _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data);
+            _colScaleUpCommand = new CollectableScaleUpCommand(ref collected,ref _data);
+            _colAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackMan,ref collected);
+            _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,ref _stackMan,ref ReColHolder);
+            _stackColorChangerCommand = new StackColorChangerCommand(ref collected);
         }
-        
+
+        private void Start()
+        {
+            var stack = _data.InitializedStack;
+            for (int i = 0; i < stack.Count; i++)
+            {
+                var GO = Instantiate(stack[i], Vector3.back*(-6), quaternion.identity);
+                GO.transform.parent = transform;
+                collected.Add(GO);
+            }
+        }
+
         #region Event Subscription
         private void OnEnable()
         {
             SubscribeEvents();
-        }
+        } 
         private void SubscribeEvents()
         {
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
-        }
+            StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
+            StackSignals.Instance.onColorChange += OnColorChange;
+            StackSignals.Instance.onTurrentGroundControll += OnTurrentGroundControll;
+            CollectableSignals.Instance.onExitGroundCheck += OnExitGroundCheck;
+        } 
         private void UnsubscribeEvents()
         {
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
+            StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
+            StackSignals.Instance.onColorChange -= OnColorChange;
+            StackSignals.Instance.onTurrentGroundControll -= OnTurrentGroundControll;
+            CollectableSignals.Instance.onExitGroundCheck -= OnExitGroundCheck;
         }
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
         #endregion
-        
         private void Update()
         {
-            StackLerpMovement();
-        }
-        private void StackLerpMovement()
-        { 
-            _stackLerpMovementCommand.StackLerpMove(ref Collected, playerManager, Data.LerpSpeed, ref Data.StackDistanceZ);
+            _stackLerpMovementCommand.Execute(playerManager);
         }
         private void OnIncreaseStack(GameObject other)
         {
-            AddOnStack(other);
-            CollectableScaleUp();
+            _colAddOnStackCommand.Execute(other);
+            StartCoroutine(_colScaleUpCommand.Execute(other));
         }
-        private void AddOnStack(GameObject other)
-        { 
-            other.transform.parent = transform;
-            Collected.Add(other.gameObject);
-        }
-        private void CollectableScaleUp()
+        private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
-            StartCoroutine(_collectableScaleUpCommand.CollectableScaleUp(Collected, Data.ScaleFactor, Data.StackScaleUpDelay));
+            _colRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
+        }
+        private void OnColorChange(GameObject colorChangerWall)
+        {
+            _stackColorChangerCommand.Execute(colorChangerWall);
+        }
+        private void OnTurrentGroundControll(GameObject Ground)
+        {
+            TurrentGroundControll(Ground);
+        }
+        private void OnExitGroundCheck(GameObject other)
+        {
+            _tween.Kill();
+        }
+        private void TurrentGroundControll(GameObject Ground )
+        {
+            if (collected[0].GetComponent<Renderer>().material.color ==
+                Ground.GetComponent<Renderer>().material.color)
+            {
+                 _tween.Kill();
+                Debug.Log("AYNI");
+            }
+            if (collected[0].GetComponent<Renderer>().material.color !=
+                Ground.GetComponent<Renderer>().material.color)
+            {
+                   _tween = DOVirtual.DelayedCall(0.5f, TurretDestroyOneItem ).SetLoops(-1);
+                Debug.Log("FARKLI");
+            }
+        } 
+        private void TurretDestroyOneItem() // farklı renkte bir yere girince adam öldüren fonk.
+        {
+            int RandomIndex = UnityEngine.Random.Range(0, collected.Count);
+            Debug.Log("RandomIndex"+RandomIndex);
+            collected[RandomIndex].SetActive(false);
+            collected[RandomIndex].transform.SetParent(TempHolder.transform);
+            collected.RemoveAt(RandomIndex);
         }
     }
 }    

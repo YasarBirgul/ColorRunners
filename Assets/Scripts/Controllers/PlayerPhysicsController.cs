@@ -1,4 +1,5 @@
-﻿using Signals;
+﻿using System;
+using Signals;
 using UnityEngine;
 
 namespace Controllers
@@ -27,6 +28,24 @@ namespace Controllers
             if (other.CompareTag("IdleGameInvoker"))
             {
                 CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
+            }
+            if (other.CompareTag("GroundColorCheck"))
+            {
+                StackSignals.Instance.onTurrentGroundControll?.Invoke(other.gameObject); //ground
+
+            }//collectablefizikkontrollerde olsa sürekli çalısacagı ıcın playere aldım. her player yenı groundcolorchecke gırdıgınde calısacak.
+
+            if (other.CompareTag("Ground"))
+            {
+                CollectableSignals.Instance.onEnterGroundCheck?.Invoke(gameObject);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Ground"))
+            {
+                CollectableSignals.Instance.onExitGroundCheck?.Invoke(gameObject);
             }
         }
     }

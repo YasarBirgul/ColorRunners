@@ -8,6 +8,9 @@ TagManager:
   - Collected
   - Obstacle
   - IdleGameInvoker
+  - Changer
+  - GroundColorCheck
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Datas.ValueObject;
 using DG.Tweening;
 using UnityEngine;
 
@@ -7,15 +8,42 @@ namespace Commands.Stack
 {
     public class CollectableScaleUpCommand
     {
-        public IEnumerator CollectableScaleUp(List<GameObject> _collectedList,float _scaleFactor,float _scaleDelay)
+        
+        #region Self Variables
+
+        #region Private Variables
+
+        private List<GameObject> _stacklist;
+        private StackData _stackData;
+
+        #endregion
+
+        #endregion
+
+
+        public CollectableScaleUpCommand(ref List<GameObject> stacklist, ref StackData stackData)
         {
-            for (int i = _collectedList.Count -1; i >= 0; i--)
+            _stacklist = stacklist;
+            _stackData = stackData;
+
+        }
+            
+        public IEnumerator Execute(GameObject _collectable)
+        {
+            var StackLeaderObjectColor = _stacklist[0].GetComponent<Renderer>().material.color;
+            var CollectableObjectColor = _collectable.GetComponent<Renderer>().material.color;
+
+            if (CollectableObjectColor == StackLeaderObjectColor)
             {
-                int index = i;
-                Vector3 scale = Vector3.one * _scaleFactor;
-                _collectedList[index].transform.DOScale(scale, _scaleDelay).SetEase(Ease.Flash);
-                _collectedList[index].transform.DOScale(Vector3.one, _scaleDelay).SetDelay(_scaleDelay).SetEase(Ease.Flash);
-                yield return new WaitForSeconds(0.05f);
+                for (int i = _stacklist.Count -1; i >= 0; i--)
+                {
+                    int index = i;
+                    Vector3 scale = Vector3.one * _stackData.ScaleFactor;
+                    _stacklist[index].transform.DOScale(scale, _stackData.ScaleUpDelay).SetEase(Ease.Flash);
+                    _stacklist[index].transform.DOScale(Vector3.one, _stackData.ScaleUpDelay).SetDelay(_stackData.ScaleUpDelay).SetEase(Ease.Flash);
+                    yield return new WaitForSeconds(0.05f);
+                }
+
             }
         }
     }
