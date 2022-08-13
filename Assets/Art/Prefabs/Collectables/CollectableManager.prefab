@@ -57,7 +57,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caaadb66acb015946ad8e4aeb3bd87f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableAnimationStates: 0
   animationController: {fileID: 436563156}
 --- !u!1 &1524763121025658817
 GameObject:
@@ -135,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectableManager: {fileID: 1524763119778764990}
+  IsCollected: 0
 --- !u!114 &436563156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +199,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6123731347151673987, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 610ad0a28e4c29b40aabfd386decd662, type: 2}
     - target: {fileID: 919132149155446097, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
       propertyPath: m_Name
       value: Mesh

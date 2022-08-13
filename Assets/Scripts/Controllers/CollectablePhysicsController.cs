@@ -1,6 +1,4 @@
-﻿using System;
-using System.Security.AccessControl;
-using Enums;
+﻿using Enums;
 using Keys;
 using Managers;
 using Signals;
@@ -37,6 +35,7 @@ namespace Controllers
                 {
                     StackSignals.Instance.onIncreaseStack?.Invoke(other.transform.parent.gameObject);
                     other.GetComponent<CollectablePhysicsController>().IsCollected = true;
+                    other.GetComponentInParent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
                 }
             }
             if (other.CompareTag("Obstacle"))
@@ -50,6 +49,18 @@ namespace Controllers
             if (other.CompareTag("Changer"))
             {
                 StackSignals.Instance.onColorChange?.Invoke(other.gameObject);
+            }
+
+            if (other.CompareTag("ColorArea"))
+            {
+                collectableManager.SetAnim(CollectableAnimationStates.CrouchWalking);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("ColorArea"))
+            {
+                collectableManager.SetAnim(CollectableAnimationStates.Running);
             }
         }
     }

@@ -23,5 +23,5 @@ MonoBehaviour:
     - {fileID: 5229086847666861209, guid: 2632b636ba7d2e349a4df5b8e72fda82, type: 3}
     LerpSpeed: {x: 10, y: 15, z: 10}
     ScaleFactor: 1.5
-    StackDistanceZ: 2
+    StackDistanceZ: 1
     ScaleUpDelay: 0.2

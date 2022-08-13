@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Commands.Stack;
-using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using DG.Tweening;
@@ -11,13 +7,10 @@ using Enums;
 using Keys;
 using Signals;
 using Sirenix.OdinInspector;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Serialization;
-
 namespace Managers
-{
+{ 
     public class StackManager : MonoBehaviour
     {
         
@@ -32,7 +25,7 @@ namespace Managers
         #region Serialized Variables
         
         [SerializeField] private List<GameObject> collected = new List<GameObject>();
-      //  [SerializeField] private GameObject collectorMeshRenderer;
+      //[SerializeField] private GameObject collectorMeshRenderer;
         [SerializeField] private Transform playerManager;
         [SerializeField] private CollectableManager collectableManager;
         #region Private Variables
@@ -102,7 +95,6 @@ namespace Managers
         {
             _colAddOnStackCommand.Execute(other);
             StartCoroutine(_colScaleUpCommand.Execute(other));
-            other.GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
@@ -149,10 +141,8 @@ namespace Managers
             for (int i = 0; i < _data.InitializedStack.Count; i++)
             {
                 var StartPack = Instantiate(_data.InitializedStack[i], Vector3.zero * (i + 1) * 2, transform.rotation);
-                StartPack.transform.parent = transform;
-                collected.Add(StartPack);
+                _colAddOnStackCommand.Execute(StartPack);
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
-                collected.TrimExcess();
             }
         }
         private void OnPlay()
