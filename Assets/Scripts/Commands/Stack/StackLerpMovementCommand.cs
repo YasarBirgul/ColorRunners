@@ -29,13 +29,15 @@ namespace Commands.Stack
                     Mathf.Lerp(_stackList[0].transform.localPosition.x, _playerManager.position.x,_stackData.LerpSpeed.x*Time.deltaTime),
                     Mathf.Lerp(_stackList[0].transform.localPosition.y, _playerManager.position.y, _stackData.LerpSpeed.y*Time.deltaTime),
                     Mathf.Lerp(_stackList[0].transform.localPosition.z, _playerManager.position.z -_stackData.StackDistanceZ, _stackData.LerpSpeed.z*Time.deltaTime));
-                        
+                _stackList[0].transform.LookAt(_playerManager);
+                
                 for (int i = 1; i < _stackList.Count; i++)
                 {
                     _stackList[i].transform.position = new Vector3(
                         Mathf.Lerp(_stackList[i].transform.localPosition.x, _stackList[i-1].transform.localPosition.x,_stackData.LerpSpeed.x*Time.deltaTime),
                         Mathf.Lerp(_stackList[i].transform.localPosition.y,_stackList[i-1].transform.localPosition.y, _stackData.LerpSpeed.y*Time.deltaTime),
                         Mathf.Lerp(_stackList[i].transform.localPosition.z, _stackList[i-1].transform.localPosition.z -_stackData.StackDistanceZ, _stackData.LerpSpeed.z*Time.deltaTime));
+                    _stackList[i].transform.LookAt(_stackList[i-1].transform); 
                 }
             }
         }

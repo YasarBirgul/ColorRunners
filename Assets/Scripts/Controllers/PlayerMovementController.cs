@@ -74,7 +74,6 @@ namespace Controllers
                     if (_currentState == GameStates.Runner)
                     {
                         RunnerMove();
-                       // RunnerRotate();
                     }
                     else if(_currentState == GameStates.Idle)
                     {
@@ -104,14 +103,6 @@ namespace Controllers
             Vector3 position;
             position = new Vector3( Mathf.Clamp(rigidbody.position.x, _clampValues.x,_clampValues.y),(position = rigidbody.position).y,position.z);
             rigidbody.position = position;
-        }
-
-        private void RunnerRotate()
-        {
-            Vector3 direction = Vector3.forward + Vector3.right * Mathf.Clamp(_inputValueX, -45, 45);
-            
-            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.LookRotation(direction), 4f);
-
         }
         private void IdleMove()
         {

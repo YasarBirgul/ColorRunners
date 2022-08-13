@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Enums;
+using Managers;
 using Signals;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ namespace Controllers
             if (other.CompareTag("IdleGameInvoker"))
             {
                 playerManager.ChangeState(GameStates.Idle);
+                CameraSignals.Instance.onSetCameraState(CameraStatesType.Idle);
             }
             if (other.CompareTag("ColorArea"))
             {
