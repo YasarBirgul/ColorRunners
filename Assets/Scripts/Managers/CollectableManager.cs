@@ -41,5 +41,10 @@ namespace Managers
         {
            animationController.ChangeCollectableAnimation(AnimState);
         }
+        public void ChangeColor()
+        {
+            
+            
+        }
     }
 }

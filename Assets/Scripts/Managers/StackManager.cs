@@ -9,6 +9,7 @@ using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
+
 namespace Managers
 { 
     public class StackManager : MonoBehaviour
@@ -25,11 +26,12 @@ namespace Managers
         #region Serialized Variables
         
         [SerializeField] private List<GameObject> collected = new List<GameObject>();
-      //[SerializeField] private GameObject collectorMeshRenderer;
+        //[SerializeField] private GameObject collectorMeshRenderer;
         [SerializeField] private Transform playerManager;
         [SerializeField] private CollectableManager collectableManager;
+       
         #region Private Variables
-
+        
         [ShowInInspector] private StackData _data;
         private StackManager _stackMan;
         private StackLerpMovementCommand _stackLerpMovementCommand;
@@ -102,7 +104,7 @@ namespace Managers
         }
         private void OnColorChange(GameObject colorChangerWall)
         {
-           // _stackColorChangerCommand.Execute(colorChangerWall);
+            _stackColorChangerCommand.Execute(colorChangerWall);
         }
         private void OnTurrentGroundControll(GameObject Ground)
         {

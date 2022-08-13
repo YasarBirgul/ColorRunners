@@ -29,14 +29,11 @@ namespace Controllers
         #endregion
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Collectable") && IsCollected)
+            if (other.CompareTag("Collected") && !IsCollected)
             {
-                if (other.GetComponent<CollectablePhysicsController>().IsCollected == false)
-                {
-                    StackSignals.Instance.onIncreaseStack?.Invoke(other.transform.parent.gameObject);
-                    other.GetComponent<CollectablePhysicsController>().IsCollected = true;
-                    other.GetComponentInParent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
-                }
+                StackSignals.Instance.onIncreaseStack?.Invoke(transform.parent.gameObject);
+                collectableManager.SetAnim(CollectableAnimationStates.Running);
+                IsCollected = true;
             }
             if (other.CompareTag("Obstacle"))
             {

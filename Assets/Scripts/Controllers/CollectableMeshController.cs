@@ -1,18 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 public class CollectableMeshController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region Self Variables
 
-    // Update is called once per frame
-    void Update()
-    {
+    #region Public Variables
+
+    #endregion
+
+    #region Serialized Variables
+
+    public Material color;
         
-    }
+    #endregion
+
+    #endregion
+    
 }
