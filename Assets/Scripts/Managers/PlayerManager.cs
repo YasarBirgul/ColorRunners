@@ -4,6 +4,7 @@ using Datas.ValueObject;
 using Keys;
 using Signals;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace Managers
 { 
@@ -88,6 +89,11 @@ namespace Managers
         {
             movementController.UpdateIdleInputValue(idleGameInputParams);
         }
+
+        public void ChangeState(GameStates state)
+        {
+            CoreGameSignals.Instance.onChangeGameState?.Invoke(state);
+        }
         private void OnPlay()
         {
             movementController.IsReadyToPlay(true);
@@ -100,7 +106,6 @@ namespace Managers
         {
             movementController.CurrentState(CurrentState);
         }
-
         public void EnteredDroneArea()
         {
             movementController.DeactiveMovement();

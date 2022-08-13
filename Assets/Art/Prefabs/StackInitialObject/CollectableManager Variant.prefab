@@ -59,9 +59,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1524763119778764990, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
+      propertyPath: collectionState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524763119778764990, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
+      propertyPath: animationController
+      value: 
+      objectReference: {fileID: 6753280901022171377}
     - target: {fileID: 1524763121025658817, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
       propertyPath: m_TagString
       value: Collected
       objectReference: {fileID: 0}
+    - target: {fileID: 1524763121025658819, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
+      propertyPath: IsCollected
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
+--- !u!114 &6753280901022171377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 436563156, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
+  m_PrefabInstance: {fileID: 6753280900921699365}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b6ee92d4ec57140833c6edfb6a5f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

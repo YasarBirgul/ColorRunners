@@ -8,9 +8,6 @@ namespace Controllers
     public class CollectableAnimationController : MonoBehaviour
     {
         [SerializeField] private Animator animator;
-
-       
-
         public void ChangeCollectableAnimation(CollectableAnimationStates collectableAnimationStates)
         {
             switch (collectableAnimationStates)
@@ -27,19 +24,6 @@ namespace Controllers
                    animator.SetTrigger("isCrouchWalking");
                     break; 
             }
-        }
-        public void WhenEnterDroneArea()
-        {
-            ChangeCollectableAnimation(CollectableAnimationStates.Crouching);
-        }
-        public void WhenEnterTurretArea()
-        {
-            ChangeCollectableAnimation(CollectableAnimationStates.CrouchWalking);
-        }
-
-        public void WhenExitTurretArea()
-        {
-            ChangeCollectableAnimation(CollectableAnimationStates.Running);
         }
     }
 }

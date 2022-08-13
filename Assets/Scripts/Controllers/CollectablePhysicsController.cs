@@ -24,19 +24,21 @@ namespace Controllers
 
         #region Private Variables
 
+        [SerializeField] private bool IsCollected;
+        
         #endregion
 
         #endregion
-
-
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Collectable"))
+            if (other.CompareTag("Collectable") && IsCollected)
             {
-                StackSignals.Instance.onIncreaseStack?.Invoke(other.GetComponentInParent<CollectableManager>()
-                    .gameObject);
+                if (other.GetComponent<CollectablePhysicsController>().IsCollected == false)
+                {
+                    StackSignals.Instance.onIncreaseStack?.Invoke(other.transform.parent.gameObject);
+                    other.GetComponent<CollectablePhysicsController>().IsCollected = true;
+                }
             }
-
             if (other.CompareTag("Obstacle"))
             {
                 StackSignals.Instance.onDecreaseStack?.Invoke(new ObstacleCollisionGOParams()
@@ -45,31 +47,9 @@ namespace Controllers
                     Obstacle = other.gameObject
                 });
             }
-
             if (other.CompareTag("Changer"))
             {
                 StackSignals.Instance.onColorChange?.Invoke(other.gameObject);
-            }
-
-            if (other.CompareTag(("ColorArea")))
-            {
-                collectableManager.EnterTurretArea();
-                Debug.Log("Carpti");
-            }
-
-              if (other.CompareTag("DroneArea"))
-             {
-                collectableManager.EnterDroneArea();
-             }
-
-
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("ColorArea"))
-            {
-                collectableManager.ExitTurretArea();
             }
         }
     }

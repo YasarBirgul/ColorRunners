@@ -13,6 +13,7 @@ using Signals;
 using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 namespace Managers
@@ -33,6 +34,7 @@ namespace Managers
         [SerializeField] private List<GameObject> collected = new List<GameObject>();
       //  [SerializeField] private GameObject collectorMeshRenderer;
         [SerializeField] private Transform playerManager;
+        [SerializeField] private CollectableManager collectableManager;
         #region Private Variables
 
         [ShowInInspector] private StackData _data;
@@ -61,18 +63,7 @@ namespace Managers
             _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,ref _stackMan,ref ReColHolder);
             _stackColorChangerCommand = new StackColorChangerCommand(ref collected);
         }
-
-        private void Start()
-        {
-            var stack = _data.InitializedStack;
-            for (int i = 0; i < stack.Count; i++)
-            {
-                var GO = Instantiate(stack[i], Vector3.back*(-6), quaternion.identity);
-                GO.transform.parent = transform;
-                collected.Add(GO);
-            }
-        }
-
+        
         #region Event Subscription
         private void OnEnable()
         {
@@ -80,6 +71,8 @@ namespace Managers
         } 
         private void SubscribeEvents()
         {
+            CoreGameSignals.Instance.onGameOpen += OnGameOpen;
+            CoreGameSignals.Instance.onPlay += OnPlay;
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
@@ -88,6 +81,8 @@ namespace Managers
         } 
         private void UnsubscribeEvents()
         {
+            CoreGameSignals.Instance.onGameOpen -= OnGameOpen;
+            CoreGameSignals.Instance.onPlay -= OnPlay;
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
@@ -107,6 +102,7 @@ namespace Managers
         {
             _colAddOnStackCommand.Execute(other);
             StartCoroutine(_colScaleUpCommand.Execute(other));
+            other.GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
@@ -146,6 +142,25 @@ namespace Managers
             collected[RandomIndex].SetActive(false);
             collected[RandomIndex].transform.SetParent(TempHolder.transform);
             collected.RemoveAt(RandomIndex);
+        }
+
+        private void OnGameOpen()
+        {
+            for (int i = 0; i < _data.InitializedStack.Count; i++)
+            {
+                var StartPack = Instantiate(_data.InitializedStack[i], Vector3.zero * (i + 1) * 2, transform.rotation);
+                StartPack.transform.parent = transform;
+                collected.Add(StartPack);
+                collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
+                collected.TrimExcess();
+            }
+        }
+        private void OnPlay()
+        {
+            for (int i = 0; i < collected.Count; i++)
+            {
+                collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
+            }
         }
     }
 }    

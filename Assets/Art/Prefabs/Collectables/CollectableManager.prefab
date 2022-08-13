@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectableAnimationStates: 0
-  collectableAnimationController: {fileID: 436563156}
+  animationController: {fileID: 436563156}
 --- !u!1 &1524763121025658817
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,8 @@
 using Controllers;
 using Enums;
-using JetBrains.Annotations;
-using MK.TextureChannelPacker;
 using Signals;
 using UnityEngine;
+
 
 namespace Managers
 {
@@ -14,11 +13,9 @@ namespace Managers
         #endregion
         #region Serialized Variables
         //   [SerializeField] private CollectablePhysicsController collectablePhysicsController;,
-        [SerializeField] private CollectableAnimationStates collectableAnimationStates;
-        [SerializeField] private CollectableAnimationController collectableAnimationController;
+        [SerializeField] private CollectableAnimationController animationController;
         #endregion
         #region Private Variables
-        
         
         #endregion
         #endregion
@@ -30,44 +27,19 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
-            StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
         }
         private void UnsubscribeEvents()
-        { 
-            StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
+        {
         }
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
         #endregion
-        private void OnIncreaseStack(GameObject other)
-        {
-            AddOnStack(other);
-        } 
-        private static void AddOnStack(GameObject other)
-        {
-            var Tag = other.GetComponentInChildren<CollectablePhysicsController>().gameObject;
-            if (Tag.CompareTag("Collectable"))
-            {
-                Tag.tag = "Collected";
-            }
-        }
-
-        public void EnterTurretArea()
-        {
-            collectableAnimationController.WhenEnterTurretArea();
-            
-        }
-
-        public void ExitTurretArea()
-        {
-            collectableAnimationController.WhenExitTurretArea();
-        }
         
-         public void EnterDroneArea()
+        public void SetAnim(CollectableAnimationStates AnimState)
         {
-           collectableAnimationController.Invoke("WhenEnterDroneArea",.5f);
-       }
+           animationController.ChangeCollectableAnimation(AnimState);
+        }
     }
 }
