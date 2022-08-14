@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 804162101208167278}
   m_Layer: 0
   m_Name: Grounds (1)
-  m_TagString: Ground
+  m_TagString: DroneArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.671311, z: 0.86898357}
-  m_Center: {x: 0, y: 0.835655, z: 0.06550824}
+  m_Size: {x: 1, y: 2.671311, z: 0.070371106}
+  m_Center: {x: 0, y: 0.835655, z: -0.46108368}
 --- !u!1 &1513331651690366166
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 1513331651690366171}
   m_Layer: 0
   m_Name: Color-Green
-  m_TagString: Changer
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435f19b850f37ce44899aef7b9694f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 1
+  color: 2
 --- !u!1 &1513331652748153435
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 1513331652957248831}
   m_Layer: 0
   m_Name: Color-Yellow
-  m_TagString: Changer
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435f19b850f37ce44899aef7b9694f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 3
+  color: 4
 --- !u!1 &1513331653165862474
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 934301487182077695}
   m_Layer: 0
   m_Name: GroundColor (1)
-  m_TagString: ColorArea
+  m_TagString: DroneColorArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 857172169932650031}
   m_Layer: 0
   m_Name: GroundColor
-  m_TagString: ColorArea
+  m_TagString: DroneColorArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

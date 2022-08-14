@@ -8,12 +8,11 @@ TagManager:
   - Collected
   - Obstacle
   - IdleGameInvoker
-  - Changer
-  - GroundColorCheck
-  - Ground
   - ColorArea
-  - DroneGround
   - DroneArea
+  - Gate
+  - DroneColorArea
+  - TurretArea
   layers:
   - Default
   - TransparentFX

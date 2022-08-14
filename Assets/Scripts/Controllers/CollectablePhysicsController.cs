@@ -55,9 +55,17 @@ namespace Controllers
                     Collected = gameObject,
                 });
             }
-            if (other.CompareTag("ColorArea"))
+            if (other.CompareTag("TurretColorArea"))
             {
-                collectableManager.SetAnim(CollectableAnimationStates.CrouchWalking);
+                
+                
+            }
+            if (other.CompareTag("DroneColorArea"))
+            {
+                
+            }
+            if (other.CompareTag("DroneArea"))
+            {
                 collectableManager.DelistFromStack();
             }
         }
@@ -65,13 +73,8 @@ namespace Controllers
         {
             if (other.CompareTag("ColorArea"))
             {
-                collectableManager.SetAnim(CollectableAnimationStates.Running);
+                collectableManager.SetAnim(CollectableAnimationStates.Crouching);
             }
-        }
-
-        private void OnTriggerStay(Collider other)
-        {
-            
         }
     }
 }

@@ -3,7 +3,6 @@ using Managers;
 using Signals;
 using UnityEngine;
 
-
 namespace Controllers
 { 
     public class PlayerPhysicsController : MonoBehaviour
@@ -32,21 +31,17 @@ namespace Controllers
             {
                 StackSignals.Instance.onTurrentGroundControll?.Invoke(other.gameObject);
             }
-            if (other.CompareTag("Ground"))
-            {
-                CameraSignals.Instance.onEnterMiniGame?.Invoke();
-            }
-            if (other.CompareTag("Changer"))
+            if (other.CompareTag("Gate"))
             {
                 playerManager.SendGateColorData(other.GetComponent<GateCommand>().color);
             }
         }
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Ground"))
+            if (other.CompareTag("DroneArea"))
             {
-                playerManager.ExitGroundCheck();
-                CameraSignals.Instance.onExitMiniGame?.Invoke();
+                playerManager.StopVerticalMovement();
+                CameraSignals.Instance.onEnterMiniGame?.Invoke();
             }
         }
     }

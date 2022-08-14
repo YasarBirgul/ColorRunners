@@ -1,9 +1,7 @@
-using System;
 using Controllers;
 using Enums;
 using Signals;
 using UnityEngine;
-
 
 namespace Managers
 {
@@ -38,12 +36,10 @@ namespace Managers
         public void ChangeColor(ColorType _colorType)
         {
             collectableMeshController.GetColor(_colorType);
-        }
-
+        } 
         public void DelistFromStack()
         {
-            
+            StackSignals.Instance.OnDroneArea?.Invoke();
         }
-        
     }
 }

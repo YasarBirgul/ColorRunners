@@ -99,7 +99,7 @@ namespace Managers
             CoreGameSignals.Instance.onChangeGameState?.Invoke(state);
         }
 
-        public void ExitGroundCheck()
+        public void StopVerticalMovement()
         {
             movementController.StopVerticalMovement();
         }

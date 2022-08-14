@@ -10,9 +10,8 @@ using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Managers
+namespace Managers 
 { 
     public class StackManager : MonoBehaviour
     {
@@ -21,7 +20,7 @@ namespace Managers
         
         Tween _tween;
         public GameObject TempHolder;
-        [FormerlySerializedAs("RemovedCollectableHolder")] public GameObject ReColHolder;
+        [SerializeField] public GameObject ReColHolder;
         #endregion
         #region Serialized Variables
         
@@ -69,6 +68,7 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
+            StackSignals.Instance.OnDroneArea += OnDroneArea;
         } 
         private void UnsubscribeEvents()
         {
@@ -77,6 +77,7 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
+            StackSignals.Instance.OnDroneArea -= OnDroneArea;
         }
         private void OnDisable()
         {
@@ -104,6 +105,12 @@ namespace Managers
                 collected[i].GetComponentInChildren<CollectableMeshController>().GetColor(colorType);
             }
         } 
+        private void OnDroneArea()
+        { 
+            collected[0].transform.parent = TempHolder.transform;
+            collected.RemoveAt(0);
+            collected.TrimExcess();
+        } 
         private void OnGameOpen()
         {
             for (int i = 0; i < _data.InitializedStack.Count; i++)
@@ -113,7 +120,7 @@ namespace Managers
                 _colAddOnStackCommand.Execute(StartPack);
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
             }
-        }
+        } 
         private void OnPlay()
         {
             for (int i = 0; i < collected.Count; i++)
@@ -122,6 +129,7 @@ namespace Managers
             }
         } private void OnReset()
         {
+            
             
         }
     }
