@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bfb516cb3db10408ef83452a68a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableManager: {fileID: 1524763119778764990}
   skinnedMeshRenderer: {fileID: 4480282499569206467}
 --- !u!1 &1524763119778764988
 GameObject:
@@ -214,6 +213,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: cef9f3efdf9618d448bd986f47553257, type: 2}
+    - target: {fileID: 5866666021909216657, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
 --- !u!1 &1866849982991850735 stripped

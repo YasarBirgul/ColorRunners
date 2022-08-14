@@ -27,7 +27,6 @@ namespace Managers
 
         [ShowInInspector] private bool isReadyForTouch, isFirstTimeTouchTaken;
 
-        
         #endregion
 
         #region Private Variables

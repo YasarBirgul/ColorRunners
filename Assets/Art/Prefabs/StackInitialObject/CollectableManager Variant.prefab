@@ -79,6 +79,14 @@ PrefabInstance:
       propertyPath: IsCollected
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1524763121025658845, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918949298326068271, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
 --- !u!114 &6753280901022171377 stripped

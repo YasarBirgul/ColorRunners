@@ -56,7 +56,6 @@ namespace Managers
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onReset += OnReset;
             CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
-            CollectableSignals.Instance.onExitGroundCheck += OnExitGroundCheck;
         } 
         private void UnsubscribeEvents()
         {
@@ -67,7 +66,6 @@ namespace Managers
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onReset -= OnReset;
             CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
-            CollectableSignals.Instance.onExitGroundCheck -= OnExitGroundCheck;
         } 
         private void OnDisable()
         {
@@ -101,9 +99,9 @@ namespace Managers
             CoreGameSignals.Instance.onChangeGameState?.Invoke(state);
         }
 
-        public void OnExitGroundCheck(GameObject go)
+        public void ExitGroundCheck()
         {
-            
+            movementController.StopVerticalMovement();
         }
         private void OnPlay()
         {

@@ -23,7 +23,7 @@ namespace Controllers
         
         [Header("Data")][ShowInInspector] private PlayerMovementData _movementData;
         
-        [ShowInInspector] private bool _isReadyToMove, _isReadyToPlay ;
+        [ShowInInspector] private bool _isReadyToMove, _isReadyToPlay,isMovingVertical ;
         
         [ShowInInspector] private float _inputValueX;
        
@@ -137,7 +137,11 @@ namespace Controllers
         {
             _currentState = CurrentState;
         }
-
+        public void StopVerticalMovement()
+        {
+            rigidbody.angularVelocity = Vector3.zero;
+            _movementData.forwardSpeed = 0;
+        }
     }
 }
 

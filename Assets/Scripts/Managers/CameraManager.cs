@@ -1,5 +1,6 @@
 using Cinemachine;
 using Enums;
+using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -51,6 +52,8 @@ namespace Managers
             CameraSignals.Instance.onSetCameraState += OnSetCameraState;
             CameraSignals.Instance.onSetCameraTarget += OnSetCameraTarget;
             CoreGameSignals.Instance.onReset += OnReset;
+            CameraSignals.Instance.onEnterMiniGame += OnPlayerEnterMiniGame;
+            CameraSignals.Instance.onExitMiniGame+= OnPlayerExitMiniGame;
         }
         private void UnsubscribeEvents()
         {
@@ -58,6 +61,8 @@ namespace Managers
             CameraSignals.Instance.onSetCameraState -= OnSetCameraState;
             CameraSignals.Instance.onSetCameraTarget -= OnSetCameraTarget;
             CoreGameSignals.Instance.onReset -= OnReset;
+            CameraSignals.Instance.onEnterMiniGame -= OnPlayerEnterMiniGame;
+            CameraSignals.Instance.onExitMiniGame -= OnPlayerExitMiniGame;
         }
         private void OnDisable()
         {
@@ -73,19 +78,26 @@ namespace Managers
         {
             transform.localPosition = _initialPosition;
         }
-
         private void SetCameraTarget()
         {
             CameraSignals.Instance.onSetCameraTarget?.Invoke();
         }
-
         private void OnSetCameraTarget()
         {
-               var playerManager = FindObjectOfType<PlayerManager>().transform;
-               RunnerCamera.Follow = playerManager;
-               IdleGameCamera.Follow = playerManager;
+            var playerManager = FindObjectOfType<PlayerManager>().transform;
+            RunnerCamera.Follow = playerManager;
+            IdleGameCamera.Follow = playerManager;
         }
-
+        private void OnPlayerEnterMiniGame()
+        {
+            RunnerCamera.Follow = null;
+        } 
+        private void OnPlayerExitMiniGame()
+        {
+            var playerManager = FindObjectOfType<PlayerManager>().transform;
+            RunnerCamera.Follow = playerManager;
+            IdleGameCamera.Follow = playerManager;
+        }
         private void OnReset()
         {
             RunnerCamera.Follow = null;

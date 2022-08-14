@@ -1,4 +1,5 @@
-﻿using Enums;
+﻿using System;
+using Enums;
 using Keys;
 using Managers;
 using Signals;
@@ -57,6 +58,7 @@ namespace Controllers
             if (other.CompareTag("ColorArea"))
             {
                 collectableManager.SetAnim(CollectableAnimationStates.CrouchWalking);
+                collectableManager.DelistFromStack();
             }
         }
         private void OnTriggerExit(Collider other)
@@ -65,6 +67,11 @@ namespace Controllers
             {
                 collectableManager.SetAnim(CollectableAnimationStates.Running);
             }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            
         }
     }
 }

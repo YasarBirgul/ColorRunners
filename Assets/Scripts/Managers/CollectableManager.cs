@@ -1,6 +1,7 @@
 using System;
 using Controllers;
 using Enums;
+using Signals;
 using UnityEngine;
 
 
@@ -38,5 +39,11 @@ namespace Managers
         {
             collectableMeshController.GetColor(_colorType);
         }
+
+        public void DelistFromStack()
+        {
+            
+        }
+        
     }
 }

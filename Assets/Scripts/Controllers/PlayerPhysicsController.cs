@@ -32,10 +32,10 @@ namespace Controllers
             {
                 StackSignals.Instance.onTurrentGroundControll?.Invoke(other.gameObject);
             }
-          //  if (other.CompareTag("Ground"))
-          //  {
-          //      CollectableSignals.Instance.onEnterGroundCheck?.Invoke(gameObject);
-          //  }
+            if (other.CompareTag("Ground"))
+            {
+                CameraSignals.Instance.onEnterMiniGame?.Invoke();
+            }
             if (other.CompareTag("Changer"))
             {
                 playerManager.SendGateColorData(other.GetComponent<GateCommand>().color);
@@ -45,7 +45,8 @@ namespace Controllers
         {
             if (other.CompareTag("Ground"))
             {
-                CollectableSignals.Instance.onExitGroundCheck?.Invoke(gameObject);
+                playerManager.ExitGroundCheck();
+                CameraSignals.Instance.onExitMiniGame?.Invoke();
             }
         }
     }
