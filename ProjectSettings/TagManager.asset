@@ -13,6 +13,7 @@ TagManager:
   - Gate
   - DroneColorArea
   - TurretArea
+  - TurretColorArea
   layers:
   - Default
   - TransparentFX

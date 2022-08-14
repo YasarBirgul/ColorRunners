@@ -57,7 +57,7 @@ namespace Controllers
             }
             if (other.CompareTag("TurretColorArea"))
             {
-                
+                collectableManager.SetAnim(CollectableAnimationStates.CrouchWalking);
                 
             }
             if (other.CompareTag("DroneColorArea"))
