@@ -1,6 +1,7 @@
 using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
+using Enums;
 using Keys;
 using Signals;
 using UnityEngine;
@@ -55,6 +56,7 @@ namespace Managers
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onReset += OnReset;
             CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
+            CollectableSignals.Instance.onExitGroundCheck += OnExitGroundCheck;
         } 
         private void UnsubscribeEvents()
         {
@@ -65,6 +67,7 @@ namespace Managers
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onReset -= OnReset;
             CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
+            CollectableSignals.Instance.onExitGroundCheck -= OnExitGroundCheck;
         } 
         private void OnDisable()
         {
@@ -89,10 +92,18 @@ namespace Managers
         {
             movementController.UpdateIdleInputValue(idleGameInputParams);
         }
-
+        public void SendGateColorData(ColorType colorType)
+        {
+            StackSignals.Instance.onColorChange?.Invoke(colorType);
+        }
         public void ChangeState(GameStates state)
         {
             CoreGameSignals.Instance.onChangeGameState?.Invoke(state);
+        }
+
+        public void OnExitGroundCheck(GameObject go)
+        {
+            
         }
         private void OnPlay()
         {

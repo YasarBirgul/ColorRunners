@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Commands.Stack;
+using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using DG.Tweening;
@@ -14,9 +16,7 @@ namespace Managers
 { 
     public class StackManager : MonoBehaviour
     {
-        
         #region Self Variables
-        
         #region Public Variables
         
         Tween _tween;
@@ -29,7 +29,6 @@ namespace Managers
         //[SerializeField] private GameObject collectorMeshRenderer;
         [SerializeField] private Transform playerManager;
         [SerializeField] private CollectableManager collectableManager;
-       
         #region Private Variables
         
         [ShowInInspector] private StackData _data;
@@ -58,7 +57,6 @@ namespace Managers
             _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,ref _stackMan,ref ReColHolder);
             _stackColorChangerCommand = new StackColorChangerCommand(ref collected);
         }
-        
         #region Event Subscription
         private void OnEnable()
         {
@@ -71,8 +69,6 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
-            StackSignals.Instance.onTurrentGroundControll += OnTurrentGroundControll;
-            CollectableSignals.Instance.onExitGroundCheck += OnExitGroundCheck;
         } 
         private void UnsubscribeEvents()
         {
@@ -81,8 +77,6 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
-            StackSignals.Instance.onTurrentGroundControll -= OnTurrentGroundControll;
-            CollectableSignals.Instance.onExitGroundCheck -= OnExitGroundCheck;
         }
         private void OnDisable()
         {
@@ -102,47 +96,19 @@ namespace Managers
         {
             _colRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
         }
-        private void OnColorChange(GameObject colorChangerWall)
+        private async void OnColorChange(ColorType colorType)
         {
-            _stackColorChangerCommand.Execute(colorChangerWall);
-        }
-        private void OnTurrentGroundControll(GameObject Ground)
-        {
-           // TurrentGroundControll(Ground);
-        }
-        private void OnExitGroundCheck(GameObject other)
-        {
-            _tween.Kill();
-        }
-        private void TurrentGroundControll(GameObject Ground )
-        {
-            if (collected[0].GetComponent<Renderer>().material.color ==
-                Ground.GetComponent<Renderer>().material.color)
+            for (int i = 0; i < collected.Count; i++)
             {
-                 _tween.Kill();
-                Debug.Log("AYNI");
-            }
-            if (collected[0].GetComponent<Renderer>().material.color !=
-                Ground.GetComponent<Renderer>().material.color)
-            {
-                   _tween = DOVirtual.DelayedCall(0.5f, TurretDestroyOneItem ).SetLoops(-1);
-                Debug.Log("FARKLI");
+                await Task.Delay(50);
+                collected[i].GetComponentInChildren<CollectableMeshController>().GetColor(colorType);
             }
         } 
-        private void TurretDestroyOneItem() // farklı renkte bir yere girince adam öldüren fonk.
-        {
-            int RandomIndex = UnityEngine.Random.Range(0, collected.Count);
-            Debug.Log("RandomIndex"+RandomIndex);
-            collected[RandomIndex].SetActive(false);
-            collected[RandomIndex].transform.SetParent(TempHolder.transform);
-            collected.RemoveAt(RandomIndex);
-        }
-
         private void OnGameOpen()
         {
             for (int i = 0; i < _data.InitializedStack.Count; i++)
-            {
-                var StartPack = Instantiate(_data.InitializedStack[i], Vector3.zero * (i + 1) * 2, transform.rotation);
+            { 
+                var StartPack= Instantiate(_data.InitializedStack[i],Vector3.zero*(i+1)*2,transform.rotation);
                 _colAddOnStackCommand.Execute(StartPack);
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
             }
@@ -153,6 +119,9 @@ namespace Managers
             {
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
             }
+        } private void OnReset()
+        {
+            
         }
     }
 }    

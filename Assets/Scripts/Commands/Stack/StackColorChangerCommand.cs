@@ -22,15 +22,7 @@ namespace Commands.Stack
         
         public void Execute(GameObject ColorChangerWall)
         {
-            var collectableColor = ColorChangerWall.GetComponent<Renderer>().material.color;
-            foreach (var item in _stacklist)
-            {
-                item.GetComponentInChildren<CollectableMeshController>().color.color = collectableColor;
-            }
-            if(ColorChangerWall.GetComponent<Collider>().enabled)
-            {
-                ColorChangerWall.GetComponent<Collider>().enabled = false;
-            }
+            
         }
     }
 }

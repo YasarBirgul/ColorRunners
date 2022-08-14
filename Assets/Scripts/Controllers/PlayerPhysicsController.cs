@@ -32,9 +32,13 @@ namespace Controllers
             {
                 StackSignals.Instance.onTurrentGroundControll?.Invoke(other.gameObject);
             }
-            if (other.CompareTag("Ground"))
+          //  if (other.CompareTag("Ground"))
+          //  {
+          //      CollectableSignals.Instance.onEnterGroundCheck?.Invoke(gameObject);
+          //  }
+            if (other.CompareTag("Changer"))
             {
-                CollectableSignals.Instance.onEnterGroundCheck?.Invoke(gameObject);
+                playerManager.SendGateColorData(other.GetComponent<GateCommand>().color);
             }
         }
         private void OnTriggerExit(Collider other)

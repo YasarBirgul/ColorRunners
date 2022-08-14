@@ -21,33 +21,39 @@ namespace Controllers
         #endregion
 
         #region Private Variables
-
-        [SerializeField] private bool IsCollected;
         
         #endregion
 
         #endregion
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Collected") && !IsCollected)
+            if (CompareTag("Collected") && other.CompareTag("Collectable"))
             {
-                StackSignals.Instance.onIncreaseStack?.Invoke(transform.parent.gameObject);
-                collectableManager.SetAnim(CollectableAnimationStates.Running);
-                IsCollected = true;
+                CollectableManager otherColManager = other.transform.parent.GetComponent<CollectableManager>();
+
+                if (collectableManager.ColorType == otherColManager.ColorType)
+                {
+                    StackSignals.Instance.onIncreaseStack?.Invoke(other.transform.parent.gameObject);
+                    otherColManager.SetAnim(CollectableAnimationStates.Running);
+                    other.tag = "Collected";
+                }
+                else
+                {
+                    other.transform.parent.gameObject.SetActive(false);
+                    StackSignals.Instance.onDecreaseStack?.Invoke(new ObstacleCollisionGOParams()
+                    { 
+                       Collected = gameObject,
+                    });
+                }
             }
             if (other.CompareTag("Obstacle"))
             {
+                other.gameObject.SetActive(false);
                 StackSignals.Instance.onDecreaseStack?.Invoke(new ObstacleCollisionGOParams()
                 {
                     Collected = gameObject,
-                    Obstacle = other.gameObject
                 });
             }
-            if (other.CompareTag("Changer"))
-            {
-                StackSignals.Instance.onColorChange?.Invoke(other.gameObject);
-            }
-
             if (other.CompareTag("ColorArea"))
             {
                 collectableManager.SetAnim(CollectableAnimationStates.CrouchWalking);

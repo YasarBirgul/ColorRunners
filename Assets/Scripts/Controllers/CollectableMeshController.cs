@@ -1,23 +1,27 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Managers;
+using Enums;
 using UnityEngine;
 
-public class CollectableMeshController : MonoBehaviour
+namespace Controllers
 {
-    #region Self Variables
-
-    #region Public Variables
-
-    #endregion
-
-    #region Serialized Variables
-
-    public Material color;
-        
-    #endregion
-
-    #endregion
+    public class CollectableMeshController : MonoBehaviour
+    {
+        #region Self Variables
     
+        #region Public Variables
+    
+        #endregion
+    
+        #region Serialized Variables
+        
+        [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
+    
+        #endregion
+    
+        #endregion
+        public void GetColor(ColorType colorType)
+        {
+            skinnedMeshRenderer.material = Resources.Load<Material>($"Materials/{colorType}");
+        }
+    }
 }
+

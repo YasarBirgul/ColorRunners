@@ -96,7 +96,7 @@ namespace Managers
             {
                 _runnerGameInputUpdateCommand.RunnerInputUpdate(joystickInput,Data);
             }
-            else
+            if(_currentState == GameStates.Idle)
             {
                 _idleGameInputUpdateCommand.IdleInputUpdate(joystickInput);
             }

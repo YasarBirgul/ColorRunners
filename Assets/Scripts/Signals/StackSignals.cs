@@ -1,4 +1,5 @@
 ﻿using System;
+using Enums;
 using Extentions;
 using Keys;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Signals
     {
         public UnityAction<GameObject> onIncreaseStack = delegate {  };
         public UnityAction<ObstacleCollisionGOParams> onDecreaseStack = delegate {  };
-        public UnityAction<GameObject> onColorChange = delegate {  };
+        public UnityAction<ColorType> onColorChange = delegate {  };
         public UnityAction<GameObject> onTurrentGroundControll = delegate {  };
         
     }

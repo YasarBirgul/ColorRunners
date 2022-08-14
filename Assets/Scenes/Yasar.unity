@@ -1396,7 +1396,7 @@ PrefabInstance:
       objectReference: {fileID: 384314444}
     - target: {fileID: 7439940758284449934, guid: 556c35323ddc03141baf02a879d66559, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8206093447873234512, guid: 556c35323ddc03141baf02a879d66559, type: 3}
       propertyPath: Data.PlayerMovementData.SidewaysSpeed

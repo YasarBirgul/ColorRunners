@@ -24,14 +24,8 @@ namespace Commands.Stack
         }
         public void Execute(GameObject _collectable)
         {
-           // var StackLeaderObjectColor = _stacklist[0].GetComponent<Renderer>().material.color;
-           // var CollectableObjectColor = _collectable.GetComponent<Renderer>().material.color;
-           // 
-           // if (CollectableObjectColor == StackLeaderObjectColor)
-           // {
-                _collectable.transform.parent = _stackManager.transform;
-                _stacklist.Add(_collectable);
-           // }
+            _collectable.transform.parent = _stackManager.transform;
+            _stacklist.Add(_collectable);
         }
     }
 }

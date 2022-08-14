@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bfb516cb3db10408ef83452a68a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {fileID: 2100000, guid: 610ad0a28e4c29b40aabfd386decd662, type: 2}
+  collectableManager: {fileID: 1524763119778764990}
+  skinnedMeshRenderer: {fileID: 4480282499569206467}
 --- !u!1 &1524763119778764988
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationController: {fileID: 436563156}
+  collectableMeshController: {fileID: 436563155}
+  ColorType: 0
 --- !u!1 &1524763121025658817
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectableManager: {fileID: 1524763119778764990}
-  IsCollected: 0
 --- !u!114 &436563156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,5 +234,10 @@ Animator:
 --- !u!1 &506983791083839544 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7917291961305824890, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+  m_PrefabInstance: {fileID: 1524763120451543486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4480282499569206467 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6123731347151673987, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
   m_PrefabInstance: {fileID: 1524763120451543486}
   m_PrefabAsset: {fileID: 0}
