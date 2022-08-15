@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6385938500520225558}
   - component: {fileID: 6385938500520225559}
   - component: {fileID: 6385938500520225552}
+  - component: {fileID: 2144452693326758417}
   m_Layer: 0
   m_Name: guillotine2
   m_TagString: Untagged
@@ -140,6 +141,19 @@ MonoBehaviour:
   secondDelay: 0
   shakeSpeed: 1
   rotateSpeed: 0
+--- !u!65 &2144452693326758417
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385938500520225554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.92136, y: 1.3925943, z: 0.99026716}
+  m_Center: {x: 0.22676215, y: -0.03826523, z: 0.0006311536}
 --- !u!1 &6385938500791209709
 GameObject:
   m_ObjectHideFlags: 0
