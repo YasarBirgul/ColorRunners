@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Yasar.unity
+    guid: dd35e44aadc2a9041a2eba5618dabb66
   m_configObjects: {}

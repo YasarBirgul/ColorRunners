@@ -64,7 +64,6 @@ namespace Controllers
             {
                 collectableManager.DelistFromStack();
             }
-      
         }
         private void OnTriggerExit(Collider other)
         {
