@@ -114,8 +114,8 @@ namespace Managers
                 collected[i].GetComponentInChildren<CollectableMeshController>().GetColor(colorType);
             }
         } 
-        private void OnDroneArea()
-        { 
+        private void OnDroneArea(int index)
+        {
             collected[0].transform.parent = TempHolder.transform;
             collected.RemoveAt(0);
             collected.TrimExcess();

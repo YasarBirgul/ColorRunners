@@ -36,9 +36,9 @@ namespace Managers
         {
             collectableMeshController.GetColor(_colorType);
         } 
-        public void DelistFromStack()
+        public void DelistFromStack(int index)
         {
-            StackSignals.Instance.OnDroneArea?.Invoke();
+            StackSignals.Instance.OnDroneArea?.Invoke(index);
         }
     }
 }

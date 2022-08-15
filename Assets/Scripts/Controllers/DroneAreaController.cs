@@ -14,11 +14,11 @@ namespace Controllers
                 var RandomZ = Random.Range(-((transform.localScale.z/2 +-6)), ((transform.localScale.z/2- 2)));
                 Vector3 newPos = new Vector3(transform.position.x,other.transform.parent.gameObject.transform.position.y,
                     transform.position.z + RandomZ);
-               
+                other.CompareTag("Collectable");
+                
                 other.transform.parent.gameObject.transform.DOMove(newPos, 2f).OnComplete(() =>
                 {
-                      other.CompareTag("Collectable");
-                      other.GetComponentInParent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
+                    other.GetComponentInParent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
                 });
             }
         }

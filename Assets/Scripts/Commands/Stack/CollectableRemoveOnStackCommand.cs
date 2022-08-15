@@ -13,7 +13,6 @@ namespace Commands.Stack
         private List<GameObject> _stackList;
         private GameObject _removedObjectHolder;
         private StackManager _manager;
-
         #endregion
 
         #endregion

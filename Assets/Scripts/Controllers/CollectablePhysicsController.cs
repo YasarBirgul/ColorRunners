@@ -52,7 +52,7 @@ namespace Controllers
                 other.gameObject.SetActive(false);
                 StackSignals.Instance.onDecreaseStack?.Invoke(new ObstacleCollisionGOParams()
                 {
-                    Collected = this.gameObject,
+                    Collected = gameObject,
                     Obstacle = other.gameObject,
                 });
             }
@@ -61,10 +61,10 @@ namespace Controllers
                 collectableManager.SetAnim(CollectableAnimationStates.CrouchWalking);
                 
             }
-            if (other.CompareTag("DroneColorArea"))
+            if (other.CompareTag("DroneColorArea")&& CompareTag("Collected"))
             {
-                int SiblingIndex = other.transform.parent.GetSiblingIndex();
-                collectableManager.DelistFromStack();
+                int SiblingIndex = transform.parent.transform.GetSiblingIndex();
+                collectableManager.DelistFromStack(SiblingIndex);
             }
         }
         private void OnTriggerExit(Collider other)
