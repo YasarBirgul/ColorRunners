@@ -3948,6 +3948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneArea
       objectReference: {fileID: 0}
+    - target: {fileID: 2598014999076113897, guid: 75b1a6529d01f784784f79962db59561, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8060302894001338954, guid: 75b1a6529d01f784784f79962db59561, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -4048,6 +4052,22 @@ PrefabInstance:
     - target: {fileID: 4747832981697699294, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
       propertyPath: m_Name
       value: TurretArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573645350501830344, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
+      propertyPath: m_Size.y
+      value: 2.4807103
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573645350501830344, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
+      propertyPath: m_Center.y
+      value: 0.74035513
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928861598566295064, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
+      propertyPath: m_Size.y
+      value: 2.249865
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928861598566295064, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
+      propertyPath: m_Center.y
+      value: 0.6249325
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}

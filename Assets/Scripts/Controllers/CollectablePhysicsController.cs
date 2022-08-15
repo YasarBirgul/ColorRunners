@@ -62,18 +62,15 @@ namespace Controllers
             }
             if (other.CompareTag("DroneColorArea"))
             {
-                
-            }
-            if (other.CompareTag("DroneArea"))
-            {
                 collectableManager.DelistFromStack();
             }
+      
         }
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("ColorArea"))
+            if (other.CompareTag("TurretColorArea"))
             {
-                collectableManager.SetAnim(CollectableAnimationStates.Crouching);
+                collectableManager.SetAnim(CollectableAnimationStates.Running);
             }
         }
     }

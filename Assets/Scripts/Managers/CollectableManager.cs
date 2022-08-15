@@ -11,7 +11,6 @@ namespace Managers
         #region Public Variables
         #endregion
         #region Serialized Variables
-        //   [SerializeField] private CollectablePhysicsController collectablePhysicsController;,
         [SerializeField] private CollectableAnimationController animationController;
         public CollectableMeshController collectableMeshController;
         #endregion
