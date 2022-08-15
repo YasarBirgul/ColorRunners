@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saw2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 48de6e9a901574c9bac51f57e3506ef7, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48de6e9a901574c9bac51f57e3506ef7, type: 3}
 --- !u!1 &7319942954158839128 stripped
