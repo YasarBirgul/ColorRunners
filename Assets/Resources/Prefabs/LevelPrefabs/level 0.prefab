@@ -338,7 +338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1621462326995204830
 Transform:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 735849083409312381, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 122.9
+      value: 192.8
       objectReference: {fileID: 0}
     - target: {fileID: 735849083409312381, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -452,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4747832981697699294, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7573645350501830344, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
       propertyPath: m_Size.y
@@ -1439,21 +1439,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4653832851696065743}
     m_Modifications:
-    - target: {fileID: 1107226670933869069, guid: 75b1a6529d01f784784f79962db59561, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 2598014999076113897, guid: 75b1a6529d01f784784f79962db59561, type: 3}
       propertyPath: m_Name
       value: DroneArea
-      objectReference: {fileID: 0}
-    - target: {fileID: 2598014999076113897, guid: 75b1a6529d01f784784f79962db59561, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2966630766562265188, guid: 75b1a6529d01f784784f79962db59561, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8060302894001338954, guid: 75b1a6529d01f784784f79962db59561, type: 3}
       propertyPath: m_RootOrder
@@ -1469,7 +1457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8060302894001338954, guid: 75b1a6529d01f784784f79962db59561, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 117.6
+      value: 70.2
       objectReference: {fileID: 0}
     - target: {fileID: 8060302894001338954, guid: 75b1a6529d01f784784f79962db59561, type: 3}
       propertyPath: m_LocalRotation.w
