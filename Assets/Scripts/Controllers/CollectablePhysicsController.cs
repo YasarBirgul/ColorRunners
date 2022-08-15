@@ -52,7 +52,8 @@ namespace Controllers
                 other.gameObject.SetActive(false);
                 StackSignals.Instance.onDecreaseStack?.Invoke(new ObstacleCollisionGOParams()
                 {
-                    Collected = gameObject,
+                    Collected = this.gameObject,
+                    Obstacle = other.gameObject,
                 });
             }
             if (other.CompareTag("TurretColorArea"))

@@ -28,9 +28,9 @@ namespace Commands.Stack
 
         public void Execute(ObstacleCollisionGOParams obstacleCollisionGOParams)
         { 
-            int CollidedObjectIndex = obstacleCollisionGOParams.Collected.transform.GetSiblingIndex();
+            int CollidedObjectIndex = obstacleCollisionGOParams.Collected.transform.parent.GetSiblingIndex();
             _stackList[CollidedObjectIndex].SetActive(false);
-            _stackList[CollidedObjectIndex].transform.SetParent(_removedObjectHolder.transform);
+            _stackList[CollidedObjectIndex].transform.parent = null;
             _stackList.RemoveAt(CollidedObjectIndex);
             _stackList.TrimExcess();
         }

@@ -89,8 +89,7 @@ namespace Managers
             {
                 _stackLerpMovementCommand.Execute(_playerManager);  
             }
-        }
-
+        } 
         private void FindPlayer()
         {
             if (!_playerManager)
@@ -98,7 +97,6 @@ namespace Managers
                 _playerManager = FindObjectOfType<PlayerManager>().transform;
             }
         }
-        
         private void OnIncreaseStack(GameObject other)
         {
             _colAddOnStackCommand.Execute(other);
@@ -142,6 +140,7 @@ namespace Managers
         }
         private void OnReset()
         {
+            
             
         }
     }
