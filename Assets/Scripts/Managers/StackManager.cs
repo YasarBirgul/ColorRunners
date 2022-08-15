@@ -20,14 +20,12 @@ namespace Managers
         
         Tween _tween;
         public GameObject TempHolder;
-        [SerializeField] public GameObject ReColHolder;
         #endregion
         #region Serialized Variables
         
         [SerializeField] private List<GameObject> collected = new List<GameObject>();
         //[SerializeField] private GameObject collectorMeshRenderer;
-        [SerializeField] private Transform playerManager;
-        [SerializeField] private CollectableManager collectableManager;
+        private Transform _playerManager;
         #region Private Variables
         
         [ShowInInspector] private StackData _data;
@@ -53,7 +51,7 @@ namespace Managers
             _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data);
             _colScaleUpCommand = new CollectableScaleUpCommand(ref collected,ref _data);
             _colAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackMan,ref collected);
-            _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,ref _stackMan,ref ReColHolder);
+            _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,ref _stackMan,ref TempHolder);
             _stackColorChangerCommand = new StackColorChangerCommand(ref collected);
         }
         #region Event Subscription
@@ -86,8 +84,21 @@ namespace Managers
         #endregion
         private void Update()
         {
-            _stackLerpMovementCommand.Execute(playerManager);
+            if (!_playerManager)
+                return;
+            {
+                _stackLerpMovementCommand.Execute(_playerManager);  
+            }
         }
+
+        private void FindPlayer()
+        {
+            if (!_playerManager)
+            {
+                _playerManager = FindObjectOfType<PlayerManager>().transform;
+            }
+        }
+        
         private void OnIncreaseStack(GameObject other)
         {
             _colAddOnStackCommand.Execute(other);
@@ -123,6 +134,7 @@ namespace Managers
         } 
         private void OnPlay()
         {
+            FindPlayer();
             for (int i = 0; i < collected.Count; i++)
             {
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
