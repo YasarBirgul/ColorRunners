@@ -18,7 +18,6 @@ namespace Managers
         #region Self Variables
         #region Public Variables
         
-        Tween _tween;
         public GameObject TempHolder;
         #endregion
         #region Serialized Variables
@@ -116,8 +115,8 @@ namespace Managers
         } 
         private void OnDroneArea(int index)
         {
-            collected[0].transform.parent = TempHolder.transform;
-            collected.RemoveAt(0);
+            collected[index].transform.parent = TempHolder.transform;
+            collected.RemoveAt(index);
             collected.TrimExcess();
         } 
         private void OnGameOpen()

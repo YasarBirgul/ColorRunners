@@ -17,6 +17,7 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private PlayerManager playerManager;
+        
         #endregion
         
         #endregion

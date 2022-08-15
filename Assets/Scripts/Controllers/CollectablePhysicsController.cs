@@ -65,6 +65,8 @@ namespace Controllers
             {
                 int SiblingIndex = transform.parent.transform.GetSiblingIndex();
                 collectableManager.DelistFromStack(SiblingIndex);
+                
+                // İF(other.color != gameobject.color) {   invoke()
             }
         }
         private void OnTriggerExit(Collider other)
