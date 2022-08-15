@@ -523,7 +523,6 @@ GameObject:
   - component: {fileID: 464022236385233388}
   - component: {fileID: 3583746051390001648}
   - component: {fileID: 6085458673439246240}
-  - component: {fileID: 934301487182077695}
   m_Layer: 0
   m_Name: GroundColor (1)
   m_TagString: DroneColorArea
@@ -594,19 +593,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &934301487182077695
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7441129797028679049}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7530783847743267838
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +604,6 @@ GameObject:
   - component: {fileID: 3508727317831816924}
   - component: {fileID: 3183172285990585212}
   - component: {fileID: 710525894077192600}
-  - component: {fileID: 857172169932650031}
   m_Layer: 0
   m_Name: GroundColor
   m_TagString: DroneColorArea
@@ -689,16 +674,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &857172169932650031
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7530783847743267838}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.420296, z: 0.99606705}
-  m_Center: {x: 0, y: 0.21014798, z: 0.001967517}

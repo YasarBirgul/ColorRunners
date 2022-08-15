@@ -126,7 +126,7 @@ namespace Managers
         {
             for (int i = 0; i < _data.InitializedStack.Count; i++)
             { 
-                var StartPack
+                var StartPack 
                     = Instantiate(_data.InitializedStack[i],Vector3.zero*(i+1)*2,transform.rotation);
                 _colAddOnStackCommand.Execute(StartPack);
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
@@ -139,7 +139,8 @@ namespace Managers
             {
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
             }
-        } private void OnReset()
+        }
+        private void OnReset()
         {
             
         }

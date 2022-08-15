@@ -62,6 +62,7 @@ namespace Controllers
             }
             if (other.CompareTag("DroneColorArea"))
             {
+                int SiblingIndex = other.transform.parent.GetSiblingIndex();
                 collectableManager.DelistFromStack();
             }
         }
