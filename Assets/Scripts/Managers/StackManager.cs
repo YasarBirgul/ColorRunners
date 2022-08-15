@@ -4,7 +4,6 @@ using Commands.Stack;
 using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
-using DG.Tweening;
 using Enums;
 using Keys;
 using Signals;
@@ -18,7 +17,6 @@ namespace Managers
         #region Self Variables
         #region Public Variables
         
-        public GameObject TempHolder;
         #endregion
         #region Serialized Variables
         
@@ -50,7 +48,7 @@ namespace Managers
             _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data);
             _colScaleUpCommand = new CollectableScaleUpCommand(ref collected,ref _data);
             _colAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackMan,ref collected);
-            _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,ref _stackMan,ref TempHolder);
+            _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected);
             _stackColorChangerCommand = new StackColorChangerCommand(ref collected);
         }
         #region Event Subscription
@@ -110,14 +108,21 @@ namespace Managers
             for (int i = 0; i < collected.Count; i++)
             {
                 await Task.Delay(50);
-                collected[i].GetComponentInChildren<CollectableMeshController>().GetColor(colorType);
+                collected[i].GetComponent<CollectableManager>().ChangeColor(colorType);
             }
         } 
         private void OnDroneArea(int index)
         {
-            collected[index].transform.parent = TempHolder.transform;
+            DroneAreaSignals.Instance.onDroneAreaEnter?.Invoke(collected[index].gameObject);
             collected.RemoveAt(index);
             collected.TrimExcess();
+            if (collected.Count == 0)
+            {
+                
+                DroneAreaSignals.Instance.onDroneAreaCollectablesDeath?.Invoke();
+                
+            }
+            
         } 
         private void OnGameOpen()
         {

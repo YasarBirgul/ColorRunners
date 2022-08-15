@@ -8,8 +8,7 @@ namespace Controllers
     public class PlayerPhysicsController : MonoBehaviour
     {
         #region Self Variables
-
-      
+        
         #region Public Variables
         
         #endregion

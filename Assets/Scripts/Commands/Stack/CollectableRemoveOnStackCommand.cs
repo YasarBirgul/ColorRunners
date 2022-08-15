@@ -11,18 +11,14 @@ namespace Commands.Stack
 
         #region Private Variables
         private List<GameObject> _stackList;
-        private GameObject _removedObjectHolder;
         private StackManager _manager;
         #endregion
 
         #endregion
 
-        public CollectableRemoveOnStackCommand(ref List<GameObject> stackList, ref StackManager manager, 
-            ref GameObject removedObjectHolder)
+        public CollectableRemoveOnStackCommand(ref List<GameObject> stackList)
         {
             _stackList = stackList;
-            _manager = manager;
-            _removedObjectHolder = removedObjectHolder;
         }
 
         public void Execute(ObstacleCollisionGOParams obstacleCollisionGOParams)

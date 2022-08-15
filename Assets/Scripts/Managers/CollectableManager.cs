@@ -12,10 +12,12 @@ namespace Managers
         #endregion
         #region Serialized Variables
         [SerializeField] private CollectableAnimationController animationController;
+        [SerializeField] private CollectableMovementController collectableMovementController;
         public CollectableMeshController collectableMeshController;
         #endregion
         #region Private Variables
         public ColorType ColorType;
+        public CollectableMatchType MatchType;
         #endregion
         #endregion
         #region Event Subscription
@@ -34,11 +36,18 @@ namespace Managers
         } 
         public void ChangeColor(ColorType _colorType)
         {
-            collectableMeshController.GetColor(_colorType);
+            ColorType = _colorType;
+            collectableMeshController.GetColor(ColorType);
+            
         } 
-        public void DelistFromStack(int index)
+        public void DelistFromStack()
         {
-            StackSignals.Instance.OnDroneArea?.Invoke(index);
+            StackSignals.Instance.OnDroneArea?.Invoke(transform.GetSiblingIndex());
+        }
+
+        public void SetCollectablePositionOnDroneArea(Transform DroneCheckColorArea)
+        {
+            collectableMovementController.MoveToColorArea(DroneCheckColorArea);
         }
     }
 }

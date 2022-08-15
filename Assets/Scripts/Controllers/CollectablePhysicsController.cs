@@ -1,5 +1,4 @@
-﻿using System;
-using Enums;
+﻿using Enums;
 using Keys;
 using Managers;
 using Signals;
@@ -61,12 +60,22 @@ namespace Controllers
                 collectableManager.SetAnim(CollectableAnimationStates.CrouchWalking);
                 
             }
+            if (other.CompareTag("DroneArea"))
+            {
+                collectableManager.DelistFromStack();
+            }
             if (other.CompareTag("DroneColorArea")&& CompareTag("Collected"))
             {
-                int SiblingIndex = transform.parent.transform.GetSiblingIndex();
-                collectableManager.DelistFromStack(SiblingIndex);
-                
-                // İF(other.color != gameobject.color) {   invoke()
+                collectableManager.SetCollectablePositionOnDroneArea(other.gameObject.transform);
+                if (collectableManager.ColorType == other.GetComponent<DroneAreaColorController>().ColorType)
+                {
+                    collectableManager.MatchType = CollectableMatchType.Match;
+                }
+                else
+                {
+                    collectableManager.MatchType = CollectableMatchType.UnMatch;
+                }
+                tag = "Collectable";
             }
         }
         private void OnTriggerExit(Collider other)

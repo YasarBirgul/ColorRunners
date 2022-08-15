@@ -23,6 +23,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1524763119778764989}
   - component: {fileID: 1524763119778764990}
+  - component: {fileID: 8956710242141763182}
   m_Layer: 0
   m_Name: CollectableManager
   m_TagString: Untagged
@@ -59,8 +60,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationController: {fileID: 436563156}
+  collectableMovementController: {fileID: 8956710242141763182}
   collectableMeshController: {fileID: 436563155}
   ColorType: 0
+  MatchType: 0
+--- !u!114 &8956710242141763182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524763119778764988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c571cc0f012484c8060fe8dd575f7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1524763121025658817
 GameObject:
   m_ObjectHideFlags: 0
