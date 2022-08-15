@@ -130,7 +130,6 @@ namespace Managers
         } private void OnReset()
         {
             
-            
         }
     }
 }    
