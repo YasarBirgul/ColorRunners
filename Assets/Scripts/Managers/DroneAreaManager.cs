@@ -29,14 +29,10 @@ namespace Controllers
         private void SubscribeEvents()
         {
             DroneAreaSignals.Instance.onColliderDisable += OnColliderDisable;
-
-            // DroneAreaSignals.Instance.onDroneAreaCollectablesDeath += OnDroneAreaCollectablesDeath;
         } 
         private void UnsubscribeEvents()
         {
             DroneAreaSignals.Instance.onColliderDisable -= OnColliderDisable;
-
-          //  DroneAreaSignals.Instance.onDroneAreaCollectablesDeath -= OnDroneAreaCollectablesDeath;
         }
         private void OnDisable()
         {

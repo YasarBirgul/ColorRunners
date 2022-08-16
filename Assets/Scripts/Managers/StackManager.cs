@@ -118,6 +118,7 @@ namespace Managers
         {
             collected[index].transform.SetParent(tempHolder.transform);
             //DroneAreaSignals.Instance.onDroneAreaEnter?.Invoke(collected[index].gameObject);
+            collected[index].GetComponent<CollectableManager>().ChangeOutline(true);
             collected.RemoveAt(index);
             collected.TrimExcess();
             if (collected.Count == 0)
@@ -143,11 +144,6 @@ namespace Managers
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
             }
         }
-        private void OnReset()
-        {
-            
-            
-        }
         private void SendCollectablesBackToStack()
         {
             for (int i = tempHolder.transform.childCount-1; i >= 0; i--)
@@ -162,7 +158,7 @@ namespace Managers
             CameraSignals.Instance.onExitMiniGame?.Invoke();
             
             _playerManager.position = collected[0].transform.position;
-
+            
             _playerManager.GetComponent<PlayerManager>().OnStartVerticalMovement();
             stack.GetComponent<CollectableManager>().ChangeOutline(false);
             stack.transform.SetParent(transform);
@@ -181,7 +177,7 @@ namespace Managers
 
                 if (collectableManager.MatchType != CollectableMatchType.Match)
                 {
-                    collectableManager.SetAnim(CollectableAnimationStates.Dead);
+                    collectableManager.SetAnim(CollectableAnimationStates.Dead); // onComplete can work
                     Destroy(tempHolder.transform.GetChild(i).gameObject,3f);
                 }
             }
