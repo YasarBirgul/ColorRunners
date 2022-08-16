@@ -60,7 +60,6 @@ namespace Managers
             ChangeOutline(false);
             StackSignals.Instance.onIncreaseStack?.Invoke(gameObject);
             SetAnim(CollectableAnimationStates.Running);
-            CameraSignals.Instance.onExitMiniGame?.Invoke();
         }
         public void ChangeOutline(bool OutlineOn)
         {

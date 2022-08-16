@@ -34,6 +34,11 @@ namespace Controllers
             {
                 playerManager.SendGateColorData(other.GetComponent<GateManager>().Color);
             }
+            
+            if (other.CompareTag("AfterGround"))
+            {
+                CameraSignals.Instance.onExitMiniGame?.Invoke();
+            }
         }
         private void OnTriggerExit(Collider other)
         {
@@ -42,6 +47,8 @@ namespace Controllers
                 playerManager.StopVerticalMovement();
                 CameraSignals.Instance.onEnterMiniGame?.Invoke();
             }
+            
+            
         }
     }
 }

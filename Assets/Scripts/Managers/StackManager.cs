@@ -146,10 +146,10 @@ namespace Managers
         }
         private async void OnDroneAreaFinal()
         {
-            if (collected.Count > 0)
+            if (tempHolder.transform.childCount == 0)
             {
-                await Task.Delay(3000);
-                 _playerManager.transform.position = collected[0].transform.position;
+                var newPos = collected[0].transform.position;
+                _playerManager.transform.position = new Vector3(newPos.x,_playerManager.transform.position.y,newPos.z);
             }
         }
     }

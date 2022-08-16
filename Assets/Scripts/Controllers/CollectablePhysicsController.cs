@@ -77,7 +77,7 @@ namespace Controllers
                 tag = "Collectable";
             }
 
-            if (other.CompareTag("AfterGround"))
+            if (other.CompareTag("AfterGround") && CompareTag("Collectable"))
             {
                 if (collectableManager.MatchType != CollectableMatchType.Match)
                 {
