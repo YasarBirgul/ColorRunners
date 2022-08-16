@@ -58,7 +58,6 @@ namespace Controllers
             if (other.CompareTag("TurretColorArea"))
             {
                 collectableManager.SetAnim(CollectableAnimationStates.CrouchWalking);
-                
             }
             if (other.CompareTag("DroneArea"))
             {
@@ -76,6 +75,20 @@ namespace Controllers
                     collectableManager.MatchType = CollectableMatchType.UnMatch;
                 }
                 tag = "Collectable";
+            }
+
+            if (other.CompareTag("AfterGround"))
+            {
+                if (collectableManager.MatchType != CollectableMatchType.Match)
+                {
+                    collectableManager.SetAnim(CollectableAnimationStates.Dead);
+                    Destroy(collectableManager.gameObject);
+                }
+                else
+                {
+                    tag = "Collected";
+                    collectableManager.IncreaseStackAfterDroneArea();
+                }
             }
         }
         private void OnTriggerExit(Collider other)

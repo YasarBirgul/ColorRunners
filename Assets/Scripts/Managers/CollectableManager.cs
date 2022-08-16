@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Controllers;
 using DG.Tweening;
 using Enums;
@@ -52,12 +53,14 @@ namespace Managers
         {
             collectableMovementController.MoveToColorArea(DroneCheckColorArea);
         }
-        public void IncreaseStackAfterDroneArea(GameObject gameObject)
+        public async void IncreaseStackAfterDroneArea()
         {
-            gameObject.transform.GetChild(1).tag = "Collected";
+            await Task.Delay(3000);
             DOVirtual.DelayedCall(0.2f, () => SetAnim(CollectableAnimationStates.Running));
             ChangeOutline(false);
-            
+            StackSignals.Instance.onIncreaseStack?.Invoke(gameObject);
+            SetAnim(CollectableAnimationStates.Running);
+            CameraSignals.Instance.onExitMiniGame?.Invoke();
         }
         public void ChangeOutline(bool OutlineOn)
         {

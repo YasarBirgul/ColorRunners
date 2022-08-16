@@ -1,6 +1,7 @@
 ﻿using Extentions;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Signals
 {
@@ -13,5 +14,7 @@ namespace Signals
         public UnityAction<GameObject> onRebuildStack = delegate {  };
         
         public UnityAction onColliderDisable = delegate {  };
+        
+        public UnityAction onEnableFinalCollider = delegate {  };
     }
 }

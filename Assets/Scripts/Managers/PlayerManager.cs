@@ -57,6 +57,7 @@ namespace Managers
             InputSignals.Instance.onInputReleased += OnDeactiveMovement;
             InputSignals.Instance.onRunnerInputDragged+= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged+= OnGetIdleInputValues;
+            DroneAreaSignals.Instance.onEnableFinalCollider += OnEnableFinalCollider;
         } 
         private void UnsubscribeEvents()
         {
@@ -67,6 +68,7 @@ namespace Managers
             InputSignals.Instance.onInputReleased -= OnDeactiveMovement;
             InputSignals.Instance.onRunnerInputDragged -= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
+            DroneAreaSignals.Instance.onEnableFinalCollider -= OnEnableFinalCollider;
            
         } 
         private void OnDisable()
@@ -115,14 +117,8 @@ namespace Managers
         {
             CurrentGameState = CurrentState;
         }
-        public void EnteredDroneArea()
+        public void OnEnableFinalCollider()
         {
-            movementController.DeactiveMovement();
-        }
-
-        public void OnStartVerticalMovement()
-        {
-            
             movementController.StartVerticalMovement();
         }
     }
