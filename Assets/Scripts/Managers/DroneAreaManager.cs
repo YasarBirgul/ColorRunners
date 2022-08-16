@@ -14,6 +14,7 @@ namespace Controllers
         #region Seriazible Variables
 
         [SerializeField] private GameObject droneAreaCollectableHolder;
+       
         #endregion
 
         #region Private Variables

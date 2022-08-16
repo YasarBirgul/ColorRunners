@@ -3,6 +3,7 @@ using Controllers;
 using Enums;
 using Signals;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
@@ -13,9 +14,10 @@ namespace Managers
         #endregion
         #region Serializefield Variables
         
-        [SerializeField] private UIPanelController _uiPanelController;
+        [SerializeField] private UIPanelController uiPanelController;
 
-        [SerializeField] private GameObject JoystickInner, JoystickOuter;
+        [SerializeField] private GameObject joystickInner;
+        [SerializeField] private GameObject joystickOuter;
 
         #endregion
         
@@ -63,11 +65,11 @@ namespace Managers
       #endregion
       private void OnOpenPanel(UIPanels panel)
       {
-          _uiPanelController.OpenPanel(panel);
+          uiPanelController.OpenPanel(panel);
       }
       private void OnClosePanel(UIPanels panel)
       {
-          _uiPanelController.ClosePanel(panel);
+          uiPanelController.ClosePanel(panel);
       }
       private void OnPlay()
       {
@@ -80,7 +82,7 @@ namespace Managers
 
       void OnChangeGameState(GameStates Current)
       {
-          _joyStickStateCommand.JoystickUIStateChanger(Current,JoystickOuter,JoystickInner);
+          _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
       }
     }
 }

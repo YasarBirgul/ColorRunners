@@ -7,7 +7,7 @@ namespace Controllers
 {
     public class ObstacleAnimationController : MonoBehaviour
     {
-    #region Variables
+        #region Variables
         [Header("Bool")] 
         [SerializeField] private bool doMove = true;
         [SerializeField] private bool doShake = false;
@@ -33,8 +33,7 @@ namespace Controllers
         [Header("Rotate")] [Space] 
         [SerializeField] private float rotateSpeed;
 
-        
-        
+
         private Sequence _sequence;
     #endregion
     

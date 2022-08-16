@@ -7,7 +7,20 @@ namespace Controllers
 {
     public class CollectableAnimationController : MonoBehaviour
     {
+        
+        #region Self Variables
+    
+        #region Public Variables
+    
+        #endregion
+    
+        #region Serialized Variables
+
         [SerializeField] private Animator animator;
+        
+        #endregion
+    
+        #endregion
         public void ChangeCollectableAnimation(CollectableAnimationStates collectableAnimationStates)
         {
             switch (collectableAnimationStates)
@@ -22,7 +35,10 @@ namespace Controllers
                     break;
                 case CollectableAnimationStates.CrouchWalking:
                    animator.SetTrigger("isCrouchWalking");
-                    break; 
+                    break;
+                case CollectableAnimationStates.Dead:
+                       animator.SetTrigger("idDead");
+                       break; 
             }
         }
     }

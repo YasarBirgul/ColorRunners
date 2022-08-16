@@ -2174,9 +2174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c277eb8cdb2f1a4ea2b3a569601a96e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiPanelController: {fileID: 245209779227172976}
-  JoystickInner: {fileID: 420331606}
-  JoystickOuter: {fileID: 1248943650}
+  uiPanelController: {fileID: 245209779227172976}
+  joystickInner: {fileID: 420331606}
+  joystickOuter: {fileID: 1248943650}
 --- !u!4 &464022235028573009
 Transform:
   m_ObjectHideFlags: 0
@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435f19b850f37ce44899aef7b9694f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 4
+  Color: 3
 --- !u!33 &1513331651592200067
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2587,7 +2587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435f19b850f37ce44899aef7b9694f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 2
+  Color: 4
 --- !u!33 &1513331653043357287
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3508,7 +3508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2598014997721026388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 39.7}
+  m_LocalPosition: {x: 0, y: 0, z: 80}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1513331651836595443}

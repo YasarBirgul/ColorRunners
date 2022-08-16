@@ -16,9 +16,6 @@ namespace Commands.Level
         public LevelLoaderCommand(ref GameObject levelHolder)
         {
             _levelHolder = levelHolder;
-       
-
-
         }
         public void Execute(int _levelID)
         {

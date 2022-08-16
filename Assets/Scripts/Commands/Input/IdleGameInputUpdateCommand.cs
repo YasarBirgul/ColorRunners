@@ -5,14 +5,14 @@ namespace Commands.Input
 {
     public class IdleGameInputUpdateCommand
     {
-        public void IdleInputUpdate(FloatingJoystick _joystick)
+        public void IdleInputUpdate(FloatingJoystick joystick)
         {
-            if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
+            if (joystick.Horizontal != 0 || joystick.Vertical != 0)
             {
                 InputSignals.Instance.onIdleInputDragged?.Invoke(new IdleGameInputParams()
                 {
-                    XValue = _joystick.Horizontal,
-                    ZValue = _joystick.Vertical,
+                    XValue = joystick.Horizontal,
+                    ZValue = joystick.Vertical,
                 });
                 InputSignals.Instance.onInputTaken?.Invoke();
             }

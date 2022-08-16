@@ -33,7 +33,7 @@ namespace Controllers
             }
             if (other.CompareTag("Gate"))
             {
-                playerManager.SendGateColorData(other.GetComponent<GateCommand>().color);
+                playerManager.SendGateColorData(other.GetComponent<GateManager>().Color);
             }
         }
         private void OnTriggerExit(Collider other)

@@ -59,11 +59,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caaadb66acb015946ad8e4aeb3bd87f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 436563156}
-  collectableMovementController: {fileID: 8956710242141763182}
-  collectableMeshController: {fileID: 436563155}
   ColorType: 0
   MatchType: 0
+  CollectableMeshController: {fileID: 436563155}
+  animationController: {fileID: 436563156}
+  collectableMovementController: {fileID: 8956710242141763182}
 --- !u!114 &8956710242141763182
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,24 +1,24 @@
 using Enums;
 using UnityEngine;
 
-namespace Controllers
-{
-    public class DroneAreaColorController : MonoBehaviour
+namespace Managers
+{ 
+    public class GateManager : MonoBehaviour
     {
         #region Self Variables
-    
+        
         #region Public Variables
         
-        public ColorType ColorType;
-       
+        public ColorType Color;
+        
         #endregion
-    
-        #region Private Variables
 
+        #region Private
+        
         private MeshRenderer _meshRenderer;
         
         #endregion
-    
+        
         #endregion
         private void Awake()
         {
@@ -26,7 +26,7 @@ namespace Controllers
         }
         private void Start()
         {
-            SetGateMaterial(ColorType);
+            SetGateMaterial(Color);
         }
         private void GetReferences()
         {
@@ -38,4 +38,5 @@ namespace Controllers
         }
     }
 }
+    
 

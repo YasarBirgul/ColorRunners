@@ -6,12 +6,12 @@ using UnityEngine;
 namespace Controllers
 {
     public class CollectableMovementController : MonoBehaviour
-    {
-        public void MoveToColorArea(Transform Area)
+    { 
+        public void MoveToColorArea(Transform coloredDroneArea)
         {
-            var RandomZ = Random.Range(-(Area.localScale.z/2-6),(Area.localScale.z/2 - 2));
-            Vector3 newPos = new Vector3(Area.position.x,Area.position.y + 0.5f,
-                Area.position.z + RandomZ);
+            var RandomZ = Random.Range(-(coloredDroneArea.localScale.z/2-6),(coloredDroneArea.localScale.z/2 - 2));
+            Vector3 newPos = new Vector3(coloredDroneArea.position.x,coloredDroneArea.position.y + 0.5f,
+                coloredDroneArea.position.z + RandomZ);
             gameObject.transform.DOMove(newPos, 2f).OnComplete(() =>
             {
                 transform.GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);

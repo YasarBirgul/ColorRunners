@@ -7,14 +7,14 @@ namespace Commands.Input
 { 
     public class RunnerGameInputUpdateCommand
     {
-        public void RunnerInputUpdate(FloatingJoystick _joystick,InputData _data)
+        public void RunnerInputUpdate(FloatingJoystick joystick,InputData data)
         {
-            if (_joystick.Horizontal != 0)
+            if (joystick.Horizontal != 0)
             {
                 InputSignals.Instance.onRunnerInputDragged?.Invoke(new RunnerGameInputParams()
                 {
-                    XValue = _joystick.Horizontal,
-                    ClampValues = new Vector2(_data.ClampSides.x,_data.ClampSides.y),
+                    XValue = joystick.Horizontal,
+                    ClampValues = new Vector2(data.ClampSides.x,data.ClampSides.y),
                 });
                 InputSignals.Instance.onInputTaken?.Invoke();
             }

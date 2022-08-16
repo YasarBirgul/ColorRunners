@@ -5,17 +5,17 @@ namespace Commands.UI
 {
     public class JoyStickStateCommand
     {
-        public void JoystickUIStateChanger(GameStates state,GameObject JoystickOuterCircle, GameObject JoystickInnerCircle)
+        public void JoystickUIStateChanger(GameStates state,GameObject joystickOuterCircle, GameObject joystickInnerCircle)
         {
             if (state == GameStates.Idle)
             {
-                JoystickInnerCircle.GetComponent<Image>().enabled = true;
-                JoystickOuterCircle.GetComponent<Image>().enabled = true;
+                joystickInnerCircle.GetComponent<Image>().enabled = true;
+                joystickOuterCircle.GetComponent<Image>().enabled = true;
             }
             else
             {
-                JoystickInnerCircle.GetComponent<Image>().enabled = false;
-                JoystickOuterCircle.GetComponent<Image>().enabled = false;
+                joystickInnerCircle.GetComponent<Image>().enabled = false;
+                joystickOuterCircle.GetComponent<Image>().enabled = false;
             }
         }
     }
