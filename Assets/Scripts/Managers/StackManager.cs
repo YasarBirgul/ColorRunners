@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Commands.Stack;
-using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using Enums;
@@ -19,6 +19,8 @@ namespace Managers
         
         #endregion
         #region Serialized Variables
+
+        [SerializeField] private GameObject tempHolder;
         
         [SerializeField] private List<GameObject> collected = new List<GameObject>();
         //[SerializeField] private GameObject collectorMeshRenderer;
@@ -31,7 +33,6 @@ namespace Managers
         private CollectableScaleUpCommand _colScaleUpCommand;
         private CollectableAddOnStackCommand _colAddOnStackCommand;
         private CollectableRemoveOnStackCommand _colRemoveOnStackCommand;
-        private StackColorChangerCommand _stackColorChangerCommand;
         
         #endregion
         #endregion
@@ -49,7 +50,7 @@ namespace Managers
             _colScaleUpCommand = new CollectableScaleUpCommand(ref collected,ref _data);
             _colAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackMan,ref collected);
             _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected);
-            _stackColorChangerCommand = new StackColorChangerCommand(ref collected);
+            
         }
         #region Event Subscription
         private void OnEnable()
@@ -64,6 +65,7 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
             StackSignals.Instance.OnDroneArea += OnDroneArea;
+            StackSignals.Instance.onRebuildStack += OnRebuildStack;
         } 
         private void UnsubscribeEvents()
         {
@@ -73,6 +75,7 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
             StackSignals.Instance.OnDroneArea -= OnDroneArea;
+            StackSignals.Instance.onRebuildStack -= OnRebuildStack;
         }
         private void OnDisable()
         {
@@ -113,16 +116,14 @@ namespace Managers
         } 
         private void OnDroneArea(int index)
         {
-            DroneAreaSignals.Instance.onDroneAreaEnter?.Invoke(collected[index].gameObject);
+            collected[index].transform.SetParent(tempHolder.transform);
+            //DroneAreaSignals.Instance.onDroneAreaEnter?.Invoke(collected[index].gameObject);
             collected.RemoveAt(index);
             collected.TrimExcess();
             if (collected.Count == 0)
             {
-                
-                DroneAreaSignals.Instance.onDroneAreaCollectablesDeath?.Invoke();
-                
+                SendCollectablesBackToDeath();
             }
-            
         } 
         private void OnGameOpen()
         {
@@ -146,6 +147,47 @@ namespace Managers
         {
             
             
+        }
+        private void SendCollectablesBackToStack()
+        {
+            for (int i = tempHolder.transform.childCount-1; i >= 0; i--)
+            {
+                tempHolder.transform.GetChild(i).GetComponent<CollectableManager>().IncreaseStackAfterDroneArea(tempHolder.transform.GetChild(i).gameObject);
+            }
+        }
+        private void OnRebuildStack(GameObject stack)
+        {
+            collected.Add(stack);
+            
+            CameraSignals.Instance.onExitMiniGame?.Invoke();
+            
+            _playerManager.position = collected[0].transform.position;
+
+            _playerManager.GetComponent<PlayerManager>().OnStartVerticalMovement();
+            stack.GetComponent<CollectableManager>().ChangeOutline(false);
+            stack.transform.SetParent(transform);
+            stack.transform.position = collected[collected.Count - 1].transform.position + Vector3.back;
+
+        }
+        
+        private async void SendCollectablesBackToDeath()
+        {
+            for (int i = 0; i < tempHolder.transform.childCount; i++)
+            {
+                await Task.Delay(50);
+
+                CollectableManager collectableManager =
+                    tempHolder.transform.GetChild(i).GetComponent<CollectableManager>();
+
+                if (collectableManager.MatchType != CollectableMatchType.Match)
+                {
+                    collectableManager.SetAnim(CollectableAnimationStates.Dead);
+                    Destroy(tempHolder.transform.GetChild(i).gameObject,3f);
+                }
+            }
+            await Task.Delay(3000);
+            SendCollectablesBackToStack();
+            DroneAreaSignals.Instance.onColliderDisable?.Invoke();
         }
     }
 }    

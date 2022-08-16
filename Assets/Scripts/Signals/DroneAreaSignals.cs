@@ -11,5 +11,7 @@ namespace Signals
         public UnityAction onDroneAreaCollectablesDeath = delegate {  };
         
         public UnityAction<GameObject> onRebuildStack = delegate {  };
+        
+        public UnityAction onColliderDisable = delegate {  };
     }
 }

@@ -16,15 +16,17 @@ namespace Managers
 
         [Header("Data")] public PlayerData Data;
 
+        public GameStates CurrentGameState;
+        
         #endregion
 
         #region Serialized Variables
         
-        [Space][SerializeField] private PlayerMovementController movementController; 
-        // [SerializeField] private PlayerAnimationController playerAnimationController;
+        [Space][SerializeField] private PlayerMovementController movementController;
 
         #region Private Variables
-
+        
+        
         #endregion
 
         #endregion
@@ -48,23 +50,24 @@ namespace Managers
         }
         private void SubscribeEvents()
         { 
+            CoreGameSignals.Instance.onPlay += OnPlay;
+            CoreGameSignals.Instance.onReset += OnReset;
+            CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
             InputSignals.Instance.onInputTaken += OnActivateMovement;
             InputSignals.Instance.onInputReleased += OnDeactiveMovement;
             InputSignals.Instance.onRunnerInputDragged+= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged+= OnGetIdleInputValues;
-            CoreGameSignals.Instance.onPlay += OnPlay;
-            CoreGameSignals.Instance.onReset += OnReset;
-            CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
         } 
         private void UnsubscribeEvents()
         {
+            CoreGameSignals.Instance.onPlay -= OnPlay;
+            CoreGameSignals.Instance.onReset -= OnReset;
+            CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
             InputSignals.Instance.onInputTaken -= OnActivateMovement;
             InputSignals.Instance.onInputReleased -= OnDeactiveMovement;
             InputSignals.Instance.onRunnerInputDragged -= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
-            CoreGameSignals.Instance.onPlay -= OnPlay;
-            CoreGameSignals.Instance.onReset -= OnReset;
-            CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
+           
         } 
         private void OnDisable()
         {
@@ -75,7 +78,6 @@ namespace Managers
         {
             movementController.EnableMovement();
         }
-
         private void OnDeactiveMovement()
         {
             movementController.DeactiveMovement();
@@ -97,7 +99,6 @@ namespace Managers
         {
             CoreGameSignals.Instance.onChangeGameState?.Invoke(state);
         }
-
         public void StopVerticalMovement()
         {
             movementController.StopVerticalMovement();
@@ -108,15 +109,21 @@ namespace Managers
         } 
         private void OnReset()
         {
-            movementController.OnReset();
+            movementController.Reset();
         }
         private void OnChangeGameState(GameStates CurrentState)
         {
-            movementController.CurrentState(CurrentState);
+            CurrentGameState = CurrentState;
         }
         public void EnteredDroneArea()
         {
             movementController.DeactiveMovement();
+        }
+
+        public void OnStartVerticalMovement()
+        {
+            
+            movementController.StartVerticalMovement();
         }
     }
 }

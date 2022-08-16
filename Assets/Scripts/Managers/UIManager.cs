@@ -24,6 +24,7 @@ namespace Managers
         #region Private Vars
 
         private JoyStickStateCommand _joyStickStateCommand;
+        private GameStates _currentGameState;
 
         #endregion
         #endregion
@@ -81,6 +82,11 @@ namespace Managers
       }
 
       void OnChangeGameState(GameStates Current)
+      {
+          _currentGameState = Current;
+          ChangeUIState(_currentGameState);
+      } 
+      private void ChangeUIState(GameStates Current)
       {
           _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
       }

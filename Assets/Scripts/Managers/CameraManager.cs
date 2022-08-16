@@ -14,7 +14,7 @@ namespace Managers
         #region Public Variables
         public CinemachineVirtualCamera RunnerCamera;
         public CinemachineVirtualCamera IdleGameCamera;
-        
+        private GameStates _gameCurrentState;
         #endregion
 
         #region Serialized Variables
@@ -49,7 +49,7 @@ namespace Managers
         private void SubscribeEvents()
         {
             CoreGameSignals.Instance.onPlay += SetCameraTarget;
-            CameraSignals.Instance.onSetCameraState += OnSetCameraState;
+            CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
             CameraSignals.Instance.onSetCameraTarget += OnSetCameraTarget;
             CoreGameSignals.Instance.onReset += OnReset;
             CameraSignals.Instance.onEnterMiniGame += OnPlayerEnterMiniGame;
@@ -58,7 +58,7 @@ namespace Managers
         private void UnsubscribeEvents()
         {
             CoreGameSignals.Instance.onPlay -= SetCameraTarget;
-            CameraSignals.Instance.onSetCameraState -= OnSetCameraState;
+            CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
             CameraSignals.Instance.onSetCameraTarget -= OnSetCameraTarget;
             CoreGameSignals.Instance.onReset -= OnReset;
             CameraSignals.Instance.onEnterMiniGame -= OnPlayerEnterMiniGame;
@@ -104,18 +104,22 @@ namespace Managers
             RunnerCamera.LookAt = null;
             OnMoveToInitialPosition();
         }
-
-        public void OnSetCameraState(CameraStatesType cameraState)
+        void OnChangeGameState(GameStates Current)
         {
-            if (cameraState == CameraStatesType.Runner)
+            _gameCurrentState = Current;
+            SetCameraState(_gameCurrentState);
+        }
+        private void SetCameraState(GameStates Current)
+        {
+            if (Current == GameStates.Idle)
             {
                 _cameraStatesType = CameraStatesType.Idle;
-                _animator.Play("RunnerCam");
+                _animator.Play("IdleCam");
             }
-            else if (cameraState == CameraStatesType.Idle)
+            if (Current == GameStates.Runner)
             {
                 _cameraStatesType = CameraStatesType.Runner;
-                _animator.Play("IdleCam");
+                _animator.Play("RunnerCam");
             }
         }
     }

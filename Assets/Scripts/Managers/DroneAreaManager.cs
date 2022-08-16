@@ -13,8 +13,6 @@ namespace Controllers
 
         #region Seriazible Variables
 
-        [SerializeField] private GameObject droneAreaCollectableHolder;
-       
         #endregion
 
         #region Private Variables
@@ -30,12 +28,14 @@ namespace Controllers
         #region Event Subscription
         private void SubscribeEvents()
         {
-            DroneAreaSignals.Instance.onDroneAreaEnter += OnSetDroneAreaHolder; 
+            DroneAreaSignals.Instance.onColliderDisable += OnColliderDisable;
+
             // DroneAreaSignals.Instance.onDroneAreaCollectablesDeath += OnDroneAreaCollectablesDeath;
         } 
         private void UnsubscribeEvents()
         {
-            DroneAreaSignals.Instance.onDroneAreaEnter -= OnSetDroneAreaHolder;
+            DroneAreaSignals.Instance.onColliderDisable -= OnColliderDisable;
+
           //  DroneAreaSignals.Instance.onDroneAreaCollectablesDeath -= OnDroneAreaCollectablesDeath;
         }
         private void OnDisable()
@@ -43,13 +43,13 @@ namespace Controllers
             UnsubscribeEvents();
         }
         #endregion
-        private void OnSetDroneAreaHolder(GameObject gameObject)
+
+
+        private void OnColliderDisable()
         {
-            gameObject.transform.SetParent(droneAreaCollectableHolder.transform);
-        } 
-        private void OnDroneAreaCollectablesDeath()
-        {
-            
+            transform.GetComponent<BoxCollider>().enabled = false;
+            transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
+            transform.GetChild(1).GetComponent<BoxCollider>().enabled = false;
         }
     }
 }

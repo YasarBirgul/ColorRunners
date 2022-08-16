@@ -37,8 +37,8 @@ namespace Controllers
                    animator.SetTrigger("isCrouchWalking");
                     break;
                 case CollectableAnimationStates.Dead:
-                       animator.SetTrigger("idDead");
-                       break; 
+                       animator.SetTrigger("Dead");
+                    break; 
             }
         }
     }

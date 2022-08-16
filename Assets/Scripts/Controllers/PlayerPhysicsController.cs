@@ -25,7 +25,6 @@ namespace Controllers
             if (other.CompareTag("IdleGameInvoker"))
             {
                 playerManager.ChangeState(GameStates.Idle);
-                CameraSignals.Instance.onSetCameraState(CameraStatesType.Idle);
             }
             if (other.CompareTag("ColorArea"))
             {

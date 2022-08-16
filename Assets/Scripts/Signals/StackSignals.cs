@@ -13,5 +13,6 @@ namespace Signals
         public UnityAction<ColorType> onColorChange = delegate {  };
         public UnityAction<GameObject> onTurrentGroundControll = delegate {  };
         public UnityAction<int> OnDroneArea = delegate {  };
+        public UnityAction<GameObject> onRebuildStack = delegate {  };
     }
 }

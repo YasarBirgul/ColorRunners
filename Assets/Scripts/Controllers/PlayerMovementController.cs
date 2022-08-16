@@ -1,5 +1,6 @@
 using Datas.ValueObject;
 using Keys;
+using Managers;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ namespace Controllers
         #region Serialized Variables
         
         [SerializeField] private new Rigidbody rigidbody;
+       
+        [SerializeField] private PlayerManager playerManager;
         
         #endregion
         
@@ -71,23 +74,23 @@ namespace Controllers
            {
                if (_isReadyToMove)
                {
-                    if (_currentState == GameStates.Runner)
+                    if (playerManager.CurrentGameState == GameStates.Runner)
                     {
                         RunnerMove();
                     }
-                    else if(_currentState == GameStates.Idle)
+                    if (playerManager.CurrentGameState == GameStates.Idle)
                     {
                         IdleMove();
                     } 
                }
                else
                {
-                   if (_currentState == GameStates.Runner)
+                   if (playerManager.CurrentGameState == GameStates.Runner)
                    {
                        StopSideways(); 
                        
                    }
-                   else if(_currentState == GameStates.Idle)
+                   else if(playerManager.CurrentGameState == GameStates.Idle)
                    {
                        Stop();  
                    }
@@ -121,26 +124,27 @@ namespace Controllers
             rigidbody.velocity = Vector3.zero;
             rigidbody.angularVelocity = Vector3.zero;
         }
-        public void OnReset()
-        {
-            Stop();
-            _isReadyToPlay = false;
-            _isReadyToMove = false;
-        }
+       
         public void SetRunnerMovementValues(float X,float Z)
         {
             _inputValueX = X;
             _inputValueZ = Z;
         }
-
-        public void CurrentState(GameStates CurrentState)
-        {
-            _currentState = CurrentState;
-        }
         public void StopVerticalMovement()
         {
             rigidbody.angularVelocity = Vector3.zero;
             _movementData.forwardSpeed = 0;
+        }
+
+        public void StartVerticalMovement()
+        {
+            _movementData.forwardSpeed = 10;
+        }
+        public void Reset()
+        {
+            Stop();
+            _isReadyToPlay = false;
+            _isReadyToMove = false;
         }
     }
 }

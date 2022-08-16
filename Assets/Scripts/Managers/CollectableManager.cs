@@ -1,4 +1,5 @@
 using Controllers;
+using DG.Tweening;
 using Enums;
 using Signals;
 using UnityEngine;
@@ -50,6 +51,17 @@ namespace Managers
         public void SetCollectablePositionOnDroneArea(Transform DroneCheckColorArea)
         {
             collectableMovementController.MoveToColorArea(DroneCheckColorArea);
+        }
+
+        public void IncreaseStackAfterDroneArea(GameObject gameObject)
+        {
+            gameObject.transform.GetChild(1).tag = "Collected";
+            StackSignals.Instance.onRebuildStack?.Invoke(gameObject);
+            DOVirtual.DelayedCall(0.2f, () => SetAnim(CollectableAnimationStates.Running));
+        }
+        public void ChangeOutline(bool OutlineOn)
+        {
+
         }
     }
 }

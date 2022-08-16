@@ -9,7 +9,7 @@ namespace Managers
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            OnGameOpen();
+            GameOpen();
         }
         #region Event Subsription
 
@@ -28,15 +28,15 @@ namespace Managers
         private void OnDisable()
         {
             UnsubscribeEvents();
-            OnGameClose();
+            GameClose();
         }
         #endregion
-        private void OnGameOpen()
+        private void GameOpen()
         {
             CurrentState = GameStates.Runner;
             CoreGameSignals.Instance.onGameOpen?.Invoke();
         }
-        private void OnGameClose()
+        private void GameClose()
         {
             CoreGameSignals.Instance.onGameClose?.Invoke();
         }
@@ -54,9 +54,9 @@ namespace Managers
                 CoreGameSignals.Instance.onGamePause?.Invoke(true);
             }
         } 
-        private void OnChangeGameState(GameStates NextState)
+        private void OnChangeGameState(GameStates NewCurrentState)
         {
-            CurrentState = NextState;
+            CurrentState = NewCurrentState;
         }
     }
 }
