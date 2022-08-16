@@ -52,12 +52,12 @@ namespace Managers
         {
             collectableMovementController.MoveToColorArea(DroneCheckColorArea);
         }
-
         public void IncreaseStackAfterDroneArea(GameObject gameObject)
         {
             gameObject.transform.GetChild(1).tag = "Collected";
-            StackSignals.Instance.onRebuildStack?.Invoke(gameObject);
             DOVirtual.DelayedCall(0.2f, () => SetAnim(CollectableAnimationStates.Running));
+            ChangeOutline(false);
+            
         }
         public void ChangeOutline(bool OutlineOn)
         {

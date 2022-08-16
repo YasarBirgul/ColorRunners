@@ -11,7 +11,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Managers 
-{ 
+{
     public class StackManager : MonoBehaviour
     {
         #region Self Variables
@@ -65,7 +65,6 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
             StackSignals.Instance.OnDroneArea += OnDroneArea;
-            StackSignals.Instance.onRebuildStack += OnRebuildStack;
         } 
         private void UnsubscribeEvents()
         {
@@ -75,7 +74,7 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
             StackSignals.Instance.OnDroneArea -= OnDroneArea;
-            StackSignals.Instance.onRebuildStack -= OnRebuildStack;
+           
         }
         private void OnDisable()
         {
@@ -117,7 +116,6 @@ namespace Managers
         private void OnDroneArea(int index)
         {
             collected[index].transform.SetParent(tempHolder.transform);
-            //DroneAreaSignals.Instance.onDroneAreaEnter?.Invoke(collected[index].gameObject);
             collected[index].GetComponent<CollectableManager>().ChangeOutline(true);
             collected.RemoveAt(index);
             collected.TrimExcess();
@@ -148,24 +146,19 @@ namespace Managers
         {
             for (int i = tempHolder.transform.childCount-1; i >= 0; i--)
             {
-                tempHolder.transform.GetChild(i).GetComponent<CollectableManager>().IncreaseStackAfterDroneArea(tempHolder.transform.GetChild(i).gameObject);
+                var go = tempHolder.transform.GetChild(i).gameObject;
+                
+                tempHolder.transform.GetChild(i).GetComponent<CollectableManager>()
+                    .IncreaseStackAfterDroneArea(tempHolder.transform.GetChild(i).gameObject);
+                collected.Add(go);
+                CameraSignals.Instance.onExitMiniGame?.Invoke();
+                _playerManager.position = collected[0].transform.position; 
+                _playerManager.GetComponent<PlayerManager>().OnStartVerticalMovement();
+                go.GetComponent<CollectableManager>().ChangeOutline(false);
+                go.transform.SetParent(transform);
+                go.transform.position = collected[collected.Count - 1].transform.position + Vector3.back;
             }
         }
-        private void OnRebuildStack(GameObject stack)
-        {
-            collected.Add(stack);
-            
-            CameraSignals.Instance.onExitMiniGame?.Invoke();
-            
-            _playerManager.position = collected[0].transform.position;
-            
-            _playerManager.GetComponent<PlayerManager>().OnStartVerticalMovement();
-            stack.GetComponent<CollectableManager>().ChangeOutline(false);
-            stack.transform.SetParent(transform);
-            stack.transform.position = collected[collected.Count - 1].transform.position + Vector3.back;
-
-        }
-        
         private async void SendCollectablesBackToDeath()
         {
             for (int i = 0; i < tempHolder.transform.childCount; i++)
