@@ -77,12 +77,12 @@ namespace Controllers
                 tag = "Collectable";
             }
 
-            if (other.CompareTag("AfterGround") && CompareTag("Collectable"))
+            if (other.CompareTag("AfterGround"))
             {
                 if (collectableManager.MatchType != CollectableMatchType.Match)
                 {
                     collectableManager.SetAnim(CollectableAnimationStates.Dead);
-                    Destroy(collectableManager.gameObject);
+                    collectableManager.gameObject.SetActive(false);
                 }
                 else
                 {

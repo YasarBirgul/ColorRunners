@@ -23,8 +23,7 @@ namespace Managers
         [SerializeField] private GameObject tempHolder;
         
         [SerializeField] private List<GameObject> collected = new List<GameObject>();
-        //[SerializeField] private GameObject collectorMeshRenderer;
-        private Transform _playerManager;
+        
         #region Private Variables
         
         [ShowInInspector] private StackData _data;
@@ -33,7 +32,7 @@ namespace Managers
         private CollectableScaleUpCommand _colScaleUpCommand;
         private CollectableAddOnStackCommand _colAddOnStackCommand;
         private CollectableRemoveOnStackCommand _colRemoveOnStackCommand;
-        
+        private Transform _playerManager;
         #endregion
         #endregion
         #endregion
@@ -65,7 +64,6 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
             StackSignals.Instance.OnDroneArea += OnDroneArea;
-            DroneAreaSignals.Instance.onEnableFinalCollider += OnDroneAreaFinal;
         } 
         private void UnsubscribeEvents()
         {
@@ -75,7 +73,6 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
             StackSignals.Instance.OnDroneArea -= OnDroneArea;
-            DroneAreaSignals.Instance.onEnableFinalCollider -= OnDroneAreaFinal;
         }
         private void OnDisable()
         {
@@ -105,7 +102,7 @@ namespace Managers
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
             _colRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
-        }
+        } 
         private async void OnColorChange(ColorType colorType)
         {
             for (int i = 0; i < collected.Count; i++)
@@ -124,6 +121,7 @@ namespace Managers
             {
                 DroneAreaSignals.Instance.onColliderDisable?.Invoke();
                 DroneAreaSignals.Instance.onEnableFinalCollider?.Invoke();
+                OnDroneAreaFinal();
             }
         } 
         private void OnGameOpen()
@@ -146,7 +144,7 @@ namespace Managers
         }
         private async void OnDroneAreaFinal()
         {
-            if (tempHolder.transform.childCount == 0)
+            if (tempHolder.transform.childCount < 1)
             {
                 var newPos = collected[0].transform.position;
                 _playerManager.transform.position = new Vector3(newPos.x,_playerManager.transform.position.y,newPos.z);
