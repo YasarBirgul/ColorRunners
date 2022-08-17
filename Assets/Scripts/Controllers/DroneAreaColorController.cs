@@ -44,15 +44,9 @@ namespace Controllers
         {
             _meshRenderer.material = Resources.Load<Material>($"Materials/{colorType}");
         }
-
-        private void Update()
-        {
-            Scale(login);
-        }
-
-        public void Scale(bool login)
+        public void Scale()
         { 
-            if (login && DroneAreaMatchType == CollectableMatchType.UnMatch)
+            if (DroneAreaMatchType == CollectableMatchType.UnMatch)
             {
                 transform.DOScaleZ(0, 1f).OnComplete(() =>
                 {

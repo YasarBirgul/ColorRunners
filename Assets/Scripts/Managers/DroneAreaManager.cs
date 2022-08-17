@@ -59,8 +59,8 @@ namespace Controllers
         {
             await Task.Delay(3000);
             ColliderOnExitAreaGeneral.SetActive(true);
-            colorArea1st.GetComponent<DroneAreaColorController>().login = true;
-            colorArea2nd.GetComponent<DroneAreaColorController>().login = true;
+            colorArea1st.GetComponent<DroneAreaColorController>().Scale();
+            colorArea2nd.GetComponent<DroneAreaColorController>().Scale();
         }
     }
 }
