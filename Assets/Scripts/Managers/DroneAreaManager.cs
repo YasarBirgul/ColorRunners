@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Signals;
 using UnityEngine;
 
@@ -41,14 +42,16 @@ namespace Controllers
             UnsubscribeEvents();
         }
         #endregion
-        private void OnColliderDisable()
+        private async void OnColliderDisable()
         {
+            await Task.Delay(2000);
             transform.GetComponent<BoxCollider>().enabled = false;
             transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
             transform.GetChild(1).GetComponent<BoxCollider>().enabled = false;
         } 
-        private void OnFinalAreaCollider()
+        private async void OnFinalAreaCollider()
         {
+            await Task.Delay(3000);
             transform.GetChild(2).gameObject.SetActive(true);
         }
     }

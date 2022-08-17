@@ -31,7 +31,6 @@ namespace Controllers
             
             if (outlineOn)
             {
-
                 matColor.DOFloat(0f, "_OutlineSize", 1f);
             }
             else
