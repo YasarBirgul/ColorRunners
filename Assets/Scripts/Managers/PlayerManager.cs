@@ -17,6 +17,8 @@ namespace Managers
         [Header("Data")] public PlayerData Data;
 
         public GameStates CurrentGameState;
+
+        public ColorType PlayerColorType;
         
         #endregion
 
@@ -96,6 +98,7 @@ namespace Managers
         public void SendGateColorData(ColorType colorType)
         {
             StackSignals.Instance.onColorChange?.Invoke(colorType);
+            PlayerColorType = colorType;
         }
         public void ChangeState(GameStates state)
         {

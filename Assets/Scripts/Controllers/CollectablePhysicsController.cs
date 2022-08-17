@@ -66,7 +66,9 @@ namespace Controllers
             if (other.CompareTag("DroneColorArea")&& CompareTag("Collected"))
             {
                 collectableManager.SetCollectablePositionOnDroneArea(other.gameObject.transform);
-                if (collectableManager.ColorType == other.GetComponent<DroneAreaColorController>().ColorType)
+                var droneAreaColorController = other.GetComponent<DroneAreaColorController>();
+                
+                if (collectableManager.ColorType == droneAreaColorController.ColorType)
                 {
                     collectableManager.MatchType = CollectableMatchType.Match;
                 }

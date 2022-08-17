@@ -3096,7 +3096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95168dbaaff2ece458d5a428ab7937a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DroneAreaMatchType: 0
   ColorType: 4
+  login: 0
 --- !u!114 &3408260341493857349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3109,7 +3111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95168dbaaff2ece458d5a428ab7937a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DroneAreaMatchType: 0
   ColorType: 3
+  login: 0
 --- !u!4 &3508727316476728417
 Transform:
   m_ObjectHideFlags: 0
@@ -3143,8 +3147,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9357994, y: 2.4268966, z: 0.051033843}
-  m_Center: {x: 0.03210039, y: 0.71344805, z: -0.5433191}
+  m_Size: {x: 0.9357994, y: 2.4268966, z: 0.13894624}
+  m_Center: {x: 0.03210039, y: 0.71344805, z: -0.49936312}
 --- !u!1 &4246293774114740309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3861,6 +3865,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dronePrefab: {fileID: 1298181963}
+  colorArea1st: {fileID: 7530783846411903299}
+  colorArea2nd: {fileID: 7441129798348640052}
+  ColliderOnExitAreaGeneral: {fileID: 1332177427}
 --- !u!1 &7441129798348640052
 GameObject:
   m_ObjectHideFlags: 0
@@ -3912,8 +3919,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.929221, y: 2.4268966, z: 0.0394829}
-  m_Center: {x: -0.03539009, y: 0.71344805, z: -0.53781}
+  m_Size: {x: 0.929221, y: 2.4268966, z: 0.13484123}
+  m_Center: {x: -0.03539009, y: 0.71344805, z: -0.49013105}
 --- !u!4 &8060302892648478967
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,7 @@
+using System;
+using DG.Tweening;
 using Enums;
+using Managers;
 using UnityEngine;
 
 namespace Controllers
@@ -8,8 +11,12 @@ namespace Controllers
         #region Self Variables
     
         #region Public Variables
+
+        public CollectableMatchType DroneAreaMatchType;
         
         public ColorType ColorType;
+       
+        public bool login;
        
         #endregion
     
@@ -22,6 +29,7 @@ namespace Controllers
         #endregion
         private void Awake()
         {
+            DroneAreaMatchType = CollectableMatchType.UnMatch;
             GetReferences();
         }
         private void Start()
@@ -35,6 +43,22 @@ namespace Controllers
         public void SetGateMaterial(ColorType colorType)
         {
             _meshRenderer.material = Resources.Load<Material>($"Materials/{colorType}");
+        }
+
+        private void Update()
+        {
+            Scale(login);
+        }
+
+        public void Scale(bool login)
+        { 
+            if (login && DroneAreaMatchType == CollectableMatchType.UnMatch)
+            {
+                transform.DOScaleZ(0, 1f).OnComplete(() =>
+                {
+                    transform.gameObject.SetActive(false);
+                });
+            }
         }
     }
 }

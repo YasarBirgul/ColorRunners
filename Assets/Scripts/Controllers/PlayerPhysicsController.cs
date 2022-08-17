@@ -39,6 +39,15 @@ namespace Controllers
             {
                 playerManager.OnEnableFinalCollider(other.gameObject);
             }
+
+            if (other.CompareTag("DroneColorArea"))
+            {
+                if (playerManager.PlayerColorType == other.GetComponent<DroneAreaColorController>().ColorType)
+                {
+                    other.GetComponent<DroneAreaColorController>().DroneAreaMatchType = CollectableMatchType.Match;
+                }
+            }
+            
         }
         private void OnTriggerExit(Collider other)
         {

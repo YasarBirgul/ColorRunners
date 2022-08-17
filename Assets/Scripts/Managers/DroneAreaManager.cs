@@ -16,7 +16,9 @@ namespace Controllers
         #region Seriazible Variables
 
         [SerializeField] private GameObject dronePrefab;
-        
+        [SerializeField] private GameObject colorArea1st;
+        [SerializeField] private GameObject colorArea2nd;
+        [SerializeField] private GameObject ColliderOnExitAreaGeneral;
         #endregion
 
         #region Private Variables
@@ -50,13 +52,15 @@ namespace Controllers
             dronePrefab.SetActive(true);
             await Task.Delay(2000);
             transform.GetComponent<BoxCollider>().enabled = false;
-            transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
-            transform.GetChild(1).GetComponent<BoxCollider>().enabled = false;
+            colorArea1st.GetComponent<BoxCollider>().enabled = false;
+            colorArea2nd.GetComponent<BoxCollider>().enabled = false;
         } 
         private async void OnFinalAreaCollider()
         {
             await Task.Delay(3000);
-            transform.GetChild(2).gameObject.SetActive(true);
+            ColliderOnExitAreaGeneral.SetActive(true);
+            colorArea1st.GetComponent<DroneAreaColorController>().login = true;
+            colorArea2nd.GetComponent<DroneAreaColorController>().login = true;
         }
     }
 }

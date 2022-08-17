@@ -8,8 +8,6 @@ namespace Controllers
     public class CollectableMovementController : MonoBehaviour
     {
         [SerializeField] private CollectableManager collectableManager;
-        
-        
         public void MoveToColorArea(Transform coloredDroneArea)
         {
             var RandomZ = Random.Range(-(coloredDroneArea.localScale.z/2-6),(coloredDroneArea.localScale.z/2 - 2));
