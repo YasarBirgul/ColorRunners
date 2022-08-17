@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Signals;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Controllers
 {
@@ -14,6 +15,8 @@ namespace Controllers
 
         #region Seriazible Variables
 
+        [SerializeField] private GameObject dronePrefab;
+        
         #endregion
 
         #region Private Variables
@@ -44,6 +47,7 @@ namespace Controllers
         #endregion
         private async void OnColliderDisable()
         {
+            dronePrefab.SetActive(true);
             await Task.Delay(2000);
             transform.GetComponent<BoxCollider>().enabled = false;
             transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
