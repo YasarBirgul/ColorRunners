@@ -121,7 +121,6 @@ namespace Managers
             {
                 DroneAreaSignals.Instance.onColliderDisable?.Invoke();
                 DroneAreaSignals.Instance.onEnableFinalCollider?.Invoke();
-                OnDroneAreaFinal();
             }
         } 
         private void OnGameOpen()
@@ -132,6 +131,7 @@ namespace Managers
                     = Instantiate(_data.InitializedStack[i],Vector3.zero*(i+1)*2,transform.rotation);
                 _colAddOnStackCommand.Execute(StartPack);
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
+                // Pooling
             }
         } 
         private void OnPlay()
@@ -140,14 +140,6 @@ namespace Managers
             for (int i = 0; i < collected.Count; i++)
             {
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
-            }
-        }
-        private async void OnDroneAreaFinal()
-        {
-            if (tempHolder.transform.childCount < 1)
-            {
-                var newPos = collected[0].transform.position;
-                _playerManager.transform.position = new Vector3(newPos.x,_playerManager.transform.position.y,newPos.z);
             }
         }
     }

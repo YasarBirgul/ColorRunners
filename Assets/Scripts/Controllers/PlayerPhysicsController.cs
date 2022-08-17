@@ -1,4 +1,5 @@
-﻿using Enums;
+﻿using DG.Tweening;
+using Enums;
 using Managers;
 using Signals;
 using UnityEngine;
@@ -33,6 +34,10 @@ namespace Controllers
             if (other.CompareTag("Gate"))
             {
                 playerManager.SendGateColorData(other.GetComponent<GateManager>().Color);
+            }
+            if (other.CompareTag("AfterGround"))
+            {
+                playerManager.OnEnableFinalCollider(other.gameObject);
             }
         }
         private void OnTriggerExit(Collider other)

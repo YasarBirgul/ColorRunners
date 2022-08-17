@@ -1,4 +1,5 @@
 using Datas.ValueObject;
+using DG.Tweening;
 using Keys;
 using Managers;
 using Sirenix.OdinInspector;
@@ -136,9 +137,13 @@ namespace Controllers
             _movementData.forwardSpeed = 0;
         }
 
-        public void StartVerticalMovement()
+        public void StartVerticalMovement(GameObject other)
         {
-            _movementData.forwardSpeed = 10;
+            playerManager.transform.DOMove(new Vector3(0,playerManager.transform.position.y,
+                other.transform.position.z + other.gameObject.transform.localScale.z), 2f).OnComplete(
+                () => { 
+                    _movementData.forwardSpeed = 10;
+                });
         }
         public void Reset()
         {
