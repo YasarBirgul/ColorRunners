@@ -101,8 +101,8 @@ namespace Managers
             if (!_playerManager)
             {
                 _playerManager = FindObjectOfType<PlayerManager>().transform;
+                _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data,ref _playerManager);
             }
-            _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data,ref _playerManager);
         }
         private void Update()
         {
