@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tarretAreaTransform: {fileID: 407767992}
-  TimeIncreasedSpeed: 0.09
+  TimeIncreasedSpeed: 0.009
   InvokeRate: 0.5
 --- !u!114 &290595539
 MonoBehaviour:
@@ -1221,8 +1221,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.98198473, y: 1.3276505, z: 1.0102806}
-  m_Center: {x: -0.009008217, y: 1.2630711, z: 0.0018759425}
+  m_Size: {x: 0.98198473, y: 0.060688913, z: 1.0102806}
+  m_Center: {x: -0.009008217, y: 0.6295905, z: 0.0018759641}
 --- !u!23 &1163177843
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1330,8 +1330,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0237392, y: 1.3599179, z: 1.0032561}
-  m_Center: {x: -0.011869431, y: 1.1912651, z: -0.0003788688}
+  m_Size: {x: 1.0237392, y: 0.14779758, z: 1.0032561}
+  m_Center: {x: -0.011869431, y: 0.5852051, z: -0.0003788688}
 --- !u!23 &1207220852
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1755,7 +1755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tarretAreaTransform: {fileID: 407767992}
-  TimeIncreasedSpeed: 0.09
+  TimeIncreasedSpeed: 0.009
   InvokeRate: 0.5
 --- !u!114 &1553354142
 MonoBehaviour:

@@ -46,23 +46,24 @@ public class TurretMovementController : MonoBehaviour
     }
     public void StopTurret()
     {
-        gameObject.SetActive(false);
+      //  gameObject.SetActive(false);
     } 
     private void TurretPatrolling()
     {
-        float TurretStartXPos = tarretAreaTransform.position.x - tarretAreaTransform.GetChild(0).transform.localScale.x;
-        float TurretEndXpos = tarretAreaTransform.position.x - tarretAreaTransform.GetChild(1).transform.localScale.x;
-        float TurretStartZpos = tarretAreaTransform.position.z - tarretAreaTransform.GetChild(0).transform.localScale.z/2;
-        float TurretEndZpos = tarretAreaTransform.position.z - tarretAreaTransform.GetChild(1).transform.localScale.z/2;
+        float TurretStartXPos =tarretAreaTransform.transform.parent.transform.position.x - tarretAreaTransform.GetChild(0).transform.localScale.x;
+        float TurretEndXpos = tarretAreaTransform.transform.parent.transform.position.x + tarretAreaTransform.GetChild(1).transform.localScale.x;
+        float TurretStartZpos = tarretAreaTransform.transform.parent.transform.position.z- tarretAreaTransform.GetChild(0).transform.localScale.z/2;
+        float TurretEndZpos = tarretAreaTransform.transform.parent.transform.position.z + tarretAreaTransform.GetChild(1).transform.localScale.z/2;
 
         _randomClampStartPos = Random.Range(TurretStartXPos, TurretEndXpos);
         _randomClampEndPos = Random.Range(TurretStartZpos, TurretEndZpos);
+        
     } 
     private void FixedUpdate()
     {
         ChangeTurretMovementWithState(_turretState);
     } 
-    private async void ChangeTurretMovementWithState(TurretState turretState)
+    private void ChangeTurretMovementWithState(TurretState turretState)
     {
         switch (turretState)
         {
@@ -72,9 +73,10 @@ public class TurretMovementController : MonoBehaviour
                 _rotation = Quaternion.LookRotation(_relationPos);
                 transform.rotation = Quaternion.Lerp(transform.rotation,_rotation,Mathf.Lerp(0,1,TimeIncreasedSpeed*10));
                 break;
+            
             case TurretState.Active:
                 
-                _shotPos = new Vector3(0, 0, 0);
+                _shotPos = _collectablePos + new Vector3(0, 1, 0);
                 _relationPos = _shotPos - transform.position;
                 _rotation = Quaternion.LookRotation(_relationPos);
                 transform.rotation = Quaternion.Lerp(transform.rotation,_rotation,Mathf.Lerp(0,1,TimeIncreasedSpeed));
@@ -83,13 +85,17 @@ public class TurretMovementController : MonoBehaviour
             
         }
         
+        Debug.LogWarning("Current : " + _turretState);
+        
     } private void ShotTheColletable()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        if (Physics.Raycast(transform.position, transform.forward, out hit,25f))
         {
-            if (hit.transform.gameObject.CompareTag("Collected"))
+            Debug.DrawRay(transform.position,transform.forward*15f,Color.red,0.5f);
+            if (hit.transform.CompareTag("Collected"))
             {
+                Debug.DrawRay(transform.position,transform.forward*15f,Color.green,0.5f);
                 hit.transform.GetComponent<CollectableManager>().DelistFromStack();
             }
         }

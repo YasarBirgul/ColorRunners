@@ -2,7 +2,7 @@
 {
     public enum TurretState
     {
-        Active,
-        Patrol
+        Patrol,
+        Active
     }
 }
