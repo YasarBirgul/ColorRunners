@@ -47,7 +47,7 @@ namespace Managers
         } 
         public void DelistFromStack()
         {
-            StackSignals.Instance.OnDroneArea?.Invoke(transform.GetSiblingIndex());
+            StackSignals.Instance.onEnterDroneArea?.Invoke(transform.GetSiblingIndex());
         }
         public void SetCollectablePositionOnDroneArea(Transform DroneCheckColorArea)
         {
@@ -57,11 +57,11 @@ namespace Managers
         {
             await Task.Delay(3000);
             DOVirtual.DelayedCall(0.2f, () => SetAnim(CollectableAnimationStates.Running));
-            ChangeOutline(false);
+            RemoveOutline(false);
             StackSignals.Instance.onIncreaseStack?.Invoke(gameObject);
             SetAnim(CollectableAnimationStates.Running);
         }
-        public void ChangeOutline(bool OutlineOn)
+        public void RemoveOutline(bool OutlineOn)
         {
              CollectableMeshController.OutlineChanger(OutlineOn);
         }

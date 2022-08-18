@@ -12,7 +12,7 @@ namespace Signals
         public UnityAction<ObstacleCollisionGOParams> onDecreaseStack = delegate {  };
         public UnityAction<ColorType> onColorChange = delegate {  };
         public UnityAction<GameObject> onTurrentGroundControll = delegate {  };
-        public UnityAction<int> OnDroneArea = delegate {  };
+        public UnityAction<int> onEnterDroneArea = delegate {  };
         public UnityAction<GameObject> onRebuildStack = delegate {  };
     }
 }

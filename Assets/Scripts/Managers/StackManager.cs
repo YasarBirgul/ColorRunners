@@ -33,6 +33,7 @@ namespace Managers
         private CollectableAddOnStackCommand _colAddOnStackCommand;
         private CollectableRemoveOnStackCommand _colRemoveOnStackCommand;
         private Transform _playerManager;
+        
         #endregion
         #endregion
         #endregion
@@ -45,11 +46,9 @@ namespace Managers
         private void Init()
         {
             _stackMan = GetComponent<StackManager>();
-            _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data);
             _colScaleUpCommand = new CollectableScaleUpCommand(ref collected,ref _data);
             _colAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackMan,ref collected);
             _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected);
-            
         }
         #region Event Subscription
         private void OnEnable()
@@ -63,7 +62,7 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
-            StackSignals.Instance.OnDroneArea += OnDroneArea;
+            StackSignals.Instance.onEnterDroneArea += OnEnterDroneArea;
         } 
         private void UnsubscribeEvents()
         {
@@ -72,13 +71,39 @@ namespace Managers
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
-            StackSignals.Instance.OnDroneArea -= OnDroneArea;
+            StackSignals.Instance.onEnterDroneArea -= OnEnterDroneArea;
         }
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
         #endregion
+        private void OnGameOpen()
+        {
+            for (int i = 0; i < _data.InitializedStack.Count; i++)
+            { 
+                var StartPack 
+                    = Instantiate(_data.InitializedStack[i],Vector3.zero*(i+1)*2,transform.rotation);
+                _colAddOnStackCommand.Execute(StartPack);
+                collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
+            }
+        } 
+        private void OnPlay()
+        {
+            FindPlayer();
+            for (int i = 0; i < collected.Count; i++)
+            {
+                collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
+            }
+        }
+        private void FindPlayer()
+        {
+            if (!_playerManager)
+            {
+                _playerManager = FindObjectOfType<PlayerManager>().transform;
+            }
+            _stackLerpMovementCommand = new StackLerpMovementCommand(ref collected,ref _data,ref _playerManager);
+        }
         private void Update()
         {
             if (!_playerManager)
@@ -87,13 +112,7 @@ namespace Managers
                 _stackLerpMovementCommand.Execute(_playerManager);  
             }
         } 
-        private void FindPlayer()
-        {
-            if (!_playerManager)
-            {
-                _playerManager = FindObjectOfType<PlayerManager>().transform;
-            }
-        }
+        
         private void OnIncreaseStack(GameObject other)
         {
             _colAddOnStackCommand.Execute(other);
@@ -111,10 +130,10 @@ namespace Managers
                 collected[i].GetComponent<CollectableManager>().ChangeColor(colorType);
             }
         } 
-        private void OnDroneArea(int index)
+        private void OnEnterDroneArea(int index)
         {
             collected[index].transform.SetParent(tempHolder.transform);
-            collected[index].GetComponent<CollectableManager>().ChangeOutline(true);
+            collected[index].GetComponent<CollectableManager>().RemoveOutline(true);
             collected.RemoveAt(index);
             collected.TrimExcess();
             if (collected.Count == 0)
@@ -123,24 +142,6 @@ namespace Managers
                 DroneAreaSignals.Instance.onEnableFinalCollider?.Invoke();
             }
         } 
-        private void OnGameOpen()
-        {
-            for (int i = 0; i < _data.InitializedStack.Count; i++)
-            { 
-                var StartPack 
-                    = Instantiate(_data.InitializedStack[i],Vector3.zero*(i+1)*2,transform.rotation);
-                _colAddOnStackCommand.Execute(StartPack);
-                collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
-                // Pooling
-            }
-        } 
-        private void OnPlay()
-        {
-            FindPlayer();
-            for (int i = 0; i < collected.Count; i++)
-            {
-                collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Running);
-            }
-        }
+        
     }
 }    

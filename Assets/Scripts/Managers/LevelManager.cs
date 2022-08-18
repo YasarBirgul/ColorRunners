@@ -40,7 +40,7 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
-            LevelSignals.Instance.onLevelInitialize += OnInitializeLevel;
+            LevelSignals.Instance.onLevelInitialize += InitializeLevel;
             LevelSignals.Instance.onClearActiveLevel += OnClearActiveLevel;
             LevelSignals.Instance.onNextLevel += OnNextLevel;
             LevelSignals.Instance.onRestartLevel += OnRestartLevel;
@@ -48,7 +48,7 @@ namespace Managers
         } 
         private void UnsubscribeEvents()
         {
-            LevelSignals.Instance.onLevelInitialize -= OnInitializeLevel;
+            LevelSignals.Instance.onLevelInitialize -= InitializeLevel;
             LevelSignals.Instance.onClearActiveLevel -= OnClearActiveLevel;
             LevelSignals.Instance.onNextLevel -= OnNextLevel;
             LevelSignals.Instance.onRestartLevel -= OnRestartLevel;
@@ -66,6 +66,7 @@ namespace Managers
             _clearActiveLevel = new ClearActiveLevelCommand(ref levelHolder);
             _levelLoader = new LevelLoaderCommand(ref levelHolder); 
             Data = GetLevelCount();
+            InitializeLevel();
         } 
         private int OnGetLevel() => _levelID; 
         private int GetActiveLevel()
@@ -77,19 +78,11 @@ namespace Managers
         {
             return _levelID%Resources.Load<CD_Level>("Data/CD_Level").Levels.Count;
         }
-        private void Start()
-        {
-            OnInitializeLevel();
-        } 
-        private void OnInitializeLevel()
+        private void InitializeLevel()
         {
             int newLevelData = GetLevelCount();
             _levelLoader.Execute(newLevelData);
-        } 
-        private void OnClearActiveLevel()
-        {
-            _clearActiveLevel.Execute();
-        } 
+        }  
         private void OnNextLevel()
         {
             _levelID++;
@@ -98,6 +91,11 @@ namespace Managers
             LevelSignals.Instance.onLevelInitialize?.Invoke();
           
         } 
+        private void OnClearActiveLevel()
+        {
+            _clearActiveLevel.Execute();
+        } 
+       
         private void OnRestartLevel()
         {
             LevelSignals.Instance.onClearActiveLevel?.Invoke();

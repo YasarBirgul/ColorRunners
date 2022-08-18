@@ -12,14 +12,16 @@ namespace Commands.Stack
 
         private List<GameObject> _stackList;
         private StackData _stackData;
-       
+        private Transform _playerManager;
+        
         #endregion
         
         #endregion
-        public StackLerpMovementCommand(ref List<GameObject> stackList, ref StackData stackData)
+        public StackLerpMovementCommand(ref List<GameObject> stackList, ref StackData stackData,ref Transform playerManager)
         {
             _stackList = stackList;
             _stackData = stackData;
+            _playerManager = playerManager;
         }
         public void Execute(Transform _playerManager)
         {
