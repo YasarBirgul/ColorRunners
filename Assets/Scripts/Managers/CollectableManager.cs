@@ -26,8 +26,6 @@ namespace Managers
         
         #endregion
         #endregion
-        #region Event Subscription
-        #endregion
         private void Awake()
         {
             ColorOnInit();
@@ -64,6 +62,19 @@ namespace Managers
         public void RemoveOutline(bool OutlineOn)
         {
              CollectableMeshController.OutlineChanger(OutlineOn);
+        }
+        public void EnterTurretArea(GameObject otherGameObject)
+        {
+            CollectableMeshController.CompareColorType(otherGameObject,ColorType);
+        }
+        public void SendCollectableTransform()
+        {
+           ColoredAreaSignals.Instance.onTurretDetect.Invoke(gameObject);
+        }
+
+        public void exitTurretArea()
+        {
+            ColoredAreaSignals.Instance.onExitTurretArea.Invoke();
         }
     }
 }

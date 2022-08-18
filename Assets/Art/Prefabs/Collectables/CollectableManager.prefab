@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMeshRenderer: {fileID: 4480282499569206467}
+  manager: {fileID: 1524763119778764990}
 --- !u!1 &1524763119778764988
 GameObject:
   m_ObjectHideFlags: 0

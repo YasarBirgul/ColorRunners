@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Enums;
+using Managers;
 using UnityEngine;
 
 namespace Controllers
@@ -15,7 +16,7 @@ namespace Controllers
         #region Serialized Variables
         
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
-    
+        [SerializeField] private CollectableManager manager;
         #endregion
     
         #endregion
@@ -38,7 +39,13 @@ namespace Controllers
                 matColor.DOFloat(100f, "_OutlineSize", 1f);
             }
         }
-        
+        public void CompareColorType(GameObject otherGameObject,ColorType CollectableColorType)
+        {
+            if (otherGameObject.GetComponent<TurretAreaColorController>().ColorType != CollectableColorType)
+            {
+                manager.SendCollectableTransform();
+            }
+        }
     }
 }
 

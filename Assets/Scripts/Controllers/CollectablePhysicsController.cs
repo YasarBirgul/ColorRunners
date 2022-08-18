@@ -1,4 +1,5 @@
-﻿using Enums;
+﻿using System;
+using Enums;
 using Keys;
 using Managers;
 using Signals;
@@ -98,6 +99,15 @@ namespace Controllers
             if (other.CompareTag("TurretColorArea"))
             {
                 collectableManager.SetAnim(CollectableAnimationStates.Running);
+                collectableManager.exitTurretArea();
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("TurretColorArea"))
+            {
+                collectableManager.EnterTurretArea(other.gameObject);
             }
         }
     }

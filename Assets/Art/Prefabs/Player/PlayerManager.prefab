@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967da9bddb284b94b9b2954d50b1fc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: 0}
+  playerManager: {fileID: 8206093447873234512}
 --- !u!1 &8206093447873234526
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
       forwardSpeed: 10
       SidewaysSpeed: 10
   CurrentGameState: 0
+  PlayerColorType: 0
   movementController: {fileID: 8886984498351355126}
 --- !u!114 &8886984498351355126
 MonoBehaviour:
