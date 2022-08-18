@@ -14,7 +14,7 @@ namespace Managers
         #region Public Variables
         public CinemachineVirtualCamera RunnerCamera;
         public CinemachineVirtualCamera IdleGameCamera;
-        private GameStates _gameCurrentState;
+        
         #endregion
 
         #region Serialized Variables
@@ -22,6 +22,7 @@ namespace Managers
         #endregion
 
         #region Private Variables
+        
         
         [ShowInInspector] private Vector3 _initialPosition;
         private CinemachineTransposer _miniGameTransposer;
@@ -34,9 +35,13 @@ namespace Managers
 
         private void Awake()
         {
+            GetReferences();
+            GetInitialPosition();
+        }
+        private void GetReferences()
+        {
             _animator = GetComponent<Animator>();
             _miniGameTransposer = IdleGameCamera.GetCinemachineComponent<CinemachineTransposer>();
-            GetInitialPosition();
         }
 
         #region Event Subscriptions
@@ -102,25 +107,24 @@ namespace Managers
         {
             RunnerCamera.Follow = null;
             RunnerCamera.LookAt = null;
+            _cameraStatesType = CameraStatesType.Runner;
             OnMoveToInitialPosition();
         }
         void OnChangeGameState(GameStates Current)
         {
-            _gameCurrentState = Current;
-            SetCameraState(_gameCurrentState);
+            SetCameraState(Current);
         }
         private void SetCameraState(GameStates Current)
         {
             if (Current == GameStates.Idle)
             {
                 _cameraStatesType = CameraStatesType.Idle;
-                _animator.Play("IdleCam");
             }
-            if (Current == GameStates.Runner)
+            else if (Current == GameStates.Runner)
             {
                 _cameraStatesType = CameraStatesType.Runner;
-                _animator.Play("RunnerCam");
             }
+            _animator.Play(Current.ToString());
         }
     }
 }

@@ -40,13 +40,6 @@ namespace Managers
         {
             CoreGameSignals.Instance.onGameClose?.Invoke();
         }
-        private void OnApplicationFocus(bool hasFocus)
-        {
-            if (!hasFocus)
-            {
-                CoreGameSignals.Instance.onGamePause?.Invoke(true);
-            }
-        }
         private void OnApplicationPause(bool paused)
         { 
             if (paused)

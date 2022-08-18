@@ -1029,6 +1029,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.01146, y: 1, z: 2.3305233}
   m_Center: {x: 0.000600338, y: 0, z: 1.2072073}
+--- !u!1 &1335615640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1335615641}
+  m_Layer: 0
+  m_Name: TurretArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1335615641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335615640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1372437963 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
@@ -2646,7 +2676,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DroneAreaMatchType: 0
   ColorType: 4
-  login: 0
 --- !u!114 &3408260341493857349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,7 +2690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DroneAreaMatchType: 0
   ColorType: 3
-  login: 0
 --- !u!4 &3508727316476728417
 Transform:
   m_ObjectHideFlags: 0

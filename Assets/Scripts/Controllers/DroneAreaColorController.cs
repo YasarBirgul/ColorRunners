@@ -1,7 +1,5 @@
-using System;
 using DG.Tweening;
 using Enums;
-using Managers;
 using UnityEngine;
 
 namespace Controllers
@@ -15,9 +13,7 @@ namespace Controllers
         public CollectableMatchType DroneAreaMatchType;
         
         public ColorType ColorType;
-       
-        public bool login;
-       
+
         #endregion
     
         #region Private Variables
@@ -40,7 +36,7 @@ namespace Controllers
         {
             _meshRenderer = GetComponent<MeshRenderer>();
         }
-        public void SetGateMaterial(ColorType colorType)
+        private void SetGateMaterial(ColorType colorType)
         {
             _meshRenderer.material = Resources.Load<Material>($"Materials/{colorType}");
         }

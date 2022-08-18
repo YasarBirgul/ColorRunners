@@ -25,11 +25,13 @@ namespace Managers
         
         [FormerlySerializedAs("joystickRunner")] [SerializeField] private FloatingJoystick joystickInput;
 
-        [ShowInInspector] private bool isReadyForTouch, isFirstTimeTouchTaken;
+        
 
         #endregion
 
         #region Private Variables
+        
+        [ShowInInspector] private bool _isReadyForTouch, _isFirstTimeTouchTaken;
         
         private GameStates _currentState = GameStates.Runner;
 
@@ -102,24 +104,16 @@ namespace Managers
         }
         private void OnEnableInput()
         {
-            isReadyForTouch = true;
+            _isReadyForTouch = true;
         }
         private void OnDisableInput()
         {
-            isReadyForTouch = false;
+            _isReadyForTouch = false;
         }
         
-        private bool IsPointerOverUIElement()
-        {
-            var eventData = new PointerEventData(EventSystem.current);
-            eventData.position = Input.mousePosition;
-            var results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, results);
-            return results.Count > 0;
-        }
         private void OnPlay()
         {
-            isReadyForTouch = true;
+            _isReadyForTouch = true;
         }
         void OnChangeGameState(GameStates CurrentState)
         {
@@ -128,8 +122,8 @@ namespace Managers
         private void OnReset()
         {
             _isTouching = false;
-            isReadyForTouch = false;
-            isFirstTimeTouchTaken = false;
+            _isReadyForTouch = false;
+            _isFirstTimeTouchTaken = false;
         }
     }
 }
