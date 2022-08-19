@@ -102,7 +102,6 @@ namespace Controllers
                 collectableManager.exitTurretArea();
             }
         }
-
         private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("TurretColorArea"))

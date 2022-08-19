@@ -23,7 +23,7 @@ namespace Commands.Stack
             _stackData = stackData;
             _playerManager = playerManager;
         }
-        public void Execute(Transform _playerManager)
+        public void Execute()
         {
             if (_stackList.Count > 0 )
             {

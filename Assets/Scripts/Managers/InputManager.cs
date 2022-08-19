@@ -24,9 +24,7 @@ namespace Managers
         #region Serialized Variables,
         
         [FormerlySerializedAs("joystickRunner")] [SerializeField] private FloatingJoystick joystickInput;
-
         
-
         #endregion
 
         #region Private Variables

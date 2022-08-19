@@ -1,20 +1,14 @@
-using System;
 using Enums;
+using Keys;
 using Managers;
 using Signals;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-
 public class TurretMovementController : MonoBehaviour
-{ 
-    
+{
     #region Self Variables
-
     #region Public Variables
-    
     #endregion
-
     #region Serialized Variables
 
     [SerializeField] private Transform tarretAreaTransform;
@@ -46,7 +40,8 @@ public class TurretMovementController : MonoBehaviour
     }
     public void StopTurret()
     {
-      //  gameObject.SetActive(false);
+       CancelInvoke("TurretPatrolling");
+       _turretState = TurretState.Patrol;
     } 
     private void TurretPatrolling()
     {
@@ -57,7 +52,6 @@ public class TurretMovementController : MonoBehaviour
 
         _randomClampStartPos = Random.Range(TurretStartXPos, TurretEndXpos);
         _randomClampEndPos = Random.Range(TurretStartZpos, TurretEndZpos);
-        
     } 
     private void FixedUpdate()
     {
@@ -79,24 +73,26 @@ public class TurretMovementController : MonoBehaviour
                 _shotPos = _collectablePos + new Vector3(0, 1, 0);
                 _relationPos = _shotPos - transform.position;
                 _rotation = Quaternion.LookRotation(_relationPos);
-                transform.rotation = Quaternion.Lerp(transform.rotation,_rotation,Mathf.Lerp(0,1,TimeIncreasedSpeed));
+                transform.rotation = Quaternion.Lerp(transform.rotation,_rotation,Mathf.Lerp(0,1,TimeIncreasedSpeed*10));
                 ShotTheColletable();
                 break;
-            
         }
-        
-        Debug.LogWarning("Current : " + _turretState);
-        
-    } private void ShotTheColletable()
-    {
+    } 
+    private void ShotTheColletable()
+    { 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit,25f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-            Debug.DrawRay(transform.position,transform.forward*15f,Color.red,0.5f);
+            int RandomInt = Random.Range(0, 100);
             if (hit.transform.CompareTag("Collected"))
             {
-                Debug.DrawRay(transform.position,transform.forward*15f,Color.green,0.5f);
-                hit.transform.GetComponent<CollectableManager>().DelistFromStack();
+                if (RandomInt <= 3)
+                {
+                    StackSignals.Instance.onDecreaseStack?.Invoke(new ObstacleCollisionGOParams()
+                    {
+                        Collected = hit.transform.gameObject,
+                    });
+                }
             }
         }
     }

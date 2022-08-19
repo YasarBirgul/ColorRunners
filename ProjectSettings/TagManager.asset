@@ -15,6 +15,7 @@ TagManager:
   - TurretArea
   - TurretColorArea
   - AfterGround
+  - TurretDetect
   layers:
   - Default
   - TransparentFX

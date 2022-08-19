@@ -109,7 +109,7 @@ namespace Managers
             if (!_playerManager)
                 return;
             {
-                _stackLerpMovementCommand.Execute(_playerManager);  
+                _stackLerpMovementCommand.Execute();   
             }
         } 
         
