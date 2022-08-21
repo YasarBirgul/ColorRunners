@@ -35,8 +35,6 @@ namespace Controllers
         private float _turretEndZpos;
         #endregion
         #endregion
-
-
         private void Awake()
         {
           _turretStartXPos = tarretAreaTransform.transform.parent.transform.position.x - tarretAreaTransform.GetChild(0).transform.localScale.x;
@@ -48,7 +46,6 @@ namespace Controllers
         {
             InvokeRepeating("TurretPatrolling",0,InvokeRate);
         }
-    
         public void DetectCollectable(GameObject detectedCollectable)
         {
             _collectablePos = detectedCollectable.transform.position;

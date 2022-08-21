@@ -54,6 +54,7 @@ namespace Managers
             LevelSignals.Instance.onNextLevel += OnNextLevel;
             LevelSignals.Instance.onRestartLevel += OnRestartLevel;
             LevelSignals.Instance.onGetLevel += OnGetLevel;
+            LevelSignals.Instance.onGetIdleLevelID += OnGetIdleLevelID;
         } 
         private void UnsubscribeEvents()
         {
@@ -64,6 +65,7 @@ namespace Managers
             LevelSignals.Instance.onNextLevel -= OnNextLevel;
             LevelSignals.Instance.onRestartLevel -= OnRestartLevel;
             LevelSignals.Instance.onGetLevel -= OnGetLevel;
+            LevelSignals.Instance.onGetIdleLevelID -= OnGetIdleLevelID;
         }
         private void OnDisable()
         {
@@ -89,7 +91,11 @@ namespace Managers
             InitializeIdleLevel();
         }
 
-        private int OnGetLevel() => _levelID; 
+        private int OnGetLevel() => _levelID;
+        private int OnGetIdleLevelID()
+        {
+            return _idleLevelID; 
+        }
         private int GetActiveLevel()
         {
             if (!ES3.FileExists()) return 0;

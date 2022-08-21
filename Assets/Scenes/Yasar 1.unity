@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 778727998}
   - component: {fileID: 778727999}
   m_Layer: 0
-  m_Name: IdleEnvironmentManager
+  m_Name: IdleCityManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -913,6 +913,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c45836fd9f0a243999781386dd2809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IdleLevelData:
+    BuildingsDatas: []
+    NeigboorhoodData:
+      RequiredBuildings: 0
+      PayedAmount: 0
+      StateType: 0
+    IdleLevelStateType: 0
+  Buildings:
+  - {fileID: 0}
+  PublicPlaces:
+  - {fileID: 0}
+  BuildingsTransforms: []
+  PublicPlacesTransforms: []
+  SideObjectTransforms: []
 --- !u!1 &816160081
 GameObject:
   m_ObjectHideFlags: 0

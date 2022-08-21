@@ -474,6 +474,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4653832851696065743}
     m_Modifications:
+    - target: {fileID: 7205459706005176340, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
+      propertyPath: InvokeRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7205459706982182747, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
+      propertyPath: InvokeRate
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7205459707234714206, guid: b80dc111f910ccc40acf64bdfe544a1a, type: 3}
       propertyPath: m_Name
       value: TurretArea
