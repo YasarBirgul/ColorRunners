@@ -1,16 +1,15 @@
 ﻿using System;
-using Datas.ValueObject;
 using Enums;
 using Extentions;
-using UnityEditor;
 using UnityEngine.Events;
 
 namespace Signals
 {
     public class SaveSignals : MonoSingleton<SaveSignals>
     {
-        public UnityAction<SaveTypes, int> onChangeSaveData=delegate {  };
-        public UnityAction<SaveTypes> onSaveDataToDatabase = delegate { };
-        public UnityAction<SaveData> onSendDataToManagers = delegate { };
+        public UnityAction<SaveStates, int> onSaveRunnerLevelData=delegate {  };
+        public  Func<SaveStates,int> onLoadGameData= delegate { return 0;};
+        public UnityAction<SaveStates,int> onSaveIdleLevelData = delegate{  };
+        public Func<SaveStates,int> onLoadIdleData = delegate { return 0;};
     }
 }

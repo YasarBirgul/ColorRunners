@@ -19,7 +19,7 @@ namespace Commands.Level
         }
         public void Execute(int _levelID)
         {
-            Object.Instantiate(Resources.Load<GameObject>($"Prefabs/LevelPrefabs/level {_levelID}"), _levelHolder.transform);
+            Object.Instantiate(Resources.Load<GameObject>($"Prefabs/LevelPrefabs/level {_levelID}"),_levelHolder.transform);
         }
     }
 }
