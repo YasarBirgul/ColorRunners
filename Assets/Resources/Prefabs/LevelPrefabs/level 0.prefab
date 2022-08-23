@@ -1967,6 +1967,10 @@ PrefabInstance:
       propertyPath: ColorType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6781273687770142475, guid: 75b1a6529d01f784784f79962db59561, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 533fdfe356118144abd0f137d3abb738, type: 2}
     - target: {fileID: 8060302894001338954, guid: 75b1a6529d01f784784f79962db59561, type: 3}
       propertyPath: m_RootOrder
       value: 6

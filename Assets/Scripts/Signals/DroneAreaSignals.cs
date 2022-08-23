@@ -1,7 +1,6 @@
 ﻿using Extentions;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace Signals
 {
