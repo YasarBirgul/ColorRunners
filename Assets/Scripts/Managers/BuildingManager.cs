@@ -55,7 +55,7 @@ namespace Managers
 
         private void OnSetDataToControllers()
         {
-            SetDataToBuildingsMeshController();
+          //  SetDataToBuildingsMeshController();
             SetDataToBuildingsMarketStatusController();
         }
 
@@ -65,22 +65,22 @@ namespace Managers
         }
         private void SetDataToBuildingsMarketStatusController()
         {
-            buildingMarketStatusController.MarketPrice = MarketPrice;
-            buildingMarketStatusController.UpdatePayedAmountText(PayedAmount);
-            buildingMarketStatusController.PayedAmount = PayedAmount;
-            UpdateSaturation();
+           buildingMarketStatusController.MarketPrice = MarketPrice;
+           buildingMarketStatusController.UpdatePayedAmountText(PayedAmount);
+           buildingMarketStatusController.PayedAmount = PayedAmount;
+         //  UpdateSaturation();
         }
 
         public void UpdatePayedAmount()
         {
             PayedAmount++;
             buildingMarketStatusController.UpdatePayedAmountText(PayedAmount);
-            UpdateSaturation();
+          //  UpdateSaturation();
         }
-        private void UpdateSaturation()
-        {
-            Saturation = buildingMeshController.CalculateSaturation();
-        }
+      // private void UpdateSaturation()
+      // {
+      //     Saturation = buildingMeshController.CalculateSaturation();
+      // }
 
         public void UpdateBuildingStatus(IdleLevelStateType idleLevelState)
         {

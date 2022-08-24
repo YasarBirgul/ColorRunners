@@ -35,6 +35,8 @@ namespace Managers
             _saveGameCommand = new SaveGameCommand();
             _loadIdleGameCommand = new LoadIdleGameCommand();
             _saveIdleGameCommand = new SaveIdleGameCommand();
+            _saveIdleLevelProcessCommand = new SaveIdleLevelProcessCommand();
+            _loadIdlelevelProgressCommand = new LoadIdlelevelProgressCommand();
                 
             if (!ES3.FileExists())
             {
@@ -44,6 +46,11 @@ namespace Managers
             if (!ES3.FileExists())
             {
                 ES3.Save("IdleLevel",0,"IdleLevelData/IdleLevelData.es3");
+            }
+            
+            if (!ES3.FileExists())
+            {
+                ES3.Save("IdleLevelProgress","IdleLevelProgress/IdleLevelProgressData.es3");
             }
         }
         

@@ -28,7 +28,7 @@ namespace Controllers
 
         private void SetRequiredAmountToText()
         {
-            marketPriceText.text = $"(PayedAmount)/(MarketPrice)";
+            marketPriceText.text = $"{PayedAmount}/{MarketPrice}";
         }
 
         public void UpdatePayedAmountText(int payedAmount)

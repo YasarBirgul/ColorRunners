@@ -41,6 +41,7 @@ namespace Managers
         private void GetIdleLevelData()
         {
             _idleLevelId = LevelSignals.Instance.onGetIdleLevelID.Invoke();
+            Debug.Log("IdleCityman" + _idleLevelId);
         } 
         private void Start()
         { 
@@ -50,7 +51,7 @@ namespace Managers
                 IdleLevelData = OnGetCityData();
                 SaveCityData(IdleLevelData);
             } 
-              LoadCityData(IdleLevelData);
+             LoadCityData(IdleLevelData);
               SetDataToBuildingManagers();
         } 
     
@@ -98,15 +99,19 @@ namespace Managers
                 BuildingManagers[i].MarketPrice = IdleLevelData.BuildingsDatas[i].buildingMarketPrice;
                 BuildingManagers[i].PayedAmount = IdleLevelData.BuildingsDatas[i].PayedAmount;
                 BuildingManagers[i].Saturation = IdleLevelData.BuildingsDatas[i].Saturation;
+
+                if (!IdleLevelData.BuildingsDatas[i].isDepended || IdleLevelData.BuildingsDatas[i].IdleLevelStateType !=
+                    IdleLevelStateType.Completed)
+                {
+                    IdleLevelData.BuildingsDatas[i].AddressId = i;
+                                    
+                    BuildingManagers[i].buildingAdressId = i;
+                    BuildingManagers[i].MarketPrice = IdleLevelData.BuildingsDatas[i].buildingMarketPrice;
+                    BuildingManagers[i].PayedAmount = IdleLevelData.BuildingsDatas[i].PayedAmount;
+                    BuildingManagers[i].Saturation = IdleLevelData.BuildingsDatas[i].Saturation;
+                    
+                }
                 
-                if(!IdleLevelData.BuildingsDatas[i].isDepended || IdleLevelData.BuildingsDatas[i].IdleLevelStateType !=
-                    IdleLevelStateType.Completed) continue;
-                IdleLevelData.BuildingsDatas[i].AddressId = i;
-                
-                BuildingManagers[i].buildingAdressId = i;
-                BuildingManagers[i].MarketPrice = IdleLevelData.BuildingsDatas[i].buildingMarketPrice;
-                BuildingManagers[i].PayedAmount = IdleLevelData.BuildingsDatas[i].PayedAmount;
-                BuildingManagers[i].Saturation = IdleLevelData.BuildingsDatas[i].Saturation;
             }
 
             BuildingsDatasAreSynced();
@@ -130,12 +135,14 @@ namespace Managers
                 IdleLevelData.BuildingsDatas[i].IdleLevelStateType = BuildingManagers[i].IdleLevelStateType;
                 IdleLevelData.BuildingsDatas[i].PayedAmount = BuildingManagers[i].PayedAmount;
                 IdleLevelData.BuildingsDatas[i].Saturation = BuildingManagers[i].Saturation;
-                
-                if(!IdleLevelData.BuildingsDatas[i].isDepended || IdleLevelData.BuildingsDatas[i].IdleLevelStateType
-                    != IdleLevelStateType.Completed) continue;
-                IdleLevelData.BuildingsDatas[i].IdleLevelStateType = BuildingManagers[i].IdleLevelStateType;
-                IdleLevelData.BuildingsDatas[i].SideObjectData.PayedAmount = BuildingManagers[i].PayedAmount;
-                IdleLevelData.BuildingsDatas[i].SideObjectData.Saturation = BuildingManagers[i].Saturation;
+
+                if (!IdleLevelData.BuildingsDatas[i].isDepended || IdleLevelData.BuildingsDatas[i].IdleLevelStateType
+                    != IdleLevelStateType.Completed)
+                {
+                    IdleLevelData.BuildingsDatas[i].IdleLevelStateType = BuildingManagers[i].IdleLevelStateType;
+                    IdleLevelData.BuildingsDatas[i].SideObjectData.PayedAmount = BuildingManagers[i].PayedAmount;
+                    IdleLevelData.BuildingsDatas[i].SideObjectData.Saturation = BuildingManagers[i].Saturation;
+                }
             }
         } 
         private void OnSetBuildingStatus(int adressid)

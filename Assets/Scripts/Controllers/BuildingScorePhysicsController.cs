@@ -29,26 +29,29 @@ namespace Controllers
 
         private void OnTriggerStay(Collider other)
         {
-            _timer -= Time.fixedDeltaTime;
-
-            if (_timer <= 0)
+            if (other.CompareTag("Player"))
             {
-                _timer = 0.2f;
-
-                if (buildingManager.MarketPrice > buildingManager.PayedAmount)
-                {
-                    buildingManager.UpdatePayedAmount();
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                    if (buildingManager.IdleLevelStateType == IdleLevelStateType.Uncompleted)
-                    {
-                        buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
-                    }
-                }
-
+                 _timer -= Time.fixedDeltaTime;
+                
+              if (_timer <= 0)
+              {
+                  _timer = 0.2f;
+  
+                  if (buildingManager.MarketPrice > buildingManager.PayedAmount)
+                  {
+                      buildingManager.UpdatePayedAmount();
+                  }
+                  else
+                  {
+                      gameObject.SetActive(false);
+                      if (buildingManager.IdleLevelStateType == IdleLevelStateType.Uncompleted)
+                      {
+                          buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
+                      }
+                  }
+              }
             }
+           
         }
         private void OnTriggerExit(Collider other)
         {

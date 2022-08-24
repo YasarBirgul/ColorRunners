@@ -126,7 +126,7 @@ namespace Managers
 
         private void InitializeIdleLevel()
         {
-            int newIdleLevelData =_idleLevelID % Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList.Count;
+            int newIdleLevelData =_idleLevelID%Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList.Count;
             _idleLevelLoader.Execute(newIdleLevelData);
         } 
         private void OnNextLevel()
