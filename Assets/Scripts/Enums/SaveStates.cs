@@ -3,6 +3,8 @@
     public enum SaveStates
     {
         level,
-        idle
+        idle,
+        idleLevelProgress,
+        
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Commands.Save;
+﻿using Commands.Save;
 using Signals;
 using UnityEngine;
 
@@ -23,6 +22,8 @@ namespace Managers
         private SaveGameCommand _saveGameCommand;
         private LoadIdleGameCommand _loadIdleGameCommand;
         private SaveIdleGameCommand _saveIdleGameCommand;
+        private SaveIdleLevelProcessCommand _saveIdleLevelProcessCommand;
+        private LoadIdlelevelProgressCommand _loadIdlelevelProgressCommand;
 
         #endregion
 
@@ -57,6 +58,8 @@ namespace Managers
             SaveSignals.Instance.onLoadGameData += _loadGameCommand.OnLoadGameData;
             SaveSignals.Instance.onSaveIdleLevelData += _saveIdleGameCommand.OnSaveIdleGameData;
             SaveSignals.Instance.onLoadIdleData += _loadIdleGameCommand.OnLoadBuildingsData;
+            SaveSignals.Instance.onSaveIdleLevelProgressData += _saveIdleLevelProcessCommand.Execute;
+            SaveSignals.Instance.onLoadIdleLevelProgressData += _loadIdlelevelProgressCommand.Execute;
         } 
         private void UnsubscribeEvents()
         {
@@ -64,6 +67,8 @@ namespace Managers
             SaveSignals.Instance.onLoadGameData -= _loadGameCommand.OnLoadGameData;
             SaveSignals.Instance.onSaveIdleLevelData -= _saveIdleGameCommand.OnSaveIdleGameData;
             SaveSignals.Instance.onLoadIdleData -= _loadIdleGameCommand.OnLoadBuildingsData;
+            SaveSignals.Instance.onSaveIdleLevelProgressData -= _saveIdleLevelProcessCommand.Execute;
+            SaveSignals.Instance.onLoadIdleLevelProgressData -= _loadIdlelevelProgressCommand.Execute;
         }
         private void OnDisable()
         {

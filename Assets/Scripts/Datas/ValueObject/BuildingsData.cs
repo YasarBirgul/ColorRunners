@@ -3,11 +3,15 @@ using Enums;
 
 namespace Datas.ValueObject
 {
-    [Serializable]
+    [Serializable] 
     public class BuildingsData
     {
-        public int BuildingCost;
+        public int AddressId;
+        public bool isDepended;
+        public int buildingMarketPrice;
         public int PayedAmount;
+        public float Saturation;
         public IdleLevelStateType IdleLevelStateType;
+        public SideObjectData SideObjectData;
     }
 }

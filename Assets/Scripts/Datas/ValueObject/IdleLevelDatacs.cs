@@ -8,7 +8,6 @@ namespace Datas.ValueObject
     public class IdleLevelData 
     {
         public List<BuildingsData> BuildingsDatas;
-        public NeigboorhoodData NeigboorhoodData;
         public IdleLevelStateType IdleLevelStateType;
     }
 }

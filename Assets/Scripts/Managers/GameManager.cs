@@ -1,4 +1,5 @@
-﻿using Signals;
+﻿using System;
+using Signals;
 using UnityEngine;
 
 namespace Managers
@@ -44,12 +45,17 @@ namespace Managers
         { 
             if (paused)
             { 
-                CoreGameSignals.Instance.onGamePause?.Invoke(true);
+                CoreGameSignals.Instance.onGamePause?.Invoke();
             }
         } 
         private void OnChangeGameState(GameStates NewCurrentState)
         {
             CurrentState = NewCurrentState;
+        }
+
+        private void OnApplicationQuit()
+        {
+            
         }
     }
 }

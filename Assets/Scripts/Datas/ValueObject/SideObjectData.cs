@@ -1,4 +1,5 @@
 ﻿using System;
+using Enums;
 
 namespace Datas.ValueObject
 {
@@ -9,9 +10,11 @@ namespace Datas.ValueObject
 
         public int PayedAmount;
 
+        public int BuildingAddressId;
+        
         public float Saturation;
-        
-        
+
+        public IdleLevelStateType IdleLevelStateType = IdleLevelStateType.Uncompleted;
 
     }
 }

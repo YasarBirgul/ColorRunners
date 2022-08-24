@@ -8,9 +8,10 @@ namespace Signals
     {
         public UnityAction onGameOpen = delegate {  };
         public UnityAction onGameClose = delegate {  };
-        public UnityAction<bool> onGamePause = delegate {  };
+        public UnityAction onGamePause = delegate {  };
         public UnityAction onPlay = delegate {  };
         public UnityAction<GameStates> onChangeGameState=delegate {  };
         public UnityAction onReset=delegate { };
+        public UnityAction onApplicatiponQuit = delegate {  };
     }
 }
