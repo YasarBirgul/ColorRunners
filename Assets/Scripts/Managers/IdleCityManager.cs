@@ -25,8 +25,6 @@ namespace Managers
 
         #region Private Variables
         
-        private int index;
-        
         private int _idleLevelId;
 
         #endregion
@@ -41,7 +39,6 @@ namespace Managers
         private void GetIdleLevelData()
         {
             _idleLevelId = LevelSignals.Instance.onGetIdleLevelID.Invoke();
-            Debug.Log("IdleCityman" + _idleLevelId);
         } 
         private void Start()
         { 
@@ -104,7 +101,6 @@ namespace Managers
                     IdleLevelStateType.Completed)
                 {
                     IdleLevelData.BuildingsDatas[i].AddressId = i;
-                                    
                     BuildingManagers[i].buildingAdressId = i;
                     BuildingManagers[i].MarketPrice = IdleLevelData.BuildingsDatas[i].buildingMarketPrice;
                     BuildingManagers[i].PayedAmount = IdleLevelData.BuildingsDatas[i].PayedAmount;

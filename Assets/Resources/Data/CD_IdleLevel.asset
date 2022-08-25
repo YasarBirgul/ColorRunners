@@ -19,7 +19,7 @@ MonoBehaviour:
       buildingMarketPrice: 150
       PayedAmount: 0
       Saturation: 0
-      IdleLevelStateType: 1
+      IdleLevelStateType: 0
       SideObjectData:
         MarketPrice: 0
         PayedAmount: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
         IdleLevelStateType: 0
     - AddressId: 5
       isDepended: 0
-      buildingMarketPrice: 0
+      buildingMarketPrice: 500
       PayedAmount: 0
       Saturation: 0
       IdleLevelStateType: 0
@@ -87,5 +87,17 @@ MonoBehaviour:
         Saturation: 0
         IdleLevelStateType: 0
     IdleLevelStateType: 0
-  - BuildingsDatas: []
+  - BuildingsDatas:
+    - AddressId: 0
+      isDepended: 0
+      buildingMarketPrice: 0
+      PayedAmount: 0
+      Saturation: 0
+      IdleLevelStateType: 0
+      SideObjectData:
+        MarketPrice: 0
+        PayedAmount: 0
+        BuildingAddressId: 0
+        Saturation: 0
+        IdleLevelStateType: 0
     IdleLevelStateType: 0

@@ -8,6 +8,7 @@ using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace Managers 
 {
@@ -110,16 +111,22 @@ namespace Managers
             {
                 _stackLerpMovementCommand.Execute();   
             }
-        } 
-        
+        }
         private void OnIncreaseStack(GameObject other)
         {
             _colAddOnStackCommand.Execute(other);
             StartCoroutine(_colScaleUpCommand.Execute(other));
+            ScoreSignals.Instance.onIncreaseScore?.Invoke();
+            if (collected.Count == 1)
+            {
+                _playerManager.transform.position = collected[0].transform.position;
+                ScoreSignals.Instance.onPlayerScoreSetActive?.Invoke(true);
+            }
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
             _colRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
+            ScoreSignals.Instance.onDecreaseScore?.Invoke();
         } 
         private async void OnColorChange(ColorType colorType)
         {
@@ -131,6 +138,8 @@ namespace Managers
         } 
         private void OnEnterDroneArea(int index)
         {
+            ScoreSignals.Instance.onPlayerScoreSetActive?.Invoke(false);
+            ScoreSignals.Instance.onDecreaseScore?.Invoke();
             collected[index].transform.SetParent(tempHolder.transform);
             collected[index].GetComponent<CollectableManager>().RemoveOutline(true);
             collected.RemoveAt(index);
@@ -140,7 +149,6 @@ namespace Managers
                 DroneAreaSignals.Instance.onColliderDisable?.Invoke();
                 DroneAreaSignals.Instance.onEnableFinalCollider?.Invoke();
             }
-        } 
-        
+        }
     }
 }    

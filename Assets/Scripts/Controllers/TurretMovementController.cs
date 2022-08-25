@@ -91,8 +91,6 @@ namespace Controllers
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
-                Debug.Log(hit.transform.name);
-                Debug.DrawRay(transform.position, transform.forward*25,Color.green);
                 int RandomInt = Random.Range(0, 100);
                 if (hit.transform.CompareTag("Collected"))
                 {

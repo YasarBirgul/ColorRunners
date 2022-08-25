@@ -1,5 +1,4 @@
-﻿using System;
-using Managers;
+﻿using Managers;
 using UnityEngine;
 
 namespace Controllers
@@ -22,7 +21,5 @@ namespace Controllers
                 Destroy(other.gameObject);
             }
         }
-
-        
     }
 }

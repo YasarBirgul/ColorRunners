@@ -2,6 +2,7 @@ using Datas.ValueObject;
 using DG.Tweening;
 using Keys;
 using Managers;
+using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -141,7 +142,7 @@ namespace Controllers
         {
             playerManager.transform.DOMove(new Vector3(0,playerManager.transform.position.y,
                 other.transform.position.z + other.gameObject.transform.localScale.z), 2f).OnComplete(
-                () => { 
+                () => {
                     _movementData.forwardSpeed = 10;
                 });
         }
