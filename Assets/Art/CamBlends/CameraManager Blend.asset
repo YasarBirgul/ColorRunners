@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CameraManager Blend
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: RunnerCam
-    m_To: IdleCam
+  - m_From: Runner
+    m_To: Idle
     m_Blend:
       m_Style: 1
       m_Time: 2
@@ -24,8 +24,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: IdleCam
-    m_To: RunnerCam
+  - m_From: Idle
+    m_To: Runner
     m_Blend:
       m_Style: 1
       m_Time: 2

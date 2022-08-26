@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 254159868}
   - component: {fileID: 254159867}
   m_Layer: 0
-  m_Name: IdleCam
+  m_Name: Idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 668630462}
   - component: {fileID: 668630461}
   m_Layer: 0
-  m_Name: RunnerCam
+  m_Name: Runner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,9 +1346,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 1
   m_FollowOffset: {x: 0, y: 15, z: -17}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1370,8 +1370,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 0
+  m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -1564,8 +1564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73f792c6d9bbdb449c0d69c5a4adafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunnerCamera: {fileID: 668630461}
-  IdleGameCamera: {fileID: 254159867}
+  StateCam: {fileID: 1682709015}
+  lookCinemachineAxis: {fileID: 1682709014}
 --- !u!114 &1682709014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1606,11 +1606,11 @@ MonoBehaviour:
   - {fileID: 668630461}
   - {fileID: 254159867}
   m_Instructions:
-  - m_FullHash: -415261597
+  - m_FullHash: -38526901
     m_VirtualCamera: {fileID: 668630461}
     m_ActivateAfter: 0
     m_MinDuration: 0
-  - m_FullHash: 1565485307
+  - m_FullHash: 1432961145
     m_VirtualCamera: {fileID: 254159867}
     m_ActivateAfter: 0
     m_MinDuration: 0
@@ -1625,9 +1625,9 @@ MonoBehaviour:
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 11400000, guid: d5e8102ecf26eb34b9d69d9f9287cec9, type: 2}
   m_ParentHash:
-  - m_Hash: -415261597
+  - m_Hash: -38526901
     m_ParentHash: 756556552
-  - m_Hash: 1565485307
+  - m_Hash: 1432961145
     m_ParentHash: 756556552
 --- !u!4 &1682709016
 Transform:

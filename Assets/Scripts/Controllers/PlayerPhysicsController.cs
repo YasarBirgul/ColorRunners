@@ -54,11 +54,6 @@ namespace Controllers
             if (other.CompareTag("DroneArea"))
             {
                 playerManager.StopVerticalMovement();
-                CameraSignals.Instance.onEnterMiniGame?.Invoke();
-            }
-            if (other.CompareTag("AfterGround"))
-            {
-                CameraSignals.Instance.onExitMiniGame?.Invoke();
             }
         }
     }

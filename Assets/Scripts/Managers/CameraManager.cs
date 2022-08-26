@@ -1,5 +1,6 @@
 using Cinemachine;
 using Enums;
+using Extentions;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,12 +12,14 @@ namespace Managers
         #region Self Variables
         
         #region Public Variables
-        public CinemachineVirtualCamera RunnerCamera;
-        public CinemachineVirtualCamera IdleGameCamera;
+
+        public CinemachineStateDrivenCamera StateCam;
         
         #endregion
 
         #region Serialized Variables
+
+        [SerializeField] private LookCinemachineAxis lookCinemachineAxis ;
         
         #endregion
 
@@ -24,10 +27,10 @@ namespace Managers
         
         
         [ShowInInspector] private Vector3 _initialPosition;
-        private CinemachineTransposer _miniGameTransposer;
         private  Animator _animator;
         private CameraStatesType _cameraStatesType = CameraStatesType.Runner;
-       
+        private PlayerManager _playerManager;
+        
         #endregion
         
         #endregion
@@ -40,7 +43,6 @@ namespace Managers
         private void GetReferences()
         {
             _animator = GetComponent<Animator>();
-            _miniGameTransposer = IdleGameCamera.GetCinemachineComponent<CinemachineTransposer>();
         }
 
         #region Event Subscriptions
@@ -52,21 +54,17 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            CoreGameSignals.Instance.onPlay += SetCameraTarget;
+            CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
             CameraSignals.Instance.onSetCameraTarget += OnSetCameraTarget;
             CoreGameSignals.Instance.onReset += OnReset;
-            CameraSignals.Instance.onEnterMiniGame += OnPlayerEnterMiniGame;
-            CameraSignals.Instance.onExitMiniGame+= OnPlayerExitMiniGame;
         }
         private void UnsubscribeEvents()
         {
-            CoreGameSignals.Instance.onPlay -= SetCameraTarget;
+            CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
             CameraSignals.Instance.onSetCameraTarget -= OnSetCameraTarget;
             CoreGameSignals.Instance.onReset -= OnReset;
-            CameraSignals.Instance.onEnterMiniGame -= OnPlayerEnterMiniGame;
-            CameraSignals.Instance.onExitMiniGame -= OnPlayerExitMiniGame;
         }
         private void OnDisable()
         {
@@ -82,48 +80,49 @@ namespace Managers
         {
             transform.localPosition = _initialPosition;
         }
-        private void SetCameraTarget()
+        private void OnPlay()
         {
-            CameraSignals.Instance.onSetCameraTarget?.Invoke();
+            CameraSignals.Instance.onSetCameraTarget?.Invoke(CameraStatesType.Runner);
         }
-        private void OnSetCameraTarget()
+        private void OnSetCameraTarget(CameraStatesType Currentstate)
         {
-            var playerManager = FindObjectOfType<PlayerManager>().transform;
-            RunnerCamera.Follow = playerManager;
-            IdleGameCamera.Follow = playerManager;
-        }
-        private void OnPlayerEnterMiniGame()
-        {
-            RunnerCamera.Follow = null;
-        } 
-        private void OnPlayerExitMiniGame()
-        {
-            var playerManager = FindObjectOfType<PlayerManager>().transform;
-            RunnerCamera.Follow = playerManager;
-            IdleGameCamera.Follow = playerManager;
+            if (!_playerManager)
+            { 
+                _playerManager = FindObjectOfType<PlayerManager>();
+            }
+            
+            if (Currentstate == CameraStatesType.Runner)
+            {
+                StateCam.Follow = _playerManager.transform;
+                StateCam.LookAt = null;
+                lookCinemachineAxis.enabled = true;
+            }
+            else 
+            {
+                StateCam.LookAt = _playerManager.transform;
+                lookCinemachineAxis.enabled = false;
+            }
+            _animator.Play(Currentstate.ToString());
         }
         private void OnReset()
         {
-            RunnerCamera.Follow = null;
-            RunnerCamera.LookAt = null;
+            StateCam.Follow = null;
             _cameraStatesType = CameraStatesType.Runner;
             OnMoveToInitialPosition();
         }
-        void OnChangeGameState(GameStates Current)
+        void OnChangeGameState(GameStates currentGameState)
         {
-            SetCameraState(Current);
-        }
-        private void SetCameraState(GameStates Current)
-        {
-            if (Current == GameStates.Idle)
+            switch (currentGameState)
             {
-                _cameraStatesType = CameraStatesType.Idle;
+                case GameStates.Idle:
+                    _cameraStatesType = CameraStatesType.Idle;
+                    OnSetCameraTarget(_cameraStatesType);
+                    break;
+                case GameStates.Runner:
+                    _cameraStatesType = CameraStatesType.Runner; 
+                    OnSetCameraTarget(_cameraStatesType); 
+                    break;
             }
-            else if (Current == GameStates.Runner)
-            {
-                _cameraStatesType = CameraStatesType.Runner;
-            }
-            _animator.Play(Current.ToString());
         }
     }
 }
