@@ -168,6 +168,7 @@ namespace Managers
                 await Task.Delay(100);
                 collected[0].SetActive(false);
                 collected[0].transform.parent = tempHolder.transform;
+                PlayerSignal.Instance.onIncreaseScale?.Invoke();
                 collected.RemoveAt(0);
             }
         }
