@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMeshRenderer: {fileID: 4682250108361384098}
+  playerManager: {fileID: 8206093447873234512}
 --- !u!1001 &7781819257866913247
 PrefabInstance:
   m_ObjectHideFlags: 0

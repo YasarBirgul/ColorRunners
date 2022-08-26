@@ -27,10 +27,6 @@ namespace Controllers
         #endregion
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("IdleGameInvoker"))
-            {
-                PlayerSignal.Instance.onIncreaseScale?.Invoke();
-            }
             if (CompareTag("Collected") && other.CompareTag("Collectable"))
             {
                 CollectableManager otherColManager = other.transform.parent.GetComponent<CollectableManager>();

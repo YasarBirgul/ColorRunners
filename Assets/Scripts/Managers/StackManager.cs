@@ -57,6 +57,7 @@ namespace Managers
         } 
         private void SubscribeEvents()
         {
+            CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
             CoreGameSignals.Instance.onGameOpen += OnGameOpen;
             CoreGameSignals.Instance.onPlay += OnPlay;
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
@@ -66,6 +67,7 @@ namespace Managers
         } 
         private void UnsubscribeEvents()
         {
+            CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
             CoreGameSignals.Instance.onGameOpen -= OnGameOpen;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
@@ -148,6 +150,25 @@ namespace Managers
             {
                 DroneAreaSignals.Instance.onColliderDisable?.Invoke();
                 DroneAreaSignals.Instance.onEnableFinalCollider?.Invoke();
+            }
+        }
+        private void OnChangeGameState(GameStates currentState)
+        {
+            if (currentState == GameStates.Roullette)
+            {
+                StackDeList();
+                collected.TrimExcess();
+            }
+        }
+        private async void StackDeList()
+        {
+            int ListTotalCount = collected.Count;
+            for (int i = 0; i < ListTotalCount; i++)
+            {
+                await Task.Delay(100);
+                collected[0].SetActive(false);
+                collected[0].transform.parent = tempHolder.transform;
+                collected.RemoveAt(0);
             }
         }
     }

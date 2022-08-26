@@ -22,6 +22,10 @@ namespace Controllers
         #endregion
         private void OnTriggerEnter(Collider other)
         {
+            if (other.CompareTag("Collected"))
+            {
+                playerManager.OnIncreaseScale();
+            }
             if (other.CompareTag("IdleGameInvoker"))
             {
                 playerManager.ChangeState(GameStates.Roullette);

@@ -1,4 +1,6 @@
+using DG.Tweening;
 using Enums;
+using Managers;
 using UnityEngine;
 
 public class PlayerMeshController : MonoBehaviour
@@ -12,6 +14,7 @@ public class PlayerMeshController : MonoBehaviour
     #region Serialized Variables
         
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
+    [SerializeField] private PlayerManager playerManager;
     #endregion
     
     #endregion
@@ -21,13 +24,6 @@ public class PlayerMeshController : MonoBehaviour
     }
     public void IncreaseSize()
     {
-        var PlayerScale = transform.parent.localScale;
-        
-        PlayerScale += new Vector3(1f, 1f, 1f);
-        
-       // if (PlayerScale.x >= 2)
-       // { 
-       //     PlayerScale = Vector3.one*2;
-       // }
+        playerManager.transform.DOScale(playerManager.transform.localScale*2, 2.0f);
     }
 }
