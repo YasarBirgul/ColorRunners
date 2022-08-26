@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using Commands.Input;
 using Datas.UnityObject;
 using Datas.ValueObject;
-using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 namespace Managers
@@ -83,11 +80,11 @@ namespace Managers
             CoreGameSignals.Instance.onReset -= OnReset;
             CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
         }
-
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
+        
         #endregion
         private void Update()
         {

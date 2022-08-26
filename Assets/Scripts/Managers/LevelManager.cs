@@ -1,5 +1,4 @@
-﻿using System;
-using Commands.Level;
+﻿using Commands.Level;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using Enums;
@@ -117,7 +116,6 @@ namespace Managers
             int newIdleLevelData = _idleLevelID%Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList.Count;
             return Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[newIdleLevelData];
         }
-
         private void InitializeLevel()
         {
             

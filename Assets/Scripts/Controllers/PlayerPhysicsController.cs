@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using Enums;
+﻿using Enums;
 using Managers;
 using Signals;
 using UnityEngine;
@@ -39,7 +38,6 @@ namespace Controllers
             {
                 playerManager.OnEnableFinalCollider(other.gameObject);
             }
-
             if (other.CompareTag("DroneColorArea"))
             {
                 if (playerManager.PlayerColorType == other.GetComponent<DroneAreaColorController>().ColorType)
@@ -47,7 +45,6 @@ namespace Controllers
                     other.GetComponent<DroneAreaColorController>().DroneAreaMatchType = CollectableMatchType.Match;
                 }
             }
-            
         }
         private void OnTriggerExit(Collider other)
         {

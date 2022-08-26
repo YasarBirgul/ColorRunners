@@ -3,7 +3,6 @@ using Controllers;
 using Enums;
 using Signals;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Managers
 {

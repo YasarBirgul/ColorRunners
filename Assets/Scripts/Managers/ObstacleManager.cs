@@ -41,8 +41,6 @@ namespace Managers
             ColoredAreaSignals.Instance.onTurretDetect -= OnTurretDetection;
             ColoredAreaSignals.Instance.onExitTurretArea -= OnTurretExit;
         }
-
-      
         private void OnDisable()
         {
             UnsubscribeEvents();

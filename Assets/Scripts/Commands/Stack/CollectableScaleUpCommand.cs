@@ -31,7 +31,7 @@ namespace Commands.Stack
         public IEnumerator Execute(GameObject _collectable)
         {
             {
-                for (int i = _stacklist.Count -1; i >= 0; i--)
+                for (int i = 0; i < _stacklist.Count ; i++)
                 {
                     int index = i;
                     Vector3 scale = Vector3.one * _stackData.ScaleFactor;
@@ -39,7 +39,6 @@ namespace Commands.Stack
                     _stacklist[index].transform.DOScale(Vector3.one, _stackData.ScaleUpDelay).SetDelay(_stackData.ScaleUpDelay).SetEase(Ease.Flash);
                     yield return new WaitForSeconds(0.05f);
                 }
-
             }
         }
     }

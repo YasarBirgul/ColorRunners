@@ -125,6 +125,7 @@ MonoBehaviour:
   CurrentGameState: 0
   PlayerColorType: 0
   movementController: {fileID: 8886984498351355126}
+  physicsController: {fileID: 5870254985234770841}
 --- !u!114 &8886984498351355126
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,11 +25,10 @@ namespace Managers
         #region Serialized Variables
         
         [Space][SerializeField] private PlayerMovementController movementController;
-        
-        // physic controller ekle
+
+        [SerializeField] private PlayerPhysicsController physicsController;
 
         #region Private Variables
-        
         
         #endregion
 
