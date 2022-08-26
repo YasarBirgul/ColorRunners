@@ -51,10 +51,5 @@ namespace Managers
         {
             CurrentState = NewCurrentState;
         }
-
-        private void OnApplicationQuit()
-        {
-            
-        }
     }
 }

@@ -76,5 +76,9 @@ namespace Managers
         {
             ColoredAreaSignals.Instance.onExitTurretArea.Invoke();
         }
+        private void DecreaseStackOnIdle()
+        {
+            
+        }
     }
 }

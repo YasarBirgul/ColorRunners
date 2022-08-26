@@ -69,6 +69,7 @@ namespace Controllers
         public void IsReadyToPlay(bool state)
         {
             _isReadyToPlay = state;
+            Stop();
         }
         private void FixedUpdate()
         {

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756f5f56c6cfea04fbe8f453a99fb606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4221006221323483214}
 --- !u!1 &8206093447771127966
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +127,9 @@ MonoBehaviour:
   PlayerColorType: 0
   movementController: {fileID: 8886984498351355126}
   physicsController: {fileID: 5870254985234770841}
+  playerMeshController: {fileID: 5165384758407283739}
+  playerMeshGO: {fileID: 7439940758284449934}
+  animationController: {fileID: 2645828455881197336}
 --- !u!114 &8886984498351355126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331d2cc421070a44eb12f8fa119ceaf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 4682250108361384098}
 --- !u!1001 &7781819257866913247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -233,6 +238,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7917291961305824890, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6123731347151673987, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -241,6 +250,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 1082271958561512970, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 89d5ddba906884f45abc6112e1ac107f, type: 2}
     - target: {fileID: 5866666021909216657, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -257,8 +274,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
   m_PrefabInstance: {fileID: 7781819257866913247}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &4221006221323483214 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+  m_PrefabInstance: {fileID: 7781819257866913247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8781653729716470873 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7917291961305824890, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
+  m_PrefabInstance: {fileID: 7781819257866913247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4682250108361384098 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6123731347151673987, guid: c46b9bb32d9e44f48bd2af968121fe60, type: 3}
   m_PrefabInstance: {fileID: 7781819257866913247}
   m_PrefabAsset: {fileID: 0}

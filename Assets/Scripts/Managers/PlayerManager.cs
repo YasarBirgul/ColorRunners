@@ -28,6 +28,12 @@ namespace Managers
 
         [SerializeField] private PlayerPhysicsController physicsController;
 
+        [SerializeField] private PlayerMeshController playerMeshController;
+
+        [SerializeField] private GameObject playerMeshGO;
+
+        [SerializeField] private PlayerAnimationController animationController;
+
         #region Private Variables
         
         #endregion
@@ -60,7 +66,8 @@ namespace Managers
             InputSignals.Instance.onInputReleased += OnDeactiveMovement;
             InputSignals.Instance.onRunnerInputDragged+= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged+= OnGetIdleInputValues;
-            
+            PlayerSignal.Instance.onIncreaseScale += OnIncreaseScale;
+
         } 
         private void UnsubscribeEvents()
         {
@@ -71,7 +78,7 @@ namespace Managers
             InputSignals.Instance.onInputReleased -= OnDeactiveMovement;
             InputSignals.Instance.onRunnerInputDragged -= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
-           ;
+            PlayerSignal.Instance.onIncreaseScale -= OnIncreaseScale;
            
         } 
         private void OnDisable()
@@ -87,6 +94,8 @@ namespace Managers
         {
             movementController.DeactiveMovement();
             movementController.SetRunnerMovementValues(0,0);
+            animationController.ChangeCollectableAnimation(PlayerAnimationStates.Idle);
+            
         } 
         private void OnGetRunnerInputValues(RunnerGameInputParams runnerGameInputParams)
         {
@@ -95,15 +104,31 @@ namespace Managers
         private void OnGetIdleInputValues(IdleGameInputParams idleGameInputParams)
         {
             movementController.UpdateIdleInputValue(idleGameInputParams);
+            animationController.ChangeCollectableAnimation(PlayerAnimationStates.Running);
+            Vector3 movementDirection = new Vector3(idleGameInputParams.XValue, 0, idleGameInputParams.ZValue);
+            if (movementDirection != Vector3.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(movementDirection,Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation,toRotation,30);
+            }
         }
         public void SendGateColorData(ColorType colorType)
         {
             StackSignals.Instance.onColorChange?.Invoke(colorType);
             PlayerColorType = colorType;
+            playerMeshController.SetColor(colorType);
         }
-        public void ChangeState(GameStates state)
+        public void ChangeState(GameStates Currentstate)
         {
-            CoreGameSignals.Instance.onChangeGameState?.Invoke(state);
+            CoreGameSignals.Instance.onChangeGameState?.Invoke(Currentstate);
+            if (Currentstate == GameStates.Runner)
+            {
+                playerMeshGO.SetActive(false);
+            }
+            else
+            {
+                playerMeshGO.SetActive(true);
+            }
         }
         public void StopVerticalMovement()
         {
@@ -120,7 +145,6 @@ namespace Managers
         private void OnChangeGameState(GameStates CurrentState)
         {
             CurrentGameState = CurrentState;
-            Debug.Log(CurrentState);
             if (CurrentState == GameStates.Idle)
             { 
                 ActivateAllMovement(true);
@@ -133,6 +157,13 @@ namespace Managers
         public void ActivateAllMovement(bool Activate)
         {
             movementController.IsReadyToPlay(Activate);
+        }
+        public void OnIncreaseScale()
+        { 
+            if (CurrentGameState != GameStates.Runner)
+            {
+                playerMeshController.IncreaseSize();
+            }
         }
     }
 }
