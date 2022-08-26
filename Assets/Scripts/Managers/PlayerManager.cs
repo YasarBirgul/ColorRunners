@@ -5,7 +5,6 @@ using Enums;
 using Keys;
 using Signals;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 namespace Managers
 { 
@@ -47,17 +46,12 @@ namespace Managers
             Data = GetPlayerData();
             SendPlayerDataToControllers();
         }
-
-        private PlayerData GetPlayerData()
-        {
-          // var colorHandler=Addressables.LoadAssetAsync<CD_Player>($"Data/CD_Player");
-          // meshRenderer.material = (colorHandler.WaitForCompletion() != null)?colorHandler.Result:null;
-            return Resources.Load<CD_Player>("Data/CD_Player").PlayerData;
-        }
+        private PlayerData GetPlayerData() => Resources.Load<CD_Player>("Data/CD_Player").PlayerData;
         private void SendPlayerDataToControllers()
         {
             movementController.SetMovementData(Data.PlayerMovementData);
         }
+        
         #region Event Subscription
         private void OnEnable()
         {

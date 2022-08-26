@@ -1,4 +1,5 @@
-﻿using Enums;
+﻿using System.Threading.Tasks;
+using Enums;
 using Keys;
 using Managers;
 using Signals;
@@ -84,7 +85,7 @@ namespace Controllers
                 if (collectableManager.MatchType != CollectableMatchType.Match)
                 {
                     collectableManager.SetAnim(CollectableAnimationStates.Dead);
-                    collectableManager.gameObject.SetActive(false);
+                    collectableManager.SetActiveFalse();
                 }
                 else
                 {

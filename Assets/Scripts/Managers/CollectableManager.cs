@@ -76,9 +76,10 @@ namespace Managers
         {
             ColoredAreaSignals.Instance.onExitTurretArea.Invoke();
         }
-        private void DecreaseStackOnIdle()
+        public async void SetActiveFalse()
         {
-            
+            await Task.Delay(3000);
+            gameObject.SetActive(false);
         }
     }
 }

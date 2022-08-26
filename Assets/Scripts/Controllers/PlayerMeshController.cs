@@ -24,6 +24,11 @@ public class PlayerMeshController : MonoBehaviour
     }
     public void IncreaseSize()
     {
-        playerManager.transform.DOScale(playerManager.transform.localScale * 2, 2.0f);
+        var PlayerManagerScale = playerManager.transform.localScale;
+        
+        if (PlayerManagerScale.x <= Vector3.one.x * 2f)
+        {
+            playerManager.transform.DOScale(PlayerManagerScale + Vector3.one*0.5f, 2.0f);
+        }
     }
 }

@@ -5,7 +5,6 @@ namespace Controllers
 {
     public class CollectableAnimationController : MonoBehaviour
     {
-        
         #region Self Variables
     
         #region Public Variables
@@ -24,18 +23,19 @@ namespace Controllers
             switch (collectableAnimationStates)
             {
                 case CollectableAnimationStates.Idle:
+                    animator.SetTrigger(collectableAnimationStates.ToString());
                     break;
                 case CollectableAnimationStates.Running:
-                    animator.SetTrigger(("isRunning"));
+                    animator.SetTrigger(collectableAnimationStates.ToString());
                     break;
                 case CollectableAnimationStates.Crouching:
-                    animator.SetTrigger(("isCrouching"));
+                    animator.SetTrigger(collectableAnimationStates.ToString());
                     break;
                 case CollectableAnimationStates.CrouchWalking:
-                   animator.SetTrigger("isCrouchWalking");
+                   animator.SetTrigger(collectableAnimationStates.ToString());
                     break;
                 case CollectableAnimationStates.Dead:
-                       animator.SetTrigger("Dead");
+                       animator.Play(collectableAnimationStates.ToString());
                     break; 
             }
         }
