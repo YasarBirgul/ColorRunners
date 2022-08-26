@@ -17,6 +17,7 @@ namespace Managers
           #region Serialized Variables
   
           [SerializeField] private GameObject playerScoreHolder;
+          [SerializeField] private TextMeshProUGUI UIScoreText;
           [SerializeField] private TextMeshPro scoreText;
           private StackData _stackData;
           #endregion
@@ -63,6 +64,7 @@ namespace Managers
               FindPlayer();
               _score = _stackData.InitializedStack.Count;
               scoreText.text = _score.ToString();
+              UIScoreText.text = _score.ToString();
           }
           private void FindPlayer()
           {
@@ -76,11 +78,13 @@ namespace Managers
           {
               _score++;
               scoreText.text = _score.ToString();
+              UIScoreText.text = _score.ToString();
           }
           private void OnDecreaseScore()
           {
               _score--;
               scoreText.text = _score.ToString();
+              UIScoreText.text = _score.ToString();
           }
           private void OnPlayerScoreSetActive(bool OnPlayerScoreSetActive)
           {

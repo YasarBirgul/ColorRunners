@@ -55,7 +55,7 @@ namespace Managers
           UISignals.Instance.onOpenPanel -= OnOpenPanel;
           UISignals.Instance.onClosePanel -= OnClosePanel;
           CoreGameSignals.Instance.onPlay -= OnPlay;
-          CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
+          CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
       }
 
       private void OnDisable()
@@ -80,14 +80,27 @@ namespace Managers
           CoreGameSignals.Instance.onPlay?.Invoke();
       }
 
+      public void ClaimButton()
+      { 
+          OnClosePanel(UIPanels.RoullettePanel);
+          CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
+          OnOpenPanel(UIPanels.IdlePanel);
+      }
       void OnChangeGameState(GameStates Current)
       {
-          _currentGameState = Current;
-          ChangeUIState(_currentGameState);
+          ChangeUIState(Current);
       } 
       private void ChangeUIState(GameStates Current)
       {
-          _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
+          switch (Current)
+          {
+              case GameStates.Roullette:
+                  OnOpenPanel(UIPanels.RoullettePanel);
+                  break;
+              case GameStates.Idle:
+                  _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
+                  break;
+          }
       }
     }
 }

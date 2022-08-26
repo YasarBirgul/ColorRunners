@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RainbowMaterial
+  m_Name: Rainbow
   m_Shader: {fileID: -6465566751694194690, guid: 524279adaa4a37c499afb26c3c5a2c96, type: 3}
   m_ShaderKeywords: _MK_ARTISTIC_PROJECTION_SCREEN_SPACE _MK_ENVIRONMENT_REFLECTIONS_AMBIENT
     _MK_LIGHT_CEL _MK_OUTLINE_HULL_CLIP _MK_RECEIVE_SHADOWS _MK_WRAPPED_DIFFUSE _RECEIVESHADOWS_ON

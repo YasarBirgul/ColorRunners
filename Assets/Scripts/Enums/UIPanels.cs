@@ -5,6 +5,7 @@
         StartPanel,
         LevelPanel,
         FailPanel,
-        IdlePanel
+        IdlePanel,
+        RoullettePanel,
     }
 }

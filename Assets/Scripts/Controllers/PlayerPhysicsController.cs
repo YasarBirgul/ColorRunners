@@ -24,7 +24,8 @@ namespace Controllers
         {
             if (other.CompareTag("IdleGameInvoker"))
             {
-                playerManager.ChangeState(GameStates.Idle);
+                playerManager.ChangeState(GameStates.Roullette);
+                playerManager.ActivateAllMovement(false);
             }
             if (other.CompareTag("ColorArea"))
             {

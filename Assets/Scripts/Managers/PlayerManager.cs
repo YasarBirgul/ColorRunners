@@ -83,7 +83,7 @@ namespace Managers
         {
             movementController.EnableMovement();
         }
-        private void OnDeactiveMovement()
+        public void OnDeactiveMovement()
         {
             movementController.DeactiveMovement();
             movementController.SetRunnerMovementValues(0,0);
@@ -120,10 +120,19 @@ namespace Managers
         private void OnChangeGameState(GameStates CurrentState)
         {
             CurrentGameState = CurrentState;
+            Debug.Log(CurrentState);
+            if (CurrentState == GameStates.Idle)
+            { 
+                ActivateAllMovement(true);
+            }
         }
         public void OnEnableFinalCollider(GameObject other)
         {
             movementController.StartVerticalMovement(other.gameObject);
+        }
+        public void ActivateAllMovement(bool Activate)
+        {
+            movementController.IsReadyToPlay(Activate);
         }
     }
 }
