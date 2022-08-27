@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Commands.UI;
 using Controllers;
 using DG.Tweening;
@@ -89,15 +90,24 @@ namespace Managers
           CoreGameSignals.Instance.onPlay?.Invoke();
       }
 
-      public void ClaimButton()
+      public async void ClaimButton()
       {
           CursorSelect();
+          await Task.Delay(2000);
+          OnClosePanel(UIPanels.RoullettePanel);
+          OnOpenPanel(UIPanels.IdlePanel);
+          CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
       }
       public void NoThanksButton()
       {
           OnClosePanel(UIPanels.RoullettePanel);
           CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
           OnOpenPanel(UIPanels.IdlePanel);
+      } 
+      public void NextLevelButton()
+      {
+          
+          
       }
       void OnChangeGameState(GameStates Current)
       {

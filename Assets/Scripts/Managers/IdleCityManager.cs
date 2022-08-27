@@ -50,9 +50,7 @@ namespace Managers
             } 
              LoadCityData(IdleLevelData);
               SetDataToBuildingManagers();
-        } 
-    
-        
+        }
         #region Event Subscription
         private void OnEnable()
         {
