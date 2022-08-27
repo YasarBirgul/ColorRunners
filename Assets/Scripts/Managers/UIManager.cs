@@ -1,8 +1,10 @@
 using Commands.UI;
 using Controllers;
+using DG.Tweening;
 using Enums;
 using Signals;
 using TMPro;
+using UnityEditor.Searcher;
 using UnityEngine;
 
 namespace Managers
@@ -18,8 +20,8 @@ namespace Managers
 
         [SerializeField] private GameObject joystickInner;
         [SerializeField] private GameObject joystickOuter;
-        [SerializeField] private UIRoulletteController uıRoulletteController;
         [SerializeField] private TextMeshProUGUI levelText;
+        [SerializeField] private RectTransform arrowRectTransform;
 
         #endregion
         
@@ -27,7 +29,7 @@ namespace Managers
 
         private JoyStickStateCommand _joyStickStateCommand;
         private GameStates _currentGameState;
-
+        private int _multiply;
         #endregion
         #endregion
 
@@ -86,8 +88,13 @@ namespace Managers
       {
           CoreGameSignals.Instance.onPlay?.Invoke();
       }
+
       public void ClaimButton()
-      { 
+      {
+          CursorSelect();
+      }
+      public void NoThanksButton()
+      {
           OnClosePanel(UIPanels.RoullettePanel);
           CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
           OnOpenPanel(UIPanels.IdlePanel);
@@ -102,6 +109,7 @@ namespace Managers
           {
               case GameStates.Roullette:
                   OnOpenPanel(UIPanels.RoullettePanel);
+                  CursorMovement();
                   break;
               case GameStates.Idle:
                   _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
@@ -115,12 +123,52 @@ namespace Managers
           {
               levelID = 1;
               levelText.text = "level " + levelID.ToString();
-              OnOpenPanel(UIPanels.LevelPanel);
           }
+          else
+          {
+              levelText.text = "level " + levelID.ToString();
+          }
+          OnOpenPanel(UIPanels.LevelPanel);
       } 
       private void OnLevelFailed()
       {
           OnOpenPanel(UIPanels.FailPanel);
+      }
+
+      private void CursorMovement()
+      {
+          Sequence sequence = DOTween.Sequence();
+
+          sequence.Join(arrowRectTransform.DORotate(new Vector3(0, 0, 30), 1f).SetEase(Ease.Linear)).SetLoops(-1,LoopType.Yoyo);
+          sequence.Join(arrowRectTransform.DOLocalMoveX(-500f,1f)).SetEase(Ease.Linear).SetLoops(-1,LoopType.Yoyo);
+      }
+
+      private void CursorSelect()
+      {
+          float cursorPos = arrowRectTransform.localPosition.x;
+          
+          if (250 <= cursorPos && cursorPos < 500)
+          {
+              _multiply = 2;
+          }
+          else if (120 <= cursorPos && cursorPos < 250)
+          {
+              _multiply = 3;
+          }
+          else if (-120 < cursorPos && cursorPos < 120)
+          {
+              _multiply = 5;
+          }
+          else if (-250 < cursorPos && cursorPos <= -120)
+          {
+              _multiply = 3;
+          }
+          else if (-500 < cursorPos && cursorPos <= -250)
+          {
+              _multiply = 2;
+          }
+          ScoreSignals.Instance.onMultiplyScore?.Invoke(_multiply);
+          Debug.Log("Select " + _multiply );
       }
     }
 }

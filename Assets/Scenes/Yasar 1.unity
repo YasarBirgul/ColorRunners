@@ -976,17 +976,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593383839}
-  m_LocalRotation: {x: 0, y: 0.049024098, z: 0, w: 0.99879766}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.10000002}
   m_Children: []
-  m_Father: {fileID: 1496204750}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 5.62, z: 0}
+  m_Father: {fileID: 1711803760}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 190.29}
-  m_SizeDelta: {x: 1620.9971, y: 1620.9971}
+  m_AnchoredPosition: {x: 0, y: 377.67706}
+  m_SizeDelta: {x: 1923.6, y: 1685.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593383841
 MonoBehaviour:
@@ -1866,7 +1866,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 704597410}
-  - {fileID: 593383840}
+  - {fileID: 1711803760}
   - {fileID: 1383566401}
   - {fileID: 1694744635}
   m_Father: {fileID: 70764603}
@@ -2265,7 +2265,7 @@ GameObject:
   - component: {fileID: 1694744637}
   - component: {fileID: 1694744636}
   m_Layer: 5
-  m_Name: Claim (1)
+  m_Name: NoThanks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2336,7 +2336,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 245209779227172977}
         m_TargetAssemblyTypeName: Managers.UIManager, Assembly-CSharp
-        m_MethodName: ClaimButton
+        m_MethodName: NoThanksButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2431,6 +2431,42 @@ MonoBehaviour:
   playerScoreHolder: {fileID: 1966212125}
   UIScoreText: {fileID: 1841052723}
   scoreText: {fileID: 1473962891}
+--- !u!1 &1711803759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1711803760}
+  m_Layer: 5
+  m_Name: ArrowHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1711803760
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711803759}
+  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 593383840}
+  m_Father: {fileID: 1496204750}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 500, y: -202}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1769869317
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,7 +3375,6 @@ GameObject:
   - component: {fileID: 245209779227172973}
   - component: {fileID: 245209779227172977}
   - component: {fileID: 245209779227172976}
-  - component: {fileID: 245209779227172978}
   m_Layer: 0
   m_Name: UIRoot
   m_TagString: Untagged
@@ -3380,21 +3415,8 @@ MonoBehaviour:
   uiPanelController: {fileID: 245209779227172976}
   joystickInner: {fileID: 420331606}
   joystickOuter: {fileID: 1248943650}
-  "u\u0131RoulletteController": {fileID: 245209779227172978}
   levelText: {fileID: 1823803922}
---- !u!114 &245209779227172978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245209779227172975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8680c0a9f28e47919e01db9d8a06192a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rectTransformArrow: {fileID: 593383840}
+  arrowRectTransform: {fileID: 1711803760}
 --- !u!1 &4246293774114740309
 GameObject:
   m_ObjectHideFlags: 0
