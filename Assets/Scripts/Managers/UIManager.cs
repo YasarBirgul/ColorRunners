@@ -53,6 +53,7 @@ namespace Managers
           UISignals.Instance.onOpenPanel += OnOpenPanel;
           UISignals.Instance.onClosePanel += OnClosePanel;
           CoreGameSignals.Instance.onPlay += OnPlay;
+          CoreGameSignals.Instance.onReset += OnReset;
           CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
           UISignals.Instance.onSetLevelText += OnSetLevelText;
           LevelSignals.Instance.onLevelFailed += OnLevelFailed;
@@ -63,6 +64,7 @@ namespace Managers
           UISignals.Instance.onOpenPanel -= OnOpenPanel;
           UISignals.Instance.onClosePanel -= OnClosePanel;
           CoreGameSignals.Instance.onPlay -= OnPlay;
+          CoreGameSignals.Instance.onReset -= OnReset;
           CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
           UISignals.Instance.onSetLevelText -= OnSetLevelText;
           LevelSignals.Instance.onLevelFailed -= OnLevelFailed;
@@ -90,10 +92,9 @@ namespace Managers
           CoreGameSignals.Instance.onPlay?.Invoke();
       }
 
-      public async void ClaimButton()
+      public void ClaimButton()
       {
           CursorSelect();
-          await Task.Delay(2000);
           OnClosePanel(UIPanels.RoullettePanel);
           OnOpenPanel(UIPanels.IdlePanel);
           CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
@@ -103,7 +104,14 @@ namespace Managers
           OnClosePanel(UIPanels.RoullettePanel);
           CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Idle);
           OnOpenPanel(UIPanels.IdlePanel);
-      } 
+      }
+
+      public void RestartButton()
+      {
+          UISignals.Instance.onClosePanel?.Invoke(UIPanels.FailPanel);
+          CoreGameSignals.Instance.onReset?.Invoke();
+      }
+      
       public void NextLevelButton()
       {
           
@@ -178,7 +186,10 @@ namespace Managers
               _multiply = 2;
           }
           ScoreSignals.Instance.onMultiplyScore?.Invoke(_multiply);
-          Debug.Log("Select " + _multiply );
+      }
+      private void OnReset()
+      {
+          UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
       }
     }
 }

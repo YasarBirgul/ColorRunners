@@ -40,18 +40,22 @@ namespace Managers
               SubscribeEvents();
           }
           private void SubscribeEvents()
-          {
+          {  
+              CoreGameSignals.Instance.onReset += OnReset;
               CoreGameSignals.Instance.onPlay += OnPlay;
               ScoreSignals.Instance.onIncreaseScore += OnIncreaseScore;
               ScoreSignals.Instance.onDecreaseScore += OnDecreaseScore;
               ScoreSignals.Instance.onPlayerScoreSetActive += OnPlayerScoreSetActive;
+              ScoreSignals.Instance.onMultiplyScore += OnMultiplyScore;
           } 
           private void UnsubscribeEvents()
-          {
+          {   
+              CoreGameSignals.Instance.onReset -= OnReset;
               CoreGameSignals.Instance.onPlay -= OnPlay;
               ScoreSignals.Instance.onIncreaseScore -= OnIncreaseScore;
               ScoreSignals.Instance.onDecreaseScore -= OnDecreaseScore;
               ScoreSignals.Instance.onPlayerScoreSetActive -= OnPlayerScoreSetActive;
+              ScoreSignals.Instance.onMultiplyScore -= OnMultiplyScore;
           }
           private void OnDisable()
           {
@@ -63,8 +67,7 @@ namespace Managers
               playerScoreHolder.SetActive(true);
               FindPlayer();
               _score = _stackData.InitializedStack.Count;
-              scoreText.text = _score.ToString();
-              UIScoreText.text = _score.ToString();
+              SetScoreToText();
           }
           private void FindPlayer()
           {
@@ -77,14 +80,12 @@ namespace Managers
           private void OnIncreaseScore()
           {
               _score++;
-              scoreText.text = _score.ToString();
-              UIScoreText.text = _score.ToString();
+              SetScoreToText();
           }
           private void OnDecreaseScore()
           {
               _score--;
-              scoreText.text = _score.ToString();
-              UIScoreText.text = _score.ToString();
+              SetScoreToText();
           }
           private void OnPlayerScoreSetActive(bool OnPlayerScoreSetActive)
           {
@@ -96,6 +97,21 @@ namespace Managers
               {
                   playerScoreHolder.SetActive(false);
               }
+          }
+          private void OnMultiplyScore(int multiplyFactor)
+          {
+              _score *= multiplyFactor;
+              SetScoreToText();
+          }
+          private void SetScoreToText()
+          {
+              scoreText.text = _score.ToString();
+              UIScoreText.text = _score.ToString();
+          } private void OnReset()
+          {
+              _score = 0;
+              playerScoreHolder.transform.parent = transform;
+              playerScoreHolder.transform.position = Vector3.up*2.5f;
           }
     }
 }

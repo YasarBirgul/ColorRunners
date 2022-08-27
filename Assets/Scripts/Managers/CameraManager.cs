@@ -82,15 +82,20 @@ namespace Managers
         }
         private void OnPlay()
         {
+            SetCameraTarget();
+        }
+
+        private void SetCameraTarget()
+        {
             CameraSignals.Instance.onSetCameraTarget?.Invoke(CameraStatesType.Runner);
         }
+
         private void OnSetCameraTarget(CameraStatesType Currentstate)
         {
             if (!_playerManager)
             { 
                 _playerManager = FindObjectOfType<PlayerManager>();
             }
-            
             if (Currentstate == CameraStatesType.Runner)
             {
                 StateCam.Follow = _playerManager.transform;
@@ -106,9 +111,7 @@ namespace Managers
         }
         private void OnReset()
         {
-            StateCam.Follow = null;
-            _cameraStatesType = CameraStatesType.Runner;
-            OnMoveToInitialPosition();
+            SetCameraTarget();
         }
         void OnChangeGameState(GameStates currentGameState)
         {
@@ -124,5 +127,6 @@ namespace Managers
                     break;
             }
         }
+        
     }
 }

@@ -139,6 +139,7 @@ namespace Managers
         private void OnReset()
         {
             movementController.Reset();
+            gameObject.SetActive(false);
         }
         private void OnChangeGameState(GameStates CurrentState)
         {

@@ -4,6 +4,7 @@ using Keys;
 using Managers;
 using Signals;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Controllers
@@ -152,6 +153,8 @@ namespace Controllers
             Stop();
             _isReadyToPlay = false;
             _isReadyToMove = false;
+            playerManager.transform.position = Vector3.zero;
+            gameObject.transform.rotation = quaternion.identity;
         }
     }
 }

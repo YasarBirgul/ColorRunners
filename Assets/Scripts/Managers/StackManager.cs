@@ -62,6 +62,7 @@ namespace Managers
             CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
             CoreGameSignals.Instance.onGameOpen += OnGameOpen;
             CoreGameSignals.Instance.onPlay += OnPlay;
+            CoreGameSignals.Instance.onReset += OnReset;
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
@@ -73,6 +74,7 @@ namespace Managers
             CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
             CoreGameSignals.Instance.onGameOpen -= OnGameOpen;
             CoreGameSignals.Instance.onPlay -= OnPlay;
+            CoreGameSignals.Instance.onReset -= OnReset;
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
@@ -86,14 +88,20 @@ namespace Managers
         #endregion
         private void OnGameOpen()
         {
+            InitStack();
+        }
+
+        private void InitStack()
+        {
             for (int i = 0; i < _data.InitializedStack.Count; i++)
-            { 
-                var StartPack 
-                    = Instantiate(_data.InitializedStack[i],Vector3.zero*(i+1)*2,transform.rotation);
+            {
+                var StartPack
+                    = Instantiate(_data.InitializedStack[i], Vector3.zero * (i + 1) * 2, transform.rotation);
                 _colAddOnStackCommand.Execute(StartPack);
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
             }
-        } 
+        }
+
         private void OnPlay()
         {
             FindPlayer();
@@ -186,6 +194,24 @@ namespace Managers
             if (collected.Count == 0 && tempHolder.transform.childCount == 0)
             {
                 LevelSignals.Instance.onLevelFailed?.Invoke();
+            }
+        }
+        private void OnReset()
+        {
+            DeleteStack();
+            collected.Clear();
+            collected.TrimExcess();
+            InitStack();
+        }
+        private void DeleteStack()
+        {
+            var stackCount = collected.Count;
+            for (int i = 0; i < stackCount; i++)
+            {
+               
+                collected[i].transform.SetParent(null);
+                Destroy(collected[i]);
+
             }
         }
     }

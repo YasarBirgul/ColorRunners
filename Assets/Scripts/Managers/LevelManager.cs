@@ -46,6 +46,7 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
+            CoreGameSignals.Instance.onReset += OnReset;
             LevelSignals.Instance.onLevelInitialize += InitializeLevel;
             LevelSignals.Instance.onClearActiveLevel += OnClearActiveLevel;
             LevelSignals.Instance.onInitializeIdleLevel += InitializeIdleLevel;
@@ -57,6 +58,7 @@ namespace Managers
         } 
         private void UnsubscribeEvents()
         {
+            CoreGameSignals.Instance.onReset -= OnReset;
             LevelSignals.Instance.onLevelInitialize -= InitializeLevel;
             LevelSignals.Instance.onClearActiveLevel -= OnClearActiveLevel;
             LevelSignals.Instance.onInitializeIdleLevel -= InitializeIdleLevel;
@@ -154,6 +156,13 @@ namespace Managers
             LevelSignals.Instance.onClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.onReset?.Invoke();
             LevelSignals.Instance.onLevelInitialize?.Invoke();
+        }
+        private void OnReset()
+        {
+            LevelSignals.Instance.onClearActiveLevel?.Invoke();
+            SaveSignals.Instance.onSaveRunnerLevelData?.Invoke(SaveStates.level, _levelID);
+            LevelSignals.Instance.onLevelInitialize?.Invoke();
+            LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
         }
     }
 }
