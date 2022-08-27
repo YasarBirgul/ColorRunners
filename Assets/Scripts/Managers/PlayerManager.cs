@@ -66,6 +66,7 @@ namespace Managers
             InputSignals.Instance.onRunnerInputDragged+= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged+= OnGetIdleInputValues;
             PlayerSignal.Instance.onIncreaseScale += OnIncreaseScale;
+            LevelSignals.Instance.onLevelFailed += OnLevelFailed;
         } 
         private void UnsubscribeEvents()
         {
@@ -77,6 +78,7 @@ namespace Managers
             InputSignals.Instance.onRunnerInputDragged -= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
             PlayerSignal.Instance.onIncreaseScale -= OnIncreaseScale;
+            LevelSignals.Instance.onLevelFailed += OnLevelFailed;
         } 
         private void OnDisable()
         {
@@ -160,6 +162,10 @@ namespace Managers
             {
                 playerMeshController.IncreaseSize();
             }
+        }
+        private void OnLevelFailed()
+        {
+            ActivateAllMovement(false);
         }
     }
 }

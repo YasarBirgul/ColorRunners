@@ -78,8 +78,10 @@ namespace Managers
         }
         public async void SetActiveFalse()
         {
-            await Task.Delay(3000);
-            gameObject.SetActive(false);
+            await Task.Delay(2000);
+            Destroy(gameObject);
+            await Task.Delay(100);
+            StackSignals.Instance.onCheckStack?.Invoke();
         }
     }
 }

@@ -14,5 +14,6 @@ namespace Signals
         public UnityAction<GameObject> onTurrentGroundControll = delegate {  };
         public UnityAction<int> onEnterDroneArea = delegate {  };
         public UnityAction<GameObject> onRebuildStack = delegate {  };
+        public UnityAction onCheckStack = delegate {  };
     }
 }

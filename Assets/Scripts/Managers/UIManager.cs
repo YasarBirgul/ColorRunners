@@ -52,6 +52,7 @@ namespace Managers
           CoreGameSignals.Instance.onPlay += OnPlay;
           CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
           UISignals.Instance.onSetLevelText += OnSetLevelText;
+          LevelSignals.Instance.onLevelFailed += OnLevelFailed;
       }
 
       private void UnsubscribeEvents()
@@ -61,6 +62,7 @@ namespace Managers
           CoreGameSignals.Instance.onPlay -= OnPlay;
           CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
           UISignals.Instance.onSetLevelText -= OnSetLevelText;
+          LevelSignals.Instance.onLevelFailed -= OnLevelFailed;
       }
 
       private void OnDisable()
@@ -103,6 +105,7 @@ namespace Managers
                   break;
               case GameStates.Idle:
                   _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
+                  OnOpenPanel(UIPanels.IdlePanel);
                   break;
           }
       }
@@ -114,6 +117,10 @@ namespace Managers
               levelText.text = "level " + levelID.ToString();
               OnOpenPanel(UIPanels.LevelPanel);
           }
+      } 
+      private void OnLevelFailed()
+      {
+          OnOpenPanel(UIPanels.FailPanel);
       }
     }
 }

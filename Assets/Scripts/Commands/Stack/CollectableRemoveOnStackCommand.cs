@@ -11,21 +11,23 @@ namespace Commands.Stack
 
         #region Private Variables
         private List<GameObject> _stackList;
-        private StackManager _manager;
+        private GameObject _failHolder;
         #endregion
 
         #endregion
 
-        public CollectableRemoveOnStackCommand(ref List<GameObject> stackList)
+        public CollectableRemoveOnStackCommand(ref List<GameObject> stackList,GameObject failHolder)
         {
             _stackList = stackList;
+            _failHolder = failHolder;
+
         }
 
         public void Execute(ObstacleCollisionGOParams obstacleCollisionGOParams)
         { 
             int CollidedObjectIndex = obstacleCollisionGOParams.Collected.transform.parent.GetSiblingIndex();
             _stackList[CollidedObjectIndex].SetActive(false);
-            _stackList[CollidedObjectIndex].transform.parent = null;
+            _stackList[CollidedObjectIndex].transform.parent = _failHolder.transform;
             _stackList.RemoveAt(CollidedObjectIndex);
             _stackList.TrimExcess();
         }

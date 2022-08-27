@@ -55,6 +55,7 @@ namespace Controllers
                     Collected = gameObject,
                     Obstacle = other.gameObject,
                 });
+                StackSignals.Instance.onCheckStack?.Invoke();
             }
             if (other.CompareTag("TurretColorArea"))
             {
@@ -91,6 +92,7 @@ namespace Controllers
                 {
                     tag = "Collected";
                     collectableManager.IncreaseStackAfterDroneArea();
+                    StackSignals.Instance.onCheckStack?.Invoke();
                 }
             }
         }

@@ -445,6 +445,7 @@ Transform:
   - {fileID: 1682709016}
   - {fileID: 309840660}
   - {fileID: 1146936757}
+  - {fileID: 1574363472}
   - {fileID: 1694860607}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -593,6 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tempHolder: {fileID: 1146936756}
   collected: []
+  lostItemsHolder: {fileID: 1574363471}
 --- !u!4 &309840660
 Transform:
   m_ObjectHideFlags: 0
@@ -1439,7 +1441,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173107693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 320}
+  m_LocalPosition: {x: 0, y: 0, z: 320}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 143952099}
@@ -1899,6 +1901,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496204749}
   m_CullTransparentMesh: 0
+--- !u!1 &1574363471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574363472}
+  m_Layer: 0
+  m_Name: LostItemsHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1574363472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574363471}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 143952099}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1576646832
 GameObject:
   m_ObjectHideFlags: 3
@@ -2398,7 +2430,7 @@ Transform:
   m_Children:
   - {fileID: 7495022195511707912}
   m_Father: {fileID: 143952099}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1694860608
 MonoBehaviour:

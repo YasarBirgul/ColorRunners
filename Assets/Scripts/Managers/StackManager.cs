@@ -22,8 +22,10 @@ namespace Managers
 
         [SerializeField] private GameObject tempHolder;
         
-        [SerializeField] private List<GameObject> collected = new List<GameObject>();
-        
+        [SerializeField] private List<GameObject> collected;
+
+        [SerializeField] private GameObject lostItemsHolder;
+
         #region Private Variables
         
         [ShowInInspector] private StackData _data;
@@ -48,7 +50,7 @@ namespace Managers
             _stackMan = GetComponent<StackManager>();
             _colScaleUpCommand = new CollectableScaleUpCommand(ref collected,ref _data);
             _colAddOnStackCommand = new CollectableAddOnStackCommand(ref _stackMan,ref collected);
-            _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected);
+            _colRemoveOnStackCommand = new CollectableRemoveOnStackCommand(ref collected,lostItemsHolder);
         }
         #region Event Subscription
         private void OnEnable()
@@ -64,6 +66,7 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
             StackSignals.Instance.onEnterDroneArea += OnEnterDroneArea;
+            StackSignals.Instance.onCheckStack += OnCheckStack;
         } 
         private void UnsubscribeEvents()
         {
@@ -74,6 +77,7 @@ namespace Managers
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
             StackSignals.Instance.onEnterDroneArea -= OnEnterDroneArea;
+            StackSignals.Instance.onCheckStack -= OnCheckStack;
         }
         private void OnDisable()
         {
@@ -123,17 +127,13 @@ namespace Managers
             {
                 _playerManager.transform.position = collected[0].transform.position;
                 ScoreSignals.Instance.onPlayerScoreSetActive?.Invoke(true);
-               
             }
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
             _colRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
             ScoreSignals.Instance.onDecreaseScore?.Invoke();
-            if (collected.Count == 0 && tempHolder.transform.childCount == 0)
-            {
-                UISignals.Instance.onOpenPanel?.Invoke(UIPanels.FailPanel);
-            }
+            CheckStack();
         } 
         private async void OnColorChange(ColorType colorType)
         {
@@ -161,11 +161,11 @@ namespace Managers
         {
             if (currentState == GameStates.Roullette)
             {
-                StackDeList();
+                StackScaleUpThePlayer();
                 collected.TrimExcess();
             }
         }
-        private async void StackDeList()
+        private async void StackScaleUpThePlayer()
         {
             int ListTotalCount = collected.Count;
             for (int i = 0; i < ListTotalCount; i++)
@@ -175,6 +175,17 @@ namespace Managers
                 collected[0].transform.parent = tempHolder.transform;
                 PlayerSignal.Instance.onIncreaseScale?.Invoke();
                 collected.RemoveAt(0);
+            }
+        }
+        private void OnCheckStack()
+        {
+            CheckStack();
+        }
+        private void CheckStack()
+        {
+            if (collected.Count == 0 && tempHolder.transform.childCount == 0)
+            {
+                LevelSignals.Instance.onLevelFailed?.Invoke();
             }
         }
     }
