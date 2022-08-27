@@ -1,11 +1,9 @@
-using System.Threading.Tasks;
 using Commands.UI;
 using Controllers;
 using DG.Tweening;
 using Enums;
 using Signals;
 using TMPro;
-using UnityEditor.Searcher;
 using UnityEngine;
 
 namespace Managers
@@ -108,8 +106,10 @@ namespace Managers
 
       public void RestartButton()
       {
+          UISignals.Instance.onClosePanel?.Invoke(UIPanels.IdlePanel);
           UISignals.Instance.onClosePanel?.Invoke(UIPanels.FailPanel);
           CoreGameSignals.Instance.onReset?.Invoke();
+          CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Runner);
       }
       
       public void NextLevelButton()
@@ -132,6 +132,9 @@ namespace Managers
               case GameStates.Idle:
                   _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
                   OnOpenPanel(UIPanels.IdlePanel);
+                  break;
+              case GameStates.Runner:
+                  _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
                   break;
           }
       }

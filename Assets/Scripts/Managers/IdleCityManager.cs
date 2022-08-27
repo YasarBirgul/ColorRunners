@@ -98,12 +98,12 @@ namespace Managers
                 if (!IdleLevelData.BuildingsDatas[i].isDepended || IdleLevelData.BuildingsDatas[i].IdleLevelStateType !=
                     IdleLevelStateType.Completed)
                 {
-                    IdleLevelData.BuildingsDatas[i].AddressId = i;
-                    BuildingManagers[i].buildingAdressId = i;
-                    BuildingManagers[i].MarketPrice = IdleLevelData.BuildingsDatas[i].buildingMarketPrice;
-                    BuildingManagers[i].PayedAmount = IdleLevelData.BuildingsDatas[i].PayedAmount;
-                    BuildingManagers[i].Saturation = IdleLevelData.BuildingsDatas[i].Saturation;
-                    
+                    IdleLevelData.BuildingsDatas[i].SideObjectData.BuildingAddressId = i;
+                    BuildingManagers[i].SideObjectData.BuildingAddressId = i;
+                    BuildingManagers[i].SideObjectData.MarketPrice = IdleLevelData.BuildingsDatas[i].buildingMarketPrice;
+                    BuildingManagers[i].SideObjectData.PayedAmount = IdleLevelData.BuildingsDatas[i].PayedAmount;
+                    BuildingManagers[i].SideObjectData.Saturation = IdleLevelData.BuildingsDatas[i].Saturation;
+
                 }
                 
             }

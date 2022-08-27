@@ -1,4 +1,5 @@
-﻿using Enums;
+﻿using System;
+using Enums;
 using Managers;
 using Signals;
 using UnityEngine;
@@ -17,6 +18,12 @@ namespace Controllers
 
         [SerializeField] private PlayerManager playerManager;
         
+        #region Private Variables
+        
+        #endregion
+        
+        private float _timer = 0f;
+        
         #endregion
         
         #endregion
@@ -27,31 +34,39 @@ namespace Controllers
                 playerManager.ChangeState(GameStates.Roullette);
                 playerManager.ActivateAllMovement(false);
             }
-            if (other.CompareTag("ColorArea"))
+            else if (other.CompareTag("ColorArea"))
             {
                 StackSignals.Instance.onTurrentGroundControll?.Invoke(other.gameObject);
             }
-            if (other.CompareTag("Gate"))
+            else if (other.CompareTag("Gate"))
             {
                 playerManager.SendGateColorData(other.GetComponent<GateManager>().Color);
             }
-            if (other.CompareTag("AfterGround"))
+            else if (other.CompareTag("AfterGround"))
             {
                 playerManager.OnEnableFinalCollider(other.gameObject);
             }
-            if (other.CompareTag("DroneColorArea"))
+            else if (other.CompareTag("DroneColorArea"))
             {
                 if (playerManager.PlayerColorType == other.GetComponent<DroneAreaColorController>().ColorType)
                 {
                     other.GetComponent<DroneAreaColorController>().DroneAreaMatchType = CollectableMatchType.Match;
                 }
             }
+           
         }
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("DroneArea"))
             {
                 playerManager.StopVerticalMovement();
+            }
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("IdleMarketPrice"))
+            {
+                
             }
         }
     }

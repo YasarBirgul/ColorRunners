@@ -15,13 +15,13 @@ MonoBehaviour:
   IdleLevelList:
   - BuildingsDatas:
     - AddressId: 0
-      isDepended: 0
+      isDepended: 1
       buildingMarketPrice: 150
       PayedAmount: 0
       Saturation: 0
       IdleLevelStateType: 0
       SideObjectData:
-        MarketPrice: 0
+        MarketPrice: 100
         PayedAmount: 0
         BuildingAddressId: 0
         Saturation: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
       SideObjectData:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 0
+        BuildingAddressId: 1
         Saturation: 0
         IdleLevelStateType: 0
     - AddressId: 2
@@ -47,7 +47,7 @@ MonoBehaviour:
       SideObjectData:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 0
+        BuildingAddressId: 2
         Saturation: 0
         IdleLevelStateType: 0
     - AddressId: 3
@@ -59,7 +59,7 @@ MonoBehaviour:
       SideObjectData:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 0
+        BuildingAddressId: 3
         Saturation: 0
         IdleLevelStateType: 0
     - AddressId: 4
@@ -71,7 +71,7 @@ MonoBehaviour:
       SideObjectData:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 0
+        BuildingAddressId: 4
         Saturation: 0
         IdleLevelStateType: 0
     - AddressId: 5
@@ -83,7 +83,7 @@ MonoBehaviour:
       SideObjectData:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 0
+        BuildingAddressId: 5
         Saturation: 0
         IdleLevelStateType: 0
     IdleLevelStateType: 0

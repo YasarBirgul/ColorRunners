@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 1651055826218857665}
   m_Layer: 0
   m_Name: ScoreHolder
-  m_TagString: Untagged
+  m_TagString: IdleMarketPrice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

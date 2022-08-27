@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Datas.ValueObject;
 using Enums;
 using Signals;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Managers
         public int PayedAmount;
         public float Saturation;
         public int MarketPrice;
+        public SideObjectData SideObjectData;
        
         #endregion
 

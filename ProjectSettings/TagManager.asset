@@ -16,6 +16,7 @@ TagManager:
   - TurretColorArea
   - AfterGround
   - TurretDetect
+  - IdleMarketPrice
   layers:
   - Default
   - TransparentFX
