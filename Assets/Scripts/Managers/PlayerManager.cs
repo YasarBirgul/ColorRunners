@@ -51,7 +51,6 @@ namespace Managers
         {
             movementController.SetMovementData(Data.PlayerMovementData);
         }
-        
         #region Event Subscription
         private void OnEnable()
         {
@@ -67,7 +66,6 @@ namespace Managers
             InputSignals.Instance.onRunnerInputDragged+= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged+= OnGetIdleInputValues;
             PlayerSignal.Instance.onIncreaseScale += OnIncreaseScale;
-
         } 
         private void UnsubscribeEvents()
         {
@@ -79,7 +77,6 @@ namespace Managers
             InputSignals.Instance.onRunnerInputDragged -= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
             PlayerSignal.Instance.onIncreaseScale -= OnIncreaseScale;
-
         } 
         private void OnDisable()
         {
@@ -95,7 +92,6 @@ namespace Managers
             movementController.DeactiveMovement();
             movementController.SetRunnerMovementValues(0,0);
             animationController.ChangeCollectableAnimation(PlayerAnimationStates.Idle);
-            
         } 
         private void OnGetRunnerInputValues(RunnerGameInputParams runnerGameInputParams)
         {
@@ -109,7 +105,7 @@ namespace Managers
             if (movementDirection != Vector3.zero)
             {
                 Quaternion toRotation = Quaternion.LookRotation(movementDirection,Vector3.up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation,toRotation,30);
+                animationController.transform.rotation = Quaternion.RotateTowards( animationController.transform.rotation,toRotation,30);
             }
         }
         public void SendGateColorData(ColorType colorType)

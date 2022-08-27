@@ -2,6 +2,7 @@ using Commands.UI;
 using Controllers;
 using Enums;
 using Signals;
+using TMPro;
 using UnityEngine;
 
 namespace Managers
@@ -17,6 +18,8 @@ namespace Managers
 
         [SerializeField] private GameObject joystickInner;
         [SerializeField] private GameObject joystickOuter;
+        [SerializeField] private UIRoulletteController uıRoulletteController;
+        [SerializeField] private TextMeshProUGUI levelText;
 
         #endregion
         
@@ -48,6 +51,7 @@ namespace Managers
           UISignals.Instance.onClosePanel += OnClosePanel;
           CoreGameSignals.Instance.onPlay += OnPlay;
           CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
+          UISignals.Instance.onSetLevelText += OnSetLevelText;
       }
 
       private void UnsubscribeEvents()
@@ -56,6 +60,7 @@ namespace Managers
           UISignals.Instance.onClosePanel -= OnClosePanel;
           CoreGameSignals.Instance.onPlay -= OnPlay;
           CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
+          UISignals.Instance.onSetLevelText -= OnSetLevelText;
       }
 
       private void OnDisable()
@@ -79,7 +84,6 @@ namespace Managers
       {
           CoreGameSignals.Instance.onPlay?.Invoke();
       }
-
       public void ClaimButton()
       { 
           OnClosePanel(UIPanels.RoullettePanel);
@@ -100,6 +104,15 @@ namespace Managers
               case GameStates.Idle:
                   _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
                   break;
+          }
+      }
+      private void OnSetLevelText(int levelID)
+      {
+          if (levelID == 0)
+          {
+              levelID = 1;
+              levelText.text = "level " + levelID.ToString();
+              OnOpenPanel(UIPanels.LevelPanel);
           }
       }
     }

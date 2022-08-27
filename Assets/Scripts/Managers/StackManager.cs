@@ -123,12 +123,17 @@ namespace Managers
             {
                 _playerManager.transform.position = collected[0].transform.position;
                 ScoreSignals.Instance.onPlayerScoreSetActive?.Invoke(true);
+               
             }
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
             _colRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
             ScoreSignals.Instance.onDecreaseScore?.Invoke();
+            if (collected.Count == 0 && tempHolder.transform.childCount == 0)
+            {
+                UISignals.Instance.onOpenPanel?.Invoke(UIPanels.FailPanel);
+            }
         } 
         private async void OnColorChange(ColorType colorType)
         {

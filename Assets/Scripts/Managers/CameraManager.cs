@@ -114,7 +114,7 @@ namespace Managers
         {
             switch (currentGameState)
             {
-                case GameStates.Idle:
+                case GameStates.Roullette:
                     _cameraStatesType = CameraStatesType.Idle;
                     OnSetCameraTarget(_cameraStatesType);
                     break;

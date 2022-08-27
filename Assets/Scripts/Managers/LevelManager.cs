@@ -118,8 +118,8 @@ namespace Managers
         }
         private void InitializeLevel()
         {
-            
             _levelLoader.Execute(_levelID);
+            UISignals.Instance.onSetLevelText?.Invoke(_levelID);
         }
 
         private void InitializeIdleLevel()
