@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1970596460873684974}
   - component: {fileID: 1970596460876602622}
   - component: {fileID: 1970596460875588372}
+  - component: {fileID: 1998238819884148882}
   m_Layer: 0
   m_Name: HotelSign
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1998238819884148882
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970596460873416122}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43060891256214226, guid: 56dbd9cd7beb5f24b95d37992abdad3b, type: 2}
 --- !u!1 &3838603965467648984
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +146,7 @@ GameObject:
   - component: {fileID: 5100336660705164815}
   - component: {fileID: 5100336660702183513}
   - component: {fileID: 5100336660702919863}
+  - component: {fileID: 5056892750138782697}
   m_Layer: 0
   m_Name: SM_Bld_OfficeOctagon_Floor_02
   m_TagString: Untagged
@@ -201,6 +217,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5056892750138782697
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100336660705242819}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43783137433739430, guid: baa74088bfa5d2546b378e39070d2b95, type: 2}
 --- !u!1 &5100336660719444447
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +242,7 @@ GameObject:
   - component: {fileID: 5100336660719191491}
   - component: {fileID: 5100336660720433963}
   - component: {fileID: 5100336660721394349}
+  - component: {fileID: 5056828675961456019}
   m_Layer: 0
   m_Name: SM_Bld_OfficeOctagon_Roof_01
   m_TagString: Untagged
@@ -282,6 +313,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5056828675961456019
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100336660719444447}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43372600083294652, guid: 6dace2e505ddb4949aa8ca5e75f488c0, type: 2}
 --- !u!1 &5100336660728838363
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +338,7 @@ GameObject:
   - component: {fileID: 5100336660728517263}
   - component: {fileID: 5100336660727830943}
   - component: {fileID: 5100336660726752885}
+  - component: {fileID: 5056370024381656563}
   - component: {fileID: 5057198479923189769}
   m_Layer: 0
   m_Name: SM_Bld_OfficeOctagon_Base_03
@@ -364,6 +410,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5056370024381656563
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100336660728838363}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43081630875946656, guid: 779276704a611bb42a60e9322e88081e, type: 2}
 --- !u!64 &5057198479923189769
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -470,6 +530,7 @@ GameObject:
   - component: {fileID: 5100336660826215707}
   - component: {fileID: 5100336660823354189}
   - component: {fileID: 5100336660823938979}
+  - component: {fileID: 5056892750017616125}
   m_Layer: 0
   m_Name: SM_Bld_OfficeOctagon_Floor_04
   m_TagString: Untagged
@@ -540,6 +601,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5056892750017616125
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100336660826392023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43783137433739430, guid: baa74088bfa5d2546b378e39070d2b95, type: 2}
 --- !u!1 &5100336662122126699
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +626,7 @@ GameObject:
   - component: {fileID: 5100336662122565031}
   - component: {fileID: 5100336662119085041}
   - component: {fileID: 5100336662120320799}
+  - component: {fileID: 5056892748738134081}
   m_Layer: 0
   m_Name: SM_Bld_OfficeOctagon_Floor_03
   m_TagString: Untagged
@@ -621,6 +697,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5056892748738134081
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100336662122126699}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43783137433739430, guid: baa74088bfa5d2546b378e39070d2b95, type: 2}
 --- !u!1 &5100336662165823808
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +722,7 @@ GameObject:
   - component: {fileID: 5100336662165909900}
   - component: {fileID: 5100336662168801242}
   - component: {fileID: 5100336662168089396}
+  - component: {fileID: 5056892748677938282}
   m_Layer: 0
   m_Name: SM_Bld_OfficeOctagon_Floor_05
   m_TagString: Untagged
@@ -702,6 +793,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5056892748677938282
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100336662165823808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43783137433739430, guid: baa74088bfa5d2546b378e39070d2b95, type: 2}
 --- !u!1 &5100336662453601619
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +818,7 @@ GameObject:
   - component: {fileID: 5100336662453786015}
   - component: {fileID: 5100336662450301897}
   - component: {fileID: 5100336662451803943}
+  - component: {fileID: 5056892748658579577}
   m_Layer: 0
   m_Name: SM_Bld_OfficeOctagon_Floor_01
   m_TagString: Untagged
@@ -783,3 +889,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5056892748658579577
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100336662453601619}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43783137433739430, guid: baa74088bfa5d2546b378e39070d2b95, type: 2}

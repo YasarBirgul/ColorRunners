@@ -22,7 +22,7 @@ MonoBehaviour:
         BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
-      BuildingMarketPrice: 600
+      BuildingMarketPrice: 300
       PayedAmount: 0
       BuildingAdressId: 0
       Saturation: 0
@@ -51,45 +51,6 @@ MonoBehaviour:
       BuildingMarketPrice: 120
       PayedAmount: 0
       BuildingAdressId: 2
-      Saturation: 0
-      idleLevelState: 0
-    - Key: IdleBuildingDataKey
-      IsDepended: 0
-      SideObject:
-        MarketPrice: 0
-        PayedAmount: 0
-        BuildingAddressId: 0
-        Saturation: 0
-        IdleLevelStateType: 0
-      BuildingMarketPrice: 400
-      PayedAmount: 0
-      BuildingAdressId: 3
-      Saturation: 0
-      idleLevelState: 0
-    - Key: IdleBuildingDataKey
-      IsDepended: 0
-      SideObject:
-        MarketPrice: 0
-        PayedAmount: 0
-        BuildingAddressId: 0
-        Saturation: 0
-        IdleLevelStateType: 0
-      BuildingMarketPrice: 150
-      PayedAmount: 0
-      BuildingAdressId: 4
-      Saturation: 0
-      idleLevelState: 0
-    - Key: IdleBuildingDataKey
-      IsDepended: 0
-      SideObject:
-        MarketPrice: 0
-        PayedAmount: 0
-        BuildingAddressId: 0
-        Saturation: 0
-        IdleLevelStateType: 0
-      BuildingMarketPrice: 200
-      PayedAmount: 0
-      BuildingAdressId: 5
       Saturation: 0
       idleLevelState: 0
     IdleLevelStateType: 0

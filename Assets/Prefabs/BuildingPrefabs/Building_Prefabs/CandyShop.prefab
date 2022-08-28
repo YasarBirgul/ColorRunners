@@ -206,6 +206,9 @@ GameObject:
   - component: {fileID: 1579494889003921130}
   - component: {fileID: 1579494889004693010}
   - component: {fileID: 1579494889005754326}
+  - component: {fileID: 1516723286657600008}
+  - component: {fileID: 1513932943774099840}
+  - component: {fileID: 1516848121202450184}
   m_Layer: 0
   m_Name: SM_Bld_Apartment_Roof_Corner_55
   m_TagString: Untagged
@@ -276,6 +279,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1516723286657600008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579494889003608108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4621315, y: 0.49273837, z: 5.4881005}
+  m_Center: {x: -2.3950367, y: 0.24636918, z: -2.4080203}
+--- !u!65 &1513932943774099840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579494889003608108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4621315, y: 0.7435399, z: 0.44331074}
+  m_Center: {x: -2.3950367, y: 0.37176996, z: 0.11437464}
+--- !u!65 &1516848121202450184
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579494889003608108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3924942, y: 0.7435399, z: 5.441078}
+  m_Center: {x: 0.13978195, y: 0.37176996, z: -2.384509}
 --- !u!1 &2042262717084035726
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +361,9 @@ GameObject:
   - component: {fileID: 4876823595945465072}
   - component: {fileID: 2989157709011602926}
   - component: {fileID: 8316449814390560898}
+  - component: {fileID: 5109908474336481569}
+  - component: {fileID: 3132514640462215250}
+  - component: {fileID: 7555960734882706146}
   m_Layer: 0
   m_Name: SM_Bld_Apartment_Roof_Corner_51 (1)
   m_TagString: Untagged
@@ -389,6 +434,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5109908474336481569
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754925332029379411}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4621315, y: 0.49273837, z: 5.4881005}
+  m_Center: {x: -2.3950367, y: 0.24636918, z: -2.4080203}
+--- !u!65 &3132514640462215250
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754925332029379411}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4621315, y: 0.7435399, z: 0.44331074}
+  m_Center: {x: -2.3950367, y: 0.37176996, z: 0.11437464}
+--- !u!65 &7555960734882706146
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2754925332029379411}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3924942, y: 0.7435399, z: 5.441078}
+  m_Center: {x: 0.13978195, y: 0.37176996, z: -2.384509}
 --- !u!1 &4577063152887412325
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +484,9 @@ GameObject:
   - component: {fileID: 7486539258996970870}
   - component: {fileID: 8173522527751044665}
   - component: {fileID: 4994760184144044629}
+  - component: {fileID: 1350783192323749744}
+  - component: {fileID: 6452295350869626881}
+  - component: {fileID: 8338308419754843045}
   m_Layer: 0
   m_Name: SM_Bld_Apartment_Roof_Corner_51 (2)
   m_TagString: Untagged
@@ -470,6 +557,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1350783192323749744
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577063152887412325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4621315, y: 0.49273837, z: 5.4881005}
+  m_Center: {x: -2.3950367, y: 0.24636918, z: -2.4080203}
+--- !u!65 &6452295350869626881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577063152887412325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4621315, y: 0.7435399, z: 0.44331074}
+  m_Center: {x: -2.3950367, y: 0.37176996, z: 0.11437464}
+--- !u!65 &8338308419754843045
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577063152887412325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3924942, y: 0.7435399, z: 5.441078}
+  m_Center: {x: 0.13978195, y: 0.37176996, z: -2.384509}
 --- !u!1 &4785950987051959752
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +607,7 @@ GameObject:
   - component: {fileID: 4785950987052135266}
   - component: {fileID: 4785950987050909504}
   - component: {fileID: 4785950987050252010}
+  - component: {fileID: 4796270136579996528}
   m_Layer: 0
   m_Name: SM_Bld_Apartment_Corner_97
   m_TagString: Untagged
@@ -551,6 +678,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4796270136579996528
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785950987051959752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43197437058000784, guid: 5d932c27263caa04d97c8fc9e7da1a78, type: 2}
 --- !u!1 &5596312093233254039
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2205749339321518063}
-  - component: {fileID: 7613166856418389608}
+  - component: {fileID: 388258376126957777}
   m_Layer: 0
   m_Name: CandyShop
   m_TagString: Untagged
@@ -613,7 +754,7 @@ Transform:
   m_GameObject: {fileID: 7037832299957834198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 5684215597766048774}
   - {fileID: 2072861857359094578}
@@ -622,7 +763,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7613166856418389608
+--- !u!114 &388258376126957777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -631,7 +772,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7037832299957834198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb4fe98b174347b980c80285c24c03c8, type: 3}
+  m_Script: {fileID: 11500000, guid: a5c91bc0e1264174ea2d3bfc9a157493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Saturation: 0
@@ -647,6 +788,9 @@ GameObject:
   - component: {fileID: 7263024632547647165}
   - component: {fileID: 7263024632546903621}
   - component: {fileID: 7263024632545810305}
+  - component: {fileID: 7218275817447471711}
+  - component: {fileID: 7215502906623990231}
+  - component: {fileID: 7218391709326520159}
   m_Layer: 0
   m_Name: SM_Bld_Apartment_Roof_Corner_51
   m_TagString: Untagged
@@ -717,6 +861,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7218275817447471711
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263024632547989627}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4621315, y: 0.49273837, z: 5.4881005}
+  m_Center: {x: -2.3950367, y: 0.24636918, z: -2.4080203}
+--- !u!65 &7215502906623990231
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263024632547989627}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.4621315, y: 0.7435399, z: 0.44331074}
+  m_Center: {x: -2.3950367, y: 0.37176996, z: 0.11437464}
+--- !u!65 &7218391709326520159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263024632547989627}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3924942, y: 0.7435399, z: 5.441078}
+  m_Center: {x: 0.13978195, y: 0.37176996, z: -2.384509}
 --- !u!1 &7579151368743494919
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +945,7 @@ GameObject:
   - component: {fileID: 9132141244726012213}
   - component: {fileID: 9132141244726846743}
   - component: {fileID: 9132141244728028349}
+  - component: {fileID: 9106059936668868903}
   m_Layer: 0
   m_Name: SM_Bld_Apartment_Corner_97 (1)
   m_TagString: Untagged
@@ -832,6 +1016,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9106059936668868903
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132141244725845919}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43197437058000784, guid: 5d932c27263caa04d97c8fc9e7da1a78, type: 2}
 --- !u!1001 &513575604486457202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -981,8 +1179,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0874f7045a8d35046afe7f47945e9d1f, type: 2}
-    m_RemovedComponents:
-    - {fileID: 64837295394645822, guid: 6f80e919ce3f15944905cac373e3b447, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f80e919ce3f15944905cac373e3b447, type: 3}
 --- !u!4 &1517974744733583125 stripped
 Transform:
@@ -1060,8 +1257,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0874f7045a8d35046afe7f47945e9d1f, type: 2}
-    m_RemovedComponents:
-    - {fileID: 64374342932895222, guid: 1c0370843c27f3241b125cb9187073d6, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c0370843c27f3241b125cb9187073d6, type: 3}
 --- !u!4 &4477056425837053289 stripped
 Transform:
@@ -1139,8 +1335,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0874f7045a8d35046afe7f47945e9d1f, type: 2}
-    m_RemovedComponents:
-    - {fileID: 64431875974680658, guid: 96d2057686904ad4baef89b50eb9c9e8, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d2057686904ad4baef89b50eb9c9e8, type: 3}
 --- !u!4 &5178556432663345129 stripped
 Transform:
@@ -1218,8 +1413,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0874f7045a8d35046afe7f47945e9d1f, type: 2}
-    m_RemovedComponents:
-    - {fileID: 64428188778724820, guid: c2226e896b2ff804a8d2d3398574b20f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2226e896b2ff804a8d2d3398574b20f, type: 3}
 --- !u!4 &6587744877629833496 stripped
 Transform:
@@ -1293,8 +1487,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 65180995060079892, guid: 189a6283bd4925841bbf41d7c5919bff, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 189a6283bd4925841bbf41d7c5919bff, type: 3}
 --- !u!4 &7275137554552705964 stripped
 Transform:
@@ -1368,8 +1561,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 65180995060079892, guid: 189a6283bd4925841bbf41d7c5919bff, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 189a6283bd4925841bbf41d7c5919bff, type: 3}
 --- !u!4 &7880434089858093208 stripped
 Transform:
