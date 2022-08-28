@@ -1,5 +1,4 @@
-﻿using System;
-using Enums;
+﻿using Enums;
 using Managers;
 using Signals;
 using UnityEngine;
@@ -21,8 +20,6 @@ namespace Controllers
         #region Private Variables
         
         #endregion
-        
-        private float _timer = 0f;
         
         #endregion
         
@@ -68,13 +65,6 @@ namespace Controllers
             if (other.CompareTag("DroneArea"))
             {
                 playerManager.StopVerticalMovement();
-            }
-        }
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.CompareTag("IdleMarketPrice"))
-            {
-                
             }
         }
     }

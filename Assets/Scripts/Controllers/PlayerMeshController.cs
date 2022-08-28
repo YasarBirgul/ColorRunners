@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using Enums;
 using Managers;
@@ -16,7 +17,10 @@ public class PlayerMeshController : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
     [SerializeField] private PlayerManager playerManager;
     #endregion
+    #region Serialized Variables
     
+    
+    #endregion
     #endregion
     public void SetColor(ColorType colorType)
     {
@@ -26,9 +30,18 @@ public class PlayerMeshController : MonoBehaviour
     {
         var PlayerManagerScale = playerManager.transform.localScale;
         
-        if (PlayerManagerScale.x <= Vector3.one.x * 2f)
+        if (PlayerManagerScale.x < Vector3.one.x * 2f)
         {
             playerManager.transform.DOScale(PlayerManagerScale + Vector3.one*0.5f, 2.0f);
+        }
+    } 
+    public void DecreaseSize()
+    {
+        var PlayerManagerScale = playerManager.transform.localScale;
+
+        if (PlayerManagerScale.x > Vector3.one.x*1f)
+        {
+            playerManager.transform.DOScale(PlayerManagerScale - Vector3.one*0.5f, 2f);
         }
     }
 }

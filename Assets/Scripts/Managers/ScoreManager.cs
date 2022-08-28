@@ -94,6 +94,7 @@ namespace Managers
               if (_score > 0)
               {
                   _score--;
+                  PlayerSignal.Instance.onDecreaseScale?.Invoke();
               }
               else if (_score == 0)
               {

@@ -21,6 +21,8 @@ namespace Managers
         #endregion
 
         #region Private Variables
+
+        private Material material;
         
         #endregion
 
@@ -42,7 +44,6 @@ namespace Managers
         private void Awake()
         {
             GetIdleLevelID();
-            
             if (!ES3.FileExists($"IdleBuildingDataKey{BuildingAddressID}.es3"))
             {
                 if (!ES3.KeyExists("IdleBuildingDataKey"))
@@ -96,21 +97,21 @@ namespace Managers
             SetDataToControllers();
         }
         public void UpdatePayedAmount()
-        {
-            buildingsData.PayedAmount++;
+        { 
+            var payedAmount = buildingsData.PayedAmount++;
             buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
-            UpdateSaturation();
+            UpdateSaturation(payedAmount);
         }
 
-        private void UpdateSaturation()
+        private void UpdateSaturation(int payedAmount)
         {   
-            // Saturation = buildingMeshController.CalculateSaturation();
+            buildingMeshController.CalculateSaturation(payedAmount);
         } 
         private void SetDataToControllers() 
         {
             buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
             buildingMeshController.Saturation = buildingsData.Saturation;
-            UpdateSaturation();
+            UpdateSaturation(buildingsData.PayedAmount);
         } 
         public void UpdateBuildingStatus(IdleLevelStateType idleLevelState)
         {

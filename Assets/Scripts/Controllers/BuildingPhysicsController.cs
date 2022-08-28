@@ -14,12 +14,5 @@ namespace Controllers
         #endregion
         
         #endregion
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Collectable"))
-            {
-                Destroy(other.gameObject);
-            }
-        }
     }
 }

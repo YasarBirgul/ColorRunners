@@ -65,7 +65,8 @@ namespace Managers
             InputSignals.Instance.onInputReleased += OnDeactiveMovement;
             InputSignals.Instance.onRunnerInputDragged+= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged+= OnGetIdleInputValues;
-            PlayerSignal.Instance.onIncreaseScale += OnIncreaseScale;
+            PlayerSignal.Instance.onIncreaseScale += OnIncreaseScale; 
+            // PlayerSignal.Instance.onDecreaseScale += OnDecreaseScale;
             LevelSignals.Instance.onLevelFailed += OnLevelFailed;
         } 
         private void UnsubscribeEvents()
@@ -78,7 +79,8 @@ namespace Managers
             InputSignals.Instance.onRunnerInputDragged -= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
             PlayerSignal.Instance.onIncreaseScale -= OnIncreaseScale;
-            LevelSignals.Instance.onLevelFailed += OnLevelFailed;
+          //  PlayerSignal.Instance.onDecreaseScale -= OnDecreaseScale;
+            LevelSignals.Instance.onLevelFailed -= OnLevelFailed;
         } 
         private void OnDisable()
         {
@@ -162,6 +164,13 @@ namespace Managers
             if (CurrentGameState == GameStates.Roullette)
             {
                 playerMeshController.IncreaseSize();
+            }
+        }
+        public void OnDecreaseScale()
+        { 
+            if (CurrentGameState == GameStates.Idle)
+            {
+                playerMeshController.DecreaseSize();
             }
         }
         private void OnLevelFailed()
