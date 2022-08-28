@@ -27,7 +27,7 @@ namespace Controllers
 
         public float CalculateSaturation()
         {
-            Saturation = (manager.PayedAmount / manager.MarketPrice);
+            Saturation = (manager.buildingsData.PayedAmount / manager.buildingsData.BuildingMarketPrice);
             return Saturation;
         }
         

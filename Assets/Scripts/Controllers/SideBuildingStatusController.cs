@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Extentions
+namespace Controllers
 {
     public class SideBuildingStatusController : MonoBehaviour
     {

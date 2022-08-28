@@ -160,7 +160,7 @@ namespace Managers
         private void OnReset()
         {
             LevelSignals.Instance.onClearActiveLevel?.Invoke();
-            SaveSignals.Instance.onSaveRunnerLevelData?.Invoke(SaveStates.level, _levelID);
+           // SaveSignals.Instance.onSaveRunnerLevelData?.Invoke(SaveStates.level, _levelID);
             LevelSignals.Instance.onLevelInitialize?.Invoke();
             LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
         }

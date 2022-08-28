@@ -1,6 +1,4 @@
-﻿using System;
-using Enums;
-using Extentions;
+﻿using Enums;
 using Managers;
 using UnityEngine;
 
@@ -39,34 +37,29 @@ namespace Controllers
               {
                   _timer = 0.2f;
   
-                  if (buildingManager.MarketPrice > buildingManager.PayedAmount)
+                  if (buildingManager.buildingsData.BuildingMarketPrice > buildingManager.buildingsData.PayedAmount)
                   {
-                      if (gameObject.CompareTag("Main"))
-                      {
-                          buildingManager.UpdatePayedAmount();
-                      }
-                      else if (gameObject.CompareTag("Side"))
-                      {
-                          buildingManager.UpdateSidePayedAmount();
-                      }
+                      buildingManager.UpdatePayedAmount();
                   }
                   else
                   {
                       gameObject.SetActive(false);
-                      if (buildingManager.IdleLevelStateType == IdleLevelStateType.Uncompleted)
+                      if (buildingManager.buildingsData.idleLevelState == IdleLevelStateType.Uncompleted)
                       {
+                          transform.gameObject.SetActive(false);
+                          buildingManager.OpenSideObject();
                           buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
                       }
                   }
               }
             }
-           
         }
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
             {
                 _timer = 0f;
+                buildingManager.Save(buildingManager.BuildingAddressID);
             }
         }
     }

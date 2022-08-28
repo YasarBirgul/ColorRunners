@@ -1,32 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Controllers;
+﻿using Controllers;
+using Datas.UnityObject;
 using Datas.ValueObject;
 using Enums;
-using Extentions;
 using Signals;
 using UnityEngine;
-using UnityEngine.UIElements;
+using Abstract;
 
 namespace Managers
 {
-    public class BuildingManager : MonoBehaviour
+    public class BuildingManager : MonoBehaviour,ISaveable
     { 
         #region Self Variables
 
         #region Public Variables
         
-        public int buildingAdressId;
-        public IdleLevelStateType IdleLevelStateType;
-        public int PayedAmount;
-        public float Saturation;
-        public int MarketPrice; 
-        public SideObjectData SideObjectData;
-        // public IdleLevelStateType SideIdleLevelStateType;
-        public int SidePayedAmount;
-       // public float SideSaturation;
-       // public int SideMarketPrice;
-       // 
+        public BuildingsData buildingsData;
+        public int BuildingAddressID;
+        public int _idleLevelId;
+        
         #endregion
 
         #region Private Variables
@@ -39,10 +30,36 @@ namespace Managers
         [SerializeField] private BuildingMeshController buildingMeshController;
         [SerializeField] private BuildingPhysicsController buildingPhysicsController;
         [SerializeField] private BuildingScorePhysicsController buildingScorePhysicsController;
-        [SerializeField] private SideBuildingStatusController SidebuildingMarketStatusController;
+        [SerializeField] private GameObject SideObject;
+        [SerializeField] private SideObjectData sideObjectData;
         #endregion
 
         #endregion
+        private BuildingsData GetBuildingsData()
+        {
+            return Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[_idleLevelId].BuildingsDatas[BuildingAddressID];
+        }
+        private void Awake()
+        {
+            GetIdleLevelID();
+            
+            if (!ES3.FileExists($"IdleBuildingDataKey{BuildingAddressID}.es3"))
+            {
+                if (!ES3.KeyExists("IdleBuildingDataKey"))
+                {   
+                    Debug.Log("Key does not exist!");
+                    buildingsData = GetBuildingsData();
+                    Save(BuildingAddressID);
+                }
+            }
+            Debug.Log("Key Exist!");
+            Load(BuildingAddressID);
+            SetDataToControllers();
+        }
+        private void GetIdleLevelID()
+        {
+            _idleLevelId = CoreGameSignals.Instance.onGetIdleLevelID.Invoke();
+        }
 
         #region Event Subscription
         private void OnEnable()
@@ -51,61 +68,83 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
-            BuildingSignals.Instance.onDataReadyToUse += OnSetDataToControllers;
+            CoreGameSignals.Instance.onApplicatiponQuit += OnSave;
+            CoreGameSignals.Instance.onGamePause += OnSave;
+            LevelSignals.Instance.onNextLevel += OnSave;
+            LevelSignals.Instance.onLevelInitialize += OnLoad;
         } 
         private void UnsubscribeEvents()
         {
-            BuildingSignals.Instance.onDataReadyToUse -= OnSetDataToControllers;
+            CoreGameSignals.Instance.onApplicatiponQuit -= OnSave;
+            CoreGameSignals.Instance.onGamePause -= OnSave;
+            LevelSignals.Instance.onNextLevel -= OnSave;
+            LevelSignals.Instance.onLevelInitialize -= OnLoad;;
         }
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
         #endregion
-
-        private void OnSetDataToControllers()
+        private void OnSave()
         {
-          
-            SetDataToBuildingsMarketStatusController();
+            Save(BuildingAddressID);
+            SetDataToControllers();
         }
-
-        private void SetDataToBuildingsMeshController()
+        private void OnLoad()
         {
-            buildingMeshController.Saturation = Saturation;
+            Load(BuildingAddressID);
+            SetDataToControllers();
         }
-        private void SetDataToBuildingsMarketStatusController()
-        { 
-            buildingMarketStatusController.MarketPrice = MarketPrice; 
-            buildingMarketStatusController.UpdatePayedAmountText(PayedAmount);
-            buildingMarketStatusController.PayedAmount = PayedAmount;
-            SidebuildingMarketStatusController.MarketPrice = SideObjectData.MarketPrice;
-            SidebuildingMarketStatusController.UpdatePayedAmountText(SidePayedAmount);
-            SidebuildingMarketStatusController.PayedAmount = SideObjectData.PayedAmount;
-
-        }
-        
         public void UpdatePayedAmount()
         {
-            PayedAmount++;
-            buildingMarketStatusController.UpdatePayedAmountText(PayedAmount);
-            //  UpdateSaturation();
+            buildingsData.PayedAmount++;
+            buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
+            UpdateSaturation();
         }
 
-        public void UpdateSidePayedAmount()
+        private void UpdateSaturation()
+        {   
+            // Saturation = buildingMeshController.CalculateSaturation();
+        } 
+        private void SetDataToControllers() 
         {
-            SidePayedAmount++;
-            SidebuildingMarketStatusController.UpdatePayedAmountText(SidePayedAmount);
-        }
-        
-      // private void UpdateSaturation()
-      // {
-      //     Saturation = buildingMeshController.CalculateSaturation();
-      // }
-
+            buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
+            buildingMeshController.Saturation = buildingsData.Saturation;
+            UpdateSaturation();
+        } 
         public void UpdateBuildingStatus(IdleLevelStateType idleLevelState)
         {
-            IdleLevelStateType = idleLevelState;
-            BuildingSignals.Instance.onBuildingsCompleted.Invoke(buildingAdressId);
+            buildingsData.idleLevelState = idleLevelState;
+            BuildingSignals.Instance.onBuildingsCompleted.Invoke(buildingsData.BuildingAdressId);
+        } 
+        public void OpenSideObject()
+        {
+            SideObject.SetActive(true);
+            buildingMarketStatusController.gameObject.SetActive(false);
+        }
+        
+        public void Save(int uniqueId)
+        {
+            buildingsData  = new BuildingsData(buildingsData.IsDepended,
+            buildingsData.SideObject,
+            BuildingAddressID,
+            buildingsData.BuildingMarketPrice,
+            buildingsData.PayedAmount,
+            buildingsData.Saturation,
+            buildingsData.idleLevelState);
+            
+            SaveSignals.Instance.onSaveIdleData.Invoke(buildingsData,uniqueId);
+        }
+
+        public void Load(int uniqueId)
+        { 
+            BuildingsData _buildingsData = SaveSignals.Instance.onLoadBuildingsData.Invoke(buildingsData.Key, uniqueId);
+            
+            buildingsData.Saturation = _buildingsData.Saturation;
+            buildingsData.PayedAmount = _buildingsData.PayedAmount;
+            buildingsData.idleLevelState = _buildingsData.idleLevelState;
+            buildingsData.BuildingMarketPrice = _buildingsData.BuildingMarketPrice;
+            buildingsData.IsDepended = _buildingsData.IsDepended;
         }
     }
 }

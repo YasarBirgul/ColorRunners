@@ -14,90 +14,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IdleLevelList:
   - BuildingsDatas:
-    - AddressId: 0
-      isDepended: 1
-      buildingMarketPrice: 150
-      PayedAmount: 0
-      Saturation: 0
-      IdleLevelStateType: 0
-      SideObjectData:
-        MarketPrice: 100
+    - Key: IdleBuildingDataKey
+      IsDepended: 0
+      SideObject:
+        MarketPrice: 0
         PayedAmount: 0
         BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
-    - AddressId: 1
-      isDepended: 0
-      buildingMarketPrice: 100
+      BuildingMarketPrice: 600
       PayedAmount: 0
+      BuildingAdressId: 0
       Saturation: 0
-      IdleLevelStateType: 0
-      SideObjectData:
+      idleLevelState: 0
+    - Key: IdleBuildingDataKey
+      IsDepended: 0
+      SideObject:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 1
+        BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
-    - AddressId: 2
-      isDepended: 0
-      buildingMarketPrice: 200
+      BuildingMarketPrice: 400
       PayedAmount: 0
+      BuildingAdressId: 1
       Saturation: 0
-      IdleLevelStateType: 0
-      SideObjectData:
+      idleLevelState: 0
+    - Key: IdleBuildingDataKey
+      IsDepended: 0
+      SideObject:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 2
+        BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
-    - AddressId: 3
-      isDepended: 0
-      buildingMarketPrice: 350
+      BuildingMarketPrice: 120
       PayedAmount: 0
+      BuildingAdressId: 2
       Saturation: 0
-      IdleLevelStateType: 0
-      SideObjectData:
+      idleLevelState: 0
+    - Key: IdleBuildingDataKey
+      IsDepended: 0
+      SideObject:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 3
+        BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
-    - AddressId: 4
-      isDepended: 0
-      buildingMarketPrice: 100
+      BuildingMarketPrice: 400
       PayedAmount: 0
+      BuildingAdressId: 3
       Saturation: 0
-      IdleLevelStateType: 0
-      SideObjectData:
+      idleLevelState: 0
+    - Key: IdleBuildingDataKey
+      IsDepended: 0
+      SideObject:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 4
+        BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
-    - AddressId: 5
-      isDepended: 0
-      buildingMarketPrice: 500
+      BuildingMarketPrice: 150
       PayedAmount: 0
+      BuildingAdressId: 4
       Saturation: 0
-      IdleLevelStateType: 0
-      SideObjectData:
+      idleLevelState: 0
+    - Key: IdleBuildingDataKey
+      IsDepended: 0
+      SideObject:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 5
+        BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
+      BuildingMarketPrice: 200
+      PayedAmount: 0
+      BuildingAdressId: 5
+      Saturation: 0
+      idleLevelState: 0
     IdleLevelStateType: 0
   - BuildingsDatas:
-    - AddressId: 0
-      isDepended: 0
-      buildingMarketPrice: 0
-      PayedAmount: 0
-      Saturation: 0
-      IdleLevelStateType: 0
-      SideObjectData:
+    - Key: IdleBuildingDataKey
+      IsDepended: 0
+      SideObject:
         MarketPrice: 0
         PayedAmount: 0
         BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
+      BuildingMarketPrice: 0
+      PayedAmount: 0
+      BuildingAdressId: 0
+      Saturation: 0
+      idleLevelState: 0
     IdleLevelStateType: 0
