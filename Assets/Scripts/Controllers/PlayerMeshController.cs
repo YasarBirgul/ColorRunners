@@ -32,7 +32,7 @@ public class PlayerMeshController : MonoBehaviour
         
         if (PlayerManagerScale.x < Vector3.one.x * 2f)
         {
-            playerManager.transform.DOScale(PlayerManagerScale + Vector3.one*0.5f, 2.0f);
+            playerManager.transform.DOScale(Vector3.one*2f, 2.0f);
         }
     } 
     public void DecreaseSize()
@@ -41,7 +41,7 @@ public class PlayerMeshController : MonoBehaviour
 
         if (PlayerManagerScale.x > Vector3.one.x*1f)
         {
-            playerManager.transform.DOScale(PlayerManagerScale - Vector3.one*0.5f, 2f);
+            playerManager.transform.DOScale(Vector3.one, 2f);
         }
     }
 }

@@ -46,6 +46,7 @@ namespace Managers
           {  
               CoreGameSignals.Instance.onReset += OnReset;
               CoreGameSignals.Instance.onPlay += OnPlay;
+              LevelSignals.Instance.onNextLevel += OnNextLevel;
               ScoreSignals.Instance.onIncreaseScore += OnIncreaseScore;
               ScoreSignals.Instance.onDecreaseScore += OnDecreaseScore;
               ScoreSignals.Instance.onPlayerScoreSetActive += OnPlayerScoreSetActive;
@@ -55,6 +56,7 @@ namespace Managers
           {   
               CoreGameSignals.Instance.onReset -= OnReset;
               CoreGameSignals.Instance.onPlay -= OnPlay;
+              LevelSignals.Instance.onNextLevel += OnNextLevel;
               ScoreSignals.Instance.onIncreaseScore -= OnIncreaseScore;
               ScoreSignals.Instance.onDecreaseScore -= OnDecreaseScore;
               ScoreSignals.Instance.onPlayerScoreSetActive -= OnPlayerScoreSetActive;
@@ -125,6 +127,12 @@ namespace Managers
           } private void OnReset()
           {
               _score = 0;
+              playerScoreHolder.transform.parent = transform;
+              playerScoreHolder.transform.position = Vector3.up*2.5f;
+          }
+
+          private void OnNextLevel()
+          {
               playerScoreHolder.transform.parent = transform;
               playerScoreHolder.transform.position = Vector3.up*2.5f;
           }

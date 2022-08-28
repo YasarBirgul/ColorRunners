@@ -66,7 +66,7 @@ namespace Managers
             InputSignals.Instance.onRunnerInputDragged+= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged+= OnGetIdleInputValues;
             PlayerSignal.Instance.onIncreaseScale += OnIncreaseScale; 
-            // PlayerSignal.Instance.onDecreaseScale += OnDecreaseScale;
+            PlayerSignal.Instance.onDecreaseScale += OnDecreaseScale;
             LevelSignals.Instance.onLevelFailed += OnLevelFailed;
         } 
         private void UnsubscribeEvents()
@@ -79,7 +79,7 @@ namespace Managers
             InputSignals.Instance.onRunnerInputDragged -= OnGetRunnerInputValues;
             InputSignals.Instance.onIdleInputDragged -= OnGetIdleInputValues;
             PlayerSignal.Instance.onIncreaseScale -= OnIncreaseScale;
-          //  PlayerSignal.Instance.onDecreaseScale -= OnDecreaseScale;
+            PlayerSignal.Instance.onDecreaseScale -= OnDecreaseScale;
             LevelSignals.Instance.onLevelFailed -= OnLevelFailed;
         } 
         private void OnDisable()

@@ -114,7 +114,10 @@ namespace Managers
       
       public void NextLevelButton()
       {
-          
+          UISignals.Instance.onClosePanel?.Invoke(UIPanels.IdlePanel);
+          UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
+          LevelSignals.Instance.onNextLevel?.Invoke();
+          CoreGameSignals.Instance.onChangeGameState?.Invoke(GameStates.Runner);
           
       }
       void OnChangeGameState(GameStates Current)
@@ -159,7 +162,6 @@ namespace Managers
       private void CursorMovement()
       {
           Sequence sequence = DOTween.Sequence();
-
           sequence.Join(arrowRectTransform.DORotate(new Vector3(0, 0, 30), 1f).SetEase(Ease.Linear)).SetLoops(-1,LoopType.Yoyo);
           sequence.Join(arrowRectTransform.DOLocalMoveX(-500f,1f)).SetEase(Ease.Linear).SetLoops(-1,LoopType.Yoyo);
       }

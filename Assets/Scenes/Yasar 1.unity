@@ -2719,9 +2719,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 245209779227172975}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 245209779227172977}
+        m_TargetAssemblyTypeName: Managers.UIManager, Assembly-CSharp
+        m_MethodName: NextLevelButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -8,7 +8,6 @@ using Keys;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 namespace Managers 
 {
@@ -63,6 +62,7 @@ namespace Managers
             CoreGameSignals.Instance.onGameOpen += OnGameOpen;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onReset += OnReset;
+            LevelSignals.Instance.onNextLevel += OnNextLevel;
             StackSignals.Instance.onIncreaseStack += OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack += OnDecreaseStack;
             StackSignals.Instance.onColorChange += OnColorChange;
@@ -75,6 +75,7 @@ namespace Managers
             CoreGameSignals.Instance.onGameOpen -= OnGameOpen;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onReset -= OnReset;
+            LevelSignals.Instance.onNextLevel -= OnNextLevel;
             StackSignals.Instance.onIncreaseStack -= OnIncreaseStack;
             StackSignals.Instance.onDecreaseStack -= OnDecreaseStack;
             StackSignals.Instance.onColorChange -= OnColorChange;
@@ -179,7 +180,7 @@ namespace Managers
             {
                 await Task.Delay(100);
                 collected[0].SetActive(false);
-                collected[0].transform.parent = tempHolder.transform;
+                collected[0].transform.parent = lostItemsHolder.transform;
                 PlayerSignal.Instance.onIncreaseScale?.Invoke();
                 collected.RemoveAt(0);
             }
@@ -201,16 +202,18 @@ namespace Managers
             collected.Clear();
             collected.TrimExcess();
             InitStack();
+        } 
+        private void OnNextLevel()
+        {
+            InitStack();
         }
         private void DeleteStack()
         {
             var stackCount = collected.Count;
             for (int i = 0; i < stackCount; i++)
             {
-               
                 collected[i].transform.SetParent(null);
                 Destroy(collected[i]);
-
             }
         }
     }

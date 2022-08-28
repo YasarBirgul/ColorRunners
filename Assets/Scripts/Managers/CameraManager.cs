@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Cinemachine;
 using Enums;
 using Extentions;
@@ -58,6 +59,7 @@ namespace Managers
             CoreGameSignals.Instance.onChangeGameState += OnChangeGameState;
             CameraSignals.Instance.onSetCameraTarget += OnSetCameraTarget;
             CoreGameSignals.Instance.onReset += OnReset;
+            LevelSignals.Instance.onNextLevel += OnNextLevel;
         }
         private void UnsubscribeEvents()
         {
@@ -65,6 +67,7 @@ namespace Managers
             CoreGameSignals.Instance.onChangeGameState -= OnChangeGameState;
             CameraSignals.Instance.onSetCameraTarget -= OnSetCameraTarget;
             CoreGameSignals.Instance.onReset -= OnReset;
+            LevelSignals.Instance.onNextLevel -= OnNextLevel;
         }
         private void OnDisable()
         {
@@ -111,7 +114,7 @@ namespace Managers
         }
         private void OnReset()
         {
-            SetCameraTarget();
+            CameraTargetSetting();
         }
         void OnChangeGameState(GameStates currentGameState)
         {
@@ -127,6 +130,14 @@ namespace Managers
                     break;
             }
         }
-        
+        private  void OnNextLevel()
+        {
+            CameraTargetSetting();
+        }
+        private async void CameraTargetSetting()
+        {  
+            await Task.Delay(50);
+            SetCameraTarget();
+        }
     }
 }
