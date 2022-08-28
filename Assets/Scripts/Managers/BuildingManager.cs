@@ -1,8 +1,12 @@
-﻿using Controllers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Controllers;
 using Datas.ValueObject;
 using Enums;
+using Extentions;
 using Signals;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Managers
 {
@@ -16,9 +20,13 @@ namespace Managers
         public IdleLevelStateType IdleLevelStateType;
         public int PayedAmount;
         public float Saturation;
-        public int MarketPrice;
+        public int MarketPrice; 
         public SideObjectData SideObjectData;
-       
+        // public IdleLevelStateType SideIdleLevelStateType;
+        public int SidePayedAmount;
+       // public float SideSaturation;
+       // public int SideMarketPrice;
+       // 
         #endregion
 
         #region Private Variables
@@ -31,7 +39,7 @@ namespace Managers
         [SerializeField] private BuildingMeshController buildingMeshController;
         [SerializeField] private BuildingPhysicsController buildingPhysicsController;
         [SerializeField] private BuildingScorePhysicsController buildingScorePhysicsController;
-
+        [SerializeField] private SideBuildingStatusController SidebuildingMarketStatusController;
         #endregion
 
         #endregion
@@ -57,7 +65,7 @@ namespace Managers
 
         private void OnSetDataToControllers()
         {
-          //  SetDataToBuildingsMeshController();
+          
             SetDataToBuildingsMarketStatusController();
         }
 
@@ -66,19 +74,29 @@ namespace Managers
             buildingMeshController.Saturation = Saturation;
         }
         private void SetDataToBuildingsMarketStatusController()
-        {
-           buildingMarketStatusController.MarketPrice = MarketPrice;
-           buildingMarketStatusController.UpdatePayedAmountText(PayedAmount);
-           buildingMarketStatusController.PayedAmount = PayedAmount;
-         //  UpdateSaturation();
-        }
+        { 
+            buildingMarketStatusController.MarketPrice = MarketPrice; 
+            buildingMarketStatusController.UpdatePayedAmountText(PayedAmount);
+            buildingMarketStatusController.PayedAmount = PayedAmount;
+            SidebuildingMarketStatusController.MarketPrice = SideObjectData.MarketPrice;
+            SidebuildingMarketStatusController.UpdatePayedAmountText(SidePayedAmount);
+            SidebuildingMarketStatusController.PayedAmount = SideObjectData.PayedAmount;
 
+        }
+        
         public void UpdatePayedAmount()
         {
             PayedAmount++;
             buildingMarketStatusController.UpdatePayedAmountText(PayedAmount);
-          //  UpdateSaturation();
+            //  UpdateSaturation();
         }
+
+        public void UpdateSidePayedAmount()
+        {
+            SidePayedAmount++;
+            SidebuildingMarketStatusController.UpdatePayedAmountText(SidePayedAmount);
+        }
+        
       // private void UpdateSaturation()
       // {
       //     Saturation = buildingMeshController.CalculateSaturation();

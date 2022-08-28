@@ -17,6 +17,8 @@ TagManager:
   - AfterGround
   - TurretDetect
   - IdleMarketPrice
+  - Side
+  - Main
   layers:
   - Default
   - TransparentFX

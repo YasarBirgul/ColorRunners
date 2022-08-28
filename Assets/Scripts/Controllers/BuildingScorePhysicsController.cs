@@ -1,5 +1,6 @@
 ﻿using System;
 using Enums;
+using Extentions;
 using Managers;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private BuildingManager buildingManager;
+        [SerializeField] private int ObjetType;
         #endregion
 
         #region Private Variables
@@ -39,7 +41,14 @@ namespace Controllers
   
                   if (buildingManager.MarketPrice > buildingManager.PayedAmount)
                   {
-                      buildingManager.UpdatePayedAmount();
+                      if (gameObject.CompareTag("Main"))
+                      {
+                          buildingManager.UpdatePayedAmount();
+                      }
+                      else if (gameObject.CompareTag("Side"))
+                      {
+                          buildingManager.UpdateSidePayedAmount();
+                      }
                   }
                   else
                   {

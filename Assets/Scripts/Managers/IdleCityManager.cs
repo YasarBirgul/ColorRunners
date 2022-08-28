@@ -100,10 +100,9 @@ namespace Managers
                 {
                     IdleLevelData.BuildingsDatas[i].SideObjectData.BuildingAddressId = i;
                     BuildingManagers[i].SideObjectData.BuildingAddressId = i;
-                    BuildingManagers[i].SideObjectData.MarketPrice = IdleLevelData.BuildingsDatas[i].buildingMarketPrice;
-                    BuildingManagers[i].SideObjectData.PayedAmount = IdleLevelData.BuildingsDatas[i].PayedAmount;
-                    BuildingManagers[i].SideObjectData.Saturation = IdleLevelData.BuildingsDatas[i].Saturation;
-
+                    BuildingManagers[i].SideObjectData.MarketPrice = IdleLevelData.BuildingsDatas[i].SideObjectData.MarketPrice;
+                    BuildingManagers[i].SideObjectData.PayedAmount = IdleLevelData.BuildingsDatas[i].SideObjectData.PayedAmount;
+                    BuildingManagers[i].SideObjectData.Saturation = IdleLevelData.BuildingsDatas[i].SideObjectData.Saturation;
                 }
                 
             }
@@ -133,9 +132,9 @@ namespace Managers
                 if (!IdleLevelData.BuildingsDatas[i].isDepended || IdleLevelData.BuildingsDatas[i].IdleLevelStateType
                     != IdleLevelStateType.Completed)
                 {
-                    IdleLevelData.BuildingsDatas[i].IdleLevelStateType = BuildingManagers[i].IdleLevelStateType;
-                    IdleLevelData.BuildingsDatas[i].SideObjectData.PayedAmount = BuildingManagers[i].PayedAmount;
-                    IdleLevelData.BuildingsDatas[i].SideObjectData.Saturation = BuildingManagers[i].Saturation;
+                    IdleLevelData.BuildingsDatas[i].SideObjectData.IdleLevelStateType = BuildingManagers[i].SideObjectData.IdleLevelStateType;
+                    IdleLevelData.BuildingsDatas[i].SideObjectData.PayedAmount = BuildingManagers[i].SideObjectData.PayedAmount;
+                    IdleLevelData.BuildingsDatas[i].SideObjectData.Saturation = BuildingManagers[i].SideObjectData.Saturation;
                 }
             }
         } 
