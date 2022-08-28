@@ -59,6 +59,10 @@ namespace Controllers
             if (other.CompareTag("ScorePhysics"))
             {
                 _timer = 0f;
+            }
+
+            if (other.CompareTag("Player"))
+            {
                 buildingManager.Save(buildingManager.BuildingAddressID);
             }
         }

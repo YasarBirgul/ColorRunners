@@ -69,7 +69,7 @@ namespace Managers
           {
               playerScoreHolder.SetActive(true);
               FindPlayer();
-              _score = _stackData.InitializedStack.Count;
+              _score = _stackData.StackMemberAmount;
               SetScoreToText();
           }
           private void FindPlayer()

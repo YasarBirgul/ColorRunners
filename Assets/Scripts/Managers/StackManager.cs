@@ -93,10 +93,9 @@ namespace Managers
 
         private void InitStack()
         {
-            for (int i = 0; i < _data.InitializedStack.Count; i++)
+            for (int i = 0; i < _data.StackMemberAmount; i++)
             {
-                var StartPack
-                    = Instantiate(_data.InitializedStack[i], Vector3.zero * (i + 1) * 2, transform.rotation);
+                var StartPack = Instantiate(_data.InitializedStack, Vector3.zero * (i + 1) * 2, transform.rotation);
                 _colAddOnStackCommand.Execute(StartPack);
                 collected[i].GetComponent<CollectableManager>().SetAnim(CollectableAnimationStates.Crouching);
             }

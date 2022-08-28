@@ -9,7 +9,7 @@ namespace Datas.ValueObject
     public class StackData
     {
         public int StackMemberAmount = 5;
-        public List<GameObject> InitializedStack;
+        public GameObject InitializedStack;
         public Vector3 LerpSpeed = new Vector3(0.2f, 0.2f, 1f);
         public float ScaleFactor = 1.5f;
         public float StackDistanceZ = 1f;

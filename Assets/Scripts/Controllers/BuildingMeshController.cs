@@ -28,10 +28,9 @@ namespace Controllers
 
         #endregion
 
-        public void CalculateSaturation(int payedAmount)
+        public void CalculateSaturation()
         {
-            Debug.Log(payedAmount);
-            Saturation =(float)payedAmount/manager.buildingsData.BuildingMarketPrice*3f;
+            Saturation =(float)manager.buildingsData.PayedAmount/manager.buildingsData.BuildingMarketPrice*3f;
             saturationChange(Saturation);
         }
         public void saturationChange(float saturation)

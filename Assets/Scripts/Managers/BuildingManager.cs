@@ -100,18 +100,18 @@ namespace Managers
         { 
             var payedAmount = buildingsData.PayedAmount++;
             buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
-            UpdateSaturation(payedAmount);
+            UpdateSaturation();
         }
 
-        private void UpdateSaturation(int payedAmount)
+        private void UpdateSaturation()
         {   
-            buildingMeshController.CalculateSaturation(payedAmount);
+            buildingMeshController.CalculateSaturation();
         } 
         private void SetDataToControllers() 
         {
             buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
             buildingMeshController.Saturation = buildingsData.Saturation;
-            UpdateSaturation(buildingsData.PayedAmount);
+            UpdateSaturation();
         } 
         public void UpdateBuildingStatus(IdleLevelStateType idleLevelState)
         {
