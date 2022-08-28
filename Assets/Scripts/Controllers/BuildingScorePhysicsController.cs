@@ -29,7 +29,7 @@ namespace Controllers
 
         private void OnTriggerStay(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("ScorePhysics"))
             {
                  _timer -= Time.fixedDeltaTime;
                 
@@ -56,7 +56,7 @@ namespace Controllers
         }
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("ScorePhysics"))
             {
                 _timer = 0f;
                 buildingManager.Save(buildingManager.BuildingAddressID);

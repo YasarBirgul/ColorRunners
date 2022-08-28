@@ -30,7 +30,5 @@ namespace Controllers
             Saturation = (manager.buildingsData.PayedAmount / manager.buildingsData.BuildingMarketPrice);
             return Saturation;
         }
-        
-        
     }
 }

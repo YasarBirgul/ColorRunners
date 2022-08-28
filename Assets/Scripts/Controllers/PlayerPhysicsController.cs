@@ -53,7 +53,15 @@ namespace Controllers
                     other.GetComponent<DroneAreaColorController>().DroneAreaMatchType = CollectableMatchType.Match;
                 }
             }
-           
+            else if (other.CompareTag("Collectable"))
+            {
+                if (playerManager.CurrentGameState == GameStates.Idle)
+                {
+                    var Collectable = other.transform.parent;
+                    Collectable.gameObject.SetActive(false);
+                    ScoreSignals.Instance.onIncreaseScore?.Invoke();
+                }
+            }
         }
         private void OnTriggerExit(Collider other)
         {

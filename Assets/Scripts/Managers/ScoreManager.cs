@@ -1,4 +1,5 @@
-﻿using Datas.UnityObject;
+﻿using Controllers;
+using Datas.UnityObject;
 using Datas.ValueObject;
 using Signals;
 using TMPro;
@@ -19,13 +20,15 @@ namespace Managers
           [SerializeField] private GameObject playerScoreHolder;
           [SerializeField] private TextMeshProUGUI UIScoreText;
           [SerializeField] private TextMeshPro scoreText;
-          private StackData _stackData;
+          [SerializeField] private ScorePhysicsController physicsController;
+          
           #endregion
           
           #region Private Variables
 
           private int _score;
           private Transform _playerManager;
+          private StackData _stackData;
           #endregion
         
           #endregion
@@ -80,11 +83,22 @@ namespace Managers
           private void OnIncreaseScore()
           {
               _score++;
+              if (_score <= 1)
+              {
+                  physicsController.SetColliderActive(true);
+              }
               SetScoreToText();
           }
-          private void OnDecreaseScore()
+          public void OnDecreaseScore()
           {
-              _score--;
+              if (_score > 0)
+              {
+                  _score--;
+              }
+              else if (_score == 0)
+              {
+                  physicsController.SetColliderActive(false);
+              }
               SetScoreToText();
           }
           private void OnPlayerScoreSetActive(bool OnPlayerScoreSetActive)

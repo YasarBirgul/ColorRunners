@@ -19,6 +19,9 @@ TagManager:
   - IdleMarketPrice
   - Side
   - Main
+  - Particle
+  - BuildingArea
+  - ScorePhysics
   layers:
   - Default
   - TransparentFX
