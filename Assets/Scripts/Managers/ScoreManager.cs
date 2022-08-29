@@ -126,13 +126,14 @@ namespace Managers
               UIScoreText.text = _score.ToString();
           } private void OnReset()
           {
-              _score = 0;
+              _score = _stackData.StackMemberAmount;
               playerScoreHolder.transform.parent = transform;
               playerScoreHolder.transform.position = Vector3.up*2.5f;
           }
 
           private void OnNextLevel()
           {
+              _score = _stackData.StackMemberAmount;
               playerScoreHolder.transform.parent = transform;
               playerScoreHolder.transform.position = Vector3.up*2.5f;
           }

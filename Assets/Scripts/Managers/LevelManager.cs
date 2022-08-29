@@ -139,8 +139,7 @@ namespace Managers
                 LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
                 LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
             }
-            LevelSignals.Instance.onClearActiveLevel?.Invoke();
-            LevelSignals.Instance.onLevelInitialize?.Invoke();
+            OnRestartLevel();
         } 
         private void OnClearActiveLevel()
         {
@@ -152,9 +151,7 @@ namespace Managers
         }
         private void OnRestartLevel()
         {
-            LevelSignals.Instance.onClearActiveLevel?.Invoke();
             CoreGameSignals.Instance.onReset?.Invoke();
-            LevelSignals.Instance.onLevelInitialize?.Invoke();
         }
         private void OnReset()
         {

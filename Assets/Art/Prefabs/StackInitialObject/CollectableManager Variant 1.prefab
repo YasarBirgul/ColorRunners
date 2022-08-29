@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 610ad0a28e4c29b40aabfd386decd662, type: 2}
     - target: {fileID: 1524763119778764988, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
       propertyPath: m_Name
-      value: CollectableManager Variant
+      value: CollectableManager Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 1524763119778764988, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
       propertyPath: m_TagString
@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1524763119778764989, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.006432
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1524763119778764989, guid: 7f226a654b5ff444498dce9c8ee7aca6, type: 3}
       propertyPath: m_LocalRotation.w
