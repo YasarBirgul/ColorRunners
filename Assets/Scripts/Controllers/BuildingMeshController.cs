@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Managers;
 using UnityEngine;
@@ -31,13 +32,12 @@ namespace Controllers
         public void CalculateSaturation()
         {
             Saturation =(float)manager.buildingsData.PayedAmount/manager.buildingsData.BuildingMarketPrice*3f;
-            saturationChange(Saturation);
+            SaturationChange(Saturation);
         }
-        public void saturationChange(float saturation)
+        private void SaturationChange(float saturation)
         {
-            for (int i = 0; i < renderer.Count; i++)
+            foreach (var matSaturation in renderer.Select(t => t.material))
             {
-                var matSaturation = renderer[i].material;
                 matSaturation.DOFloat(saturation, "_Saturation", 1f);
             }
         }

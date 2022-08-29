@@ -104,16 +104,9 @@ namespace Managers
               }
               SetScoreToText();
           }
-          private void OnPlayerScoreSetActive(bool OnPlayerScoreSetActive)
+          private void OnPlayerScoreSetActive(bool playerActivationCondition)
           {
-              if (OnPlayerScoreSetActive)
-              {
-                  playerScoreHolder.SetActive(true);
-              }
-              else
-              {
-                  playerScoreHolder.SetActive(false);
-              }
+              playerScoreHolder.SetActive(playerActivationCondition);
           }
           private void OnMultiplyScore(int multiplyFactor)
           {
@@ -124,15 +117,16 @@ namespace Managers
           {
               scoreText.text = _score.ToString();
               UIScoreText.text = _score.ToString();
-          } private void OnReset()
-          {
-              _score = 0;
-              playerScoreHolder.transform.parent = transform;
-              playerScoreHolder.transform.position = Vector3.up*2.5f;
-          }
+          } 
 
           private void OnNextLevel()
           {
+              playerScoreHolder.transform.parent = transform;
+              playerScoreHolder.transform.position = Vector3.up*2.5f;
+          }
+          private void OnReset()
+          {
+              _score = 0;
               playerScoreHolder.transform.parent = transform;
               playerScoreHolder.transform.position = Vector3.up*2.5f;
           }
