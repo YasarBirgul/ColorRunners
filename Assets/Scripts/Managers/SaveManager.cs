@@ -33,16 +33,20 @@ namespace Managers
         {
             SaveSignals.Instance.onSaveGameData += _saveGameCommand.Execute;
             SaveSignals.Instance.onLoadGameData += _loadGameCommand.Execute<LevelIdData>;
-            SaveSignals.Instance.onSaveIdleData += _saveGameCommand.Execute;
+            SaveSignals.Instance.onSaveBuildingsData += _saveGameCommand.Execute;
             SaveSignals.Instance.onLoadBuildingsData += _loadGameCommand.Execute<BuildingsData>;
+            SaveSignals.Instance.onSaveIdleLevelData += _saveGameCommand.Execute;
+            SaveSignals.Instance.onLoadIdleLevelData += _loadGameCommand.Execute<IdleLevelData>;
         }
 
         private void UnsubscribeEvents()
         {
             SaveSignals.Instance.onSaveGameData -= _saveGameCommand.Execute;
             SaveSignals.Instance.onLoadGameData -= _loadGameCommand.Execute<LevelIdData>;
-            SaveSignals.Instance.onSaveIdleData -= _saveGameCommand.Execute;
+            SaveSignals.Instance.onSaveBuildingsData -= _saveGameCommand.Execute;
             SaveSignals.Instance.onLoadBuildingsData -= _loadGameCommand.Execute<BuildingsData>;
+            SaveSignals.Instance.onSaveIdleLevelData -= _saveGameCommand.Execute;
+            SaveSignals.Instance.onLoadIdleLevelData -= _loadGameCommand.Execute<IdleLevelData>;
         }
         private void OnDisable()
         {

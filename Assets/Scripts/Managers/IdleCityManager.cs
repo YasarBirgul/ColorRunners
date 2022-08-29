@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Abstract;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using Enums;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class IdleCityManager : MonoBehaviour
+    public class IdleCityManager : MonoBehaviour, ISaveable
     {
         #region Self Variables
 
@@ -19,13 +20,13 @@ namespace Managers
         public List<BuildingManager> BuildingManagers = new List<BuildingManager>();
 
         public IdleLevelStateType IdleLevelStateType;
-
+        
         #endregion
 
         #region Private Variables
         
         private int _idleLevelId;
-
+        
         #endregion
 
         #region Serialized Variables
@@ -41,10 +42,18 @@ namespace Managers
         }
         private void Awake()
         {
-            GetIdleLevelData();
-            IdleLevelData = OnGetCityData();
+            if (!ES3.FileExists($"IdleLevelDataKey{_idleLevelId}.es3"))
+            {
+
+                if (!ES3.KeyExists("IdleLevelDataKey"))
+                {
+                    IdleLevelData = OnGetCityData();
+                    GetIdleLevelData();
+                    Save(_idleLevelId);
+                }
+            }
+            Load(_idleLevelId);
         }
-        
         #region Event Subscription
         private void OnEnable()
         {
@@ -52,21 +61,62 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
+            CoreGameSignals.Instance.onApplicatiponQuit += OnSave;
+            CoreGameSignals.Instance.onGamePause += OnSave;
+            LevelSignals.Instance.onLevelInitialize += OnLoad;
             BuildingSignals.Instance.onBuildingsCompleted += OnSetBuildingStatus;
+            BuildingSignals.Instance.onSideBuildingsCompleted += OnSetSideBuildingStatus;
         } 
         private void UnsubscribeEvents()
         { 
+            CoreGameSignals.Instance.onApplicatiponQuit += OnSave;
+            CoreGameSignals.Instance.onGamePause += OnSave;
+            LevelSignals.Instance.onLevelInitialize += OnLoad;
             BuildingSignals.Instance.onBuildingsCompleted -= OnSetBuildingStatus;
+            BuildingSignals.Instance.onSideBuildingsCompleted -= OnSetSideBuildingStatus;
         }
         private void OnDisable()
         {
             UnsubscribeEvents();
         }
         #endregion
-        
+
+        private void OnSave()
+        {
+            Save(_idleLevelId);
+        }
+        private void OnLoad()
+        {
+            Load(_idleLevelId);
+        }
         private void OnSetBuildingStatus(int adressid)
         {
-            IdleLevelData.BuildingsDatas[adressid].idleLevelState = IdleLevelStateType.Completed;
+            IdleLevelData.CompletedCount++;
+            CheckLevelStatus();
+        }
+        private void OnSetSideBuildingStatus(int sideBuildingAdressid)
+        {
+            IdleLevelData.CompletedCount++;
+            CheckLevelStatus();
+        } 
+        private void CheckLevelStatus()
+        {
+            if (IdleLevelData.CompletedCount == BuildingManagers.Count)
+            {
+                IdleLevelStateType = IdleLevelStateType.Completed;
+                Save(_idleLevelId);
+                LevelSignals.Instance.onIdleLevelChange.Invoke();
+            }
+        }
+        public void Save(int uniqueId)
+        {
+            IdleLevelData = new IdleLevelData(IdleLevelData.IdleLevelStateType, IdleLevelData.CompletedCount);
+            SaveSignals.Instance.onSaveIdleLevelData.Invoke(IdleLevelData,uniqueId);
+        }
+        public void Load(int uniqueId)
+        {
+            IdleLevelData _idleLevelData =
+                SaveSignals.Instance.onLoadIdleLevelData.Invoke(IdleLevelData.key, uniqueId);
         }
     }
 }

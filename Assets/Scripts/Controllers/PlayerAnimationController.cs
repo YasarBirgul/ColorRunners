@@ -27,7 +27,7 @@ namespace Controllers
                     break;
                 case PlayerAnimationStates.Running:
                      animator.Play(playerAnimationStates.ToString());
-                    break;
+                     break;
             }
         }
     }

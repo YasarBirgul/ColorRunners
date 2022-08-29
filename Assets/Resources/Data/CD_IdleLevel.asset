@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CD_IdleLevel
   m_EditorClassIdentifier: 
   IdleLevelList:
-  - BuildingsDatas:
+  - key: IdleLevelDataKey
+    BuildingsDatas:
     - Key: IdleBuildingDataKey
       IsDepended: 0
       SideObject:
@@ -32,7 +33,7 @@ MonoBehaviour:
       SideObject:
         MarketPrice: 10
         PayedAmount: 0
-        BuildingAddressId: 0
+        BuildingAddressId: 1
         Saturation: 0
         IdleLevelStateType: 0
       BuildingMarketPrice: 9
@@ -45,7 +46,7 @@ MonoBehaviour:
       SideObject:
         MarketPrice: 0
         PayedAmount: 0
-        BuildingAddressId: 0
+        BuildingAddressId: 2
         Saturation: 0
         IdleLevelStateType: 0
       BuildingMarketPrice: 11
@@ -54,7 +55,9 @@ MonoBehaviour:
       Saturation: 0
       idleLevelState: 0
     IdleLevelStateType: 0
-  - BuildingsDatas:
+    CompletedCount: 0
+  - key: IdleLevelDataKey
+    BuildingsDatas:
     - Key: IdleBuildingDataKey
       IsDepended: 0
       SideObject:
@@ -62,10 +65,11 @@ MonoBehaviour:
         PayedAmount: 0
         BuildingAddressId: 0
         Saturation: 0
-        IdleLevelStateType: 0
+        IdleLevelStateType: 1
       BuildingMarketPrice: 0
       PayedAmount: 0
       BuildingAdressId: 0
       Saturation: 0
       idleLevelState: 0
     IdleLevelStateType: 0
+    CompletedCount: 0

@@ -1,5 +1,6 @@
 ﻿using Enums;
 using Managers;
+using Signals;
 using UnityEngine;
 
 namespace Controllers
@@ -47,6 +48,7 @@ namespace Controllers
                       {
                           buildingManager.OpenSideObject();
                           buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
+                          buildingManager.CheckBuildingScoreStatus(IdleLevelStateType.Completed);
                       }
                   }
               }

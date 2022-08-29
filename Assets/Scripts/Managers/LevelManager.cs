@@ -51,11 +51,12 @@ namespace Managers
             LevelSignals.Instance.onLevelInitialize += OnInitializeLevel;
             LevelSignals.Instance.onClearActiveLevel += OnClearActiveLevel;
             LevelSignals.Instance.onInitializeIdleLevel += InitializeIdleLevel;
-            LevelSignals.Instance.onClearActiveIdleLevel -= OnClearActiveIdleLevel;
+            LevelSignals.Instance.onClearActiveIdleLevel += OnClearActiveIdleLevel;
             LevelSignals.Instance.onNextLevel += OnNextLevel;
             LevelSignals.Instance.onRestartLevel += OnRestartLevel;
             LevelSignals.Instance.onGetLevel += OnGetLevel;
             LevelSignals.Instance.onGetIdleLevelID += OnGetIdleLevelID;
+            LevelSignals.Instance.onIdleLevelChange += OnIdleLevelChange;
         } 
         private void UnsubscribeEvents()
         {
@@ -68,6 +69,7 @@ namespace Managers
             LevelSignals.Instance.onRestartLevel -= OnRestartLevel;
             LevelSignals.Instance.onGetLevel -= OnGetLevel;
             LevelSignals.Instance.onGetIdleLevelID -= OnGetIdleLevelID;
+            LevelSignals.Instance.onIdleLevelChange += OnIdleLevelChange;
         }
         private void OnDisable()
         {
@@ -92,11 +94,14 @@ namespace Managers
             OnInitializeLevel();
             InitializeIdleLevel();
         }
-
         private int OnGetLevel() => _levelID;
         private int OnGetIdleLevelID()
         {
-            return _idleLevelID; 
+            return _idleLevelID;
+        } 
+        private void OnIdleLevelChange()
+        {
+            _idleLevelID++;
         }
         private int GetActiveLevel()
         {
@@ -133,17 +138,13 @@ namespace Managers
         private async void OnNextLevel()
         {
             _levelID++;
-            if (Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[_idleLevelID].IdleLevelStateType ==
-                IdleLevelStateType.Completed)
-            {
-                _idleLevelID++;
-                LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
-                LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
-            }
-
+            Debug.Log(_idleLevelID);
+            LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
+            LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
             await Task.Delay(50);
             OnRestartLevel();
         } 
+        
         private void OnClearActiveLevel()
         {
             _clearActiveLevel.Execute();
@@ -160,7 +161,8 @@ namespace Managers
         {
             LevelSignals.Instance.onClearActiveLevel?.Invoke(); 
             // SaveSignals.Instance.onSaveRunnerLevelData?.Invoke(SaveStates.level, _levelID);
-             LevelSignals.Instance.onLevelInitialize?.Invoke();
+            LevelSignals.Instance.onLevelInitialize?.Invoke();
+            LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
             LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
         }
     }

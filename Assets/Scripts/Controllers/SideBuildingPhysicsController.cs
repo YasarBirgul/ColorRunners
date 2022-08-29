@@ -1,5 +1,6 @@
 ﻿using Enums;
 using Managers;
+using Signals;
 using UnityEngine;
 
 namespace Controllers
@@ -41,10 +42,10 @@ namespace Controllers
                     }
                     else
                     {
-                        if (buildingManager.buildingsData.idleLevelState == IdleLevelStateType.Uncompleted)
+                        if (buildingManager.buildingsData.SideObject.IdleLevelStateType == IdleLevelStateType.Uncompleted)
                         {
-                            buildingManager.OpenSideObject();
                             buildingManager.UpdateSideBuildingStatus(IdleLevelStateType.Completed);
+                            buildingManager.CheckSideBuildingScoreStatus(IdleLevelStateType.Completed);
                         }
                     }
                 }
