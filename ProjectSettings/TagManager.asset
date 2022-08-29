@@ -22,6 +22,8 @@ TagManager:
   - Particle
   - BuildingArea
   - ScorePhysics
+  - Checkpoint
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

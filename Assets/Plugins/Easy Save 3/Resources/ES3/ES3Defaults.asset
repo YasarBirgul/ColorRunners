@@ -36,10 +36,12 @@ MonoBehaviour:
     - Boxophobic.Utils.Scripts
     - Sirenix.OdinInspector.CompatibilityLayer
     - Boxophobic.PolyverseSkies.Scripts
+    - NavMeshComponents
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - Boxophobic.Utils.Editor
     - Boxophobic.PolyverseSkies.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
+    - NavMeshComponentsEditor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
