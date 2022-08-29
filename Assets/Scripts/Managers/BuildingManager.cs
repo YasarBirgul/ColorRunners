@@ -123,7 +123,9 @@ namespace Managers
         private void SetDataToControllers() 
         {
             buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
+            sideBuildingStatusController.UpdatePayedAmountText(buildingsData.SideObject.PayedAmount);
             buildingMeshController.Saturation = buildingsData.Saturation;
+            sideBuildingMeshController.Saturation = buildingsData.SideObject.Saturation;
             UpdateSaturation();
         } 
         public void UpdateBuildingStatus(IdleLevelStateType idleLevelState)
@@ -150,6 +152,7 @@ namespace Managers
         public void Load(int uniqueId)
         { 
             BuildingsData _buildingsData = SaveSignals.Instance.onLoadBuildingsData.Invoke(buildingsData.Key, uniqueId);
+            buildingsData.SideObject = _buildingsData.SideObject;
             buildingsData.Saturation = _buildingsData.Saturation;
             buildingsData.PayedAmount = _buildingsData.PayedAmount;
             buildingsData.idleLevelState = _buildingsData.idleLevelState;
