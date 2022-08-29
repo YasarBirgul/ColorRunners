@@ -24,8 +24,6 @@ namespace Controllers
         {
             skinnedMeshRenderer.material = Resources.Load<Material>($"Materials/{colorType}");
         }
-
-
         public void OutlineChanger(bool outlineOn)
         {
             var matColor = skinnedMeshRenderer.material;

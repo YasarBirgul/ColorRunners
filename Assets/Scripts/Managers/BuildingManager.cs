@@ -123,20 +123,31 @@ namespace Managers
         private void SetDataToControllers() 
         {
             buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
-            sideBuildingStatusController.UpdatePayedAmountText(buildingsData.SideObject.PayedAmount);
             buildingMeshController.Saturation = buildingsData.Saturation;
-            sideBuildingMeshController.Saturation = buildingsData.SideObject.Saturation;
             UpdateSaturation();
+            
+            if (buildingsData.IsDepended)
+            {    
+                sideBuildingStatusController.UpdatePayedAmountText(buildingsData.SideObject.PayedAmount);
+                sideBuildingMeshController.Saturation = buildingsData.SideObject.Saturation;
+                UpdateSideBuildingSaturation();
+            }
         } 
         public void UpdateBuildingStatus(IdleLevelStateType idleLevelState)
         {
             buildingsData.idleLevelState = idleLevelState;
             BuildingSignals.Instance.onBuildingsCompleted.Invoke(buildingsData.BuildingAdressId);
-        } 
+        }
+
+        public void UpdateSideBuildingStatus(IdleLevelStateType idleLevelState)
+        {
+            buildingsData.SideObject.IdleLevelStateType = idleLevelState;
+            BuildingSignals.Instance.onBuildingsCompleted.Invoke(buildingsData.SideObject.BuildingAddressId);
+        }
         public void OpenSideObject()
         {
             SideObject.SetActive(true);
-            buildingMarketStatusController.gameObject.SetActive(false);
+          //buildingMarketStatusController.gameObject.SetActive(false);
         } 
         public void Save(int uniqueId)
         {

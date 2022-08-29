@@ -44,7 +44,7 @@ namespace Controllers
                         if (buildingManager.buildingsData.idleLevelState == IdleLevelStateType.Uncompleted)
                         {
                             buildingManager.OpenSideObject();
-                            buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
+                            buildingManager.UpdateSideBuildingStatus(IdleLevelStateType.Completed);
                         }
                     }
                 }

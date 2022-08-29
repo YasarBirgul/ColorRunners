@@ -133,6 +133,7 @@ namespace Managers
 
           private void OnNextLevel()
           {
+              playerScoreHolder.SetActive(true);
               _score = _stackData.StackMemberAmount;
               playerScoreHolder.transform.parent = transform;
               playerScoreHolder.transform.position = Vector3.up*2.5f;
