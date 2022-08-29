@@ -1,4 +1,5 @@
-﻿using Commands.Level;
+﻿using System.Threading.Tasks;
+using Commands.Level;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using Enums;
@@ -129,16 +130,18 @@ namespace Managers
             int newIdleLevelData =_idleLevelID%Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList.Count;
             _idleLevelLoader.Execute(newIdleLevelData);
         } 
-        private void OnNextLevel()
+        private async void OnNextLevel()
         {
             _levelID++;
             if (Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[_idleLevelID].IdleLevelStateType ==
                 IdleLevelStateType.Completed)
             {
                 _idleLevelID++;
+                await Task.Delay(50);
                 LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
                 LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
             }
+            await Task.Delay(50);
             LevelSignals.Instance.onClearActiveLevel?.Invoke();
             LevelSignals.Instance.onLevelInitialize?.Invoke();
         } 

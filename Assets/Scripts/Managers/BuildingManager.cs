@@ -1,4 +1,5 @@
-﻿using Controllers;
+﻿using System;
+using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using Enums;
@@ -30,6 +31,8 @@ namespace Managers
 
         [SerializeField] private BuildingMarketStatusController buildingMarketStatusController;
         [SerializeField] private BuildingMeshController buildingMeshController;
+        [SerializeField] private SideBuildingStatusController sideBuildingStatusController;
+        [SerializeField] private SideBuildingMeshController sideBuildingMeshController;
         [SerializeField] private BuildingPhysicsController buildingPhysicsController;
         [SerializeField] private BuildingScorePhysicsController buildingScorePhysicsController;
         [SerializeField] private GameObject SideObject;
@@ -103,25 +106,46 @@ namespace Managers
             UpdateSaturation();
         }
 
+        public void UpdateSidePayedAmount()
+        {
+            var payedSideAmount = buildingsData.SideObject.PayedAmount++;
+            sideBuildingStatusController.UpdatePayedAmountText( buildingsData.SideObject.PayedAmount);
+            UpdateSideSaturation();
+        }
+
         private void UpdateSaturation()
         {   
             buildingMeshController.CalculateSaturation();
-        } 
+        }
+
+        private void UpdateSideSaturation()
+        {
+            sideBuildingMeshController.CalculateSaturation();
+        }
         private void SetDataToControllers() 
         {
             buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
+            sideBuildingStatusController.UpdatePayedAmountText(buildingsData.SideObject.PayedAmount);
             buildingMeshController.Saturation = buildingsData.Saturation;
+            sideBuildingMeshController.Saturation = sideObjectData.Saturation;
             UpdateSaturation();
+            UpdateSideSaturation();
         } 
         public void UpdateBuildingStatus(IdleLevelStateType idleLevelState)
         {
             buildingsData.idleLevelState = idleLevelState;
             BuildingSignals.Instance.onBuildingsCompleted.Invoke(buildingsData.BuildingAdressId);
-        } 
+        }
+        public void UpdateSideBuildingStatus(IdleLevelStateType idleLevelState)
+        {
+            buildingsData.SideObject.IdleLevelStateType = idleLevelState;
+            BuildingSignals.Instance.onBuildingsCompleted.Invoke(buildingsData.SideObject.BuildingAddressId);
+        }
+        
         public void OpenSideObject()
         {
             SideObject.SetActive(true);
-            buildingMarketStatusController.gameObject.SetActive(false);
+          //  buildingMarketStatusController.gameObject.SetActive(false);
         }
         
         public void Save(int uniqueId)
@@ -133,14 +157,14 @@ namespace Managers
             buildingsData.PayedAmount,
             buildingsData.Saturation,
             buildingsData.idleLevelState);
-            
             SaveSignals.Instance.onSaveIdleData.Invoke(buildingsData,uniqueId);
         }
 
         public void Load(int uniqueId)
         { 
             BuildingsData _buildingsData = SaveSignals.Instance.onLoadBuildingsData.Invoke(buildingsData.Key, uniqueId);
-            
+
+            buildingsData.SideObject = _buildingsData.SideObject;
             buildingsData.Saturation = _buildingsData.Saturation;
             buildingsData.PayedAmount = _buildingsData.PayedAmount;
             buildingsData.idleLevelState = _buildingsData.idleLevelState;

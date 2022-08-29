@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class BuildingScorePhysicsController : MonoBehaviour
+    public class SideBuildingScorePhysicsController : MonoBehaviour
     {
         #region Self Variables
     
@@ -31,25 +31,24 @@ namespace Controllers
         {
             if (other.CompareTag("ScorePhysics"))
             {
-                 _timer -= Time.fixedDeltaTime;
+                _timer -= Time.fixedDeltaTime;
                 
-              if (_timer <= 0)
-              {
-                  _timer = 0.2f;
+                if (_timer <= 0)
+                {
+                    _timer = 0.2f;
   
-                  if (buildingManager.buildingsData.BuildingMarketPrice > buildingManager.buildingsData.PayedAmount)
-                  {
-                      buildingManager.UpdatePayedAmount();
-                  }
-                  else
-                  {
-                      if (buildingManager.buildingsData.idleLevelState == IdleLevelStateType.Uncompleted)
-                      {
-                          buildingManager.OpenSideObject();
-                          buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
-                      }
-                  }
-              }
+                    if (buildingManager.buildingsData.SideObject.MarketPrice > buildingManager.buildingsData.SideObject.PayedAmount)
+                    {
+                        buildingManager.UpdateSidePayedAmount();
+                    }
+                    else
+                    {
+                        if (buildingManager.buildingsData.SideObject.IdleLevelStateType == IdleLevelStateType.Uncompleted)
+                        {
+                            buildingManager.UpdateSideBuildingStatus(IdleLevelStateType.Completed);
+                        }
+                    }
+                }
             }
         }
         private void OnTriggerExit(Collider other)
@@ -57,9 +56,9 @@ namespace Controllers
             if (other.CompareTag("ScorePhysics"))
             {
                 _timer = 0f;
-            }
-
-           // if (other.CompareTag("Player"))
+            } 
+            
+            // if (other.CompareTag("Player"))
            // {
            //     buildingManager.Save(buildingManager.BuildingAddressID);
            // }

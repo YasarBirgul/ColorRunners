@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Managers;
+using TMPro;
 using UnityEngine;
 
 namespace Controllers
@@ -17,6 +18,7 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private TextMeshPro marketPriceText;
+        [SerializeField] private BuildingManager _manager;
 
         #endregion
 
@@ -28,9 +30,8 @@ namespace Controllers
 
         private void SetRequiredAmountToText()
         {
-            marketPriceText.text = $"{PayedAmount}/{MarketPrice}";
+            marketPriceText.text = $"{_manager.buildingsData.SideObject.PayedAmount}/{_manager.buildingsData.SideObject.MarketPrice}";
         }
-
         public void UpdatePayedAmountText(int payedAmount)
         {
             PayedAmount = payedAmount;

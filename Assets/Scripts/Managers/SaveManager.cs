@@ -1,5 +1,6 @@
 ﻿using Commands.Save;
 using Datas.ValueObject;
+using Enums;
 using Signals;
 using UnityEngine;
 
@@ -35,6 +36,7 @@ namespace Managers
             SaveSignals.Instance.onLoadGameData += _loadGameCommand.Execute<LevelIdData>;
             SaveSignals.Instance.onSaveIdleData += _saveGameCommand.Execute;
             SaveSignals.Instance.onLoadBuildingsData += _loadGameCommand.Execute<BuildingsData>;
+         //   SaveSignals.Instance.onSaveIdleLevelData += _saveGameCommand.Execute<>;
         }
 
         private void UnsubscribeEvents()
@@ -43,6 +45,10 @@ namespace Managers
             SaveSignals.Instance.onLoadGameData -= _loadGameCommand.Execute<LevelIdData>;
             SaveSignals.Instance.onSaveIdleData -= _saveGameCommand.Execute;
             SaveSignals.Instance.onLoadBuildingsData -= _loadGameCommand.Execute<BuildingsData>;
+         //   SaveSignals.Instance.onSaveIdleLevelData += _saveGameCommand.Execute<>;
+            {
+                
+            };
         }
         private void OnDisable()
         {

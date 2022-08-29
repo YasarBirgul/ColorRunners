@@ -8,7 +8,7 @@ namespace Signals
 {
     public class SaveSignals : MonoSingleton<SaveSignals>
     {
-        public UnityAction<SaveStates,int> onSaveIdleLevelData = delegate{  };
+        public UnityAction<SaveStates,int> onSaveIdleLevelData;
         
         public UnityAction<LevelIdData,int> onSaveGameData = delegate { };
         
