@@ -39,7 +39,7 @@ MonoBehaviour:
       PayedAmount: 0
       BuildingAdressId: 1
       Saturation: 0
-      idleLevelState: 1
+      idleLevelState: 0
     - Key: IdleBuildingDataKey
       IsDepended: 0
       SideObject:
@@ -52,7 +52,7 @@ MonoBehaviour:
       PayedAmount: 0
       BuildingAdressId: 2
       Saturation: 0
-      idleLevelState: 1
+      idleLevelState: 0
     IdleLevelStateType: 0
   - BuildingsDatas:
     - Key: IdleBuildingDataKey

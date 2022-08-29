@@ -18,7 +18,7 @@ namespace Controllers
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private int ObjetType;
         #endregion
-
+        
         #region Private Variables
 
         private float _timer = 0f;
@@ -43,10 +43,8 @@ namespace Controllers
                   }
                   else
                   {
-                      gameObject.SetActive(false);
                       if (buildingManager.buildingsData.idleLevelState == IdleLevelStateType.Uncompleted)
                       {
-                          transform.gameObject.SetActive(false);
                           buildingManager.OpenSideObject();
                           buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
                       }
@@ -59,11 +57,6 @@ namespace Controllers
             if (other.CompareTag("ScorePhysics"))
             {
                 _timer = 0f;
-            }
-
-            if (other.CompareTag("Player"))
-            {
-                buildingManager.Save(buildingManager.BuildingAddressID);
             }
         }
     }

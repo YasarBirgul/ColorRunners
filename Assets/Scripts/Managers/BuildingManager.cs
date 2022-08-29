@@ -27,9 +27,11 @@ namespace Managers
         #endregion
 
         #region Serialized Variables
-
+        
         [SerializeField] private BuildingMarketStatusController buildingMarketStatusController;
         [SerializeField] private BuildingMeshController buildingMeshController;
+        [SerializeField] private SideBuildingMeshController sideBuildingMeshController;
+        [SerializeField] private SideBuildingStatusController sideBuildingStatusController;
         [SerializeField] private BuildingPhysicsController buildingPhysicsController;
         [SerializeField] private BuildingScorePhysicsController buildingScorePhysicsController;
         [SerializeField] private GameObject SideObject;
@@ -61,7 +63,7 @@ namespace Managers
         {
             _idleLevelId = CoreGameSignals.Instance.onGetIdleLevelID.Invoke();
         }
-
+        
         #region Event Subscription
         private void OnEnable()
         {
@@ -103,10 +105,21 @@ namespace Managers
             UpdateSaturation();
         }
 
+        public void UpdateSidePayedAmount()
+        {
+            var SidePayedAmount = buildingsData.SideObject.PayedAmount++;
+            sideBuildingStatusController.UpdatePayedAmountText(buildingsData.SideObject.PayedAmount);
+            UpdateSideBuildingSaturation();
+        }
+
         private void UpdateSaturation()
         {   
             buildingMeshController.CalculateSaturation();
         } 
+        private void UpdateSideBuildingSaturation()
+        {
+            sideBuildingMeshController.CalculateSaturation();
+        }
         private void SetDataToControllers() 
         {
             buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
@@ -122,8 +135,7 @@ namespace Managers
         {
             SideObject.SetActive(true);
             buildingMarketStatusController.gameObject.SetActive(false);
-        }
-        
+        } 
         public void Save(int uniqueId)
         {
             buildingsData  = new BuildingsData(buildingsData.IsDepended,
@@ -133,14 +145,11 @@ namespace Managers
             buildingsData.PayedAmount,
             buildingsData.Saturation,
             buildingsData.idleLevelState);
-            
             SaveSignals.Instance.onSaveIdleData.Invoke(buildingsData,uniqueId);
         }
-
         public void Load(int uniqueId)
         { 
             BuildingsData _buildingsData = SaveSignals.Instance.onLoadBuildingsData.Invoke(buildingsData.Key, uniqueId);
-            
             buildingsData.Saturation = _buildingsData.Saturation;
             buildingsData.PayedAmount = _buildingsData.PayedAmount;
             buildingsData.idleLevelState = _buildingsData.idleLevelState;

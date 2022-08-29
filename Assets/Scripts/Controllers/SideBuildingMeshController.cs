@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class BuildingMeshController : MonoBehaviour
+    public class SideBuildingMeshController : MonoBehaviour
     {
         #region SelfVariables
     
@@ -27,10 +27,10 @@ namespace Controllers
         #endregion
 
         #endregion
-
+        
         public void CalculateSaturation()
         {
-            Saturation =(float)manager.buildingsData.PayedAmount/manager.buildingsData.BuildingMarketPrice*3f;
+            Saturation =(float)manager.buildingsData.SideObject.PayedAmount/manager.buildingsData.SideObject.MarketPrice*3f;
             SaturationChange(Saturation);
         }
         public void SaturationChange(float saturation)
