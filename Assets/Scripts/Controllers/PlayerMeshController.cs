@@ -17,10 +17,11 @@ public class PlayerMeshController : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
     [SerializeField] private PlayerManager playerManager;
     #endregion
+    
     #region Serialized Variables
     
-    
     #endregion
+    
     #endregion
     public void SetColor(ColorType colorType)
     {

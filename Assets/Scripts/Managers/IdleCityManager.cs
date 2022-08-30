@@ -44,7 +44,6 @@ namespace Managers
         {
             if (!ES3.FileExists($"IdleLevelDataKey{_idleLevelId}.es3"))
             {
-
                 if (!ES3.KeyExists("IdleLevelDataKey"))
                 {
                     IdleLevelData = OnGetCityData();
@@ -52,6 +51,7 @@ namespace Managers
                     Save(_idleLevelId);
                 }
             }
+            GetIdleLevelData();
             Load(_idleLevelId);
         }
         #region Event Subscription
@@ -65,15 +65,15 @@ namespace Managers
             CoreGameSignals.Instance.onGamePause += OnSave;
             LevelSignals.Instance.onLevelInitialize += OnLoad;
             BuildingSignals.Instance.onBuildingsCompleted += OnSetBuildingStatus;
-            BuildingSignals.Instance.onSideBuildingsCompleted += OnSetSideBuildingStatus;
+            BuildingSignals.Instance.onSideBuildingsCompleted += OnSetBuildingStatus;
         } 
         private void UnsubscribeEvents()
         { 
-            CoreGameSignals.Instance.onApplicatiponQuit += OnSave;
-            CoreGameSignals.Instance.onGamePause += OnSave;
-            LevelSignals.Instance.onLevelInitialize += OnLoad;
+            CoreGameSignals.Instance.onApplicatiponQuit -= OnSave;
+            CoreGameSignals.Instance.onGamePause -= OnSave;
+            LevelSignals.Instance.onLevelInitialize -= OnLoad;
             BuildingSignals.Instance.onBuildingsCompleted -= OnSetBuildingStatus;
-            BuildingSignals.Instance.onSideBuildingsCompleted -= OnSetSideBuildingStatus;
+            BuildingSignals.Instance.onSideBuildingsCompleted -= OnSetBuildingStatus;
         }
         private void OnDisable()
         {
@@ -94,13 +94,10 @@ namespace Managers
             IdleLevelData.CompletedCount++;
             CheckLevelStatus();
         }
-        private void OnSetSideBuildingStatus(int sideBuildingAdressid)
-        {
-            IdleLevelData.CompletedCount++;
-            CheckLevelStatus();
-        } 
         private void CheckLevelStatus()
         {
+            Save(_idleLevelId);
+            Debug.Log(IdleLevelData.CompletedCount + " : " + BuildingManagers.Count);
             if (IdleLevelData.CompletedCount == BuildingManagers.Count)
             {
                 IdleLevelStateType = IdleLevelStateType.Completed;
@@ -117,6 +114,8 @@ namespace Managers
         {
             IdleLevelData _idleLevelData =
                 SaveSignals.Instance.onLoadIdleLevelData.Invoke(IdleLevelData.key, uniqueId);
+            _idleLevelData.IdleLevelStateType = _idleLevelData.IdleLevelStateType;
+            IdleLevelData.CompletedCount = _idleLevelData.CompletedCount;
         }
     }
 }

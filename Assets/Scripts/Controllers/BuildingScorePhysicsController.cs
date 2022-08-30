@@ -2,6 +2,7 @@
 using Managers;
 using Signals;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Controllers
 {
@@ -17,7 +18,7 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private BuildingManager buildingManager;
-        [SerializeField] private int ObjetType;
+        [SerializeField] private int objetType;
         #endregion
         
         #region Private Variables

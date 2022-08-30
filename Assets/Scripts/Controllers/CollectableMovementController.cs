@@ -7,7 +7,20 @@ namespace Controllers
 {
     public class CollectableMovementController : MonoBehaviour
     {
+        
+        #region Self Variables
+    
+        #region Public Variables
+    
+        #endregion
+    
+        #region Serialized Variables
+
         [SerializeField] private CollectableManager collectableManager;
+        
+        #endregion
+    
+        #endregion
         public void MoveToColorArea(Transform coloredDroneArea)
         {
             var RandomZ = Random.Range(-(coloredDroneArea.localScale.z/2-6),(coloredDroneArea.localScale.z/2 - 2));

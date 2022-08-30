@@ -25,7 +25,5 @@ namespace Commands.Save
             }
             return default(T);
         }
-
-       
     }
 }

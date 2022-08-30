@@ -187,8 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tarretAreaTransform: {fileID: 7205459705853405566}
-  TimeIncreasedSpeed: 0.009
-  InvokeRate: 0.05
+  timeIncreasedSpeed: 0.009
+  invokeRate: 0.5
 --- !u!1 &7205459706226682461
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,8 +490,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tarretAreaTransform: {fileID: 7205459705853405566}
-  TimeIncreasedSpeed: 0.009
-  InvokeRate: 0.05
+  timeIncreasedSpeed: 0.009
+  invokeRate: 0.5
 --- !u!1 &7205459707234714206
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using Enums;
 using Keys;
 using Signals;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
@@ -16,8 +17,8 @@ namespace Controllers
         #region Serialized Variables
     
         [SerializeField] private Transform tarretAreaTransform;
-        [SerializeField] private float TimeIncreasedSpeed;
-        [SerializeField] private float InvokeRate;
+        [SerializeField] private float timeIncreasedSpeed;
+        [SerializeField] private float invokeRate;
         #endregion
     
         #region Private Variables
@@ -44,7 +45,7 @@ namespace Controllers
         }
         private void Start()
         {
-            InvokeRepeating("TurretPatrolling",0,InvokeRate);
+            InvokeRepeating("TurretPatrolling",0,invokeRate);
         }
         public void DetectCollectable(GameObject detectedCollectable)
         {
@@ -73,7 +74,7 @@ namespace Controllers
                     _shotPos = new Vector3(_randomClampStartPos, 0, _randomClampEndPos);
                     _relationPos = _shotPos - transform.position;
                     _rotation = Quaternion.LookRotation(_relationPos);
-                    transform.rotation = Quaternion.Lerp(transform.rotation,_rotation,Mathf.Lerp(0,1,TimeIncreasedSpeed*10));
+                    transform.rotation = Quaternion.Lerp(transform.rotation,_rotation,Mathf.Lerp(0,1,timeIncreasedSpeed*10));
                     break;
                 
                 case TurretState.Active:
@@ -81,7 +82,7 @@ namespace Controllers
                     _shotPos = _collectablePos + new Vector3(0, 1, 0);
                     _relationPos = _shotPos - transform.position;
                     _rotation = Quaternion.LookRotation(_relationPos);
-                    transform.rotation = Quaternion.Lerp(transform.rotation,_rotation,Mathf.Lerp(0,1,TimeIncreasedSpeed*10));
+                    transform.rotation = Quaternion.Lerp(transform.rotation,_rotation,Mathf.Lerp(0,1,timeIncreasedSpeed*10));
                     ShotTheColletable();
                     break;
             }

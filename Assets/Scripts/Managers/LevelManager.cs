@@ -138,9 +138,9 @@ namespace Managers
         private async void OnNextLevel()
         {
             _levelID++;
-            Debug.Log(_idleLevelID);
-            LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
-            LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
+            Debug.Log(_idleLevelID); 
+            //LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
+            //LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
             await Task.Delay(50);
             OnRestartLevel();
         } 
@@ -159,11 +159,11 @@ namespace Managers
         }
         private void OnReset()
         {
-            LevelSignals.Instance.onClearActiveLevel?.Invoke(); 
-            // SaveSignals.Instance.onSaveRunnerLevelData?.Invoke(SaveStates.level, _levelID);
-            LevelSignals.Instance.onLevelInitialize?.Invoke();
-            LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
-            LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
+          LevelSignals.Instance.onClearActiveLevel?.Invoke();
+          LevelSignals.Instance.onLevelInitialize?.Invoke();
+          LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
+          LevelSignals.Instance.onInitializeIdleLevel?.Invoke();  
+          //SaveSignals.Instance.onSaveRunnerLevelData?.Invoke(SaveStates.level, _levelID);
         }
     }
 }

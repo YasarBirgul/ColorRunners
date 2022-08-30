@@ -19,15 +19,11 @@ namespace Commands.Stack
         #endregion
 
         #endregion
-
-
         public CollectableScaleUpCommand(ref List<GameObject> stacklist, ref StackData stackData)
         {
             _stacklist = stacklist;
             _stackData = stackData;
-
         }
-            
         public IEnumerator Execute(GameObject _collectable)
         {
             {

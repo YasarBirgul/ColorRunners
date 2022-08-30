@@ -57,11 +57,13 @@ namespace Managers
                     Debug.Log(BuildingAddressID + " : " +"IdleBuildingDataKey");
                 }
             }
-            
             Debug.Log("Key Exist!");
             Load(BuildingAddressID);
             CheckBuildingScoreStatus(buildingsData.idleLevelState);
-            CheckSideBuildingScoreStatus(buildingsData.SideObject.IdleLevelStateType);
+            if (buildingsData.IsDepended && buildingsData.idleLevelState == IdleLevelStateType.Completed)
+            {
+                CheckSideBuildingScoreStatus(buildingsData.SideObject.IdleLevelStateType);
+            }
             SetDataToControllers();
         }
         private void GetIdleLevelID()
