@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingManager: {fileID: 1616826942876316883}
-  ObjetType: 0
+  objetType: 0
 --- !u!114 &1863421275069266001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IdleLevelData:
+    key: IdleLevelDataKey
     BuildingsDatas:
     - Key: IdleBuildingDataKey
       IsDepended: 0
@@ -95,6 +96,7 @@ MonoBehaviour:
       Saturation: 0
       idleLevelState: 0
     IdleLevelStateType: 0
+    CompletedCount: 0
   BuildingManagers:
   - {fileID: 8863376926350004043}
   - {fileID: 4151559083987946870}
@@ -258,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingManager: {fileID: 4151559083987946870}
-  ObjetType: 0
+  objetType: 0
 --- !u!1 &5290918541385621238
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingManager: {fileID: 8863376926350004043}
-  ObjetType: 0
+  objetType: 0
 --- !u!114 &7844577508826765091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1172,10 @@ PrefabInstance:
       propertyPath: m_enableWordWrapping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8083841892059884294, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9210687318558821393, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
       propertyPath: sideObject
       value: 
@@ -1529,6 +1535,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6246347623427846488}
     m_Modifications:
+    - target: {fileID: 82136845129416762, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_text
+      value: 0/0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82136845129416762, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_fontSize
+      value: 11.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217761977704210550, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217761977704210550, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217761977704210550, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595292119053885353, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_Size.x
+      value: 0.80218124
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595292119053885353, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_Size.z
+      value: 2.1014051
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595292119053885353, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_Center.x
+      value: 0.86959267
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595292119053885353, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_Center.z
+      value: 0.020185947
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595292119053885353, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481434352845560542, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481434352845560542, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982345169935702479, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4290404465203921671, guid: 8841b9a378dae5c40810c28f189f8e86, type: 3}
       propertyPath: sideObject
       value: 

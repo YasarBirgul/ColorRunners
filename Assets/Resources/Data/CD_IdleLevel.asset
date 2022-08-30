@@ -42,9 +42,9 @@ MonoBehaviour:
       Saturation: 0
       idleLevelState: 0
     - Key: IdleBuildingDataKey
-      IsDepended: 0
+      IsDepended: 1
       SideObject:
-        MarketPrice: 0
+        MarketPrice: 10
         PayedAmount: 0
         BuildingAddressId: 2
         Saturation: 0

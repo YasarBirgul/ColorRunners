@@ -5,7 +5,6 @@ using Enums;
 using Signals;
 using UnityEngine;
 using Abstract;
-using UnityEngine.Serialization;
 
 namespace Managers
 {

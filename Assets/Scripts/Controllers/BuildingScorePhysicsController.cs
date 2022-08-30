@@ -42,6 +42,7 @@ namespace Controllers
                   if (buildingManager.buildingsData.BuildingMarketPrice > buildingManager.buildingsData.PayedAmount)
                   {
                       buildingManager.UpdatePayedAmount();
+                      
                   }
                   else
                   {
@@ -59,6 +60,12 @@ namespace Controllers
         {
             if (other.CompareTag("ScorePhysics"))
             {
+                if (buildingManager.buildingsData.BuildingMarketPrice == buildingManager.buildingsData.PayedAmount)
+                {
+                    buildingManager.OpenSideObject();
+                    buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
+                    buildingManager.CheckBuildingScoreStatus(IdleLevelStateType.Completed);
+                }
                 _timer = 0f;
             }
         }
