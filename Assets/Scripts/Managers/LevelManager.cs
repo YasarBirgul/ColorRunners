@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class LevelManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour, ISaveable
     {
         #region Self Variables
     
@@ -18,7 +18,8 @@ namespace Managers
 
         [Header("Data")] public LevelData LevelData;
         public IdleLevelData IdleLevelData;
-        
+        public LevelIdData LevelIdData = new LevelIdData();
+
         #endregion
 
         #region Serialized Variables
@@ -36,6 +37,7 @@ namespace Managers
         private ClearActiveIdleLevelCommand _clearActiveIdleLevel;
         [ShowInInspector] private int _levelID;
         [ShowInInspector] private int _idleLevelID;
+        [ShowInInspector] private int _uniqueID = 0;
 
         #endregion
 
@@ -77,18 +79,29 @@ namespace Managers
             UnsubscribeEvents();
         }
         #endregion
-
         private void Awake()
-        {
-            _levelID = GetActiveLevel();
-            _idleLevelID = GetActiveIdleLevel();
-            LevelData = GetLevelData();
-            IdleLevelData = GetIdleLevelData();
+        { 
+            GetData();
             _clearActiveLevel = new ClearActiveLevelCommand(ref levelHolder);
             _levelLoader = new LevelLoaderCommand(ref levelHolder);
             _idleLevelLoader = new IdleLevelLoaderCommand(ref idleLevelHolder);
             _clearActiveIdleLevel = new ClearActiveIdleLevelCommand(ref idleLevelHolder);
         }
+
+        private void GetData()
+        {
+            if (!ES3.FileExists($"Level{_uniqueID}.es3"))
+            {
+                if (!ES3.KeyExists("Level"))
+                {
+                    IdleLevelData = GetIdleLevelData();
+                    Save(_uniqueID);
+                }
+            }
+            Load(_uniqueID);
+            LevelData = GetLevelData();
+        }
+        
 
         private void Start()
         {
@@ -103,16 +116,7 @@ namespace Managers
         private void OnIdleLevelChange()
         {
             _idleLevelID++;
-        }
-        private int GetActiveLevel()
-        {
-            if (!ES3.FileExists()) return 0;
-            return ES3.KeyExists("Level") ? ES3.Load<int>("Level") : 0;
-        }
-        private int GetActiveIdleLevel()
-        {
-            if (ES3.FileExists()) return 0;
-            return ES3.KeyExists("IdleLevel") ? ES3.Load<int>("IdleLevel") : 0;
+            Save(_uniqueID);
         }
         private LevelData GetLevelData()
         {
@@ -124,7 +128,6 @@ namespace Managers
             int newIdleLevelData = _idleLevelID%Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList.Count;
             return Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[newIdleLevelData];
         }
-
         private void OnInitializeLevel()
         {
             int newLevelData = _levelID%Resources.Load<CD_Level>("Data/CD_Level").Levels.Count;
@@ -139,9 +142,7 @@ namespace Managers
         private async void OnNextLevel()
         {
             _levelID++;
-            Debug.Log(_idleLevelID); 
-            //LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
-            //LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
+            Save(_uniqueID);
             await Task.Delay(50);
             OnRestartLevel();
         } 
@@ -163,8 +164,18 @@ namespace Managers
           LevelSignals.Instance.onClearActiveLevel?.Invoke();
           LevelSignals.Instance.onLevelInitialize?.Invoke();
           LevelSignals.Instance.onClearActiveIdleLevel?.Invoke();
-          LevelSignals.Instance.onInitializeIdleLevel?.Invoke();  
-          //SaveSignals.Instance.onSaveRunnerLevelData?.Invoke(SaveStates.level, _levelID);
+          LevelSignals.Instance.onInitializeIdleLevel?.Invoke();
+        } 
+        public void Save(int uniqueId)
+        {
+            LevelIdData levelIdData= new LevelIdData(_idleLevelID,_levelID);
+            SaveSignals.Instance.onSaveGameData.Invoke(levelIdData,uniqueId);
+        }
+        public void Load(int uniqueId)
+        {
+            LevelIdData levelIdData= SaveSignals.Instance.onLoadGameData.Invoke(LevelIdData.LevelKey, uniqueId);
+            _idleLevelID = levelIdData.IdleLevelId;
+            _levelID = levelIdData.LevelId;
         }
     }
 }
