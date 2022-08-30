@@ -32,7 +32,7 @@ namespace Managers
         {
             _meshRenderer = GetComponent<MeshRenderer>();
         }
-        public void SetGateMaterial(ColorType colorType)
+        private void SetGateMaterial(ColorType colorType)
         {
             _meshRenderer.material = Resources.Load<Material>($"Materials/{colorType}");
         }

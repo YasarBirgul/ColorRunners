@@ -14,7 +14,7 @@ namespace Managers
 
         #region Serialized Variables
 
-        [SerializeField] private TurretMovementController _turretMovementController;
+        [SerializeField] private TurretMovementController turretMovementController;
 
         #endregion
 
@@ -46,13 +46,13 @@ namespace Managers
             UnsubscribeEvents();
         }
         #endregion
-        private void OnTurretDetection(GameObject DetectedCollectable)
+        private void OnTurretDetection(GameObject detectedCollectable)
         {
-            _turretMovementController.DetectCollectable(DetectedCollectable);
+            turretMovementController.DetectCollectable(detectedCollectable);
         }
         private void OnTurretExit()
         {
-            _turretMovementController.StopTurret();
+            turretMovementController.StopTurret();
         }
     } 
 }

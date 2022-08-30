@@ -155,18 +155,18 @@ namespace Managers
         {
             movementController.StartVerticalMovement(other.gameObject);
         }
-        public void ActivateAllMovement(bool Activate)
+        public void ActivateAllMovement(bool activate)
         {
-            movementController.IsReadyToPlay(Activate);
+            movementController.IsReadyToPlay(activate);
         }
-        public void OnIncreaseScale()
+        private void OnIncreaseScale()
         { 
             if (CurrentGameState == GameStates.Roullette)
             {
                 playerMeshController.IncreaseSize();
             }
         }
-        public void OnDecreaseScale()
+        private void OnDecreaseScale()
         { 
             if (CurrentGameState == GameStates.Idle)
             {

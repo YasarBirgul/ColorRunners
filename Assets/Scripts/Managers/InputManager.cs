@@ -110,9 +110,9 @@ namespace Managers
         {
             _isReadyForTouch = true;
         }
-        void OnChangeGameState(GameStates CurrentState)
+        void OnChangeGameState(GameStates currentState)
         {
-            _currentState = CurrentState;
+            _currentState = currentState;
         }
         private void OnReset()
         {

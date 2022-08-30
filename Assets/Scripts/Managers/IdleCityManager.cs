@@ -89,7 +89,7 @@ namespace Managers
         {
             Load(_idleLevelId);
         }
-        private void OnSetBuildingStatus(int adressid)
+        private void OnSetBuildingStatus(int adressId)
         {
             IdleLevelData.CompletedCount++;
             CheckLevelStatus();

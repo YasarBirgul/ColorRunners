@@ -47,9 +47,9 @@ namespace Managers
                 CoreGameSignals.Instance.onGamePause?.Invoke();
             }
         } 
-        private void OnChangeGameState(GameStates NewCurrentState)
+        private void OnChangeGameState(GameStates newCurrentState)
         {
-            CurrentState = NewCurrentState;
+            CurrentState = newCurrentState;
         }
     }
 }

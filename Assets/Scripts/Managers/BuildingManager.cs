@@ -14,15 +14,15 @@ namespace Managers
 
         #region Public Variables
         
-        public BuildingsData buildingsData;
+        public BuildingsData BuildingsData;
         public int BuildingAddressID;
-        public int _idleLevelId;
+        public int IdleLevelId;
         
         #endregion
 
         #region Private Variables
 
-        private Material material;
+        private Material _material;
         
         #endregion
 
@@ -41,7 +41,7 @@ namespace Managers
         #endregion
         private BuildingsData GetBuildingsData()
         {
-            return Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[_idleLevelId].BuildingsDatas[BuildingAddressID];
+            return Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[IdleLevelId].BuildingsDatas[BuildingAddressID];
         }
         private void Awake()
         {
@@ -50,21 +50,21 @@ namespace Managers
             {
                 if (!ES3.KeyExists("IdleBuildingDataKey"))
                 {
-                    buildingsData = GetBuildingsData();
+                    BuildingsData = GetBuildingsData();
                     Save(BuildingAddressID);
                 }
             }
             Load(BuildingAddressID);
-            CheckBuildingScoreStatus(buildingsData.idleLevelState);
-            if (buildingsData.IsDepended && buildingsData.idleLevelState == IdleLevelStateType.Completed)
+            CheckBuildingScoreStatus(BuildingsData.idleLevelState);
+            if (BuildingsData.IsDepended && BuildingsData.idleLevelState == IdleLevelStateType.Completed)
             {
-                CheckSideBuildingScoreStatus(buildingsData.SideObject.IdleLevelStateType);
+                CheckSideBuildingScoreStatus(BuildingsData.SideObject.IdleLevelStateType);
             }
             SetDataToControllers();
         }
         private void GetIdleLevelID()
         {
-            _idleLevelId = CoreGameSignals.Instance.onGetIdleLevelID.Invoke();
+            IdleLevelId = CoreGameSignals.Instance.onGetIdleLevelID.Invoke();
         }
         
         #region Event Subscription
@@ -103,15 +103,15 @@ namespace Managers
         }
         public void UpdatePayedAmount()
         { 
-            var payedAmount = buildingsData.PayedAmount++;
-            buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
+            var payedAmount = BuildingsData.PayedAmount++;
+            buildingMarketStatusController.UpdatePayedAmountText(BuildingsData.PayedAmount);
             UpdateSaturation();
         }
 
         public void UpdateSidePayedAmount()
         {
-            var SidePayedAmount = buildingsData.SideObject.PayedAmount++;
-            sideBuildingStatusController.UpdatePayedAmountText(buildingsData.SideObject.PayedAmount);
+            var SidePayedAmount = BuildingsData.SideObject.PayedAmount++;
+            sideBuildingStatusController.UpdatePayedAmountText(BuildingsData.SideObject.PayedAmount);
             UpdateSideBuildingSaturation();
         }
 
@@ -125,14 +125,14 @@ namespace Managers
         }
         private void SetDataToControllers() 
         {
-            buildingMarketStatusController.UpdatePayedAmountText(buildingsData.PayedAmount);
-            buildingMeshController.Saturation = buildingsData.Saturation;
+            buildingMarketStatusController.UpdatePayedAmountText(BuildingsData.PayedAmount);
+            buildingMeshController.Saturation = BuildingsData.Saturation;
             UpdateSaturation();
             
-            if (buildingsData.IsDepended)
+            if (BuildingsData.IsDepended)
             {    
-                sideBuildingStatusController.UpdatePayedAmountText(buildingsData.SideObject.PayedAmount);
-                sideBuildingMeshController.Saturation = buildingsData.SideObject.Saturation;
+                sideBuildingStatusController.UpdatePayedAmountText(BuildingsData.SideObject.PayedAmount);
+                sideBuildingMeshController.Saturation = BuildingsData.SideObject.Saturation;
                 UpdateSideBuildingSaturation();
             }
         }
@@ -160,17 +160,17 @@ namespace Managers
         }
         public void UpdateBuildingStatus(IdleLevelStateType idleLevelState)
         {
-            buildingsData.idleLevelState = idleLevelState;
-            if (!buildingsData.IsDepended)
+            BuildingsData.idleLevelState = idleLevelState;
+            if (!BuildingsData.IsDepended)
             {
-                BuildingSignals.Instance.onBuildingsCompleted.Invoke(buildingsData.BuildingAdressId);
+                BuildingSignals.Instance.onBuildingsCompleted.Invoke(BuildingsData.BuildingAdressId);
             }
         }
 
         public void UpdateSideBuildingStatus(IdleLevelStateType idleLevelState)
         {
-            buildingsData.SideObject.IdleLevelStateType = idleLevelState;
-            BuildingSignals.Instance.onSideBuildingsCompleted.Invoke(buildingsData.SideObject.BuildingAddressId);
+            BuildingsData.SideObject.IdleLevelStateType = idleLevelState;
+            BuildingSignals.Instance.onSideBuildingsCompleted.Invoke(BuildingsData.SideObject.BuildingAddressId);
         }
         public void OpenSideObject()
         { 
@@ -179,24 +179,24 @@ namespace Managers
         } 
         public void Save(int uniqueId)
         {
-            buildingsData  = new BuildingsData(buildingsData.IsDepended,
-            buildingsData.SideObject,
+            BuildingsData  = new BuildingsData(BuildingsData.IsDepended,
+            BuildingsData.SideObject,
             BuildingAddressID,
-            buildingsData.BuildingMarketPrice,
-            buildingsData.PayedAmount,
-            buildingsData.Saturation,
-            buildingsData.idleLevelState);
-            SaveSignals.Instance.onSaveBuildingsData.Invoke(buildingsData,uniqueId);
+            BuildingsData.BuildingMarketPrice,
+            BuildingsData.PayedAmount,
+            BuildingsData.Saturation,
+            BuildingsData.idleLevelState);
+            SaveSignals.Instance.onSaveBuildingsData.Invoke(BuildingsData,uniqueId);
         }
         public void Load(int uniqueId)
         { 
-            BuildingsData _buildingsData = SaveSignals.Instance.onLoadBuildingsData.Invoke(buildingsData.Key, uniqueId);
-            buildingsData.SideObject = _buildingsData.SideObject;
-            buildingsData.Saturation = _buildingsData.Saturation;
-            buildingsData.PayedAmount = _buildingsData.PayedAmount;
-            buildingsData.idleLevelState = _buildingsData.idleLevelState;
-            buildingsData.BuildingMarketPrice = _buildingsData.BuildingMarketPrice;
-            buildingsData.IsDepended = _buildingsData.IsDepended;
+            BuildingsData _buildingsData = SaveSignals.Instance.onLoadBuildingsData.Invoke(BuildingsData.Key, uniqueId);
+            BuildingsData.SideObject = _buildingsData.SideObject;
+            BuildingsData.Saturation = _buildingsData.Saturation;
+            BuildingsData.PayedAmount = _buildingsData.PayedAmount;
+            BuildingsData.idleLevelState = _buildingsData.idleLevelState;
+            BuildingsData.BuildingMarketPrice = _buildingsData.BuildingMarketPrice;
+            BuildingsData.IsDepended = _buildingsData.IsDepended;
         }
     }
 }

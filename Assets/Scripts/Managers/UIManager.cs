@@ -124,20 +124,20 @@ namespace Managers
       {
           ChangeUIState(Current);
       } 
-      private void ChangeUIState(GameStates Current)
+      private void ChangeUIState(GameStates current)
       {
-          switch (Current)
+          switch (current)
           {
               case GameStates.Roullette:
                   OnOpenPanel(UIPanels.RoullettePanel);
                   CursorMovement();
                   break;
               case GameStates.Idle:
-                  _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
+                  _joyStickStateCommand.JoystickUIStateChanger(current,joystickOuter,joystickInner);
                   OnOpenPanel(UIPanels.IdlePanel);
                   break;
               case GameStates.Runner:
-                  _joyStickStateCommand.JoystickUIStateChanger(Current,joystickOuter,joystickInner);
+                  _joyStickStateCommand.JoystickUIStateChanger(current,joystickOuter,joystickInner);
                   break;
           }
       }

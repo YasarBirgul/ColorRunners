@@ -104,9 +104,9 @@ namespace Managers
               }
               SetScoreToText();
           }
-          private void OnPlayerScoreSetActive(bool OnPlayerScoreSetActive)
+          private void OnPlayerScoreSetActive(bool onPlayerScoreSetActive)
           {
-              if (OnPlayerScoreSetActive)
+              if (onPlayerScoreSetActive)
               {
                   playerScoreHolder.SetActive(true);
               }

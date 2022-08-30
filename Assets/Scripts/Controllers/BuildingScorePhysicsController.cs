@@ -39,14 +39,14 @@ namespace Controllers
               {
                   _timer = 0.2f;
   
-                  if (buildingManager.buildingsData.BuildingMarketPrice > buildingManager.buildingsData.PayedAmount)
+                  if (buildingManager.BuildingsData.BuildingMarketPrice > buildingManager.BuildingsData.PayedAmount)
                   {
                       buildingManager.UpdatePayedAmount();
                       
                   }
                   else
                   {
-                      if (buildingManager.buildingsData.idleLevelState == IdleLevelStateType.Uncompleted)
+                      if (buildingManager.BuildingsData.idleLevelState == IdleLevelStateType.Uncompleted)
                       {
                           buildingManager.OpenSideObject();
                           buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
@@ -60,7 +60,7 @@ namespace Controllers
         {
             if (other.CompareTag("ScorePhysics"))
             {
-                if (buildingManager.buildingsData.BuildingMarketPrice == buildingManager.buildingsData.PayedAmount)
+                if (buildingManager.BuildingsData.BuildingMarketPrice == buildingManager.BuildingsData.PayedAmount)
                 {
                     buildingManager.OpenSideObject();
                     buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);

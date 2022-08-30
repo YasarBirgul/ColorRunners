@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Extentions
 {
@@ -8,8 +9,8 @@ namespace Extentions
     [AddComponentMenu("")]
     public class LookCinemachineAxis : CinemachineExtension
     {
-        [Tooltip("Lock the camera's X position to this value")]
-        public float m_XPosition = 0f;
+        [FormerlySerializedAs("m_XPosition")] [Tooltip("Lock the camera's X position to this value")]
+        public float M_XPosition = 0f;
 
         protected override void PostPipelineStageCallback(
             CinemachineVirtualCameraBase vcam,
@@ -18,7 +19,7 @@ namespace Extentions
             if (stage == CinemachineCore.Stage.Body)
             {
                 var pos = state.RawPosition;
-                pos.x = m_XPosition;
+                pos.x = M_XPosition;
                 state.RawPosition = pos;
             }
         }
