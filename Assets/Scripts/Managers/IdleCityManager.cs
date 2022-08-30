@@ -52,6 +52,7 @@ namespace Managers
                 }
             }
             GetIdleLevelData();
+            Debug.Log(_idleLevelId);
             Load(_idleLevelId);
         }
         #region Event Subscription
@@ -97,10 +98,9 @@ namespace Managers
         private void CheckLevelStatus()
         {
             Save(_idleLevelId);
-            Debug.Log(IdleLevelData.CompletedCount + " : " + BuildingManagers.Count);
             if (IdleLevelData.CompletedCount == BuildingManagers.Count)
             {
-                IdleLevelStateType = IdleLevelStateType.Completed;
+                IdleLevelData.IdleLevelStateType = IdleLevelStateType.Completed;
                 Save(_idleLevelId);
                 LevelSignals.Instance.onIdleLevelChange.Invoke();
             }
