@@ -1878,9 +1878,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelData:
     Level: {fileID: 0}
+    LevelId: 0
+    IdleLevelId: 0
   IdleLevelData:
+    key: IdleLevelDataKey
     BuildingsDatas: []
     IdleLevelStateType: 0
+    CompletedCount: 0
   levelHolder: {fileID: 1669224889}
   idleLevelHolder: {fileID: 1173107693}
 --- !u!114 &1473962891 stripped

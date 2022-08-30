@@ -54,7 +54,6 @@ namespace Managers
         public async void IncreaseStackAfterDroneArea()
         {
             await Task.Delay(3000);
-            DOVirtual.DelayedCall(0.2f, () => SetAnim(CollectableAnimationStates.Running));
             RemoveOutline(false);
             StackSignals.Instance.onIncreaseStack?.Invoke(gameObject);
             SetAnim(CollectableAnimationStates.Running);

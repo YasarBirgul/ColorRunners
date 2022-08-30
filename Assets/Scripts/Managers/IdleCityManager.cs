@@ -52,7 +52,6 @@ namespace Managers
                 }
             }
             GetIdleLevelData();
-            Debug.Log(_idleLevelId);
             Load(_idleLevelId);
         }
         #region Event Subscription

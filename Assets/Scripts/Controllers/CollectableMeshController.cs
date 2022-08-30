@@ -25,15 +25,18 @@ namespace Controllers
             skinnedMeshRenderer.material = Resources.Load<Material>($"Materials/{colorType}");
         }
         public void OutlineChanger(bool outlineOn)
-        { 
-            var matColor = skinnedMeshRenderer.material;
-            if (outlineOn)
+        {
+            if (TryGetComponent(out SkinnedMeshRenderer skinnedMeshRenderer))
             {
-                matColor.DOFloat(0f, "_OutlineSize", 1f);
-            }
-            else
-            {
-                matColor.DOFloat(100f, "_OutlineSize", 1f);
+               var matColor = skinnedMeshRenderer.material;
+               if (outlineOn)
+               {
+                   matColor.DOFloat(0f, "_OutlineSize", 1f);
+               }
+               else
+               {
+                   matColor.DOFloat(100f, "_OutlineSize", 1f);
+               }
             }
         }
         public void CompareColorType(GameObject otherGameObject,ColorType CollectableColorType)
