@@ -28,7 +28,14 @@ namespace Controllers
         #endregion
 
         #endregion
-
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("ScorePhysics"))
+            {
+                ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);
+                Debug.Log("MainLocal : " + transform.position);
+            }
+        }
         private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("ScorePhysics"))
