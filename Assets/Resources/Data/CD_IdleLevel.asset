@@ -16,9 +16,9 @@ MonoBehaviour:
   - key: IdleLevelDataKey
     BuildingsDatas:
     - Key: IdleBuildingDataKey
-      IsDepended: 0
+      IsDepended: 1
       SideObject:
-        MarketPrice: 0
+        MarketPrice: 10
         PayedAmount: 0
         BuildingAddressId: 0
         Saturation: 0

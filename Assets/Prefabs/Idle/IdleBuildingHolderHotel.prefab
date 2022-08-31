@@ -238,15 +238,11 @@ MonoBehaviour:
   _idleLevelId: 0
   buildingMarketStatusController: {fileID: 7422917610487672113}
   buildingMeshController: {fileID: 706883993160699778}
+  sideBuildingMeshController: {fileID: 0}
+  sideBuildingStatusController: {fileID: 0}
   buildingPhysicsController: {fileID: 2006022098418844776}
   buildingScorePhysicsController: {fileID: 3717167533064445450}
-  SideObject: {fileID: 8083841892059884294}
-  sideObjectData:
-    MarketPrice: 0
-    PayedAmount: 0
-    BuildingAddressId: 0
-    Saturation: 0
-    IdleLevelStateType: 0
+  sideObject: {fileID: 0}
 --- !u!1 &2252647383571956986
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingManager: {fileID: 9210687318558821393}
-  ObjetType: 0
+  objetType: 0
 --- !u!114 &7422917610487672113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,6 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Saturation: 0
   manager: {fileID: 9210687318558821393}
+  renderer: []
 --- !u!1 &8083841892059884294
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +716,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1998238819884148882, guid: 0b8b9051a1d122a43821bc522b43a45f, type: 3}
+    - {fileID: 5056370024381656563, guid: 0b8b9051a1d122a43821bc522b43a45f, type: 3}
+    - {fileID: 5057198479923189769, guid: 0b8b9051a1d122a43821bc522b43a45f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0b8b9051a1d122a43821bc522b43a45f, type: 3}
 --- !u!1 &2651459670727252572 stripped
 GameObject:

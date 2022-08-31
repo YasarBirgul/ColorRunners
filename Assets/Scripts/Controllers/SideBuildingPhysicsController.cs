@@ -1,4 +1,5 @@
-﻿using Enums;
+﻿using System;
+using Enums;
 using Managers;
 using Signals;
 using UnityEngine;
@@ -40,6 +41,9 @@ namespace Controllers
                     if (buildingManager.BuildingsData.SideObject.MarketPrice > buildingManager.BuildingsData.SideObject.PayedAmount)
                     {
                         buildingManager.UpdateSidePayedAmount();
+                        ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);   
+                        Debug.Log("Local : " + transform.position);
+                        
                     }
                     else
                     {
