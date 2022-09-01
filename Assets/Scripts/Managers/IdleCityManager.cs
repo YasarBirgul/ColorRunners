@@ -42,6 +42,7 @@ namespace Managers
         }
         private void Awake()
         {
+            GetIdleLevelData();
             if (!ES3.FileExists($"IdleLevelDataKey{_idleLevelId}.es3"))
             {
                 if (!ES3.KeyExists("IdleLevelDataKey"))
@@ -51,7 +52,6 @@ namespace Managers
                     Save(_idleLevelId);
                 }
             }
-            GetIdleLevelData();
             Load(_idleLevelId);
         }
         #region Event Subscription

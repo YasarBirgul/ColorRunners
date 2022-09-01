@@ -1,4 +1,5 @@
-﻿using Controllers;
+﻿using System;
+using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using Enums;
@@ -23,7 +24,9 @@ namespace Managers
         #region Private Variables
 
         private Material material;
-        
+        private string _stringUniqueID;
+        private int _uniqueID;
+        private int _one = 1;
         #endregion
 
         #region Serialized Variables
@@ -43,18 +46,27 @@ namespace Managers
         {
             return Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[_idleLevelId].BuildingsDatas[BuildingAddressID];
         }
-        private void Awake()
+
+        private void GetIdleLevelData()
         {
-            GetIdleLevelID();
-            if (!ES3.FileExists($"IdleBuildingDataKey{BuildingAddressID}.es3"))
+            _idleLevelId = LevelSignals.Instance.onGetIdleLevelID.Invoke();
+        }
+        private void Start()
+        {
+            GetIdleLevelData();
+            Debug.Log(_idleLevelId +"  /  "+ BuildingAddressID);
+            buildingsData = GetBuildingsData();
+            _stringUniqueID = _one.ToString() + _idleLevelId.ToString()+BuildingAddressID.ToString(); 
+            int.TryParse(_stringUniqueID, out _uniqueID);
+            if (!ES3.FileExists($"IdleBuildingDataKey{_uniqueID}.es3"))
             {
                 if (!ES3.KeyExists("IdleBuildingDataKey"))
                 {
                     buildingsData = GetBuildingsData();
-                    Save(BuildingAddressID);
+                    Save(_uniqueID);
                 }
             }
-            Load(BuildingAddressID);
+            Load(_uniqueID);
             CheckBuildingScoreStatus(buildingsData.idleLevelState);
             if (buildingsData.IsDepended && buildingsData.idleLevelState == IdleLevelStateType.Completed)
             {
@@ -62,11 +74,6 @@ namespace Managers
             }
             SetDataToControllers();
         }
-        private void GetIdleLevelID()
-        {
-            _idleLevelId = CoreGameSignals.Instance.onGetIdleLevelID.Invoke();
-        }
-        
         #region Event Subscription
         private void OnEnable()
         {
@@ -74,6 +81,7 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
+            
             CoreGameSignals.Instance.onApplicatiponQuit += OnSave;
             CoreGameSignals.Instance.onGamePause += OnSave;
             LevelSignals.Instance.onNextLevel += OnSave;
@@ -93,12 +101,12 @@ namespace Managers
         #endregion
         private void OnSave()
         {
-            Save(BuildingAddressID);
+            Save(_uniqueID);
             SetDataToControllers();
         }
         private void OnLoad()
         {
-            Load(BuildingAddressID);
+            Load(_uniqueID);
             SetDataToControllers();
         }
         public void UpdatePayedAmount()

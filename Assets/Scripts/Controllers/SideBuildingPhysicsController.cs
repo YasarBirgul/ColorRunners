@@ -41,9 +41,8 @@ namespace Controllers
                     if (buildingManager.buildingsData.SideObject.MarketPrice > buildingManager.buildingsData.SideObject.PayedAmount)
                     {
                         buildingManager.UpdateSidePayedAmount();
-                        ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);   
-                        Debug.Log("Local : " + transform.position);
-                        
+                        ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);
+
                     }
                     else
                     {

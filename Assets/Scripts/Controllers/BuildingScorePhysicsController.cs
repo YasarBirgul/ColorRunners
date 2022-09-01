@@ -33,7 +33,6 @@ namespace Controllers
             if(other.CompareTag("ScorePhysics"))
             {
                 ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);
-                Debug.Log("MainLocal : " + transform.position);
             }
         }
         private void OnTriggerStay(Collider other)

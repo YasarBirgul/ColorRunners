@@ -14,6 +14,6 @@ namespace Signals
         public UnityAction<GameStates> onChangeGameState=delegate {  };
         public UnityAction onReset=delegate { };
         public UnityAction onApplicatiponQuit = delegate {  };
-        public Func<int> onGetIdleLevelID = delegate { return 0; };
+        public UnityAction<int> onGetIdleLevelID = delegate { };
     }
 }
