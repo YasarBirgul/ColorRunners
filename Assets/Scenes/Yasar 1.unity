@@ -1574,10 +1574,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GradientExplode 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3511260580237117010, guid: 58154130fdf78ba4aac0c0047412f7fb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58154130fdf78ba4aac0c0047412f7fb, type: 3}
 --- !u!1001 &997284140
@@ -1591,97 +1587,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Burst
       objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_BurstCount
-      value: 1
+    - target: {fileID: 1300759477338125860, guid: ee0c22c4fb003704582288d371644354, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_PreInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_PreInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_PostInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_PostInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_RotationOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_RotationOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1300759477338125862, guid: ee0c22c4fb003704582288d371644354, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].value
-      value: 1
+      propertyPath: UVModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300759477338125865, guid: ee0c22c4fb003704582288d371644354, type: 3}
       propertyPath: m_RootOrder

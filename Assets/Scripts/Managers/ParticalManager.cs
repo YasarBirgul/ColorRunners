@@ -55,7 +55,7 @@ namespace Managers
         #endregion
         private async void OnParticalBurst(Vector3 transform)
         {
-            Vector3 newTransform = new Vector3(Random.Range(transform.x - 1, transform.x + 1),transform.y,transform.z);
+            Vector3 newTransform = new Vector3(Random.Range(transform.x - 1.5f, transform.x + 1.5f),transform.y,transform.z);
             
             emitControllers[0].EmitParticle(newTransform);
             await Task.Delay(100);
