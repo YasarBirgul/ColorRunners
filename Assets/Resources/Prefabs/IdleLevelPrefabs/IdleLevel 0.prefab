@@ -1245,6 +1245,10 @@ PrefabInstance:
       propertyPath: m_enableWordWrapping
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7821183921712258965, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8083841892059884294, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1290,6 +1294,7 @@ PrefabInstance:
     - {fileID: 384225488150492421, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
     - {fileID: 384688568715260759, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
     - {fileID: 384895066414214211, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
+    - {fileID: 7821183921712258965, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
 --- !u!23 &3340264524397031486 stripped
 MeshRenderer:

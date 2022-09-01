@@ -18,7 +18,7 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private BuildingManager buildingManager;
-        [SerializeField] private int objetType;
+        
         #endregion
         
         #region Private Variables

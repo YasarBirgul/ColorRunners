@@ -59,15 +59,15 @@ MonoBehaviour:
   - key: IdleLevelDataKey
     BuildingsDatas:
     - Key: IdleBuildingDataKey
-      IsDepended: 1
+      IsDepended: 0
       SideObject:
         MarketPrice: 17
         PayedAmount: 0
         BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
-      BuildingMarketPrice: 20
-      PayedAmount: 8
+      BuildingMarketPrice: 13
+      PayedAmount: 0
       BuildingAdressId: 0
       Saturation: 0
       idleLevelState: 0
@@ -75,15 +75,15 @@ MonoBehaviour:
       IsDepended: 1
       SideObject:
         MarketPrice: 14
-        PayedAmount: 10
+        PayedAmount: 0
         BuildingAddressId: 1
         Saturation: 0
         IdleLevelStateType: 0
-      BuildingMarketPrice: 20
-      PayedAmount: 20
+      BuildingMarketPrice: 18
+      PayedAmount: 0
       BuildingAdressId: 1
       Saturation: 0
-      idleLevelState: 1
+      idleLevelState: 0
     - Key: IdleBuildingDataKey
       IsDepended: 1
       SideObject:
@@ -93,7 +93,7 @@ MonoBehaviour:
         Saturation: 0
         IdleLevelStateType: 0
       BuildingMarketPrice: 10
-      PayedAmount: 6
+      PayedAmount: 0
       BuildingAdressId: 2
       Saturation: 0
       idleLevelState: 0

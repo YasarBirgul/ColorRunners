@@ -17,13 +17,12 @@ namespace Managers
         
         public BuildingsData buildingsData;
         public int BuildingAddressID;
-        public int _idleLevelId;
         
         #endregion
 
         #region Private Variables
-
-        private Material material;
+        private int _idleLevelId;
+        private Material _material;
         private string _stringUniqueID;
         private int _uniqueID;
         private int _one = 1;
@@ -54,7 +53,6 @@ namespace Managers
         private void Start()
         {
             GetIdleLevelData();
-            Debug.Log(_idleLevelId +"  /  "+ BuildingAddressID);
             buildingsData = GetBuildingsData();
             _stringUniqueID = _one.ToString() + _idleLevelId.ToString()+BuildingAddressID.ToString(); 
             int.TryParse(_stringUniqueID, out _uniqueID);
