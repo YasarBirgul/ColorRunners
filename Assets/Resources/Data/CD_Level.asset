@@ -14,4 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Levels:
   - Level: {fileID: 0}
+    LevelId: 0
+    IdleLevelId: 0
   - Level: {fileID: 0}
+    LevelId: 0
+    IdleLevelId: 0
+  - Level: {fileID: 0}
+    LevelId: 0
+    IdleLevelId: 0
