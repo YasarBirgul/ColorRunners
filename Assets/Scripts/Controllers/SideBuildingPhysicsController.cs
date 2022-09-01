@@ -42,12 +42,12 @@ namespace Controllers
                     {
                         buildingManager.UpdateSidePayedAmount();
                         ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);
-
                     }
                     else
                     {
                         if (buildingManager.buildingsData.SideObject.IdleLevelStateType == IdleLevelStateType.Uncompleted)
                         {
+                            ParticleSignals.Instance.onParticleStop.Invoke();
                             buildingManager.UpdateSideBuildingStatus(IdleLevelStateType.Completed);
                             buildingManager.CheckSideBuildingScoreStatus(IdleLevelStateType.Completed);
                         }
@@ -66,6 +66,10 @@ namespace Controllers
                     buildingManager.CheckBuildingScoreStatus(IdleLevelStateType.Completed);
                 }
                 _timer = 0f;
+            }
+            if (other.CompareTag("Player"))
+            {
+                ParticleSignals.Instance.onParticleStop.Invoke();
             }
         }
     }

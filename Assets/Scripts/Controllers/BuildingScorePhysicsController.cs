@@ -28,13 +28,7 @@ namespace Controllers
         #endregion
 
         #endregion
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.CompareTag("ScorePhysics"))
-            {
-                ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);
-            }
-        }
+        
         private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("ScorePhysics"))
@@ -48,12 +42,13 @@ namespace Controllers
                   if (buildingManager.buildingsData.BuildingMarketPrice > buildingManager.buildingsData.PayedAmount)
                   {
                       buildingManager.UpdatePayedAmount();
-                      
+                      ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);
                   }
                   else
                   {
                       if (buildingManager.buildingsData.idleLevelState == IdleLevelStateType.Uncompleted)
                       {
+                          ParticleSignals.Instance.onParticleStop.Invoke();
                           buildingManager.OpenSideObject();
                           buildingManager.UpdateBuildingStatus(IdleLevelStateType.Completed);
                           buildingManager.CheckBuildingScoreStatus(IdleLevelStateType.Completed);
@@ -73,6 +68,11 @@ namespace Controllers
                     buildingManager.CheckBuildingScoreStatus(IdleLevelStateType.Completed);
                 }
                 _timer = 0f;
+            }
+
+            if (other.CompareTag("Player"))
+            {
+                ParticleSignals.Instance.onParticleStop.Invoke();
             }
         }
     }

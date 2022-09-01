@@ -23,7 +23,7 @@ MonoBehaviour:
         BuildingAddressId: 0
         Saturation: 0
         IdleLevelStateType: 0
-      BuildingMarketPrice: 12
+      BuildingMarketPrice: 200
       PayedAmount: 0
       BuildingAdressId: 0
       Saturation: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
         BuildingAddressId: 1
         Saturation: 0
         IdleLevelStateType: 0
-      BuildingMarketPrice: 9
+      BuildingMarketPrice: 200
       PayedAmount: 0
       BuildingAdressId: 1
       Saturation: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
         BuildingAddressId: 2
         Saturation: 0
         IdleLevelStateType: 0
-      BuildingMarketPrice: 11
+      BuildingMarketPrice: 250
       PayedAmount: 0
       BuildingAdressId: 2
       Saturation: 0

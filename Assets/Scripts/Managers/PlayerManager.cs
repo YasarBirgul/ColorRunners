@@ -107,10 +107,12 @@ namespace Managers
             animationController.ChangeCollectableAnimation(PlayerAnimationStates.Running);
             Vector3 movementDirection = new Vector3(idleGameInputParams.XValue, 0, idleGameInputParams.ZValue);
             if (movementDirection != Vector3.zero)
-            {
+            { 
                 Quaternion toRotation = Quaternion.LookRotation(movementDirection,Vector3.up);
                 animationController.transform.rotation = Quaternion.RotateTowards( animationController.transform.rotation,toRotation,30);
+                ParticleSignals.Instance.onParticleLookRotation.Invoke(toRotation);
             }
+            
         }
         public void SendGateColorData(ColorType colorType)
         {

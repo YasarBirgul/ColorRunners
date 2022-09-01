@@ -139,6 +139,7 @@ namespace Managers
         }
         private void OnDecreaseStack(ObstacleCollisionGOParams obstacleCollisionGOParams)
         {
+            var transformPos = obstacleCollisionGOParams.Collected.transform.position;
             _colRemoveOnStackCommand.Execute(obstacleCollisionGOParams);
             ScoreSignals.Instance.onDecreaseScore?.Invoke();
             CheckStack();

@@ -451,7 +451,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingManager: {fileID: 8863376926350004043}
-  objetType: 0
 --- !u!114 &6071799707656706045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,11 +1168,11 @@ PrefabInstance:
       objectReference: {fileID: 6022853513694911659}
     - target: {fileID: 1681734974408645952, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1681734974408645952, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2252647382829479104, guid: ac98cdb03ecc71242b18d23ed51a5582, type: 3}
       propertyPath: m_Name

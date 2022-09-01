@@ -87,6 +87,7 @@ namespace Controllers
                 {
                     collectableManager.SetAnim(CollectableAnimationStates.Dead);
                     collectableManager.SetActiveFalse();
+                    ParticleSignals.Instance.onPlayerDeath.Invoke(transform.position);
                 }
                 else
                 {
