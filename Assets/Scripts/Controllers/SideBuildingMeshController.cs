@@ -30,7 +30,7 @@ namespace Controllers
         
         public void CalculateSaturation()
         {
-            Saturation =(float)manager.buildingsData.SideObject.PayedAmount/manager.buildingsData.SideObject.MarketPrice*3f;
+            Saturation =(float)manager.buildingsData.SideObject.PayedAmount/manager.buildingsData.SideObject.MarketPrice*2f;
             SaturationChange(Saturation);
         }
         public void SaturationChange(float saturation)

@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 6f8ba76a67eed4742938bb19cac8ed1e
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 2d6751d0f771efa499ab3f1bcf0dbb0a
+    m_Address: Assets/Art/Materials/Rainboe.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8f10d1e8dcf04c240ba2aa99fa0725a4, type: 2}
   m_SchemaSet:
