@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 7205459707234714207}
   m_Layer: 0
   m_Name: TurretArea
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfc9bae669eb2d40a993b227c9f4a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColorType: 0
+  ColorType: 5
 --- !u!1 &7205459707414367657
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfc9bae669eb2d40a993b227c9f4a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColorType: 1
+  ColorType: 6
 --- !u!1 &7984909272328391810
 GameObject:
   m_ObjectHideFlags: 0

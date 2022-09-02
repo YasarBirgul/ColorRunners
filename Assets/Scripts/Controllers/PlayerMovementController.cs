@@ -140,12 +140,21 @@ namespace Controllers
             _movementData.forwardSpeed = 0;
         }
 
+        public void SlowDown()
+        {
+            _movementData.forwardSpeed = 7;
+        }
+
+        public void FastUp()
+        {
+            _movementData.forwardSpeed = 15;
+        }
         public void StartVerticalMovement(GameObject other)
         {
             playerManager.transform.DOMove(new Vector3(0,playerManager.transform.position.y,
                 other.transform.position.z + other.gameObject.transform.localScale.z), 2f).OnComplete(
                 () => {
-                    _movementData.forwardSpeed = 10;
+                    _movementData.forwardSpeed = 15;
                 });
         }
         public void Reset()

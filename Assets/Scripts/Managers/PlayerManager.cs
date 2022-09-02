@@ -175,6 +175,15 @@ namespace Managers
                 playerMeshController.DecreaseSize();
             }
         }
+
+        public void SlowDownPlayer()
+        {
+            movementController.SlowDown();
+        }
+        public void PlayerFastUp()
+        {
+            movementController.FastUp();
+        }
         private void OnLevelFailed()
         {
             ActivateAllMovement(false);

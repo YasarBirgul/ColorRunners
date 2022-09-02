@@ -60,12 +60,21 @@ namespace Controllers
                     ScoreSignals.Instance.onIncreaseScore?.Invoke();
                 }
             }
+            else if(other.CompareTag("TurretColorArea"))
+            {
+                playerManager.SlowDownPlayer();
+            }
         }
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("DroneArea"))
             {
                 playerManager.StopVerticalMovement();
+            }
+            
+            else if(other.CompareTag("TurretColorArea"))
+            {
+                playerManager.PlayerFastUp();
             }
         }
     }

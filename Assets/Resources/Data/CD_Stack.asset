@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CD_Stack
   m_EditorClassIdentifier: 
   StackData:
-    StackMemberAmount: 20
+    StackMemberAmount: 6
     InitializedStack: {fileID: 5229086847666861209, guid: 2632b636ba7d2e349a4df5b8e72fda82, type: 3}
     LerpSpeed: {x: 10, y: 6, z: 6}
     ScaleFactor: 1.5
