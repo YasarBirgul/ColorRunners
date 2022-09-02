@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingManager: {fileID: 4290404465203921671}
-  ObjetType: 0
+  objetType: 0
 --- !u!114 &9071161364068768516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,15 +433,11 @@ MonoBehaviour:
   _idleLevelId: 0
   buildingMarketStatusController: {fileID: 9071161364068768516}
   buildingMeshController: {fileID: 4459604678538813625}
+  sideBuildingMeshController: {fileID: 0}
+  sideBuildingStatusController: {fileID: 0}
   buildingPhysicsController: {fileID: 3298750256176612965}
   buildingScorePhysicsController: {fileID: 4545312117197650263}
-  SideObject: {fileID: 8904405604097670802}
-  sideObjectData:
-    MarketPrice: 0
-    PayedAmount: 0
-    BuildingAddressId: 0
-    Saturation: 0
-    IdleLevelStateType: 0
+  sideObject: {fileID: 0}
 --- !u!1 &5939427559895029450
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Saturation: 0
   manager: {fileID: 0}
+  renderer: []
 --- !u!1001 &1070226863925426021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -681,7 +678,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CandyShopGarden
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4918369972108887092, guid: a8ad4780fd04ada4cbd820069bd82e73, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a8ad4780fd04ada4cbd820069bd82e73, type: 3}
 --- !u!4 &3953232112585638007 stripped
 Transform:
@@ -777,6 +775,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 388258376126957777, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 7218275817447471711, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 7215502906623990231, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 3132514640462215250, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 7555960734882706146, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 5109908474336481569, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 1350783192323749744, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 6452295350869626881, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 8338308419754843045, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 1516723286657600008, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 1513932943774099840, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
+    - {fileID: 1516848121202450184, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5fdd1dd845006cd4eaaf5974df782fc4, type: 3}
 --- !u!1 &8904405604097670802 stripped
 GameObject:

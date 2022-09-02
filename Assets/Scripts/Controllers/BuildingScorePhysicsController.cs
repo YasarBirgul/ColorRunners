@@ -18,7 +18,7 @@ namespace Controllers
         #region Serialized Variables
 
         [SerializeField] private BuildingManager buildingManager;
-        [SerializeField] private int objetType;
+        
         #endregion
         
         #region Private Variables
@@ -33,7 +33,6 @@ namespace Controllers
             if(other.CompareTag("ScorePhysics"))
             {
                 ParticleSignals.Instance.onParticleBurst?.Invoke(transform.position);
-                Debug.Log("MainLocal : " + transform.position);
             }
         }
         private void OnTriggerStay(Collider other)

@@ -1,4 +1,5 @@
-﻿using Controllers;
+﻿using System;
+using Controllers;
 using Datas.UnityObject;
 using Datas.ValueObject;
 using Enums;
@@ -16,14 +17,25 @@ namespace Managers
         
         public BuildingsData BuildingsData;
         public int BuildingAddressID;
+<<<<<<< HEAD
         public int IdleLevelId;
+=======
+>>>>>>> 2e868e54ddc81bcd77b0ad5e9d642d13d924bddb
         
         #endregion
 
         #region Private Variables
+<<<<<<< HEAD
 
         private Material _material;
         
+=======
+        private int _idleLevelId;
+        private Material _material;
+        private string _stringUniqueID;
+        private int _uniqueID;
+        private int _one = 1;
+>>>>>>> 2e868e54ddc81bcd77b0ad5e9d642d13d924bddb
         #endregion
 
         #region Serialized Variables
@@ -43,13 +55,22 @@ namespace Managers
         {
             return Resources.Load<CD_IdleLevel>("Data/CD_IdleLevel").IdleLevelList[IdleLevelId].BuildingsDatas[BuildingAddressID];
         }
-        private void Awake()
+
+        private void GetIdleLevelData()
         {
-            GetIdleLevelID();
-            if (!ES3.FileExists($"IdleBuildingDataKey{BuildingAddressID}.es3"))
+            _idleLevelId = LevelSignals.Instance.onGetIdleLevelID.Invoke();
+        }
+        private void Start()
+        {
+            GetIdleLevelData();
+            buildingsData = GetBuildingsData();
+            _stringUniqueID = _one.ToString() + _idleLevelId.ToString()+BuildingAddressID.ToString(); 
+            int.TryParse(_stringUniqueID, out _uniqueID);
+            if (!ES3.FileExists($"IdleBuildingDataKey{_uniqueID}.es3"))
             {
                 if (!ES3.KeyExists("IdleBuildingDataKey"))
                 {
+<<<<<<< HEAD
                     BuildingsData = GetBuildingsData();
                     Save(BuildingAddressID);
                 }
@@ -57,16 +78,28 @@ namespace Managers
             Load(BuildingAddressID);
             CheckBuildingScoreStatus(BuildingsData.idleLevelState);
             if (BuildingsData.IsDepended && BuildingsData.idleLevelState == IdleLevelStateType.Completed)
+=======
+                    buildingsData = GetBuildingsData();
+                    Save(_uniqueID);
+                }
+            }
+            Load(_uniqueID);
+            CheckBuildingScoreStatus(buildingsData.idleLevelState);
+            if (buildingsData.IsDepended && buildingsData.idleLevelState == IdleLevelStateType.Completed)
+>>>>>>> 2e868e54ddc81bcd77b0ad5e9d642d13d924bddb
             {
                 CheckSideBuildingScoreStatus(BuildingsData.SideObject.IdleLevelStateType);
             }
             SetDataToControllers();
         }
+<<<<<<< HEAD
         private void GetIdleLevelID()
         {
             IdleLevelId = CoreGameSignals.Instance.onGetIdleLevelID.Invoke();
         }
         
+=======
+>>>>>>> 2e868e54ddc81bcd77b0ad5e9d642d13d924bddb
         #region Event Subscription
         private void OnEnable()
         {
@@ -74,6 +107,7 @@ namespace Managers
         }
         private void SubscribeEvents()
         {
+            
             CoreGameSignals.Instance.onApplicatiponQuit += OnSave;
             CoreGameSignals.Instance.onGamePause += OnSave;
             LevelSignals.Instance.onNextLevel += OnSave;
@@ -93,12 +127,12 @@ namespace Managers
         #endregion
         private void OnSave()
         {
-            Save(BuildingAddressID);
+            Save(_uniqueID);
             SetDataToControllers();
         }
         private void OnLoad()
         {
-            Load(BuildingAddressID);
+            Load(_uniqueID);
             SetDataToControllers();
         }
         public void UpdatePayedAmount()

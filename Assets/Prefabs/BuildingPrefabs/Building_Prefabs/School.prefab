@@ -497,7 +497,6 @@ GameObject:
   - component: {fileID: 8061974314481000084}
   - component: {fileID: 8061974314481000073}
   - component: {fileID: 8061974314481000086}
-  - component: {fileID: 8061974314481000087}
   m_Layer: 0
   m_Name: School
   m_TagString: Untagged
@@ -575,20 +574,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8061974314481000087
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8061974314481000085}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &8061974315141811831
 GameObject:
   m_ObjectHideFlags: 0

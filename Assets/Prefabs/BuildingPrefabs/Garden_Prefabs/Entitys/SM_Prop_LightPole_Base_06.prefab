@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 9211700194895785693}
   - component: {fileID: 9211700194895037351}
   - component: {fileID: 9211700194893785319}
-  - component: {fileID: 9165052327540174213}
-  - component: {fileID: 9165015251882487503}
   m_Layer: 0
   m_Name: SM_Prop_LightPole_Base_06
   m_TagString: Untagged
@@ -83,31 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &9165052327540174213
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9211700194896224999}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43735133230528260, guid: fe8350762c8608d42ba2bdd5fbb28d68, type: 2}
---- !u!64 &9165015251882487503
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9211700194896224999}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43747470520237788, guid: fe8350762c8608d42ba2bdd5fbb28d68, type: 2}
