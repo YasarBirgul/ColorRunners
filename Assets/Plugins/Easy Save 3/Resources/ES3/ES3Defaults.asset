@@ -35,13 +35,13 @@ MonoBehaviour:
     - Cinemachine
     - Boxophobic.Utils.Scripts
     - Sirenix.OdinInspector.CompatibilityLayer
-    - Boxophobic.PolyverseSkies.Scripts
     - NavMeshComponents
+    - Boxophobic.PolyverseSkies.Scripts
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - Boxophobic.Utils.Editor
     - Boxophobic.PolyverseSkies.Editor
-    - Sirenix.OdinInspector.Modules.UnityMathematics
     - NavMeshComponentsEditor
+    - Sirenix.OdinInspector.Modules.UnityMathematics
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

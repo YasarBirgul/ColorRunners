@@ -123,7 +123,7 @@ namespace Managers
           private void SetScoreToText()
           {
               scoreText.text = _score.ToString();
-              UIScoreText.text = _score.ToString();
+               
           } private void OnReset()
           {
               _score = _stackData.StackMemberAmount;
